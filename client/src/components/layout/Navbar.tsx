@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
+
+import ThemeToggle from "../features/theme/ThemeToggle";
 import logo from "../../assets/logo.png";
 
 function Navbar() {
   return (
-    <header className="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md">
+    <header className="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md text-sm">
       <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
       <label
         htmlFor="navbar-1-toggle"
@@ -32,18 +35,19 @@ function Navbar() {
           </label>
           {/* logo */}
           <img src={logo} className="w-30 h-20" />
+          <span className="text-coin">$250</span>
         </div>
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-primary">
             <li>
-              <button>Home</button>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <button>League</button>
+              <Link to="/league">League</Link>
             </li>
             <li>
-              <button>Packs</button>
+              <Link to="/packs">Packs</Link>
             </li>
           </ul>
         </div>
@@ -51,15 +55,13 @@ function Navbar() {
         <div className="navbar-end">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <button>How to Play</button>
+              <Link to="/guide">How to Play</Link>
             </li>
             <li>
-              <button>Account</button>
-            </li>
-            <li>
-              <span className="text-coin">$250</span>
+              <Link to="/account">Account</Link>
             </li>
           </ul>
+          <ThemeToggle />
         </div>
       </nav>
 
