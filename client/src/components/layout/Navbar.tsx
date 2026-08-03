@@ -1,14 +1,20 @@
+import logo from "../../assets/logo.png";
+
 function Navbar() {
   return (
-    <nav className="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md">
+    <header className="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md">
       <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
       <label
         htmlFor="navbar-1-toggle"
         className="fixed inset-0 hidden max-lg:peer-checked:block"
       ></label>
-      <div className="collapse-title navbar">
+      <nav className="collapse-title navbar">
         <div className="navbar-start">
-          <label htmlFor="navbar-1-toggle" className="btn btn-ghost lg:hidden">
+          {/* hamburger */}
+          <label
+            htmlFor="navbar-1-toggle"
+            className="lg:hidden p-3 cursor-pointer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -24,62 +30,53 @@ function Navbar() {
               />
             </svg>
           </label>
-          <button className="btn btn-ghost text-xl">daisyUI</button>
+          {/* logo */}
+          <img src={logo} className="w-30 h-20" />
         </div>
+
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 text-primary">
             <li>
-              <button>Item 1</button>
+              <button>Home</button>
             </li>
             <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2 bg-base-100 w-40 z-1">
-                  <li>
-                    <button>Submenu 1</button>
-                  </li>
-                  <li>
-                    <button>Submenu 2</button>
-                  </li>
-                </ul>
-              </details>
+              <button>League</button>
             </li>
             <li>
-              <button>Item 3</button>
+              <button>Packs</button>
             </li>
           </ul>
         </div>
+
         <div className="navbar-end">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input w-64 lg:w-auto"
-          />
+          <ul className="menu menu-horizontal px-1">
+            <li>
+              <button>How to Play</button>
+            </li>
+            <li>
+              <button>Account</button>
+            </li>
+            <li>
+              <span className="text-coin">$250</span>
+            </li>
+          </ul>
         </div>
-      </div>
+      </nav>
 
       <div className="collapse-content lg:hidden z-1">
         <ul className="menu">
           <li>
-            <button>Item 1</button>
+            <button>Home</button>
           </li>
           <li>
-            <button>Parent</button>
-            <ul>
-              <li>
-                <button>Submenu 1</button>
-              </li>
-              <li>
-                <button>Submenu 2</button>
-              </li>
-            </ul>
+            <button>League</button>
           </li>
           <li>
-            <button>Item 3</button>
+            <button>Packs</button>
           </li>
         </ul>
       </div>
-    </nav>
+    </header>
   );
 }
 export default Navbar;

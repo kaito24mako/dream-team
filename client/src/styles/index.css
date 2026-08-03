@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -48,9 +49,9 @@
 
 /* custom css variables */
 @theme {
-  --font-base: var(--font-cormorant);
-  --font-primary: var(--font-inter);
-  --font-secondary: var(--font-inter);
+  --font-base: "Hanken Grotesk", Arial, Helvetica;
+  --font-primary: "Anton", Arial, Helvetica;
+  --font-secondary: "Space Mono", Arial, Helvetica;
 
   --color-border: #7E6156;
   --color-border-muted: #202020;
@@ -87,4 +88,17 @@
       background-position: -200% 0%;
     }
   } */
+}
+
+body {
+  font-family: var(--font-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
 }
