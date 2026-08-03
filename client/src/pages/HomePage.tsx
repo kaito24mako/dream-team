@@ -1,18 +1,24 @@
+import { Helmet } from "react-helmet";
+
 import StatisticsSection from "../components/features/home-page/StatisticsSection";
 import LineupSection from "../components/features/home-page/LineupSection";
 
 function HomePage() {
   return (
-    <main className="flex flex-col gap-4">
-      <div className="font-primary">
-        <p className="text-xl">Welcome to</p>
-        <h1 className="text-4xl text-primary">Melbourne Demons</h1>
-      </div>
+    <>
+      <Helmet>
+        <title>Home | Dream Team</title>
+      </Helmet>
 
-      <StatisticsSection />
-
-      <LineupSection />
-    </main>
+      <main className="flex flex-col gap-4">
+        <div className="font-primary">
+          <p className="text-xl">Welcome to</p>
+          <h1 className="text-4xl text-primary">Melbourne Demons</h1>
+        </div>
+        <StatisticsSection />
+        <LineupSection />
+      </main>
+    </>
   );
 }
 export default HomePage;
