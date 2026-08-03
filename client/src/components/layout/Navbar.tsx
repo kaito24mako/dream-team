@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 
 import ThemeToggle from "../features/theme/ThemeToggle";
 import logo from "../../assets/logo.png";
+import HamburgerIcon from "../common/icon/ui/HamburgerIcon";
 
 function Navbar() {
   return (
-    <header className="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md text-sm">
+    <header className="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md text-sm py-2 px-4">
       <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
       <label
         htmlFor="navbar-1-toggle"
@@ -13,33 +14,19 @@ function Navbar() {
       ></label>
       <nav className="collapse-title navbar">
         <div className="navbar-start">
-          {/* hamburger */}
           <label
             htmlFor="navbar-1-toggle"
             className="lg:hidden p-3 cursor-pointer"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+            <HamburgerIcon />
           </label>
-          {/* logo */}
-          <img src={logo} className="w-30 h-20" />
-          <span className="text-coin">$250</span>
+          <Link to="/">
+            <img src={logo} className="w-24 h-12" />
+          </Link>
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-primary">
+          <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -53,6 +40,7 @@ function Navbar() {
         </div>
 
         <div className="navbar-end">
+          <span className="text-coin mr-2.5 mt-0.5">$250</span>
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/guide">How to Play</Link>
@@ -68,13 +56,13 @@ function Navbar() {
       <div className="collapse-content lg:hidden z-1">
         <ul className="menu">
           <li>
-            <button>Home</button>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <button>League</button>
+            <Link to="/league">League</Link>
           </li>
           <li>
-            <button>Packs</button>
+            <Link to="/packs">Packs</Link>
           </li>
         </ul>
       </div>
