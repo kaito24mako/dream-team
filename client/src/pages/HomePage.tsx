@@ -1,8 +1,5 @@
 import StatisticsSection from "../components/features/home-page/StatisticsSection";
-import PlayerCard from "../components/common/card/PlayerCard";
-
-import grid from "../assets/bg/grid-black.png";
-import player1 from "../assets/card/player/player-1.png";
+import LineupSection from "../components/features/home-page/LineupSection";
 
 function HomePage() {
   return (
@@ -14,20 +11,7 @@ function HomePage() {
 
       <StatisticsSection />
 
-      <div className="mt-6">
-        <h2 className="text-2xl mb-3">😤 STARTING LINEUP</h2>
-
-        <div className="border border-border">
-          <img src={grid} className="bg-cover bg-full w-full" />
-        </div>
-
-        <PlayerCard
-          playerImage={player1}
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-      </div>
+      <LineupSection />
     </main>
   );
 }

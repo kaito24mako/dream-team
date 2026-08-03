@@ -17,6 +17,8 @@
   --color-accent: #D10303;
   --color-accent-content: #171717;
 
+  --color-border-base: #d4d4d4;
+
   /* Base bg and text */
   --color-base-100: #f5f5f5;
   --color-base-200: #e5e5e5;
@@ -38,6 +40,8 @@
 
   --color-accent: #D10303;
   --color-accent-content: #FAFAFA;
+
+  --color-border-base: #09090b;
 
   /* Base bg and text */
   --color-base-100: #171717;

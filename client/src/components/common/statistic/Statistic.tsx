@@ -12,7 +12,7 @@ function Statistic({
   textAlign: string;
 }) {
   const titleSizeClasses = {
-    small: "text-sm",
+    small: "text-xs",
     medium: "text-base",
     large: "text-2xl",
   };
