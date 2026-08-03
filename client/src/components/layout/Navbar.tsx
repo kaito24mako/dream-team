@@ -6,7 +6,7 @@ import HamburgerIcon from "../common/icon/ui/HamburgerIcon";
 
 function Navbar() {
   return (
-    <header className="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md text-sm py-2 px-4">
+    <header className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md text-sm py-2 px-2 md:px-10">
       <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
       <label
         htmlFor="navbar-1-toggle"
@@ -16,7 +16,7 @@ function Navbar() {
         <div className="navbar-start">
           <label
             htmlFor="navbar-1-toggle"
-            className="lg:hidden p-3 cursor-pointer"
+            className="lg:hidden p-3 pr-6 md:pr-8 cursor-pointer"
           >
             <HamburgerIcon />
           </label>
