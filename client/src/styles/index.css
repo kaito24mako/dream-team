@@ -1,65 +1,69 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* override daisyui's css variables */
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
 
-  --color-primary: #D97706;
-  --color-primary-content: #ffffff;
+  /* Brand */
+  --color-primary: #EE6730;
+  --color-primary-content: #171717;
 
-  --color-secondary: #2563EB;
-  --color-secondary-content: #ffffff;
+  --color-secondary: #FF976F;
+  --color-secondary-content: #171717;
 
-  --color-accent: #22C55E;
+  --color-accent: #D10303;
+  --color-accent-content: #171717;
+
+  /* Base bg and text */
+  --color-base-100: #FAFAFA;
+  --color-base-200: #f5f5f5;
+  --color-base-300: #e5e5e5;
+
+  --color-base-content: #171717;
 }
 
 @plugin "daisyui/theme" {
   name: "dark";
   prefersdark: true;
 
-  --color-primary: #F59E0B;
-  --color-primary-content: #111111;
+  /* Brand */
+  --color-primary: #EE6730;
+  --color-primary-content: #FAFAFA;
 
-  --color-secondary: #60A5FA;
-  --color-secondary-content: #111111;
+  --color-secondary: #FF976F;
+  --color-secondary-content: #FAFAFA;
 
-  --color-accent: #4ADE80;
+  --color-accent: #D10303;
+  --color-accent-content: #FAFAFA;
+
+  /* Base bg and text */
+  --color-base-100: #171717;
+  --color-base-200: #1C1C1C;
+  --color-base-300: #212121;
+
+  --color-base-content: #FAFAFA;
 }
 
-/* @theme {
+/* custom css variables */
+@theme {
+  --font-base: var(--font-cormorant);
+  --font-primary: var(--font-inter);
+  --font-secondary: var(--font-inter);
+
+  --color-border: #7E6156;
+  --color-border-muted: #202020;
+
+  --color-coin: #ffd54a;
   --color-rarity-common: #7d7d7d;
   --color-rarity-rare: #3b82f6;
   --color-rarity-superstar: #8b5cf6;
   --color-rarity-legendary: #f59e0b;
-
   --color-hardwood: #c68642;
   --color-court: #8b5a2b;
 
-  --color-coin: #ffd54a;
-} */
-
-
-/* @theme {
- 
-  --font-heading: var(--font-cormorant);
-  --font-subHeading: var(--font-inter);
-  --font-marquee: serif;
-
-  --color-background: var(--color-neutral-900);
-  --color-surface: var(--color-neutral-800);
-  --color-border: var(--color-neutral-700);
-
-  --color-foreground: var(--color-neutral-100);
-  --color-foreground-muted: var(--color-neutral-300);
-
-  --color-accent-light: #e87b83;
-  --color-accent-lighter: #f0b1b2;
-  --color-accent: #d8565f;
-  --color-accent-dark: #a53d44;
-  --color-accent-darker: #8a2738;
-
-  --breakpoint-3xl: 110rem;
+  /* --breakpoint-3xl: 110rem;
 
   --animate-marquee: marquee 15s linear infinite;
   --animate-shine: shine 3.5s linear infinite;
@@ -82,5 +86,5 @@
     100% {
       background-position: -200% 0%;
     }
-  }
-} */
+  } */
+}

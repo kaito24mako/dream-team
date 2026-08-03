@@ -3,6 +3,7 @@ function App() {
     <div>
       <p className="text-primary">hi</p>
       <button className="btn">button</button>
+      <button className="btn btn-accent">accent</button>
     </div>
   );
 }
