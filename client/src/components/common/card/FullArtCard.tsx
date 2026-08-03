@@ -3,6 +3,7 @@ import Statistic from "../statistic/Statistic";
 type Props = {
   playerImage;
   playerRarity;
+  playerPosition: string;
   playerName: string;
   offenseCount: number;
   defenseCount: number;
@@ -11,6 +12,7 @@ type Props = {
 function FullArtCard({
   playerImage,
   playerRarity,
+  playerPosition,
   playerName,
   offenseCount,
   defenseCount,
@@ -18,13 +20,14 @@ function FullArtCard({
   return (
     <div className="hover-3d">
       <div
-        className="relative w-60 h-85 border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
+        className="relative w-60 h-85 border border-border-base rounded-lg shadow-sm font-primary overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${playerRarity})` }}
       >
         <img src={playerImage} className="absolute mx-auto" />
+        <p className="absolute top-1 left-3">{playerPosition}</p>
 
         {/* bottom half */}
-        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-2 p-3 font-primary bg-base-300/15">
+        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-2 p-3 bg-base-300/15">
           <p className="text-xl">{playerName}</p>
 
           <div className="flex gap-4">

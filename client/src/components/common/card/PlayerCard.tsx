@@ -3,6 +3,7 @@ import Statistic from "../statistic/Statistic";
 type Props = {
   playerImage;
   playerRarity;
+  playerPosition: string;
   playerName: string;
   offenseCount: number;
   defenseCount: number;
@@ -11,6 +12,7 @@ type Props = {
 function PlayerCard({
   playerImage,
   playerRarity,
+  playerPosition,
   playerName,
   offenseCount,
   defenseCount,
@@ -20,10 +22,11 @@ function PlayerCard({
       <div className="w-60 h-85 border border-border-base rounded-lg shadow-sm overflow-hidden">
         {/* top half */}
         <div
-          className="h-58 bg-base-300 bg-cover bg-center"
+          className="relative h-58 bg-base-300 bg-cover bg-center"
           style={{ backgroundImage: `url(${playerRarity})` }}
         >
           <img src={playerImage} className="h-58 w-40 mx-auto" />
+          <p className="absolute top-1 left-3">{playerPosition}</p>
         </div>
 
         {/* bottom half */}
