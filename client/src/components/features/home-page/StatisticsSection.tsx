@@ -2,7 +2,7 @@ import Statistic from "../../common/statistic/Statistic";
 
 function StatisticsSection() {
   return (
-    <section className="flex gap-5 overflow-scroll">
+    <section className="flex gap-5 overflow-x-scroll overflow-y-hidden">
       <Statistic
         title="Offense"
         count={89}

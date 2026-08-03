@@ -8,7 +8,7 @@ type Props = {
   defenseCount: number;
 };
 
-function PlayerCard({
+function FullArtCard({
   playerImage,
   playerRarity,
   playerName,
@@ -17,17 +17,14 @@ function PlayerCard({
 }: Props) {
   return (
     <div className="hover-3d">
-      <div className="w-60 h-85 border border-border-base rounded-lg shadow-sm overflow-hidden">
-        {/* top half */}
-        <div
-          className="h-58 bg-base-300 bg-cover bg-center"
-          style={{ backgroundImage: `url(${playerRarity})` }}
-        >
-          <img src={playerImage} className="h-58 w-40 mx-auto" />
-        </div>
+      <div
+        className="relative w-60 h-85 border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: `url(${playerRarity})` }}
+      >
+        <img src={playerImage} className="absolute mx-auto" />
 
         {/* bottom half */}
-        <div className="flex flex-col items-center justify-center gap-2 h-27 bg-base-200">
+        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-2 p-3 font-primary bg-base-300/15">
           <p className="text-xl">{playerName}</p>
 
           <div className="flex gap-4">
@@ -61,4 +58,4 @@ function PlayerCard({
   );
 }
 
-export default PlayerCard;
+export default FullArtCard;
