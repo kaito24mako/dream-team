@@ -11,7 +11,7 @@ function HomePage() {
         <title>Home | Dream Team</title>
       </Helmet>
 
-      <main className="flex flex-col gap-4">
+      <main className="flex flex-col gap-4 mb-15">
         <div className="font-primary">
           <p className="text-xl">Welcome to</p>
           <h1 className="text-4xl text-primary">Melbourne Demons</h1>

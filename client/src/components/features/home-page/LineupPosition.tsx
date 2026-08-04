@@ -10,7 +10,7 @@ function LineupPosition({
       {children}
       <div className="flex items-center gap-4 mx-auto">
         <p className="font-primary text-primary text-2xl">{position}</p>
-        <button className="btn btn-primary btn-sm">Swap</button>
+        <button className="btn btn-primary btn-sm text-black">Swap</button>
       </div>
     </div>
   );

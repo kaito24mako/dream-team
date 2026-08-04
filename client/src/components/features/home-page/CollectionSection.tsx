@@ -12,7 +12,7 @@ import common from "../../../assets/card/rarity/common-bg.png";
 
 function CollectionSection() {
   return (
-    <section className="mt-6 mb-8">
+    <section className="mt-6">
       <div className="flex justify-between items-end">
         <SectionHeading heading="MY COLLECTION" Icon={TbCards} />
         <div className="flex flex-col sm:flex-row items-center gap-2 mb-3">

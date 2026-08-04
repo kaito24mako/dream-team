@@ -9,7 +9,7 @@ import legendary from "../../../assets/card/rarity/legendary-bg.png";
 
 function FeaturedSection() {
   return (
-    <section className="mb-8">
+    <section>
       <SectionHeading
         heading="Featured Cards"
         Icon={RxLightningBolt}

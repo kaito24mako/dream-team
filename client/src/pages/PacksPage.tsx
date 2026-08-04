@@ -9,7 +9,7 @@ function PacksPage() {
         <title>Packs | Dream Team</title>
       </Helmet>
 
-      <main className="flex flex-col gap-4">
+      <main className="flex flex-col gap-4 mb-15">
         <BuyPacksSection />
 
         <FeaturedSection />
