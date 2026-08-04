@@ -1,8 +1,8 @@
 import Statistic from "../statistic/Statistic";
 
 type Props = {
-  playerImage;
-  playerRarity;
+  playerImage: string;
+  playerRarity: string;
   playerPosition: string;
   playerName: string;
   offenseCount: number;

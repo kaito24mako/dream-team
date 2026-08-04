@@ -1,9 +1,11 @@
+type DividerColor = "default" | "border";
+
 type Prop = {
-  color?: string;
+  color?: DividerColor;
 };
 
 function Divider({ color = "default" }: Prop) {
-  const colorClasses = {
+  const colorClasses: Record<DividerColor, string> = {
     default: "",
     border: "before:h-px after:h-px [--divider-color:var(--color-border)]",
   };

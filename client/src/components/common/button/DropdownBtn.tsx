@@ -1,6 +1,6 @@
 type Props = {
   buttonText: string;
-  dropdownItems;
+  dropdownItems: string[];
 };
 
 function DropdownBtn({ buttonText, dropdownItems }: Props) {
