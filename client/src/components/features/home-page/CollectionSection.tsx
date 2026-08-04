@@ -5,7 +5,7 @@ import SearchForm from "../../common/form/SearchForm";
 import DropdownBtn from "../../common/button/DropdownBtn";
 import RegularCard from "../../common/playerCard/RegularCard";
 import Divider from "../../common/divider/Divider";
-import PlayerCardList from "../../common/playerCard/PlayerCardList";
+import CardList from "../../common/list/CardList";
 
 import player1 from "../../../assets/card/player/player1.png";
 import common from "../../../assets/card/rarity/common-bg.png";
@@ -36,7 +36,7 @@ function CollectionSection() {
 
       <Divider color="default" />
 
-      <PlayerCardList className="px-7">
+      <CardList className="px-7">
         <RegularCard
           playerImage={player1}
           playerRarity={common}
@@ -85,7 +85,7 @@ function CollectionSection() {
           offenseCount={89}
           defenseCount={92}
         />
-      </PlayerCardList>
+      </CardList>
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import SectionHeading from "../../common/text/SectionHeading";
-import PlayerCardList from "../../common/playerCard/PlayerCardList";
+import CardList from "../../common/list/CardList";
 import Pack from "../../common/pack/Pack";
 
 import basicPack from "../../../assets/card/pack/basic-pack.png";
@@ -18,7 +18,7 @@ function BuyPacksSection() {
         divider={true}
       />
 
-      <PlayerCardList>
+      <CardList>
         <Pack
           packBg={basicPack}
           title="Basic Pack"
@@ -67,7 +67,7 @@ function BuyPacksSection() {
           ]}
           price="$800"
         />
-      </PlayerCardList>
+      </CardList>
     </section>
   );
 }

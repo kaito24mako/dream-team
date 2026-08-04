@@ -30,7 +30,7 @@ function FullArtCard({
 
         {/* bottom half */}
         <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-2 p-3 bg-base-300/25">
-          <p className="text-xl lg:text-2xl">{playerName}</p>
+          <p className="text-xl lg:text-2xl text-center">{playerName}</p>
 
           <div className="flex gap-4">
             <Statistic

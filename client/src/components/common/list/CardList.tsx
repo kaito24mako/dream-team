@@ -1,4 +1,4 @@
-function PlayerCardList({
+function CardList({
   children,
   className = "",
 }: {
@@ -11,4 +11,4 @@ function PlayerCardList({
     </div>
   );
 }
-export default PlayerCardList;
+export default CardList;

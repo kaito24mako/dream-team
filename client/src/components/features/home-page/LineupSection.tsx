@@ -1,7 +1,7 @@
 import { RiTeamLine } from "react-icons/ri";
 
 import SectionHeading from "../../common/text/SectionHeading";
-import PlayerCardList from "../../common/playerCard/PlayerCardList";
+import CardList from "../../common/list/CardList";
 import LineupPosition from "./LineupPosition";
 import RegularCard from "../../common/playerCard/RegularCard";
 import FullArtCard from "../../common/playerCard/FullArtCard";
@@ -27,7 +27,7 @@ function LineupSection() {
         className="bg-cover bg-full border border-border p-7"
         style={{ backgroundImage: `url(${grid})` }}
       >
-        <PlayerCardList>
+        <CardList>
           <LineupPosition position="PG">
             <RegularCard
               playerImage={player1}
@@ -78,7 +78,7 @@ function LineupSection() {
               defenseCount={92}
             />
           </LineupPosition>
-        </PlayerCardList>
+        </CardList>
       </div>
     </section>
   );

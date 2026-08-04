@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import BuyPacksSection from "../components/features/cards-page/BuyPacksSection";
+import FeaturedSection from "../components/features/cards-page/FeaturedSection";
 
 function PacksPage() {
   return (
@@ -10,6 +11,8 @@ function PacksPage() {
 
       <main className="flex flex-col gap-4">
         <BuyPacksSection />
+
+        <FeaturedSection />
       </main>
     </>
   );
