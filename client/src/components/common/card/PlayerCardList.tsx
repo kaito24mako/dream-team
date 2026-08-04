@@ -5,6 +5,10 @@ function PlayerCardList({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <div className={`${className} flex gap-5 flex-wrap`}>{children}</div>;
+  return (
+    <div className={`${className} flex justify-center gap-5 flex-wrap`}>
+      {children}
+    </div>
+  );
 }
 export default PlayerCardList;

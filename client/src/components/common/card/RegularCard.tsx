@@ -19,19 +19,22 @@ function RegularCard({
 }: Props) {
   return (
     <div className="hover-3d">
-      <div className="w-60 h-85 border border-border-base rounded-lg shadow-sm overflow-hidden">
+      <div className="w-40 h-65 lg:w-60 lg:h-85 border border-border-base rounded-lg shadow-sm overflow-hidden font-secondary">
         {/* top half */}
         <div
-          className="relative h-58 bg-base-300 bg-cover bg-center"
+          className="relative h-38 lg:h-58 bg-base-300 bg-cover bg-center"
           style={{ backgroundImage: `url(${playerRarity})` }}
         >
-          <img src={playerImage} className="h-58 w-40 mx-auto" />
+          <img
+            src={playerImage}
+            className="w-27 h-38 lg:w-40 lg:h-58 mx-auto"
+          />
           <p className="absolute top-1 left-3">{playerPosition}</p>
         </div>
 
         {/* bottom half */}
         <div className="flex flex-col items-center justify-center gap-2 h-27 bg-base-200">
-          <p className="text-xl">{playerName}</p>
+          <p className="text-sm lg:text-lg">{playerName}</p>
 
           <div className="flex gap-4">
             <Statistic
@@ -39,14 +42,16 @@ function RegularCard({
               count={offenseCount}
               titleSize="small"
               countSize="small"
-              textAlign="center"
+              textAlign="centerRigid"
+              titleOpacity="opacity-80"
             />
             <Statistic
               title="Defense"
               count={defenseCount}
               titleSize="small"
               countSize="small"
-              textAlign="center"
+              textAlign="centerRigid"
+              titleOpacity="opacity-80"
             />
           </div>
         </div>

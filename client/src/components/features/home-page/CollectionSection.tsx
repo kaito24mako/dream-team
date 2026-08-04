@@ -15,7 +15,7 @@ function CollectionSection() {
     <section className="mt-6 mb-8">
       <div className="flex justify-between items-end">
         <SectionHeading heading="MY COLLECTION" Icon={TbCards} />
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex flex-col sm:flex-row items-center gap-2 mb-3">
           <SearchForm />
           <div className="flex">
             <DropdownBtn

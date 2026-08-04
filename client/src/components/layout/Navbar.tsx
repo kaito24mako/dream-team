@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { PiQuestionLight } from "react-icons/pi";
+import { VscAccount } from "react-icons/vsc";
 
 import ThemeToggle from "../features/theme/ThemeToggle";
 import logo from "../../assets/icon/logo.png";
@@ -43,10 +45,14 @@ function Navbar() {
           <span className="text-coin mr-2.5 mt-0.5">$250</span>
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/guide">How to Play</Link>
+              <Link to="/guide">
+                <PiQuestionLight className="w-6 h-6" />
+              </Link>
             </li>
             <li>
-              <Link to="/account">Account</Link>
+              <Link to="/account">
+                <VscAccount className="w-5 h-5" />
+              </Link>
             </li>
           </ul>
           <ThemeToggle />
