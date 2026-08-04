@@ -9,11 +9,11 @@ type Props = {
 function Pack({ packBg, title, content, chances, price }: Props) {
   return (
     <div
-      className="flex flex-col gap-8 border border-border bg-neutral-950 rounded-lg shadow-md text-neutral-100 py-7 px-10 overflow-hidden bg-cover bg-center w-43 sm:w-58 h-80"
+      className="flex flex-col gap-8 border border-border bg-neutral-950 rounded-lg shadow-md text-neutral-100 py-7 px-8 sm:px-10 overflow-hidden bg-cover bg-center w-43 sm:w-58 h-80"
       style={{ backgroundImage: `url(${packBg})` }}
     >
       <div className="text-center">
-        <h3 className="text-sm sm:text-lg lg:text-xl">{title}</h3>
+        <h3 className="text-base sm:text-lg lg:text-xl">{title}</h3>
         <p className="text-xxs sm:text-sm">{content}</p>
       </div>
 
