@@ -27,7 +27,7 @@ function FullArtCard({
         <p className="absolute top-1 left-3">{playerPosition}</p>
 
         {/* bottom half */}
-        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-2 p-3 bg-base-300/15">
+        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-2 p-3 bg-base-300/25">
           <p className="text-xl">{playerName}</p>
 
           <div className="flex gap-4">

@@ -1,3 +1,4 @@
+// for creating classes as props
 type DividerColor = "default" | "border";
 
 type Prop = {

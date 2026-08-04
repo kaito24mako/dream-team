@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import ThemeToggle from "../features/theme/ThemeToggle";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/icon/logo.png";
 import HamburgerIcon from "../common/icon/ui/HamburgerIcon";
 
 function Navbar() {

@@ -4,11 +4,11 @@ import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
 import DropdownBtn from "../../common/button/DropdownBtn";
 import RegularCard from "../../common/card/RegularCard";
-
-import player1 from "../../../assets/card/player/player-1.png";
-import common from "../../../assets/card/bg/common-bg.png";
 import Divider from "../../common/divider/Divider";
 import PlayerCardList from "../../common/card/PlayerCardList";
+
+import player1 from "../../../assets/card/player/player1.png";
+import common from "../../../assets/card/rarity/common-bg.png";
 
 function CollectionSection() {
   return (
