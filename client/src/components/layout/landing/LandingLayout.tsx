@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Footer from "../Footer";
+import LandingNavbar from "./LandingNavbar";
 
-function Layout() {
+function LandingLayout() {
   return (
     <div className="flex flex-col min-h-dvh">
-      <Navbar />
+      <LandingNavbar />
 
       <div className="flex-1 py-7 px-7 md:px-14">
         <Outlet />
@@ -16,4 +16,4 @@ function Layout() {
     </div>
   );
 }
-export default Layout;
+export default LandingLayout;

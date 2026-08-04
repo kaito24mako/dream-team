@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 
-import ThemeToggle from "../features/theme/ThemeToggle";
-import logo from "../../assets/icon/logo.png";
-import HamburgerIcon from "../common/icon/ui/HamburgerIcon";
+import ThemeToggle from "../../features/theme/ThemeToggle";
+import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
+import logo from "../../../assets/icon/logo.png";
 
-function Navbar() {
+function AppNavbar() {
   return (
     <header className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md text-sm py-2 px-2 md:px-10">
       <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
@@ -22,7 +22,7 @@ function Navbar() {
           >
             <HamburgerIcon />
           </label>
-          <Link to="/">
+          <Link to="/home">
             <img src={logo} className="w-24 h-12" />
           </Link>
         </div>
@@ -30,7 +30,7 @@ function Navbar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
             </li>
             <li>
               <Link to="/league">League</Link>
@@ -62,7 +62,7 @@ function Navbar() {
       <div className="collapse-content lg:hidden z-1">
         <ul className="menu">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li>
             <Link to="/league">League</Link>
@@ -75,4 +75,4 @@ function Navbar() {
     </header>
   );
 }
-export default Navbar;
+export default AppNavbar;
