@@ -1,10 +1,10 @@
 import { RiTeamLine } from "react-icons/ri";
 
 import SectionHeading from "../../common/text/SectionHeading";
-import PlayerCardList from "../../common/card/PlayerCardList";
+import PlayerCardList from "../../common/playerCard/PlayerCardList";
 import LineupPosition from "./LineupPosition";
-import RegularCard from "../../common/card/RegularCard";
-import FullArtCard from "../../common/card/FullArtCard";
+import RegularCard from "../../common/playerCard/RegularCard";
+import FullArtCard from "../../common/playerCard/FullArtCard";
 
 import grid from "../../../assets/bg/grid-black.png";
 import common from "../../../assets/card/rarity/common-bg.png";

@@ -3,9 +3,9 @@ import { TbCards } from "react-icons/tb";
 import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
 import DropdownBtn from "../../common/button/DropdownBtn";
-import RegularCard from "../../common/card/RegularCard";
+import RegularCard from "../../common/playerCard/RegularCard";
 import Divider from "../../common/divider/Divider";
-import PlayerCardList from "../../common/card/PlayerCardList";
+import PlayerCardList from "../../common/playerCard/PlayerCardList";
 
 import player1 from "../../../assets/card/player/player1.png";
 import common from "../../../assets/card/rarity/common-bg.png";

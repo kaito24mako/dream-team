@@ -10,7 +10,7 @@ type Props = {
 function SectionHeading({ heading, Icon, divider = false }: Props) {
   return (
     <>
-      <div className="flex gap-2 mb-3">
+      <div className="flex items-center gap-2 mb-3">
         {Icon && <Icon className="w-7 h-7 text-secondary" />}
         <h2 className="text-2xl">{heading}</h2>
       </div>
