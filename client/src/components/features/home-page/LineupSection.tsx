@@ -24,7 +24,7 @@ function LineupSection() {
       <SectionHeading heading="STARTING LINEUP" Icon={RiTeamLine} />
 
       <div
-        className="bg-cover bg-full border border-border p-7"
+        className="bg-cover bg-full border border-border p-5 sm:p-7"
         style={{ backgroundImage: `url(${grid})` }}
       >
         <CardList>
