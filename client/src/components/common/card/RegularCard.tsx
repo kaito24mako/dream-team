@@ -9,7 +9,7 @@ type Props = {
   defenseCount: number;
 };
 
-function PlayerCard({
+function RegularCard({
   playerImage,
   playerRarity,
   playerPosition,
@@ -64,4 +64,4 @@ function PlayerCard({
   );
 }
 
-export default PlayerCard;
+export default RegularCard;
