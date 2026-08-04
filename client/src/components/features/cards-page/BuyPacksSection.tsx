@@ -41,7 +41,7 @@ function BuyPacksSection() {
             "8% for superstar player",
             "2% for legendary player",
           ]}
-          price="$300"
+          price="$500"
         />
         <Pack
           packBg={hofPack}
@@ -53,19 +53,19 @@ function BuyPacksSection() {
             "8% for superstar player",
             "2% for legendary player",
           ]}
-          price="$300"
+          price="$1000"
         />
         <Pack
           packBg={positionPack}
           title="Position Pack"
-          content="1 player of a chosen position"
+          content="1 positional player"
           chances={[
             "60% for common player",
             "30% for rare player",
             "8% for superstar player",
             "2% for legendary player",
           ]}
-          price="$300"
+          price="$800"
         />
       </PlayerCardList>
     </section>
