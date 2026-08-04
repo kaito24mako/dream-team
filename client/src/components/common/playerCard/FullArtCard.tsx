@@ -20,7 +20,7 @@ function FullArtCard({
   return (
     <div className="hover-3d">
       <div
-        className="relative w-40 h-65 lg:w-60 lg:h-85 border border-border-base rounded-lg shadow-sm font-primary overflow-hidden bg-cover bg-center"
+        className="relative w-37 h-65 md:w-40 lg:w-60 lg:h-85 border border-border-base rounded-lg shadow-sm font-primary overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${playerRarity})` }}
       >
         <img src={playerImage} className="absolute mx-auto" />

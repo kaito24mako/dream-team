@@ -19,7 +19,7 @@ function RegularCard({
 }: Props) {
   return (
     <div className="hover-3d">
-      <div className="w-40 h-65 lg:w-60 lg:h-85 border border-border-base rounded-lg shadow-sm overflow-hidden font-secondary">
+      <div className="w-37 h-65 md:w-40 lg:w-60 lg:h-85 border border-border-base rounded-lg shadow-sm overflow-hidden font-secondary">
         {/* top half */}
         <div
           className="relative h-38 lg:h-58 bg-base-300 bg-cover bg-center"

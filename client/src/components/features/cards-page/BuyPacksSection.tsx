@@ -24,10 +24,10 @@ function BuyPacksSection() {
           title="Basic Pack"
           content="1 player"
           chances={[
-            "60% for common player",
-            "30% for rare player",
-            "8% for superstar player",
-            "2% for legendary player",
+            "60% for common",
+            "30% for rare",
+            "8% for superstar",
+            "2% for legendary",
           ]}
           price="$300"
         />
@@ -36,10 +36,10 @@ function BuyPacksSection() {
           title="Premium Pack"
           content="1 player"
           chances={[
-            "60% for common player",
-            "30% for rare player",
-            "8% for superstar player",
-            "2% for legendary player",
+            "30% for common",
+            "40% for rare",
+            "20% for superstar",
+            "10% for legendary",
           ]}
           price="$500"
         />
@@ -48,10 +48,10 @@ function BuyPacksSection() {
           title="HOF Pack"
           content="1 player"
           chances={[
-            "60% for common player",
-            "30% for rare player",
-            "8% for superstar player",
-            "2% for legendary player",
+            "0% for common",
+            "40% for rare",
+            "35% for superstar",
+            "25% for legendary",
           ]}
           price="$1000"
         />
@@ -60,10 +60,10 @@ function BuyPacksSection() {
           title="Position Pack"
           content="1 positional player"
           chances={[
-            "60% for common player",
-            "30% for rare player",
-            "8% for superstar player",
-            "2% for legendary player",
+            "20% for common",
+            "40% for rare",
+            "25% for superstar",
+            "15% for legendary",
           ]}
           price="$800"
         />
