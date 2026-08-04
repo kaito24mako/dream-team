@@ -8,7 +8,7 @@ function Layout() {
     <div className="flex flex-col min-h-dvh">
       <Navbar />
 
-      <div className="flex-1 py-5 px-7 md:px-14">
+      <div className="flex-1 py-7 px-7 md:px-14">
         <Outlet />
       </div>
 

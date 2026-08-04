@@ -12,7 +12,7 @@ import PlayerCardList from "../../common/card/PlayerCardList";
 
 function CollectionSection() {
   return (
-    <section className="mt-6">
+    <section className="mt-6 mb-8">
       <div className="flex justify-between items-end">
         <SectionHeading heading="MY COLLECTION" Icon={TbCards} />
         <div className="flex items-center gap-2 mb-3">
@@ -36,7 +36,7 @@ function CollectionSection() {
 
       <Divider color="default" />
 
-      <PlayerCardList>
+      <PlayerCardList className="px-7">
         <RegularCard
           playerImage={player1}
           playerRarity={common}
