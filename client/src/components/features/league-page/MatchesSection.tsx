@@ -5,7 +5,7 @@ import MatchItem from "./MatchItem";
 
 function MatchesSection() {
   return (
-    <section className="border border-border rounded-sm bg-base-200 p-5 max-w-5xl mx-auto">
+    <section className="border border-border rounded-sm bg-base-200 p-4 pb-6 sm:p-6 sm:px-8 sm:pb-8 max-w-5xl mx-auto">
       <SectionHeading heading="LEAGUE MATCHES" Icon={AiOutlineSchedule} />
 
       <div className="flex flex-col gap-5">

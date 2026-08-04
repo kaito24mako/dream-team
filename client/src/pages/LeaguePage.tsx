@@ -10,9 +10,9 @@ function LeaguePage() {
         <title>League | Dream Team</title>
       </Helmet>
 
-      <main className="flex flex-col gap-4 mb-15">
+      <main className="flex flex-col gap-5 mb-15">
         <div className="flex justify-center items-end gap-10">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-start md:items-center">
             <p className="font-primary text-xl">It's Game Time</p>
             <p className="font-primary text-primary text-4xl">
               Melbourne Demons
