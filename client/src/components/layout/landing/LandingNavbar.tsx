@@ -1,76 +1,29 @@
 import { Link } from "react-router-dom";
-import { PiQuestionLight } from "react-icons/pi";
-import { VscAccount } from "react-icons/vsc";
 
-import ThemeToggle from "../../features/theme/ThemeToggle";
-import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
+import Button from "../../common/button/Button";
+
 import logo from "../../../assets/icon/logo.png";
 
 function LandingNavbar() {
   return (
-    <header className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md text-sm py-2 px-2 md:px-10">
-      <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
-      <label
-        htmlFor="navbar-1-toggle"
-        className="fixed inset-0 hidden max-lg:peer-checked:block"
-      ></label>
-      <nav className="collapse-title navbar">
-        <div className="navbar-start">
-          <label
-            htmlFor="navbar-1-toggle"
-            className="lg:hidden p-3 pr-6 md:pr-8 cursor-pointer"
-          >
-            <HamburgerIcon />
-          </label>
-          <Link to="/home">
-            <img src={logo} className="w-24 h-12" />
-          </Link>
-        </div>
-
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            <li>
-              <Link to="/league">League</Link>
-            </li>
-            <li>
-              <Link to="/packs">Packs</Link>
-            </li>
-          </ul>
-        </div>
-
-        <div className="navbar-end">
-          <span className="text-coin mr-2.5 mt-0.5">$250</span>
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link to="/guide">
-                <PiQuestionLight className="w-6 h-6" />
-              </Link>
-            </li>
-            <li>
-              <Link to="/account">
-                <VscAccount className="w-5 h-5" />
-              </Link>
-            </li>
-          </ul>
-          <ThemeToggle />
-        </div>
-      </nav>
-
-      <div className="collapse-content lg:hidden z-1">
-        <ul className="menu">
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/league">League</Link>
-          </li>
-          <li>
-            <Link to="/packs">Packs</Link>
-          </li>
-        </ul>
+    <header className="fixed top-0 left-0 right-0 z-50 navbar bg-base-200 rounded-md text-sm py-2 px-2 md:px-10">
+      <div className="flex-1">
+        <img src={logo} className="w-24 h-12" alt="Dream Team logo" />
+      </div>
+      <div className="flex gap-3">
+        <Link to="/home">
+          <Button textColor="white">Home</Button>
+        </Link>
+        <Link to="/login">
+          <Button bgColor="primary" textColor="black">
+            Login
+          </Button>
+        </Link>
+        <Link to="/register">
+          <Button bgColor="secondary" textColor="black">
+            Create Account
+          </Button>
+        </Link>
       </div>
     </header>
   );

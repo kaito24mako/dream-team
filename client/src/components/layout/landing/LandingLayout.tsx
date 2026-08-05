@@ -8,7 +8,7 @@ function LandingLayout() {
     <div className="flex flex-col min-h-dvh">
       <LandingNavbar />
 
-      <div className="flex-1 py-7 px-7 md:px-14">
+      <div className="min-h-dvh py-7 px-7 md:px-14">
         <Outlet />
       </div>
 

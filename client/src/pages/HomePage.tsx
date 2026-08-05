@@ -1,5 +1,3 @@
-import { Helmet } from "react-helmet";
-
 import StatisticsSection from "../components/features/home-page/StatisticsSection";
 import LineupSection from "../components/features/home-page/LineupSection";
 import CollectionSection from "../components/features/home-page/CollectionSection";
@@ -7,9 +5,7 @@ import CollectionSection from "../components/features/home-page/CollectionSectio
 function HomePage() {
   return (
     <>
-      <Helmet>
-        <title>Home | Dream Team</title>
-      </Helmet>
+      <title>Home | Dream Team</title>
 
       <main className="flex flex-col gap-4 mb-15">
         <div className="font-primary">

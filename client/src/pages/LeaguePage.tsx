@@ -1,14 +1,10 @@
-import { Helmet } from "react-helmet";
-
 import Statistic from "../components/common/statistic/Statistic";
 import MatchesSection from "../components/features/league-page/MatchesSection";
 
 function LeaguePage() {
   return (
     <>
-      <Helmet>
-        <title>League | Dream Team</title>
-      </Helmet>
+      <title>League | Dream Team</title>
 
       <main className="flex flex-col gap-5 mb-15">
         <div className="flex justify-center items-end gap-10">
