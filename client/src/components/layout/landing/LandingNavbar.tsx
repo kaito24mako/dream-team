@@ -6,7 +6,7 @@ import logo from "../../../assets/icon/logo.png";
 
 function LandingNavbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 navbar bg-base-200 rounded-md text-sm py-2 px-2 md:px-10">
+    <header className="navbar bg-base-200 rounded-md text-sm py-2 px-2 md:px-10">
       <div className="flex-1">
         <img src={logo} className="w-24 h-12" alt="Dream Team logo" />
       </div>
