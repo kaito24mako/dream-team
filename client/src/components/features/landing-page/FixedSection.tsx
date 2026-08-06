@@ -15,7 +15,7 @@ function FixedSection() {
           </h1>
         </div>
 
-        <div className="text-2xl">
+        <div className="text-2xl opacity-80">
           <p>
             Dream Team is a fictional TCG made by a passionate basketball
             enthusiast.

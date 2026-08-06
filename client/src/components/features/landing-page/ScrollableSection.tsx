@@ -21,7 +21,7 @@ function ScrollableSection() {
 
       <ScrollableItem
         heading="Collect Players"
-        description="Open packs to collect players from a custom database of over 100 cards."
+        description="Open packs to collect players from a custom database of over 100 cards. Acquire players of varying rarities, from common to legendary."
       >
         <div className="flex gap-5">
           <RegularCard
@@ -45,7 +45,7 @@ function ScrollableSection() {
 
       <ScrollableItem
         heading="Assemble Your Team"
-        description="Assemble a five-man roster and play against various CPU teams."
+        description="Assemble a five-man roster from your collected players. Choose players with the best offensive and defensive statistics."
       >
         <div
           className="h-[40dvh] w-full rounded-md shadow-md bg-cover bg-top"
@@ -54,8 +54,8 @@ function ScrollableSection() {
       </ScrollableItem>
 
       <ScrollableItem
-        heading="Win for Rewards"
-        description="The higher difficulty you conquer, the bigger the reward."
+        heading="Compete for Rewards"
+        description="Face-off against CPU teams of varying difficulties. The higher difficulty you conquer, the bigger the reward. Your rewards are used to open packs."
       >
         <img src={coin} className="h-[36dvh] w-[50%] object-contain" />
       </ScrollableItem>
