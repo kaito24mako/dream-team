@@ -27,7 +27,7 @@ function Button({ children, size, bgColor, textColor }: Props) {
   return (
     <button
       type="button"
-      className={`btn ${sizeClasses[size]} ${bgColorClasses[bgColor]} ${textColorClasses[textColor]}`}
+      className={`btn ${`size ? ${sizeClasses[size]} : ""`} ${`bgColor ? ${bgColorClasses[bgColor]} : ""`} ${`textColor ? ${textColorClasses[textColor]} : ""`}`}
     >
       {children}
     </button>
