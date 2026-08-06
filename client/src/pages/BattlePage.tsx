@@ -2,10 +2,10 @@ import Button from "../components/common/button/Button";
 import Scoreboard from "../components/features/battle-page/Scoreboard";
 import Team from "../components/features/battle-page/Team";
 
-import RegularCard from "../components/common/playerCard/RegularCard";
-import player2 from "../assets/card/player/player2.png";
-import common from "../assets/card/rarity/common-bg.png";
-import CardList from "../components/common/list/CardList";
+// import RegularCard from "../components/common/playerCard/RegularCard";
+// import player2 from "../assets/card/player/player2.png";
+// import common from "../assets/card/rarity/common-bg.png";
+// import CardList from "../components/common/list/CardList";
 
 function BattlePage() {
   return (

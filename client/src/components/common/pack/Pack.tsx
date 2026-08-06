@@ -1,11 +1,12 @@
 import Button from "../button/Button";
+import CoinIcon from "../icon/ui/CoinIcon";
 
 type Props = {
   packBg: string;
   title: string;
   content: string;
   chances: string[];
-  price: string;
+  price: number;
 };
 
 function Pack({ packBg, title, content, chances, price }: Props) {
@@ -30,7 +31,13 @@ function Pack({ packBg, title, content, chances, price }: Props) {
           textColor="black"
           className="btn-xs sm:btn-sm"
         >
-          Buy: {price}
+          <div className="flex items-center gap-1">
+            <p>Buy:</p>
+            <div className="flex items-center gap-0.5">
+              <CoinIcon />
+              <p className="text-coin">{price}</p>
+            </div>
+          </div>
         </Button>
       </div>
     </div>

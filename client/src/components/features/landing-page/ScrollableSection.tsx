@@ -1,6 +1,6 @@
 import { TbCards } from "react-icons/tb";
 import { RiTeamLine } from "react-icons/ri";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { PiCoins } from "react-icons/pi";
 
 import RegularCard from "../../common/playerCard/RegularCard";
 import ScrollableItem from "./ScrollableItem";
@@ -63,7 +63,7 @@ function ScrollableSection() {
 
       <ScrollableItem
         heading="Compete for Rewards"
-        Icon={AiOutlineShoppingCart}
+        Icon={PiCoins}
         description="Face-off against CPU teams of varying difficulties. The higher difficulty you conquer, the bigger the reward. Your rewards are used to open packs."
       >
         <img src={coin} className="h-[36dvh] w-[50%] object-contain" />

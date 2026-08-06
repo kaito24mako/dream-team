@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 
-import ThemeToggle from "../../features/theme/ThemeToggle";
 import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
-import logo from "../../../assets/icon/logo.png";
 import CoinIcon from "../../common/icon/ui/CoinIcon";
+import logo from "../../../assets/icon/logo.png";
 
 function AppNavbar() {
   return (
@@ -58,8 +57,11 @@ function AppNavbar() {
                 <VscAccount className="w-5 h-5" />
               </Link>
             </li>
+            <li>
+              <Link to="/">Log Out</Link>
+            </li>
           </ul>
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
         </div>
       </nav>
 

@@ -29,7 +29,7 @@ function BuyPacksSection() {
             "8% for superstar",
             "2% for legendary",
           ]}
-          price="$300"
+          price={300}
         />
         <Pack
           packBg={premiumPack}
@@ -41,7 +41,7 @@ function BuyPacksSection() {
             "20% for superstar",
             "10% for legendary",
           ]}
-          price="$500"
+          price={500}
         />
         <Pack
           packBg={hofPack}
@@ -53,7 +53,7 @@ function BuyPacksSection() {
             "35% for superstar",
             "25% for legendary",
           ]}
-          price="$1000"
+          price={1000}
         />
         <Pack
           packBg={positionPack}
@@ -65,7 +65,7 @@ function BuyPacksSection() {
             "25% for superstar",
             "15% for legendary",
           ]}
-          price="$800"
+          price={800}
         />
       </CardList>
     </section>
