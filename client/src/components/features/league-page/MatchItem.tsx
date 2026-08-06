@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../../common/button/Button";
+import CoinIcon from "../../common/icon/ui/CoinIcon";
 
 type Props = {
   level: number;
@@ -19,7 +20,7 @@ function MatchItem({
   loss,
 }: Props) {
   return (
-    <li className="flex justify-between items-center text-center text-sm lg:text-sm bg-base-300 p-4 px-6 rounded-sm">
+    <li className="flex justify-between items-center text-center text-sm lg:text-sm bg-base-300 py-4 px-4 sm:px-6 rounded-sm">
       <div className="flex items-center gap-5 pr-10">
         <h4 className=" font-base! font-bold">Level {level}</h4>
         <div className="flex flex-col sm:flex-row opacity-87">
@@ -32,12 +33,27 @@ function MatchItem({
 
       <div className="flex items-center justify-end gap-5">
         <p className="hidden md:block opacity-87">VS {opponentName}</p>
-        <p className="text-secondary">Reward: ${reward}</p>
-        <p className="text-error">Loss: ${loss}</p>
 
-        <Button size="small" bgColor="primary" textColor="black" link="/battle">
-          Play
-        </Button>
+        <div className="flex flex-col sm:flex-row items-center gap-0 sm:gap-1">
+          <p className="text-secondary">Win:</p>
+          <div className="flex items-center gap-0.5">
+            <CoinIcon />
+            <span className="text-coin">{reward}</span>
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center gap-0 sm:gap-1">
+          <p className="text-error">Loss:</p>
+          <div className="flex items-center gap-0.5">
+            <CoinIcon />
+            <span className="text-coin">{loss}</span>
+          </div>
+        </div>
+
+        <Link to="/battle">
+          <Button size="small" bgColor="primary" textColor="black">
+            Play
+          </Button>
+        </Link>
       </div>
     </li>
   );

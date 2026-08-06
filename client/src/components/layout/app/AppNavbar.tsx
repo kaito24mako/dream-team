@@ -5,6 +5,7 @@ import { VscAccount } from "react-icons/vsc";
 import ThemeToggle from "../../features/theme/ThemeToggle";
 import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
 import logo from "../../../assets/icon/logo.png";
+import CoinIcon from "../../common/icon/ui/CoinIcon";
 
 function AppNavbar() {
   return (
@@ -42,7 +43,10 @@ function AppNavbar() {
         </div>
 
         <div className="navbar-end">
-          <span className="text-coin mr-2.5 mt-0.5">$250</span>
+          <div className="text-coin mr-2.5 mt-0.5 flex items-center gap-1">
+            <CoinIcon />
+            <span>250</span>
+          </div>
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/guide">

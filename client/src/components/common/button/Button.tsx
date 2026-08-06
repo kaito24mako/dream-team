@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 type Type = "button" | "submit" | "reset";
 type Size = "default" | "xs" | "small";
 type BgColor = "default" | "primary" | "secondary" | "accent";
@@ -8,7 +6,6 @@ type TextColor = "default" | "white" | "black";
 type Props = {
   children: React.ReactNode;
   className?: string;
-  link?: string;
   type?: Type;
   size?: Size;
   bgColor?: BgColor;
@@ -18,7 +15,6 @@ type Props = {
 function Button({
   children,
   className = "",
-  link = undefined,
   type = "button",
   size = "default",
   bgColor = "default",
@@ -40,19 +36,6 @@ function Button({
     white: "text-white",
     black: "text-black",
   };
-
-  if (link) {
-    return (
-      <Link to={`${link}`}>
-        <button
-          type={type}
-          className={`btn ${sizeClasses[size]} ${bgColorClasses[bgColor]} ${textColorClasses[textColor]} ${className}`}
-        >
-          {children}
-        </button>
-      </Link>
-    );
-  }
 
   return (
     <button
