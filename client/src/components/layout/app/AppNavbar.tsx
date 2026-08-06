@@ -9,7 +9,7 @@ import CoinIcon from "../../common/icon/ui/CoinIcon";
 
 function AppNavbar() {
   return (
-    <header className="max-lg:collapse bg-base-200 shadow-sm w-full rounded-md text-sm py-2 px-2 md:px-10">
+    <header className="max-lg:collapse bg-base-200 w-full rounded-md text-sm py-2 px-2 md:px-10">
       <input id="navbar-1-toggle" className="peer hidden" type="checkbox" />
       <label
         htmlFor="navbar-1-toggle"
@@ -24,7 +24,7 @@ function AppNavbar() {
             <HamburgerIcon />
           </label>
           <Link to="/home">
-            <img src={logo} className="w-24 h-12" />
+            <img src={logo} className="w-24 h-12" alt="Logo" />
           </Link>
         </div>
 

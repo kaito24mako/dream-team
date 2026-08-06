@@ -8,6 +8,9 @@ import HomePage from "./pages/HomePage";
 import LeaguePage from "./pages/LeaguePage";
 import PacksPage from "./pages/PacksPage";
 
+import BattleLayout from "./components/layout/battle/BattleLayout";
+import BattlePage from "./pages/BattlePage";
+
 function App() {
   return (
     <Router>
@@ -20,6 +23,10 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/league" element={<LeaguePage />} />
           <Route path="/packs" element={<PacksPage />} />
+        </Route>
+
+        <Route element={<BattleLayout />}>
+          <Route path="/battle" element={<BattlePage />} />
         </Route>
       </Routes>
     </Router>
