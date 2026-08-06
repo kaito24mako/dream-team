@@ -1,13 +1,15 @@
 import RegularCard from "../../common/playerCard/RegularCard";
 import ScrollableItem from "./ScrollableItem";
 
-import player1 from "../../../assets/card/player/player5.png";
-import common from "../../../assets/card/rarity/common-bg.png";
-import superstar from "../../../assets/card/rarity/superstar-bg.png";
+import player5 from "../../../assets/card/player/player5.png";
+import player2 from "../../../assets/card/player/player2.png";
+import rare from "../../../assets/card/rarity/rare-bg.png";
+import legendary from "../../../assets/card/rarity/legendary-bg.png";
 
 import fivePlayers from "../../../assets/bg/five-players-bg.png";
 import battle from "../../../assets/bg/battle.png";
 import coin from "../../../assets/icon/coin.png";
+import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function ScrollableSection() {
   return (
@@ -24,21 +26,21 @@ function ScrollableSection() {
         description="Open packs to collect players from a custom database of over 100 cards. Acquire players of varying rarities, from common to legendary."
       >
         <div className="flex gap-5">
-          <RegularCard
-            playerImage={player1}
-            playerRarity={common}
+          <FullArtCard
+            playerImage={player5}
+            playerRarity={legendary}
             playerPosition="PG"
             playerName="Kaito Watanabe"
-            offenseCount={89}
-            defenseCount={92}
+            offenseCount={94}
+            defenseCount={96}
           />
           <RegularCard
-            playerImage={player1}
-            playerRarity={superstar}
-            playerPosition="PG"
-            playerName="Kaito Watanabe"
-            offenseCount={89}
-            defenseCount={92}
+            playerImage={player2}
+            playerRarity={rare}
+            playerPosition="SF"
+            playerName="Steven Curry"
+            offenseCount={76}
+            defenseCount={73}
           />
         </div>
       </ScrollableItem>

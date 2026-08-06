@@ -12,9 +12,6 @@ function LandingNavbar() {
       </div>
       <div className="flex gap-3">
         <Link to="/home">
-          <Button textColor="white">Home</Button>
-        </Link>
-        <Link to="/login">
           <Button bgColor="primary" textColor="black">
             Login
           </Button>
