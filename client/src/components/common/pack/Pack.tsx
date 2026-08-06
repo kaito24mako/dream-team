@@ -1,3 +1,5 @@
+import Button from "../button/Button";
+
 type Props = {
   packBg: string;
   title: string;
@@ -23,10 +25,13 @@ function Pack({ packBg, title, content, chances, price }: Props) {
             <li key={chance}>{chance}</li>
           ))}
         </ul>
-
-        <button className="btn btn-primary btn-xs sm:btn-sm text-black">
+        <Button
+          bgColor="primary"
+          textColor="black"
+          className="btn-xs sm:btn-sm"
+        >
           Buy: {price}
-        </button>
+        </Button>
       </div>
     </div>
   );

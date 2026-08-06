@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+
 import Button from "../../common/button/Button";
-import CoinIcon from "../../common/icon/ui/CoinIcon";
+import CurrencyItem from "./CurrencyItem";
 
 type Props = {
   level: number;
@@ -33,22 +34,18 @@ function MatchItem({
 
       <div className="flex items-center justify-end gap-5">
         <p className="hidden md:block opacity-87">VS {opponentName}</p>
-
-        <div className="flex flex-col sm:flex-row items-center gap-0 sm:gap-1">
-          <p className="text-secondary">Win:</p>
-          <div className="flex items-center gap-0.5">
-            <CoinIcon />
-            <span className="text-coin">{reward}</span>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center gap-0 sm:gap-1">
-          <p className="text-error">Loss:</p>
-          <div className="flex items-center gap-0.5">
-            <CoinIcon />
-            <span className="text-coin">{loss}</span>
-          </div>
-        </div>
-
+        <CurrencyItem
+          heading="Win"
+          headingColor="text-secondary"
+          currency={reward}
+          currencyColor="text-coin"
+        />
+        <CurrencyItem
+          heading="Loss"
+          headingColor="text-error"
+          currency={loss}
+          currencyColor="text-red-500"
+        />
         <Link to="/battle">
           <Button size="small" bgColor="primary" textColor="black">
             Play

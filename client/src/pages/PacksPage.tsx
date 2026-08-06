@@ -8,7 +8,6 @@ function PacksPage() {
 
       <main className="flex flex-col gap-4 mb-15">
         <BuyPacksSection />
-
         <FeaturedSection />
       </main>
     </>

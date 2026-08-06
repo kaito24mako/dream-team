@@ -1,3 +1,5 @@
+import Button from "../../common/button/Button";
+
 function LineupPosition({
   children,
   position,
@@ -10,7 +12,9 @@ function LineupPosition({
       {children}
       <div className="flex items-center gap-4 mx-auto">
         <p className="font-primary text-primary text-2xl">{position}</p>
-        <button className="btn btn-primary btn-sm text-black">Swap</button>
+        <Button bgColor="primary" size="small" textColor="black">
+          Swap
+        </Button>
       </div>
     </div>
   );
