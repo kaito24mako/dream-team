@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
+import Button from "../../common/button/Button";
+
 type Props = {
   level: number;
   minRating: number;
   maxRating: number;
   opponentName: string;
   reward: number;
-  cost: number;
+  loss: number;
 };
 
 function MatchItem({
@@ -13,15 +16,13 @@ function MatchItem({
   maxRating,
   opponentName,
   reward,
-  cost,
+  loss,
 }: Props) {
   return (
-    <div className="flex gap-13 text-center lg:gap-30 items-center bg-base-300 p-4 pl-6 rounded-sm">
-      <div className="flex items-center gap-5">
-        <h4 className="text-sm lg:text-base font-base! font-bold">
-          Level {level}
-        </h4>
-        <div className="flex flex-col sm:flex-row text-sm lg:text-base opacity-87">
+    <li className="flex justify-between items-center text-center text-sm lg:text-sm bg-base-300 p-4 px-6 rounded-sm">
+      <div className="flex items-center gap-5 pr-10">
+        <h4 className=" font-base! font-bold">Level {level}</h4>
+        <div className="flex flex-col sm:flex-row opacity-87">
           <p className="mr-0 sm:mr-1">Ratings:</p>
           <p>
             {minRating} - {maxRating}
@@ -29,16 +30,16 @@ function MatchItem({
         </div>
       </div>
 
-      <div className="flex items-center gap-5">
-        <p className="hidden md:block text-sm lg:text-base opacity-87">
-          VS {opponentName}
-        </p>
-        <p className="text-sm lg:text-base text-secondary">Reward: ${reward}</p>
-        <button className="btn btn-primary btn-sm text-black">
-          Enter: ${cost}
-        </button>
+      <div className="flex items-center justify-end gap-5">
+        <p className="hidden md:block opacity-87">VS {opponentName}</p>
+        <p className="text-secondary">Reward: ${reward}</p>
+        <p className="text-error">Loss: ${loss}</p>
+
+        <Button size="small" bgColor="primary" textColor="black" link="/battle">
+          Play
+        </Button>
       </div>
-    </div>
+    </li>
   );
 }
 export default MatchItem;
