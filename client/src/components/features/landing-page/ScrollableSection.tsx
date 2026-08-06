@@ -1,3 +1,7 @@
+import { TbCards } from "react-icons/tb";
+import { RiTeamLine } from "react-icons/ri";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import RegularCard from "../../common/playerCard/RegularCard";
 import ScrollableItem from "./ScrollableItem";
 
@@ -23,6 +27,7 @@ function ScrollableSection() {
 
       <ScrollableItem
         heading="Collect Players"
+        Icon={TbCards}
         description="Open packs to collect players from a custom database of over 100 cards. Acquire players of varying rarities, from common to legendary."
       >
         <div className="flex gap-5">
@@ -47,6 +52,7 @@ function ScrollableSection() {
 
       <ScrollableItem
         heading="Assemble Your Team"
+        Icon={RiTeamLine}
         description="Assemble a five-man roster from your collected players. Choose players with the best offensive and defensive statistics."
       >
         <div
@@ -57,6 +63,7 @@ function ScrollableSection() {
 
       <ScrollableItem
         heading="Compete for Rewards"
+        Icon={AiOutlineShoppingCart}
         description="Face-off against CPU teams of varying difficulties. The higher difficulty you conquer, the bigger the reward. Your rewards are used to open packs."
       >
         <img src={coin} className="h-[36dvh] w-[50%] object-contain" />
