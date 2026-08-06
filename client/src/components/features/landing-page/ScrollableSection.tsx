@@ -11,10 +11,10 @@ import coin from "../../../assets/icon/coin.png";
 
 function ScrollableSection() {
   return (
-    <section className="h-full w-[50%] overflow-y-auto snap-y snap-mandatory">
-      <div className="flex items-center h-full shrink-0 snap-start">
+    <section className="flex flex-col">
+      <div className="flex items-center min-h-[80dvh]">
         <div
-          className="h-[80%] w-full rounded-md shadow-md bg-cover bg-center"
+          className="h-[64dvh] w-full rounded-md shadow-md bg-cover bg-center"
           style={{ backgroundImage: `url(${fivePlayers})` }}
         ></div>
       </div>
@@ -48,7 +48,7 @@ function ScrollableSection() {
         description="Assemble a five-man roster and play against various CPU teams."
       >
         <div
-          className="h-[50%] w-full rounded-md shadow-md bg-cover bg-top"
+          className="h-[40dvh] w-full rounded-md shadow-md bg-cover bg-top"
           style={{ backgroundImage: `url(${battle})` }}
         ></div>
       </ScrollableItem>
@@ -57,7 +57,7 @@ function ScrollableSection() {
         heading="Win for Rewards"
         description="The higher difficulty you conquer, the bigger the reward."
       >
-        <img src={coin} className="h-[45%] w-[50%]" />
+        <img src={coin} className="h-[36dvh] w-[50%] object-contain" />
       </ScrollableItem>
     </section>
   );

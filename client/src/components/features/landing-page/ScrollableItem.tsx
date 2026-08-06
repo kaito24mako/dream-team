@@ -8,7 +8,7 @@ function ScrollableItem({
   description: string;
 }) {
   return (
-    <div className="flex flex-col justify-center h-full shrink-0 snap-start gap-5">
+    <div className="flex flex-col justify-center gap-5 min-h-[80dvh]">
       <h2 className="text-5xl text-start">{heading}</h2>
       <div className="text-2xl text-start">
         <p>{description}</p>
