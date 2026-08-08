@@ -17,10 +17,10 @@ import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function ScrollableSection() {
   return (
-    <section className="flex flex-col">
-      <div className="flex items-center min-h-[80dvh]">
+    <section className="flex flex-col gap-15 md:gap-0">
+      <div className="md:flex md:items-center md:min-h-[80dvh]">
         <div
-          className="h-[64dvh] w-full rounded-md shadow-md bg-cover bg-center"
+          className="h-75 md:h-[64dvh] w-full rounded-md shadow-md bg-cover bg-center"
           style={{ backgroundImage: `url(${fivePlayers})` }}
         ></div>
       </div>
@@ -56,7 +56,7 @@ function ScrollableSection() {
         description="Assemble a five-man roster from your collected players. Choose players with the best offensive and defensive statistics."
       >
         <div
-          className="h-[40dvh] w-full rounded-md shadow-md bg-cover bg-top"
+          className="h-65 md:h-[40dvh] w-full rounded-md shadow-md bg-cover bg-top"
           style={{ backgroundImage: `url(${battle})` }}
         ></div>
       </ScrollableItem>
@@ -66,7 +66,7 @@ function ScrollableSection() {
         Icon={PiCoins}
         description="Face-off against CPU teams of varying difficulties. The higher difficulty you conquer, the bigger the reward. Your rewards are used to open packs."
       >
-        <img src={coin} className="h-[36dvh] w-[50%] object-contain" />
+        <img src={coin} className="h-65 md:h-[36dvh] w-[50%] object-contain" />
       </ScrollableItem>
     </section>
   );

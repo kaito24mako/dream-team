@@ -4,18 +4,20 @@ import Button from "../../common/button/Button";
 
 function FixedSection() {
   return (
-    <section className="sticky top-75">
-      <div className="flex flex-col gap-5">
-        <div className="flex flex-col gap-2 text-6xl">
+    <section className="md:sticky md:top-75 text-center md:text-start">
+      <div className="flex flex-col gap-5 items-center md:items-start">
+        <div className="flex flex-col gap-2 text-5xl md:text-6xl">
           <h1>
-            Build Your <span className="text-primary">Dream Team</span>,
+            Build Your{" "}
+            <span className="text-primary whitespace-nowrap">Dream Team</span>,
           </h1>
           <h1>
-            Conquer the <span className="text-primary">League</span>.
+            Conquer the{" "}
+            <span className="text-primary whitespace-nowrap">League</span>.
           </h1>
         </div>
 
-        <div className="text-2xl opacity-80">
+        <div className="text-xl md:text-2xl opacity-93">
           <p>
             Dream Team is a fictional TCG made by a passionate basketball
             enthusiast.
