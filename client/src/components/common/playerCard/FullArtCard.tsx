@@ -24,7 +24,9 @@ function FullArtCard({
         style={{ backgroundImage: `url(${playerRarity})` }}
       >
         <img src={playerImage} className="absolute" />
-        <p className="absolute top-1 left-3">{playerPosition}</p>
+        <p className="absolute top-2 lg:top-1.5 left-3 text-sm lg:text-lg">
+          {playerPosition}
+        </p>
 
         {/* bottom half */}
         <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center gap-2 h-27 bg-base-300/40">

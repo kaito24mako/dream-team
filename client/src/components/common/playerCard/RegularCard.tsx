@@ -29,7 +29,9 @@ function RegularCard({
             src={playerImage}
             className="w-27 h-38 lg:w-40 lg:h-58 mx-auto"
           />
-          <p className="absolute top-1 left-3">{playerPosition}</p>
+          <p className="absolute top-2 lg:top-1.5 left-3 text-sm lg:text-lg">
+            {playerPosition}
+          </p>
         </div>
 
         {/* bottom half */}
