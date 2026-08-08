@@ -31,7 +31,7 @@ function SmallCard({
             src={playerImage}
             className={`${isEnemy && "w-20! lg:w-29!"} w-15 h-20 lg:w-23 lg:h-30 mx-auto`}
           />
-          <p className="absolute top-1 left-2 text-xs sm:text-base">
+          <p className="absolute top-1 left-2 text-xs sm:text-sm lg:text-base">
             {playerPosition}
           </p>
         </div>

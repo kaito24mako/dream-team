@@ -6,6 +6,7 @@ import VSList from "../components/features/battle-page/VSList";
 
 import player2 from "../assets/card/player/player2.png";
 import common from "../assets/card/rarity/common-bg.png";
+import black from "../assets/card/rarity/black-bg.png";
 import enemy1 from "../assets/card/enemy/enemy1.png";
 import enemy2 from "../assets/card/enemy/enemy2.png";
 import enemy3 from "../assets/card/enemy/enemy3.png";
@@ -17,7 +18,7 @@ function BattlePage() {
     <main className="flex flex-col gap-5 pb-5">
       <Scoreboard />
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-row md:flex-col md:gap-5">
         <Team teamName="MELBOURNE DEMONS" teamNameColor="text-primary">
           <SmallCard
             playerImage={player2}
@@ -67,45 +68,45 @@ function BattlePage() {
         <Team teamName="MANCHESTER KINGS" teamNameColor="text-white">
           <SmallCard
             playerImage={enemy1}
-            playerRarity={common}
+            playerRarity={black}
             playerPosition="PG"
-            playerName="Kaito Watanabe"
+            playerName="Ja Verant"
             offenseCount={89}
             defenseCount={92}
             isEnemy={true}
           />
           <SmallCard
             playerImage={enemy2}
-            playerRarity={common}
+            playerRarity={black}
             playerPosition="SG"
-            playerName="Kaito Watanabe"
+            playerName="Jimmy Guttler"
             offenseCount={89}
             defenseCount={92}
             isEnemy={true}
           />
           <SmallCard
             playerImage={enemy3}
-            playerRarity={common}
+            playerRarity={black}
             playerPosition="SF"
-            playerName="Kaito Watanabe"
+            playerName="Kevin Reaper"
             offenseCount={89}
             defenseCount={92}
             isEnemy={true}
           />
           <SmallCard
             playerImage={enemy4}
-            playerRarity={common}
+            playerRarity={black}
             playerPosition="PF"
-            playerName="Kaito Watanabe"
+            playerName="Zion Dunkson"
             offenseCount={89}
             defenseCount={92}
             isEnemy={true}
           />
           <SmallCard
             playerImage={enemy5}
-            playerRarity={common}
+            playerRarity={black}
             playerPosition="C"
-            playerName="Kaito Watanabe"
+            playerName="Joel Jimbeed"
             offenseCount={89}
             defenseCount={92}
             isEnemy={true}
