@@ -21,7 +21,7 @@ function Pack({ packBg, title, content, chances, price }: Props) {
       </div>
 
       <div className="flex flex-col justify-between h-full">
-        <ul className="text-xxs sm:text-xs lg:text-sm">
+        <ul className="text-xxs sm:text-xs lg:text-sm mx-auto">
           {chances.map((chance) => (
             <li key={chance}>{chance}</li>
           ))}

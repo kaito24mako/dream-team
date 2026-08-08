@@ -1,4 +1,4 @@
-type Size = "small" | "medium" | "large";
+type Size = "xs" | "small" | "medium" | "large";
 type TextAlign = "center" | "centerRigid" | "end";
 
 type Props = {
@@ -19,11 +19,13 @@ function Statistic({
   titleOpacity = "",
 }: Props) {
   const titleSizeClasses: Record<Size, string> = {
+    xs: "text-xxs lg:text-xs",
     small: "text-xs",
     medium: "text-base",
     large: "text-2xl",
   };
   const countSizeClasses: Record<Size, string> = {
+    xs: "text-xs lg:text-sm",
     small: "text-base lg:text-xl",
     medium: "text-xl lg:text-2xl",
     large: "text-3xl lg:text-4xl",
