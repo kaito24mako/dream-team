@@ -4,16 +4,16 @@ import Button from "../../common/button/Button";
 
 function FixedSection() {
   return (
-    <section className="lg:sticky lg:top-60  md:text-center lg:text-start">
+    <section className="lg:sticky lg:top-65  md:text-center lg:text-start">
       <div className="flex flex-col gap-7 items-start md:items-center lg:items-start">
-        <div className="flex flex-col gap-2 text-6xl md:text-6xl lg:text-7xl">
+        <div className="flex flex-col gap-2 text-6xl md:text-6xl lg:text-[78px]">
           <h1>
             Collect Your{" "}
-            <span className="text-primary whitespace-nowrap">Dream Team</span>,
+            <span className="text-primary whitespace-nowrap">Team,</span>
           </h1>
           <h1>
             Conquer the{" "}
-            <span className="text-primary whitespace-nowrap">League</span>.
+            <span className="text-primary whitespace-nowrap">League.</span>
           </h1>
         </div>
 
@@ -25,7 +25,7 @@ function FixedSection() {
           <p>Open packs, collect cards, and battle for glory!</p>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 lg:mt-2">
           <Link to="/login">
             <Button bgColor="primary" textColor="black">
               Login
