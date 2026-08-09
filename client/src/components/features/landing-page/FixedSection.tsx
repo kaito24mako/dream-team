@@ -4,9 +4,9 @@ import Button from "../../common/button/Button";
 
 function FixedSection() {
   return (
-    <section className="lg:sticky lg:top-48 text-center lg:text-start">
-      <div className="flex flex-col gap-5 items-center lg:items-start">
-        <div className="flex flex-col gap-2 text-5xl md:text-6xl lg:text-8xl">
+    <section className="lg:sticky lg:top-48  md:text-center lg:text-start">
+      <div className="flex flex-col gap-5 items-start md:items-center lg:items-start">
+        <div className="flex flex-col gap-2 text-6xl md:text-6xl lg:text-8xl">
           <h1>
             Collect Your{" "}
             <span className="text-primary whitespace-nowrap">Dream Team</span>,
