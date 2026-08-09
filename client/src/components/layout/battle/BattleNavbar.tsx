@@ -7,7 +7,7 @@ function BattleNavbar() {
     <header className="bg-base-200 shadow-sm w-full rounded-md text-sm py-2.5 px-2 md:px-10">
       <nav className="navbar">
         <div className="navbar-start">
-          <img src={logo} className="w-24 h-12" alt="Logo" />
+          <img src={logo} className="w-24 h-12" alt="Dream Team logo" />
         </div>
 
         <div className="navbar-center">

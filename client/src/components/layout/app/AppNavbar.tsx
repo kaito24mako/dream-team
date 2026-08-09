@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
+import { IoIosLogOut } from "react-icons/io";
 
 import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
 import CoinIcon from "../../common/icon/ui/CoinIcon";
@@ -23,7 +24,11 @@ function AppNavbar() {
             <HamburgerIcon />
           </label>
           <Link to="/home">
-            <img src={logo} className="w-24 h-12" alt="Logo" />
+            <img
+              src={logo}
+              className="w-20 h-10 md:w-24 md:h-12"
+              alt="Dream Team logo"
+            />
           </Link>
         </div>
 
@@ -58,7 +63,10 @@ function AppNavbar() {
               </Link>
             </li>
             <li>
-              <Link to="/">Log Out</Link>
+              <Link to="/" aria-label="Log out">
+                <IoIosLogOut className="w-6 h-6 md:hidden" />
+                <span className="hidden md:inline">Log Out</span>
+              </Link>
             </li>
           </ul>
           {/* <ThemeToggle /> */}
