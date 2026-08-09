@@ -30,7 +30,7 @@ function ScrollableSection() {
         Icon={TbCards}
         description="Open packs to collect players from a custom database of over 100 cards. Acquire players of varying rarities, from common to legendary."
       >
-        <div className="flex gap-5 mx-auto lg:mx-0">
+        <div className="flex gap-5 mx-auto ">
           <FullArtCard
             playerImage={player5}
             playerRarity={legendary}
@@ -56,7 +56,7 @@ function ScrollableSection() {
         description="Assemble a five-man roster from your collected players. Choose players with the best offensive and defensive statistics."
       >
         <div
-          className="h-65 lg:h-[40dvh] w-full rounded-md shadow-md bg-cover bg-top mx-auto lg:mx-0"
+          className="h-65 lg:h-[40dvh] w-full rounded-md shadow-md bg-cover bg-top mx-auto"
           style={{ backgroundImage: `url(${battle})` }}
         ></div>
       </ScrollableItem>
@@ -68,7 +68,7 @@ function ScrollableSection() {
       >
         <img
           src={coin}
-          className="h-65 lg:h-[36dvh] w-[50%] object-contain mx-auto lg:mx-0"
+          className="h-65 lg:h-[36dvh] w-[50%] object-contain mx-auto"
         />
       </ScrollableItem>
     </section>
