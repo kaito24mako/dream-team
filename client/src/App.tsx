@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingLayout from "./components/layout/landing/LandingLayout";
 import LandingPage from "./pages/landing/LandingPage";
 
+import AuthLayout from "./components/layout/auth/AuthLayout";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
+
 import AppLayout from "./components/layout/app/AppLayout";
 import HomePage from "./pages/app/HomePage";
 import LeaguePage from "./pages/app/LeaguePage";
@@ -18,6 +22,11 @@ function App() {
       <Routes>
         <Route element={<LandingLayout />}>
           <Route path="/" element={<LandingPage />} />
+        </Route>
+
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Route>
 
         <Route element={<AppLayout />}>

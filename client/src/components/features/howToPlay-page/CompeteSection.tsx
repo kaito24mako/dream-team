@@ -44,7 +44,7 @@ function CompeteSection() {
           <img
             src={levelScreenshot}
             alt="A single level with its details"
-            className="w-170 rounded-lg border border-border-base shadow-sm mt-2"
+            className="w-170 rounded-lg border border-base-300 shadow-sm mt-2"
           />
         </div>
       </div>
@@ -89,7 +89,7 @@ function CompeteSection() {
           <img
             src={battleScreenshot}
             alt="The battle page showcasing what it entails"
-            className="w-160 rounded-lg border border-border-base shadow-sm mt-2"
+            className="w-160 rounded-lg border border-border-300 shadow-sm mt-2"
           />
         </div>
       </div>

@@ -11,7 +11,7 @@ function LandingNavbar() {
         <img src={logo} className="w-28 h-15" alt="Dream Team logo" />
       </div>
       <div className="flex gap-3">
-        <Link to="/home">
+        <Link to="/login">
           <Button bgColor="primary" textColor="black">
             Login
           </Button>
