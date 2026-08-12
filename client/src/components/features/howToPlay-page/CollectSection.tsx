@@ -17,7 +17,7 @@ function CollectSection() {
         </p>
       </div>
 
-      <div tabIndex={0} className="collapse collapse-arrow bg-base-200 p-5">
+      <div className="collapse collapse-arrow bg-base-200 p-5">
         <input type="checkbox" />
         <h3 className="text-lg collapse-title p-0!">Rarities</h3>
         <ul className="collapse-content p-0!">

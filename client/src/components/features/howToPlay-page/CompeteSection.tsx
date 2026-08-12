@@ -49,14 +49,11 @@ function CompeteSection() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-3">
-        <h3 className="text-lg">Win Conditions</h3>
-        <img
-          src={battleScreenshot}
-          alt="The battle page showcasing what it entails"
-          className="w-170 rounded-lg border border-border-base shadow-sm"
-        />
-        <div className="flex flex-col gap-1">
+      <div className="collapse collapse-arrow bg-base-200 p-5">
+        <input type="checkbox" />
+        <h3 className="text-lg collapse-title p-0!">Win Conditions</h3>
+
+        <div className="collapse-content p-0! flex flex-col gap-3">
           <p>
             On the scoreboard, the{" "}
             <span className="font-bold text-secondary">win percentage</span>{" "}
@@ -83,6 +80,11 @@ function CompeteSection() {
             percentage is at 80%, you still have a 20% chance of losing the
             match.
           </p>
+          <img
+            src={battleScreenshot}
+            alt="The battle page showcasing what it entails"
+            className="w-160 rounded-lg border border-border-base shadow-sm mt-2"
+          />
         </div>
       </div>
     </div>
