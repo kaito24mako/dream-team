@@ -1,4 +1,5 @@
 import type { IconType } from "react-icons";
+import FadeInOnView from "../../animations/FadeInOnView";
 
 function ScrollableItem({
   children,
@@ -14,7 +15,7 @@ function ScrollableItem({
   descriptionTwo?: string;
 }) {
   return (
-    <div className="flex flex-col justify-center gap-3 lg:gap-5 lg:min-h-[80dvh]">
+    <FadeInOnView className="flex flex-col justify-center gap-3 lg:gap-5 lg:min-h-[80dvh]">
       <div className="flex items-end gap-3">
         {Icon && <Icon className="w-11 h-11 lg:w-13 lg:h-13 text-primary" />}
 
@@ -26,7 +27,7 @@ function ScrollableItem({
         <p className="opacity-80">{descriptionTwo}</p>
       </div>
       {children}
-    </div>
+    </FadeInOnView>
   );
 }
 export default ScrollableItem;
