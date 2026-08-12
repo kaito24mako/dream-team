@@ -1,5 +1,5 @@
-import BuyPacksSection from "../components/features/cards-page/BuyPacksSection";
-import FeaturedSection from "../components/features/cards-page/FeaturedSection";
+import BuyPacksSection from "../../components/features/cards-page/BuyPacksSection";
+import FeaturedSection from "../../components/features/cards-page/FeaturedSection";
 
 function PacksPage() {
   return (

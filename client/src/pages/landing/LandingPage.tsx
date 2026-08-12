@@ -1,6 +1,6 @@
-import FixedSection from "../components/features/landing-page/FixedSection";
-import ScrollableSection from "../components/features/landing-page/ScrollableSection";
-import BottomSection from "../components/features/landing-page/BottomSection";
+import FixedSection from "../../components/features/landing-page/FixedSection";
+import ScrollableSection from "../../components/features/landing-page/ScrollableSection";
+import BottomSection from "../../components/features/landing-page/BottomSection";
 
 function LandingPage() {
   return (

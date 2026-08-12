@@ -1,6 +1,6 @@
-import StatisticsSection from "../components/features/home-page/StatisticsSection";
-import LineupSection from "../components/features/home-page/LineupSection";
-import CollectionSection from "../components/features/home-page/CollectionSection";
+import StatisticsSection from "../../components/features/home-page/StatisticsSection";
+import LineupSection from "../../components/features/home-page/LineupSection";
+import CollectionSection from "../../components/features/home-page/CollectionSection";
 
 function HomePage() {
   return (

@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LandingLayout from "./components/layout/landing/LandingLayout";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/landing/LandingPage";
 
 import AppLayout from "./components/layout/app/AppLayout";
-import HomePage from "./pages/HomePage";
-import LeaguePage from "./pages/LeaguePage";
-import PacksPage from "./pages/PacksPage";
+import HomePage from "./pages/app/HomePage";
+import LeaguePage from "./pages/app/LeaguePage";
+import PacksPage from "./pages/app/PacksPage";
 
 import BattleLayout from "./components/layout/battle/BattleLayout";
-import BattlePage from "./pages/BattlePage";
+import BattlePage from "./pages/battle/BattlePage";
 
 function App() {
   return (

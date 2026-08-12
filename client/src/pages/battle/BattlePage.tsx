@@ -1,17 +1,17 @@
 // import Button from "../components/common/button/Button";
-import Scoreboard from "../components/features/battle-page/Scoreboard";
-import Team from "../components/features/battle-page/Team";
-import SmallCard from "../components/common/playerCard/SmallCard";
-import VSList from "../components/features/battle-page/VSList";
+import Scoreboard from "../../components/features/battle-page/Scoreboard";
+import Team from "../../components/features/battle-page/Team";
+import SmallCard from "../../components/common/playerCard/SmallCard";
+import VSList from "../../components/features/battle-page/VSList";
 
-import player2 from "../assets/card/player/player2.png";
-import common from "../assets/card/rarity/common-bg.png";
-import black from "../assets/card/rarity/black-bg.png";
-import enemy1 from "../assets/card/enemy/enemy1.png";
-import enemy2 from "../assets/card/enemy/enemy2.png";
-import enemy3 from "../assets/card/enemy/enemy3.png";
-import enemy4 from "../assets/card/enemy/enemy4.png";
-import enemy5 from "../assets/card/enemy/enemy5.png";
+import player2 from "../../assets/card/player/player2.png";
+import common from "../../assets/card/rarity/common-bg.png";
+import black from "../../assets/card/rarity/black-bg.png";
+import enemy1 from "../../assets/card/enemy/enemy1.png";
+import enemy2 from "../../assets/card/enemy/enemy2.png";
+import enemy3 from "../../assets/card/enemy/enemy3.png";
+import enemy4 from "../../assets/card/enemy/enemy4.png";
+import enemy5 from "../../assets/card/enemy/enemy5.png";
 
 function BattlePage() {
   return (
