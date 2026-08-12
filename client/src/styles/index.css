@@ -63,10 +63,10 @@
   --color-border-base: #09090b;
 
   --color-coin: #ffd54a;
-  --color-rarity-common: #7d7d7d;
-  --color-rarity-rare: #3b82f6;
-  --color-rarity-superstar: #8b5cf6;
-  --color-rarity-legendary: #f59e0b;
+  --color-rarity-common: var(--color-neutral-400);
+  --color-rarity-rare: var(--color-blue-500);
+  --color-rarity-superstar: var(--color-purple-500);
+  --color-rarity-legendary: var(--color-yellow-400);
   --color-hardwood: #c68642;
   --color-court: #8b5a2b;
 

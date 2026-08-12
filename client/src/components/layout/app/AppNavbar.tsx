@@ -53,7 +53,7 @@ function AppNavbar() {
           </div>
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/guide">
+              <Link to="/how-to-play">
                 <PiQuestionLight className="w-6 h-6" />
               </Link>
             </li>
