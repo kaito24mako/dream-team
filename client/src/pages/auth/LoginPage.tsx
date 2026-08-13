@@ -7,7 +7,7 @@ function LoginPage() {
     <>
       <title>Login | Dream Team</title>
 
-      <main className="flex flex-col justify-center items-center">
+      <main className="flex flex-col justify-center items-center mb-15">
         <img src={logo} className="w-100 h-50" />
 
         <LoginForm />
