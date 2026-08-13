@@ -15,9 +15,9 @@ function HomePage() {
           <h1 className="text-4xl text-primary">{currentUser.teamName}</h1>
         </div>
 
-        <StatisticsSection user={currentUser} />
+        <StatisticsSection />
 
-        <LineupSection user={currentUser} />
+        <LineupSection />
 
         <CollectionSection />
       </main>

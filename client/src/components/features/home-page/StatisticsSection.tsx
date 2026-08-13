@@ -1,18 +1,31 @@
+import {
+  teamRecord,
+  winRate,
+  collectionProgress,
+} from "../../../utils/data/getUsers";
+import {
+  lineup,
+  offensiveAverage,
+  defensiveAverage,
+} from "../../../utils/data/getLineup";
+
 import Statistic from "../../common/statistic/Statistic";
 
-function StatisticsSection({ user }) {
+function StatisticsSection() {
+  console.log(lineup);
+
   return (
     <section className="flex gap-5 overflow-x-scroll overflow-y-hidden">
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Offense"
-          count={89}
+          count={offensiveAverage}
           countSize="large"
           textAlign="center"
         />
         <Statistic
           title="Defense"
-          count={95}
+          count={defensiveAverage}
           countSize="large"
           textAlign="center"
         />
@@ -22,13 +35,13 @@ function StatisticsSection({ user }) {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Team Record"
-          count={user.wins + "-" + user.losses}
+          count={teamRecord}
           countSize="medium"
           textAlign="end"
         />
         <Statistic
           title="Win Rate"
-          count={(user.wins / (user.wins + user.losses)) * 100 + "%"}
+          count={winRate}
           countSize="medium"
           textAlign="end"
         />
@@ -44,7 +57,7 @@ function StatisticsSection({ user }) {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Collection Progress"
-          count={user.totalCards + "/100"}
+          count={collectionProgress}
           countSize="medium"
           textAlign="end"
         />

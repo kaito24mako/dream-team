@@ -1,3 +1,5 @@
+import { currentUser } from "../../../utils/data/getUsers";
+
 import CoinIcon from "../../common/icon/ui/CoinIcon";
 import CurrencyItem from "../../features/league-page/CurrencyItem";
 import logo from "../../../assets/icon/logo.png";
@@ -35,7 +37,7 @@ function BattleNavbar() {
         <div className="navbar-end">
           <div className="text-coin mr-2.5 mt-0.5 flex items-center gap-1">
             <CoinIcon />
-            <span>250</span>
+            {currentUser.currency}
           </div>
         </div>
       </nav>

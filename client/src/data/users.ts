@@ -34,9 +34,9 @@ export const users: User[] = [
       PF: 5,
       C: 3,
     },
-    wins: 12,
+    wins: 15,
     losses: 3,
-    totalCards: 27,
+    totalCards: 24,
   },
   {
     id: 2,
