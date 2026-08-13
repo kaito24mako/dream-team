@@ -1,10 +1,12 @@
 import Statistic from "../statistic/Statistic";
 
+// player rarities
 import Common from "../../../assets/card/rarity/common-bg.png";
 import Rare from "../../../assets/card/rarity/rare-bg.png";
 import Superstar from "../../../assets/card/rarity/superstar-bg.png";
 import Legendary from "../../../assets/card/rarity/legendary-bg.png";
 
+// player images
 import player1 from "../../../assets/card/player/player1.png";
 import player2 from "../../../assets/card/player/player2.png";
 import player3 from "../../../assets/card/player/player3.png";
@@ -40,8 +42,9 @@ function RegularCard({
     Superstar,
     Legendary,
   };
-  const playerRarityBg = rarityBg[playerRarity];
+  const playerRarityConversion = rarityBg[playerRarity];
 
+  // image conversion
   const image: Record<string, string> = {
     player1,
     player2,
@@ -54,7 +57,7 @@ function RegularCard({
     player9,
     player10,
   };
-  const imageConversion = image[playerImage];
+  const playerImageConversion = image[playerImage];
 
   return (
     <div className="hover-3d">
@@ -62,10 +65,10 @@ function RegularCard({
         {/* top half */}
         <div
           className="relative h-38 lg:h-58 bg-base-300 bg-cover bg-center"
-          style={{ backgroundImage: `url(${playerRarityBg})` }}
+          style={{ backgroundImage: `url(${playerRarityConversion})` }}
         >
           <img
-            src={imageConversion}
+            src={playerImageConversion}
             className="w-27 h-38 lg:w-40 lg:h-58 mx-auto"
           />
           <p className="absolute top-2 lg:top-1.5 left-3 text-sm lg:text-lg">

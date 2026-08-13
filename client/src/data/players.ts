@@ -1,4 +1,15 @@
-export const players = [
+export type Player = {
+  id: number;
+  fullName: string;
+  position: string;
+  rarity: string;
+  offensiveRating: number;
+  defensiveRating: number;
+  overallRating: number;
+  image: string;
+};
+
+export const players: Player[] = [
   {
     id: 1,
     fullName: "Jayden Carter",
