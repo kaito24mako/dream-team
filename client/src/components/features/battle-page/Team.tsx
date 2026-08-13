@@ -1,8 +1,4 @@
 import CardList from "../../common/list/CardList";
-// import SmallCard from "../../common/playerCard/SmallCard";
-
-// import player2 from "../../../assets/card/player/player2.png";
-// import common from "../../../assets/card/rarity/common-bg.png";
 
 function Team({
   children,

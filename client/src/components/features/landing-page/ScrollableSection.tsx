@@ -2,6 +2,8 @@ import { TbCards } from "react-icons/tb";
 import { RiTeamLine } from "react-icons/ri";
 import { PiCoins } from "react-icons/pi";
 
+import { getPlayerByName } from "../../../utils/data/getPlayers";
+
 import RegularCard from "../../common/playerCard/RegularCard";
 import ScrollableItem from "./ScrollableItem";
 
@@ -16,6 +18,9 @@ import coin from "../../../assets/icon/coin.png";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function ScrollableSection() {
+  const marcusWilliams = getPlayerByName("Marcus Williams");
+  console.log(marcusWilliams);
+
   return (
     <section className="flex flex-col gap-15 lg:gap-0">
       <div className="lg:flex lg:items-center lg:min-h-[80dvh]">
@@ -30,16 +35,18 @@ function ScrollableSection() {
         Icon={TbCards}
         description="Open packs to collect players from a custom database of over 100 cards. Acquire players of varying rarities, from common to legendary."
       >
-        <div className="flex gap-5 mx-auto ">
+        <div className="flex gap-5 mx-auto">
           <FullArtCard
-            playerImage={player5}
-            playerRarity={legendary}
-            playerPosition="PG"
-            playerName="Kaito Watanabe"
-            offenseCount={94}
-            defenseCount={96}
+            is3D={false}
+            playerImage={marcusWilliams.image}
+            playerRarity={marcusWilliams.rarity}
+            playerPosition={marcusWilliams.position}
+            playerName={marcusWilliams.fullName}
+            offenseCount={marcusWilliams.offensiveRating}
+            defenseCount={marcusWilliams.defensiveRating}
           />
           <RegularCard
+            is3D={false}
             playerImage={player2}
             playerRarity={rare}
             playerPosition="SF"

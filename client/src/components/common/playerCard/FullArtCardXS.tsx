@@ -19,7 +19,6 @@ import player9 from "../../../assets/card/player/player9.png";
 import player10 from "../../../assets/card/player/player10.png";
 
 type Props = {
-  is3D?: boolean;
   playerImage: string;
   playerRarity: string;
   playerPosition: string;
@@ -28,8 +27,7 @@ type Props = {
   defenseCount: number;
 };
 
-function RegularCard({
-  is3D = true,
+function FullArtCardXS({
   playerImage,
   playerRarity,
   playerPosition,
@@ -62,57 +60,40 @@ function RegularCard({
   const playerImageConversion = image[playerImage];
 
   return (
-    <div className={is3D ? "hover-3d" : undefined}>
-      <div className="w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden">
-        {/* top half */}
-        <div
-          className="relative h-38 lg:h-58 bg-base-300 bg-cover bg-center"
-          style={{ backgroundImage: `url(${playerRarityConversion})` }}
-        >
-          <img
-            src={playerImageConversion}
-            className="w-27 h-38 lg:w-40 lg:h-58 mx-auto"
+    <div
+      className="relative w-30 h-40 lg:w-38 lg:h-55 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
+      style={{ backgroundImage: `url(${playerRarityConversion})` }}
+    >
+      <img src={playerImageConversion} className="absolute" />
+      <p className="absolute top-1 lg:top-0.5 left-2 text-xs lg:text-base">
+        {playerPosition}
+      </p>
+
+      {/* bottom half */}
+      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center text-center gap-2 h-20 lg:h-25 bg-base-300/50">
+        <p className="text-xs lg:text-sm">{playerName}</p>
+
+        <div className="flex gap-3 lg:gap-4">
+          <Statistic
+            title="Offense"
+            count={offenseCount}
+            titleSize="xs"
+            countSize="xs"
+            textAlign="centerRigid"
+            titleOpacity="opacity-80"
           />
-          <p className="absolute top-2 lg:top-1.5 left-3 text-sm lg:text-lg">
-            {playerPosition}
-          </p>
-        </div>
-
-        {/* bottom half */}
-        <div className="flex flex-col items-center justify-center gap-2 h-27 bg-base-200">
-          <p className="text-sm lg:text-lg">{playerName}</p>
-
-          <div className="flex gap-4">
-            <Statistic
-              title="Offense"
-              count={offenseCount}
-              titleSize="small"
-              countSize="small"
-              textAlign="centerRigid"
-              titleOpacity="opacity-80"
-            />
-            <Statistic
-              title="Defense"
-              count={defenseCount}
-              titleSize="small"
-              countSize="small"
-              textAlign="centerRigid"
-              titleOpacity="opacity-80"
-            />
-          </div>
+          <Statistic
+            title="Defense"
+            count={defenseCount}
+            titleSize="xs"
+            countSize="xs"
+            textAlign="centerRigid"
+            titleOpacity="opacity-80"
+          />
         </div>
       </div>
-
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
     </div>
   );
 }
 
-export default RegularCard;
+export default FullArtCardXS;

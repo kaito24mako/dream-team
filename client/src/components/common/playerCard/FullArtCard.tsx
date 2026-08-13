@@ -19,6 +19,7 @@ import player9 from "../../../assets/card/player/player9.png";
 import player10 from "../../../assets/card/player/player10.png";
 
 type Props = {
+  is3D?: boolean;
   playerImage: string;
   playerRarity: string;
   playerPosition: string;
@@ -28,6 +29,7 @@ type Props = {
 };
 
 function FullArtCard({
+  is3D = true,
   playerImage,
   playerRarity,
   playerPosition,
@@ -60,7 +62,7 @@ function FullArtCard({
   const playerImageConversion = image[playerImage];
 
   return (
-    <div className="hover-3d">
+    <div className={is3D ? "hover-3d" : undefined}>
       <div
         className="relative w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${playerRarityConversion})` }}

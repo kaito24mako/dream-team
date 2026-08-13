@@ -6,12 +6,14 @@ import {
   lineupPF,
   lineupC,
 } from "../../utils/data/getLineup";
+// import { opponents } from "../../data/opponents";
 
 // import Button from "../components/common/button/Button";
 import Scoreboard from "../../components/features/battle-page/Scoreboard";
 import Team from "../../components/features/battle-page/Team";
-import SmallCard from "../../components/common/playerCard/SmallCard";
 import VSList from "../../components/features/battle-page/VSList";
+import RegularCardXS from "../../components/common/playerCard/RegularCardXS";
+import FullArtCardXS from "../../components/common/playerCard/FullArtCardXS";
 
 import black from "../../assets/card/rarity/black-bg.png";
 import enemy1 from "../../assets/card/enemy/enemy1.png";
@@ -26,9 +28,10 @@ function BattlePage() {
       <Scoreboard />
 
       <div className="flex flex-row md:flex-col md:gap-5">
+        {/* user's team */}
         <Team teamName={currentUser.teamName} teamNameColor="text-primary">
           {lineupPG.rarity === "Legendary" ? (
-            <SmallCard
+            <FullArtCardXS
               playerImage={lineupPG.image}
               playerRarity={lineupPG.rarity}
               playerPosition={lineupPG.position}
@@ -37,7 +40,7 @@ function BattlePage() {
               defenseCount={lineupPG.defensiveRating}
             />
           ) : (
-            <SmallCard
+            <RegularCardXS
               playerImage={lineupPG.image}
               playerRarity={lineupPG.rarity}
               playerPosition={lineupPG.position}
@@ -47,7 +50,7 @@ function BattlePage() {
             />
           )}
           {lineupSG.rarity === "Legendary" ? (
-            <SmallCard
+            <FullArtCardXS
               playerImage={lineupSG.image}
               playerRarity={lineupSG.rarity}
               playerPosition={lineupSG.position}
@@ -56,7 +59,7 @@ function BattlePage() {
               defenseCount={lineupSG.defensiveRating}
             />
           ) : (
-            <SmallCard
+            <RegularCardXS
               playerImage={lineupSG.image}
               playerRarity={lineupSG.rarity}
               playerPosition={lineupSG.position}
@@ -66,7 +69,7 @@ function BattlePage() {
             />
           )}
           {lineupSF.rarity === "Legendary" ? (
-            <SmallCard
+            <FullArtCardXS
               playerImage={lineupSF.image}
               playerRarity={lineupSF.rarity}
               playerPosition={lineupSF.position}
@@ -75,7 +78,7 @@ function BattlePage() {
               defenseCount={lineupSF.defensiveRating}
             />
           ) : (
-            <SmallCard
+            <RegularCardXS
               playerImage={lineupSF.image}
               playerRarity={lineupSF.rarity}
               playerPosition={lineupSF.position}
@@ -85,7 +88,7 @@ function BattlePage() {
             />
           )}
           {lineupPF.rarity === "Legendary" ? (
-            <SmallCard
+            <FullArtCardXS
               playerImage={lineupPF.image}
               playerRarity={lineupPF.rarity}
               playerPosition={lineupPF.position}
@@ -94,7 +97,7 @@ function BattlePage() {
               defenseCount={lineupPF.defensiveRating}
             />
           ) : (
-            <SmallCard
+            <RegularCardXS
               playerImage={lineupPF.image}
               playerRarity={lineupPF.rarity}
               playerPosition={lineupPF.position}
@@ -104,7 +107,7 @@ function BattlePage() {
             />
           )}
           {lineupC.rarity === "Legendary" ? (
-            <SmallCard
+            <FullArtCardXS
               playerImage={lineupC.image}
               playerRarity={lineupC.rarity}
               playerPosition={lineupC.position}
@@ -113,7 +116,7 @@ function BattlePage() {
               defenseCount={lineupC.defensiveRating}
             />
           ) : (
-            <SmallCard
+            <RegularCardXS
               playerImage={lineupC.image}
               playerRarity={lineupC.rarity}
               playerPosition={lineupC.position}
@@ -127,8 +130,9 @@ function BattlePage() {
         {/* <Button className="btn-info w-fit mx-auto">Start Match</Button> */}
         <VSList />
 
+        {/* opponent's team */}
         <Team teamName="Manchester Kings" teamNameColor="text-white">
-          <SmallCard
+          <RegularCardXS
             playerImage={enemy1}
             playerRarity={black}
             playerPosition="PG"
@@ -137,7 +141,7 @@ function BattlePage() {
             defenseCount={92}
             isEnemy={true}
           />
-          <SmallCard
+          <RegularCardXS
             playerImage={enemy2}
             playerRarity={black}
             playerPosition="SG"
@@ -146,7 +150,7 @@ function BattlePage() {
             defenseCount={92}
             isEnemy={true}
           />
-          <SmallCard
+          <RegularCardXS
             playerImage={enemy3}
             playerRarity={black}
             playerPosition="SF"
@@ -155,7 +159,7 @@ function BattlePage() {
             defenseCount={92}
             isEnemy={true}
           />
-          <SmallCard
+          <RegularCardXS
             playerImage={enemy4}
             playerRarity={black}
             playerPosition="PF"
@@ -164,7 +168,7 @@ function BattlePage() {
             defenseCount={92}
             isEnemy={true}
           />
-          <SmallCard
+          <RegularCardXS
             playerImage={enemy5}
             playerRarity={black}
             playerPosition="C"
