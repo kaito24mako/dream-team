@@ -118,7 +118,7 @@ export const players: Player[] = [
     offensiveRating: 62,
     defensiveRating: 64,
     overallRating: 63,
-    image: "player-11.png",
+    image: "player11",
   },
   {
     id: 12,
@@ -128,7 +128,7 @@ export const players: Player[] = [
     offensiveRating: 67,
     defensiveRating: 67,
     overallRating: 67,
-    image: "player-12.png",
+    image: "player12",
   },
   {
     id: 13,
@@ -138,7 +138,7 @@ export const players: Player[] = [
     offensiveRating: 56,
     defensiveRating: 58,
     overallRating: 57,
-    image: "player-13.png",
+    image: "player13",
   },
   {
     id: 14,
@@ -148,7 +148,7 @@ export const players: Player[] = [
     offensiveRating: 65,
     defensiveRating: 65,
     overallRating: 65,
-    image: "player-14.png",
+    image: "player14",
   },
   {
     id: 15,
@@ -158,7 +158,7 @@ export const players: Player[] = [
     offensiveRating: 60,
     defensiveRating: 60,
     overallRating: 60,
-    image: "player-15.png",
+    image: "player15",
   },
   {
     id: 16,
@@ -168,7 +168,7 @@ export const players: Player[] = [
     offensiveRating: 52,
     defensiveRating: 54,
     overallRating: 53,
-    image: "player-16.png",
+    image: "player16",
   },
   {
     id: 17,
@@ -178,7 +178,7 @@ export const players: Player[] = [
     offensiveRating: 69,
     defensiveRating: 69,
     overallRating: 69,
-    image: "player-17.png",
+    image: "player17",
   },
   {
     id: 18,
@@ -188,7 +188,7 @@ export const players: Player[] = [
     offensiveRating: 58,
     defensiveRating: 58,
     overallRating: 58,
-    image: "player-18.png",
+    image: "player18",
   },
   {
     id: 19,
@@ -198,7 +198,7 @@ export const players: Player[] = [
     offensiveRating: 63,
     defensiveRating: 65,
     overallRating: 64,
-    image: "player-19.png",
+    image: "player19",
   },
   {
     id: 20,
@@ -208,7 +208,7 @@ export const players: Player[] = [
     offensiveRating: 54,
     defensiveRating: 54,
     overallRating: 54,
-    image: "player-20.png",
+    image: "player20",
   },
   {
     id: 21,

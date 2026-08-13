@@ -1,11 +1,10 @@
 import { RxLightningBolt } from "react-icons/rx";
 
+import { featuredPlayersRandom } from "../../../utils/data/getPlayers";
+
 import SectionHeading from "../../common/text/SectionHeading";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 import CardList from "../../common/list/CardList";
-
-import player10 from "../../../assets/card/player/player10.png";
-import legendary from "../../../assets/card/rarity/legendary-bg.png";
 
 function FeaturedSection() {
   return (
@@ -15,40 +14,18 @@ function FeaturedSection() {
         Icon={RxLightningBolt}
         divider={true}
       />
-
       <CardList>
-        <FullArtCard
-          playerImage={player10}
-          playerRarity={legendary}
-          playerPosition="SF"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <FullArtCard
-          playerImage={player10}
-          playerRarity={legendary}
-          playerPosition="SF"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <FullArtCard
-          playerImage={player10}
-          playerRarity={legendary}
-          playerPosition="SF"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <FullArtCard
-          playerImage={player10}
-          playerRarity={legendary}
-          playerPosition="SF"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
+        {featuredPlayersRandom.map((player) => (
+          <FullArtCard
+            key={player.id}
+            playerImage={player.image}
+            playerRarity={player.rarity}
+            playerPosition={player.position}
+            playerName={player.fullName}
+            offenseCount={player.offensiveRating}
+            defenseCount={player.defensiveRating}
+          />
+        ))}
       </CardList>
     </section>
   );
