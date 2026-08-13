@@ -20,9 +20,9 @@ function HomePage() {
           <h1 className="text-4xl text-primary">{currentUser.teamName}</h1>
         </div>
 
-        <StatisticsSection currentUser={currentUser} />
+        <StatisticsSection user={currentUser} />
 
-        <LineupSection />
+        <LineupSection user={currentUser} />
 
         <CollectionSection />
       </main>

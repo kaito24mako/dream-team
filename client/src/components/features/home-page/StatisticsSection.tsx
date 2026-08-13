@@ -1,6 +1,6 @@
 import Statistic from "../../common/statistic/Statistic";
 
-function StatisticsSection({ currentUser }) {
+function StatisticsSection({ user }) {
   return (
     <section className="flex gap-5 overflow-x-scroll overflow-y-hidden">
       <div className="flex flex-col sm:flex-row gap-5">
@@ -22,16 +22,13 @@ function StatisticsSection({ currentUser }) {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Team Record"
-          count={currentUser.wins + "-" + currentUser.losses}
+          count={user.wins + "-" + user.losses}
           countSize="medium"
           textAlign="end"
         />
         <Statistic
           title="Win Rate"
-          count={
-            (currentUser.wins / (currentUser.wins + currentUser.losses)) * 100 +
-            "%"
-          }
+          count={(user.wins / (user.wins + user.losses)) * 100 + "%"}
           countSize="medium"
           textAlign="end"
         />
@@ -47,7 +44,7 @@ function StatisticsSection({ currentUser }) {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Collection Progress"
-          count="34/100"
+          count={user.totalCards + "/100"}
           countSize="medium"
           textAlign="end"
         />

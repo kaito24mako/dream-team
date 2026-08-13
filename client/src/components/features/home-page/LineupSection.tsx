@@ -1,4 +1,5 @@
 import { RiTeamLine } from "react-icons/ri";
+import { players } from "../../../data/players";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import CardList from "../../common/list/CardList";
@@ -18,7 +19,20 @@ import player3 from "../../../assets/card/player/player3.png";
 import player4 from "../../../assets/card/player/player4.png";
 import player5 from "../../../assets/card/player/player5.png";
 
-function LineupSection() {
+function LineupSection({ user }) {
+  // get the user's lineup
+  const lineup = user.lineup;
+
+  // get player object of a certain position from the user's lineup
+  const lineupPG = players.find((player) => player.id === lineup.PG);
+  const lineupSG = players.find((player) => player.id === lineup.SG);
+  const lineupSF = players.find((player) => player.id === lineup.SF);
+  const lineupPF = players.find((player) => player.id === lineup.PF);
+  const lineupC = players.find((player) => player.id === lineup.C);
+
+  console.log(lineup, "user's lineup");
+  console.log(lineupPG, "the specific player from the user's lineup");
+
   return (
     <section className="mt-6">
       <SectionHeading heading="STARTING LINEUP" Icon={RiTeamLine} />
@@ -30,52 +44,52 @@ function LineupSection() {
         <CardList>
           <LineupPosition position="PG">
             <RegularCard
-              playerImage={player1}
-              playerRarity={common}
-              playerPosition="PG"
-              playerName="Kaito Watanabe"
-              offenseCount={89}
-              defenseCount={92}
+              playerImage={lineupPG.image}
+              playerRarity={lineupPG.rarity}
+              playerPosition={lineupPG.position}
+              playerName={lineupPG.fullName}
+              offenseCount={lineupPG.offensiveRating}
+              defenseCount={lineupPG.defensiveRating}
             />
           </LineupPosition>
           <LineupPosition position="SG">
             <RegularCard
-              playerImage={player2}
-              playerRarity={rare}
-              playerPosition="SG"
-              playerName="Kaito Watanabe"
-              offenseCount={89}
-              defenseCount={92}
+              playerImage={lineupSG.image}
+              playerRarity={lineupSG.rarity}
+              playerPosition={lineupSG.position}
+              playerName={lineupSG.fullName}
+              offenseCount={lineupSG.offensiveRating}
+              defenseCount={lineupSG.defensiveRating}
             />
           </LineupPosition>
           <LineupPosition position="SF">
             <RegularCard
-              playerImage={player3}
-              playerRarity={superstar}
-              playerPosition="SF"
-              playerName="Kaito Watanabe"
-              offenseCount={89}
-              defenseCount={92}
+              playerImage={lineupSF.image}
+              playerRarity={lineupSF.rarity}
+              playerPosition={lineupSF.position}
+              playerName={lineupSF.fullName}
+              offenseCount={lineupSF.offensiveRating}
+              defenseCount={lineupSF.defensiveRating}
             />
           </LineupPosition>
           <LineupPosition position="PF">
-            <FullArtCard
-              playerImage={player5}
-              playerRarity={legendary}
-              playerPosition="PF"
-              playerName="Kaito Watanabe"
-              offenseCount={89}
-              defenseCount={92}
+            <RegularCard
+              playerImage={lineupPF.image}
+              playerRarity={lineupPF.rarity}
+              playerPosition={lineupPF.position}
+              playerName={lineupPF.fullName}
+              offenseCount={lineupPF.offensiveRating}
+              defenseCount={lineupPF.defensiveRating}
             />
           </LineupPosition>
           <LineupPosition position="C">
             <RegularCard
-              playerImage={player4}
-              playerRarity={common}
-              playerPosition="C"
-              playerName="Kaito Watanabe"
-              offenseCount={89}
-              defenseCount={92}
+              playerImage={lineupC.image}
+              playerRarity={lineupC.rarity}
+              playerPosition={lineupC.position}
+              playerName={lineupC.fullName}
+              offenseCount={lineupC.offensiveRating}
+              defenseCount={lineupC.defensiveRating}
             />
           </LineupPosition>
         </CardList>
