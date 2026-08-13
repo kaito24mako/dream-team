@@ -7,6 +7,7 @@ import DropdownBtn from "../../common/button/DropdownBtn";
 import RegularCard from "../../common/playerCard/RegularCard";
 import Divider from "../../common/divider/Divider";
 import CardList from "../../common/list/CardList";
+import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function CollectionSection() {
   return (
@@ -35,17 +36,29 @@ function CollectionSection() {
       <Divider color="default" />
 
       <CardList className="px-7">
-        {players.map((player) => (
-          <RegularCard
-            key={player.id}
-            playerImage={player.image}
-            playerRarity={player.rarity}
-            playerPosition={player.position}
-            playerName={player.fullName}
-            offenseCount={player.offensiveRating}
-            defenseCount={player.defensiveRating}
-          />
-        ))}
+        {players.map((player) =>
+          player.rarity === "Legendary" ? (
+            <FullArtCard
+              key={player.id}
+              playerImage={player.image}
+              playerRarity={player.rarity}
+              playerPosition={player.position}
+              playerName={player.fullName}
+              offenseCount={player.offensiveRating}
+              defenseCount={player.defensiveRating}
+            />
+          ) : (
+            <RegularCard
+              key={player.id}
+              playerImage={player.image}
+              playerRarity={player.rarity}
+              playerPosition={player.position}
+              playerName={player.fullName}
+              offenseCount={player.offensiveRating}
+              defenseCount={player.defensiveRating}
+            />
+          ),
+        )}
       </CardList>
     </section>
   );

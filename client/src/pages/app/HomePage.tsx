@@ -1,15 +1,10 @@
-import { users } from "../../data/users";
-import { currentUserId } from "../../data/session";
+import { currentUser } from "../../utils/data/gettingUsers";
 
 import StatisticsSection from "../../components/features/home-page/StatisticsSection";
 import LineupSection from "../../components/features/home-page/LineupSection";
 import CollectionSection from "../../components/features/home-page/CollectionSection";
 
 function HomePage() {
-  // to get json object of current session's user
-  const currentUser = users.find((user) => user.id === currentUserId);
-  console.log(currentUser);
-
   return (
     <>
       <title>Home | Dream Team</title>

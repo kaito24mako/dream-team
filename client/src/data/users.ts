@@ -12,7 +12,7 @@ export type User = {
   username: string;
   password: string;
   teamName: string;
-  coins: number;
+  currency: number;
   lineup: Lineup;
   wins: number;
   losses: number;
@@ -26,7 +26,7 @@ export const users: User[] = [
     username: "kaito24mako",
     password: "Ka1tomccau!",
     teamName: "Kanazawa Demons",
-    coins: 650,
+    currency: 650,
     lineup: {
       PG: 2,
       SG: 4,
@@ -44,7 +44,7 @@ export const users: User[] = [
     username: "beymel",
     password: "Ka1tomccau!",
     teamName: "Cebu Cats",
-    coins: 400,
+    currency: 400,
     lineup: {
       PG: 10,
       SG: 12,

@@ -3,6 +3,8 @@ import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 import { IoIosLogOut } from "react-icons/io";
 
+import { currentUser } from "../../../utils/data/gettingUsers";
+
 import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
 import CoinIcon from "../../common/icon/ui/CoinIcon";
 import logo from "../../../assets/icon/logo.png";
@@ -49,7 +51,7 @@ function AppNavbar() {
         <div className="navbar-end">
           <div className="text-coin mr-2.5 mt-0.5 flex items-center gap-1">
             <CoinIcon />
-            <span>250</span>
+            {currentUser.currency}
           </div>
           <ul className="menu menu-horizontal px-1">
             <li>
