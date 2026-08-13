@@ -1,5 +1,12 @@
 import { RiTeamLine } from "react-icons/ri";
-import { players } from "../../../data/players";
+
+import {
+  lineupPG,
+  lineupSG,
+  lineupSF,
+  lineupPF,
+  lineupC,
+} from "../../../utils/data/getLineup";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import CardList from "../../common/list/CardList";
@@ -9,20 +16,7 @@ import FullArtCard from "../../common/playerCard/FullArtCard";
 
 import grid from "../../../assets/bg/grid-black.png";
 
-function LineupSection({ user }) {
-  // get the user's lineup
-  const lineup = user.lineup;
-
-  // get player object of a certain position from the user's lineup
-  const lineupPG = players.find((player) => player.id === lineup.PG);
-  const lineupSG = players.find((player) => player.id === lineup.SG);
-  const lineupSF = players.find((player) => player.id === lineup.SF);
-  const lineupPF = players.find((player) => player.id === lineup.PF);
-  const lineupC = players.find((player) => player.id === lineup.C);
-
-  console.log(lineup, "user's lineup");
-  console.log(lineupPG, "the specific player from the user's lineup");
-
+function LineupSection() {
   return (
     <section className="mt-6">
       <SectionHeading heading="STARTING LINEUP" Icon={RiTeamLine} />

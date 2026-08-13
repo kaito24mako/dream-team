@@ -1,4 +1,4 @@
-import { currentUser } from "../../utils/data/gettingUsers";
+import { currentUser } from "../../utils/data/getUsers";
 
 import StatisticsSection from "../../components/features/home-page/StatisticsSection";
 import LineupSection from "../../components/features/home-page/LineupSection";

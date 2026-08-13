@@ -3,7 +3,7 @@ import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 import { IoIosLogOut } from "react-icons/io";
 
-import { currentUser } from "../../../utils/data/gettingUsers";
+import { currentUser } from "../../../utils/data/getUsers";
 
 import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
 import CoinIcon from "../../common/icon/ui/CoinIcon";

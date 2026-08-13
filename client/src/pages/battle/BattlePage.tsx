@@ -1,11 +1,18 @@
+import { currentUser } from "../../utils/data/getUsers";
+import {
+  lineupPG,
+  lineupSG,
+  lineupSF,
+  lineupPF,
+  lineupC,
+} from "../../utils/data/getLineup";
+
 // import Button from "../components/common/button/Button";
 import Scoreboard from "../../components/features/battle-page/Scoreboard";
 import Team from "../../components/features/battle-page/Team";
 import SmallCard from "../../components/common/playerCard/SmallCard";
 import VSList from "../../components/features/battle-page/VSList";
 
-import player2 from "../../assets/card/player/player2.png";
-import common from "../../assets/card/rarity/common-bg.png";
 import black from "../../assets/card/rarity/black-bg.png";
 import enemy1 from "../../assets/card/enemy/enemy1.png";
 import enemy2 from "../../assets/card/enemy/enemy2.png";
@@ -19,53 +26,108 @@ function BattlePage() {
       <Scoreboard />
 
       <div className="flex flex-row md:flex-col md:gap-5">
-        <Team teamName="MELBOURNE DEMONS" teamNameColor="text-primary">
-          <SmallCard
-            playerImage={player2}
-            playerRarity={common}
-            playerPosition="PG"
-            playerName="Kaito Watanabe"
-            offenseCount={89}
-            defenseCount={92}
-          />
-          <SmallCard
-            playerImage={player2}
-            playerRarity={common}
-            playerPosition="SG"
-            playerName="Kaito Watanabe"
-            offenseCount={89}
-            defenseCount={92}
-          />
-          <SmallCard
-            playerImage={player2}
-            playerRarity={common}
-            playerPosition="SG"
-            playerName="Kaito Watanabe"
-            offenseCount={89}
-            defenseCount={92}
-          />
-          <SmallCard
-            playerImage={player2}
-            playerRarity={common}
-            playerPosition="SG"
-            playerName="Kaito Watanabe"
-            offenseCount={89}
-            defenseCount={92}
-          />
-          <SmallCard
-            playerImage={player2}
-            playerRarity={common}
-            playerPosition="SG"
-            playerName="Kaito Watanabe"
-            offenseCount={89}
-            defenseCount={92}
-          />
+        <Team teamName={currentUser.teamName} teamNameColor="text-primary">
+          {lineupPG.rarity === "Legendary" ? (
+            <SmallCard
+              playerImage={lineupPG.image}
+              playerRarity={lineupPG.rarity}
+              playerPosition={lineupPG.position}
+              playerName={lineupPG.fullName}
+              offenseCount={lineupPG.offensiveRating}
+              defenseCount={lineupPG.defensiveRating}
+            />
+          ) : (
+            <SmallCard
+              playerImage={lineupPG.image}
+              playerRarity={lineupPG.rarity}
+              playerPosition={lineupPG.position}
+              playerName={lineupPG.fullName}
+              offenseCount={lineupPG.offensiveRating}
+              defenseCount={lineupPG.defensiveRating}
+            />
+          )}
+          {lineupSG.rarity === "Legendary" ? (
+            <SmallCard
+              playerImage={lineupSG.image}
+              playerRarity={lineupSG.rarity}
+              playerPosition={lineupSG.position}
+              playerName={lineupSG.fullName}
+              offenseCount={lineupSG.offensiveRating}
+              defenseCount={lineupSG.defensiveRating}
+            />
+          ) : (
+            <SmallCard
+              playerImage={lineupSG.image}
+              playerRarity={lineupSG.rarity}
+              playerPosition={lineupSG.position}
+              playerName={lineupSG.fullName}
+              offenseCount={lineupSG.offensiveRating}
+              defenseCount={lineupSG.defensiveRating}
+            />
+          )}
+          {lineupSF.rarity === "Legendary" ? (
+            <SmallCard
+              playerImage={lineupSF.image}
+              playerRarity={lineupSF.rarity}
+              playerPosition={lineupSF.position}
+              playerName={lineupSF.fullName}
+              offenseCount={lineupSF.offensiveRating}
+              defenseCount={lineupSF.defensiveRating}
+            />
+          ) : (
+            <SmallCard
+              playerImage={lineupSF.image}
+              playerRarity={lineupSF.rarity}
+              playerPosition={lineupSF.position}
+              playerName={lineupSF.fullName}
+              offenseCount={lineupSF.offensiveRating}
+              defenseCount={lineupSF.defensiveRating}
+            />
+          )}
+          {lineupPF.rarity === "Legendary" ? (
+            <SmallCard
+              playerImage={lineupPF.image}
+              playerRarity={lineupPF.rarity}
+              playerPosition={lineupPF.position}
+              playerName={lineupPF.fullName}
+              offenseCount={lineupPF.offensiveRating}
+              defenseCount={lineupPF.defensiveRating}
+            />
+          ) : (
+            <SmallCard
+              playerImage={lineupPF.image}
+              playerRarity={lineupPF.rarity}
+              playerPosition={lineupPF.position}
+              playerName={lineupPF.fullName}
+              offenseCount={lineupPF.offensiveRating}
+              defenseCount={lineupPF.defensiveRating}
+            />
+          )}
+          {lineupC.rarity === "Legendary" ? (
+            <SmallCard
+              playerImage={lineupC.image}
+              playerRarity={lineupC.rarity}
+              playerPosition={lineupC.position}
+              playerName={lineupC.fullName}
+              offenseCount={lineupC.offensiveRating}
+              defenseCount={lineupC.defensiveRating}
+            />
+          ) : (
+            <SmallCard
+              playerImage={lineupC.image}
+              playerRarity={lineupC.rarity}
+              playerPosition={lineupC.position}
+              playerName={lineupC.fullName}
+              offenseCount={lineupC.offensiveRating}
+              defenseCount={lineupC.defensiveRating}
+            />
+          )}
         </Team>
 
         {/* <Button className="btn-info w-fit mx-auto">Start Match</Button> */}
         <VSList />
 
-        <Team teamName="MANCHESTER KINGS" teamNameColor="text-white">
+        <Team teamName="Manchester Kings" teamNameColor="text-white">
           <SmallCard
             playerImage={enemy1}
             playerRarity={black}

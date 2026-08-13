@@ -1,3 +1,5 @@
+import { currentUser } from "../../utils/data/getUsers";
+
 import Statistic from "../../components/common/statistic/Statistic";
 import MatchesSection from "../../components/features/league-page/MatchesSection";
 
@@ -11,7 +13,7 @@ function LeaguePage() {
           <div className="flex flex-col items-start md:items-center">
             <p className="font-primary text-xl">It's Game Time</p>
             <p className="font-primary text-primary text-4xl">
-              Melbourne Demons
+              {currentUser.teamName}
             </p>
           </div>
 
