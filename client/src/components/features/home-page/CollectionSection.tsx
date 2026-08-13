@@ -1,4 +1,5 @@
 import { TbCards } from "react-icons/tb";
+import { players } from "../../../data/players";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
@@ -6,9 +7,6 @@ import DropdownBtn from "../../common/button/DropdownBtn";
 import RegularCard from "../../common/playerCard/RegularCard";
 import Divider from "../../common/divider/Divider";
 import CardList from "../../common/list/CardList";
-
-import player1 from "../../../assets/card/player/player1.png";
-import common from "../../../assets/card/rarity/common-bg.png";
 
 function CollectionSection() {
   return (
@@ -37,54 +35,17 @@ function CollectionSection() {
       <Divider color="default" />
 
       <CardList className="px-7">
-        <RegularCard
-          playerImage={player1}
-          playerRarity={common}
-          playerPosition="PG"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <RegularCard
-          playerImage={player1}
-          playerRarity={common}
-          playerPosition="PG"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <RegularCard
-          playerImage={player1}
-          playerRarity={common}
-          playerPosition="PG"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <RegularCard
-          playerImage={player1}
-          playerRarity={common}
-          playerPosition="PG"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <RegularCard
-          playerImage={player1}
-          playerRarity={common}
-          playerPosition="PG"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
-        <RegularCard
-          playerImage={player1}
-          playerRarity={common}
-          playerPosition="PG"
-          playerName="Kaito Watanabe"
-          offenseCount={89}
-          defenseCount={92}
-        />
+        {players.map((player) => (
+          <RegularCard
+            key={player.id}
+            playerImage={player.image}
+            playerRarity={player.rarity}
+            playerPosition={player.position}
+            playerName={player.fullName}
+            offenseCount={player.offensiveRating}
+            defenseCount={player.defensiveRating}
+          />
+        ))}
       </CardList>
     </section>
   );
