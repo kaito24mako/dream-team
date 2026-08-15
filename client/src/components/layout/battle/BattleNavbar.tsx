@@ -1,10 +1,18 @@
+import { useParams } from "react-router-dom";
+
 import { currentUser } from "../../../utils/data/getUsers";
+import { getSelectedOpponent } from "../../../utils/data/getOpponents";
 
 import CoinIcon from "../../common/icon/ui/CoinIcon";
 import CurrencyItem from "../../features/league-page/CurrencyItem";
 import logo from "../../../assets/icon/logo.png";
 
 function BattleNavbar() {
+  const { levelSlug } = useParams();
+  const level = Number(levelSlug.replace("lvl", ""));
+
+  const selectedOpponent = getSelectedOpponent(level);
+
   return (
     <header className="bg-base-200 shadow-sm w-full rounded-md text-sm py-2.5 px-2 md:px-10">
       <nav className="navbar">
@@ -14,12 +22,12 @@ function BattleNavbar() {
 
         <div className="navbar-center">
           <ul className="flex items-center gap-5">
-            <li>Level 1</li>
+            <li>Level {level}</li>
             <li>
               <CurrencyItem
                 heading="Win"
                 headingColor="text-secondary"
-                currency={100}
+                currency={selectedOpponent.reward}
                 currencyColor="text-coin"
               />
             </li>
@@ -27,7 +35,7 @@ function BattleNavbar() {
               <CurrencyItem
                 heading="Loss"
                 headingColor="text-error"
-                currency={50}
+                currency={selectedOpponent.loss}
                 currencyColor="text-red-500"
               />
             </li>

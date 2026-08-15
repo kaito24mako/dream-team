@@ -8,7 +8,7 @@ import {
   lineupPF,
   lineupC,
 } from "../../utils/data/getLineup";
-import { opponents } from "../../data/opponents";
+import { getSelectedOpponent } from "../../utils/data/getOpponents";
 
 // import Button from "../components/common/button/Button";
 import Scoreboard from "../../components/features/battle-page/Scoreboard";
@@ -18,6 +18,7 @@ import RegularCardXS from "../../components/common/playerCard/RegularCardXS";
 import FullArtCardXS from "../../components/common/playerCard/FullArtCardXS";
 
 import black from "../../assets/card/rarity/black-bg.png";
+import red from "../../assets/card/rarity/red-bg.png";
 import enemy1 from "../../assets/card/enemy/enemy1.png";
 import enemy2 from "../../assets/card/enemy/enemy2.png";
 import enemy3 from "../../assets/card/enemy/enemy3.png";
@@ -28,10 +29,7 @@ function BattlePage() {
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
 
-  // get the opponent that the user selected in the LeaguePage
-  const selectedOpponent = opponents.find(
-    (opponent) => opponent.level === level,
-  );
+  const selectedOpponent = getSelectedOpponent(level);
 
   // get a random offensive and defensive rating for the opponent's players
   function getRandomRating() {
@@ -155,7 +153,7 @@ function BattlePage() {
         <Team teamName={selectedOpponent.teamName} teamNameColor="text-white">
           <RegularCardXS
             playerImage={enemy1}
-            playerRarity={black}
+            playerRarity={level >= 9 ? red : black}
             playerPosition="PG"
             playerName="Ja Verant"
             offenseCount={getRandomRating()}
@@ -164,7 +162,7 @@ function BattlePage() {
           />
           <RegularCardXS
             playerImage={enemy2}
-            playerRarity={black}
+            playerRarity={level >= 9 ? red : black}
             playerPosition="SG"
             playerName="Jimmy Guttler"
             offenseCount={getRandomRating()}
@@ -173,7 +171,7 @@ function BattlePage() {
           />
           <RegularCardXS
             playerImage={enemy3}
-            playerRarity={black}
+            playerRarity={level >= 9 ? red : black}
             playerPosition="SF"
             playerName="Kevin Reaper"
             offenseCount={getRandomRating()}
@@ -182,7 +180,7 @@ function BattlePage() {
           />
           <RegularCardXS
             playerImage={enemy4}
-            playerRarity={black}
+            playerRarity={level >= 9 ? red : black}
             playerPosition="PF"
             playerName="Zion Dunkson"
             offenseCount={getRandomRating()}
@@ -191,7 +189,7 @@ function BattlePage() {
           />
           <RegularCardXS
             playerImage={enemy5}
-            playerRarity={black}
+            playerRarity={level >= 9 ? red : black}
             playerPosition="C"
             playerName="Joel Jimbeed"
             offenseCount={getRandomRating()}
