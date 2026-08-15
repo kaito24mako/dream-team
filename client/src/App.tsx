@@ -37,7 +37,7 @@ function App() {
         </Route>
 
         <Route element={<BattleLayout />}>
-          <Route path="/battle" element={<BattlePage />} />
+          <Route path="/battle/:levelSlug" element={<BattlePage />} />
         </Route>
       </Routes>
     </Router>

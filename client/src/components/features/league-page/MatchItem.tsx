@@ -45,7 +45,7 @@ function MatchItem({
           currency={loss}
           currencyColor="text-red-500"
         />
-        <Link to="/battle">
+        <Link to={`/battle/lvl${level}`}>
           <Button size="small" bgColor="primary" textColor="black">
             Play
           </Button>

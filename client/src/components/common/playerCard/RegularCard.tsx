@@ -17,6 +17,28 @@ import player7 from "../../../assets/card/player/player7.png";
 import player8 from "../../../assets/card/player/player8.png";
 import player9 from "../../../assets/card/player/player9.png";
 import player10 from "../../../assets/card/player/player10.png";
+import player11 from "../../../assets/card/player/player11.png";
+import player12 from "../../../assets/card/player/player12.png";
+import player13 from "../../../assets/card/player/player13.png";
+import player14 from "../../../assets/card/player/player14.png";
+import player15 from "../../../assets/card/player/player15.png";
+import player16 from "../../../assets/card/player/player16.png";
+import player17 from "../../../assets/card/player/player17.png";
+import player18 from "../../../assets/card/player/player18.png";
+import player19 from "../../../assets/card/player/player19.png";
+import player20 from "../../../assets/card/player/player20.png";
+import player21 from "../../../assets/card/player/player21.png";
+import player22 from "../../../assets/card/player/player22.png";
+import player23 from "../../../assets/card/player/player23.png";
+import player24 from "../../../assets/card/player/player24.png";
+import player25 from "../../../assets/card/player/player25.png";
+import player26 from "../../../assets/card/player/player26.png";
+import player27 from "../../../assets/card/player/player27.png";
+import player28 from "../../../assets/card/player/player28.png";
+import player29 from "../../../assets/card/player/player29.png";
+import player30 from "../../../assets/card/player/player30.png";
+import player31 from "../../../assets/card/player/player31.png";
+import player32 from "../../../assets/card/player/player32.png";
 
 type Props = {
   is3D?: boolean;
@@ -58,6 +80,28 @@ function RegularCard({
     player8,
     player9,
     player10,
+    player11,
+    player12,
+    player13,
+    player14,
+    player15,
+    player16,
+    player17,
+    player18,
+    player19,
+    player20,
+    player21,
+    player22,
+    player23,
+    player24,
+    player25,
+    player26,
+    player27,
+    player28,
+    player29,
+    player30,
+    player31,
+    player32,
   };
   const playerImageConversion = image[playerImage];
 

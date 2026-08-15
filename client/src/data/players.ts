@@ -218,7 +218,7 @@ export const players: Player[] = [
     offensiveRating: 66,
     defensiveRating: 68,
     overallRating: 67,
-    image: "player-21.png",
+    image: "player21",
   },
   {
     id: 22,
@@ -228,7 +228,7 @@ export const players: Player[] = [
     offensiveRating: 61,
     defensiveRating: 61,
     overallRating: 61,
-    image: "player-22.png",
+    image: "player22",
   },
   {
     id: 23,
@@ -238,7 +238,7 @@ export const players: Player[] = [
     offensiveRating: 50,
     defensiveRating: 52,
     overallRating: 51,
-    image: "player-23.png",
+    image: "player23",
   },
   {
     id: 24,
@@ -248,7 +248,7 @@ export const players: Player[] = [
     offensiveRating: 59,
     defensiveRating: 61,
     overallRating: 60,
-    image: "player-24.png",
+    image: "player24",
   },
   {
     id: 25,
@@ -258,7 +258,7 @@ export const players: Player[] = [
     offensiveRating: 68,
     defensiveRating: 68,
     overallRating: 68,
-    image: "player-25.png",
+    image: "player25",
   },
   {
     id: 26,
@@ -268,7 +268,7 @@ export const players: Player[] = [
     offensiveRating: 57,
     defensiveRating: 59,
     overallRating: 58,
-    image: "player-26.png",
+    image: "player26",
   },
   {
     id: 27,
@@ -278,7 +278,7 @@ export const players: Player[] = [
     offensiveRating: 64,
     defensiveRating: 66,
     overallRating: 65,
-    image: "player-27.png",
+    image: "player27",
   },
   {
     id: 28,
@@ -288,7 +288,7 @@ export const players: Player[] = [
     offensiveRating: 55,
     defensiveRating: 57,
     overallRating: 56,
-    image: "player-28.png",
+    image: "player28",
   },
   {
     id: 29,
@@ -298,7 +298,7 @@ export const players: Player[] = [
     offensiveRating: 62,
     defensiveRating: 62,
     overallRating: 62,
-    image: "player-29.png",
+    image: "player29",
   },
   {
     id: 30,
@@ -308,7 +308,7 @@ export const players: Player[] = [
     offensiveRating: 67,
     defensiveRating: 69,
     overallRating: 68,
-    image: "player-30.png",
+    image: "player30",
   },
   {
     id: 31,
@@ -318,7 +318,7 @@ export const players: Player[] = [
     offensiveRating: 53,
     defensiveRating: 55,
     overallRating: 54,
-    image: "player-31.png",
+    image: "player31",
   },
   {
     id: 32,
@@ -328,7 +328,7 @@ export const players: Player[] = [
     offensiveRating: 60,
     defensiveRating: 60,
     overallRating: 60,
-    image: "player-32.png",
+    image: "player32",
   },
   {
     id: 33,

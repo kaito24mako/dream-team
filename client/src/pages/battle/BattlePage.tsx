@@ -1,3 +1,5 @@
+import { useParams } from "react-router-dom";
+
 import { currentUser } from "../../utils/data/getUsers";
 import {
   lineupPG,
@@ -6,7 +8,7 @@ import {
   lineupPF,
   lineupC,
 } from "../../utils/data/getLineup";
-// import { opponents } from "../../data/opponents";
+import { opponents } from "../../data/opponents";
 
 // import Button from "../components/common/button/Button";
 import Scoreboard from "../../components/features/battle-page/Scoreboard";
@@ -23,6 +25,21 @@ import enemy4 from "../../assets/card/enemy/enemy4.png";
 import enemy5 from "../../assets/card/enemy/enemy5.png";
 
 function BattlePage() {
+  const { levelSlug } = useParams();
+  const level = Number(levelSlug.replace("lvl", ""));
+
+  const selectedOpponent = opponents.find(
+    (opponent) => opponent.level === level,
+  );
+
+  const randomRating =
+    Math.floor(
+      Math.random() *
+        (selectedOpponent.maxRating - selectedOpponent.minRating + 1),
+    ) + selectedOpponent.minRating;
+
+  console.log(randomRating);
+
   return (
     <main className="flex flex-col gap-5 pb-5">
       <Scoreboard />
@@ -131,14 +148,14 @@ function BattlePage() {
         <VSList />
 
         {/* opponent's team */}
-        <Team teamName="Manchester Kings" teamNameColor="text-white">
+        <Team teamName={selectedOpponent.teamName} teamNameColor="text-white">
           <RegularCardXS
             playerImage={enemy1}
             playerRarity={black}
             playerPosition="PG"
             playerName="Ja Verant"
-            offenseCount={89}
-            defenseCount={92}
+            offenseCount={randomRating}
+            defenseCount={randomRating}
             isEnemy={true}
           />
           <RegularCardXS
