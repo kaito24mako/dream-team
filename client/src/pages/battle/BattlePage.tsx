@@ -28,17 +28,21 @@ function BattlePage() {
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
 
+  // get the opponent that the user selected in the LeaguePage
   const selectedOpponent = opponents.find(
     (opponent) => opponent.level === level,
   );
 
-  const randomRating =
-    Math.floor(
-      Math.random() *
-        (selectedOpponent.maxRating - selectedOpponent.minRating + 1),
-    ) + selectedOpponent.minRating;
-
-  console.log(randomRating);
+  // get a random offensive and defensive rating for the opponent's players
+  function getRandomRating() {
+    const randomRating = Number(
+      Math.floor(
+        Math.random() *
+          (selectedOpponent.maxRating - selectedOpponent.minRating + 1),
+      ) + selectedOpponent.minRating,
+    );
+    return randomRating;
+  }
 
   return (
     <main className="flex flex-col gap-5 pb-5">
@@ -154,8 +158,8 @@ function BattlePage() {
             playerRarity={black}
             playerPosition="PG"
             playerName="Ja Verant"
-            offenseCount={randomRating}
-            defenseCount={randomRating}
+            offenseCount={getRandomRating()}
+            defenseCount={getRandomRating()}
             isEnemy={true}
           />
           <RegularCardXS
@@ -163,8 +167,8 @@ function BattlePage() {
             playerRarity={black}
             playerPosition="SG"
             playerName="Jimmy Guttler"
-            offenseCount={89}
-            defenseCount={92}
+            offenseCount={getRandomRating()}
+            defenseCount={getRandomRating()}
             isEnemy={true}
           />
           <RegularCardXS
@@ -172,8 +176,8 @@ function BattlePage() {
             playerRarity={black}
             playerPosition="SF"
             playerName="Kevin Reaper"
-            offenseCount={89}
-            defenseCount={92}
+            offenseCount={getRandomRating()}
+            defenseCount={getRandomRating()}
             isEnemy={true}
           />
           <RegularCardXS
@@ -181,8 +185,8 @@ function BattlePage() {
             playerRarity={black}
             playerPosition="PF"
             playerName="Zion Dunkson"
-            offenseCount={89}
-            defenseCount={92}
+            offenseCount={getRandomRating()}
+            defenseCount={getRandomRating()}
             isEnemy={true}
           />
           <RegularCardXS
@@ -190,8 +194,8 @@ function BattlePage() {
             playerRarity={black}
             playerPosition="C"
             playerName="Joel Jimbeed"
-            offenseCount={89}
-            defenseCount={92}
+            offenseCount={getRandomRating()}
+            defenseCount={getRandomRating()}
             isEnemy={true}
           />
         </Team>
