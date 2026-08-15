@@ -7,11 +7,6 @@ import { getPlayerByName } from "../../../utils/data/getPlayers";
 import RegularCard from "../../common/playerCard/RegularCard";
 import ScrollableItem from "./ScrollableItem";
 
-import player5 from "../../../assets/card/player/player5.png";
-import player2 from "../../../assets/card/player/player2.png";
-import rare from "../../../assets/card/rarity/rare-bg.png";
-import legendary from "../../../assets/card/rarity/legendary-bg.png";
-
 import fivePlayers from "../../../assets/bg/five-players-bg.png";
 import battle from "../../../assets/bg/battle.png";
 import coin from "../../../assets/icon/coin.png";
@@ -19,7 +14,9 @@ import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function ScrollableSection() {
   const marcusWilliams = getPlayerByName("Marcus Williams");
+  const jaydenCarter = getPlayerByName("Jayden Carter");
   console.log(marcusWilliams);
+  console.log(jaydenCarter);
 
   return (
     <section className="flex flex-col gap-15 lg:gap-0">
@@ -47,12 +44,12 @@ function ScrollableSection() {
           />
           <RegularCard
             is3D={false}
-            playerImage={player2}
-            playerRarity={rare}
-            playerPosition="SF"
-            playerName="Steven Curry"
-            offenseCount={76}
-            defenseCount={73}
+            playerImage={jaydenCarter.image}
+            playerRarity={jaydenCarter.rarity}
+            playerPosition={jaydenCarter.position}
+            playerName={jaydenCarter.fullName}
+            offenseCount={jaydenCarter.offensiveRating}
+            defenseCount={jaydenCarter.defensiveRating}
           />
         </div>
       </ScrollableItem>

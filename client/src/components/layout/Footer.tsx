@@ -6,41 +6,33 @@ import FacebookIcon from "../common/icon/socials/FacebookIcon";
 
 function Footer() {
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
-      <nav className="grid grid-flow-col gap-4">
-        <Link className="link link-hover" to="/">
-          Home
-        </Link>
-        <a className="link link-hover">About us</a>
-      </nav>
-      <nav>
-        <div className="grid grid-flow-col gap-4">
-          <a
-            href="https://github.com/kaito24mako"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GithubIcon />
-          </a>
-          <a
-            href="https://linkedin.com/in/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <LinkedInIcon />
-          </a>
-          <a
-            href="https://facebook.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FacebookIcon />
-          </a>
-        </div>
-      </nav>
-      <aside>
+    <footer className="footer sm:footer-horizontal bg-base-200 text-base-content rounded py-7 px-4 md:px-13">
+      <aside className="grid-flow-col items-center mx-auto sm:mx-0">
         <p>Copyright © {new Date().getFullYear()} - Kaito Watanabe</p>
       </aside>
+      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end mx-auto sm:mx-0">
+        <a
+          href="https://github.com/kaito24mako"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GithubIcon />
+        </a>
+        <a
+          href="https://linkedin.com/in/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LinkedInIcon />
+        </a>
+        <a
+          href="https://facebook.com/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FacebookIcon />
+        </a>
+      </nav>
     </footer>
   );
 }
