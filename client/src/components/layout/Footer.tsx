@@ -11,27 +11,27 @@ function Footer() {
         <p>Copyright © {new Date().getFullYear()} - Kaito Watanabe</p>
       </aside>
       <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end mx-auto sm:mx-0">
-        <a
-          href="https://github.com/kaito24mako"
+        <Link
+          to="https://github.com/kaito24mako"
           target="_blank"
           rel="noopener noreferrer"
         >
           <GithubIcon />
-        </a>
-        <a
-          href="https://linkedin.com/in/yourusername"
+        </Link>
+        <Link
+          to="https://linkedin.com/in/yourusername"
           target="_blank"
           rel="noopener noreferrer"
         >
           <LinkedInIcon />
-        </a>
-        <a
-          href="https://facebook.com/yourusername"
+        </Link>
+        <Link
+          to="https://facebook.com/yourusername"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FacebookIcon />
-        </a>
+        </Link>
       </nav>
     </footer>
   );

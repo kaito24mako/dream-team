@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-
 import { currentUser } from "../../../utils/data/getUsers";
 import { getSelectedOpponent } from "../../../utils/data/getOpponents";
 
