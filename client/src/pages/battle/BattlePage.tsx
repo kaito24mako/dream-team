@@ -114,6 +114,9 @@ function BattlePage() {
     });
   }
 
+  //? how to move the VS after each matchup
+  //? how to show indication of winner and loser on each card
+
   return (
     <main className="flex flex-col gap-5 pb-5">
       <Scoreboard />
