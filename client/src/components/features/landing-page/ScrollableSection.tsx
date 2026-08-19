@@ -5,18 +5,16 @@ import { PiCoins } from "react-icons/pi";
 import { getPlayerByName } from "../../../utils/data/getPlayers";
 
 import RegularCard from "../../common/playerCard/RegularCard";
+import FullArtCard from "../../common/playerCard/FullArtCard";
 import ScrollableItem from "./ScrollableItem";
 
 import fivePlayers from "../../../assets/bg/five-players-bg.png";
 import battle from "../../../assets/bg/battle.png";
 import coin from "../../../assets/icon/coin.png";
-import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function ScrollableSection() {
-  const marcusWilliams = getPlayerByName("Marcus Williams");
-  const jaydenCarter = getPlayerByName("Jayden Carter");
-  console.log(marcusWilliams);
-  console.log(jaydenCarter);
+  const xavierThompson = getPlayerByName("Xavier Thompson");
+  const dominicKing = getPlayerByName("Dominic King");
 
   return (
     <section className="flex flex-col gap-15 lg:gap-0">
@@ -35,21 +33,21 @@ function ScrollableSection() {
         <div className="flex gap-5 mx-auto">
           <FullArtCard
             is3D={false}
-            playerImage={marcusWilliams.image}
-            playerRarity={marcusWilliams.rarity}
-            playerPosition={marcusWilliams.position}
-            playerName={marcusWilliams.fullName}
-            offenseCount={marcusWilliams.offensiveRating}
-            defenseCount={marcusWilliams.defensiveRating}
+            playerImage={xavierThompson.image}
+            playerRarity={xavierThompson.rarity}
+            playerPosition={xavierThompson.position}
+            playerName={xavierThompson.fullName}
+            offenseCount={xavierThompson.offensiveRating}
+            defenseCount={xavierThompson.defensiveRating}
           />
           <RegularCard
             is3D={false}
-            playerImage={jaydenCarter.image}
-            playerRarity={jaydenCarter.rarity}
-            playerPosition={jaydenCarter.position}
-            playerName={jaydenCarter.fullName}
-            offenseCount={jaydenCarter.offensiveRating}
-            defenseCount={jaydenCarter.defensiveRating}
+            playerImage={dominicKing.image}
+            playerRarity={dominicKing.rarity}
+            playerPosition={dominicKing.position}
+            playerName={dominicKing.fullName}
+            offenseCount={dominicKing.offensiveRating}
+            defenseCount={dominicKing.defensiveRating}
           />
         </div>
       </ScrollableItem>

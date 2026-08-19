@@ -39,6 +39,34 @@ import player29 from "../../../assets/card/player/player29.png";
 import player30 from "../../../assets/card/player/player30.png";
 import player31 from "../../../assets/card/player/player31.png";
 import player32 from "../../../assets/card/player/player32.png";
+import player33 from "../../../assets/card/player/player33.png";
+import player34 from "../../../assets/card/player/player34.png";
+import player35 from "../../../assets/card/player/player35.png";
+import player36 from "../../../assets/card/player/player36.png";
+import player37 from "../../../assets/card/player/player37.png";
+import player38 from "../../../assets/card/player/player38.png";
+import player39 from "../../../assets/card/player/player39.png";
+import player40 from "../../../assets/card/player/player40.png";
+import player41 from "../../../assets/card/player/player41.png";
+import player42 from "../../../assets/card/player/player42.png";
+import player43 from "../../../assets/card/player/player43.png";
+import player44 from "../../../assets/card/player/player44.png";
+import player45 from "../../../assets/card/player/player45.png";
+import player46 from "../../../assets/card/player/player46.png";
+import player47 from "../../../assets/card/player/player47.png";
+import player48 from "../../../assets/card/player/player48.png";
+import player49 from "../../../assets/card/player/player49.png";
+import player50 from "../../../assets/card/player/player50.png";
+import player51 from "../../../assets/card/player/player51.png";
+import player52 from "../../../assets/card/player/player52.png";
+import player53 from "../../../assets/card/player/player53.png";
+import player54 from "../../../assets/card/player/player54.png";
+import player55 from "../../../assets/card/player/player55.png";
+import player56 from "../../../assets/card/player/player56.png";
+import player57 from "../../../assets/card/player/player57.png";
+import player58 from "../../../assets/card/player/player58.png";
+import player59 from "../../../assets/card/player/player59.png";
+import player60 from "../../../assets/card/player/player60.png";
 
 type Props = {
   is3D?: boolean;
@@ -102,6 +130,34 @@ function RegularCard({
     player30,
     player31,
     player32,
+    player33,
+    player34,
+    player35,
+    player36,
+    player37,
+    player38,
+    player39,
+    player40,
+    player41,
+    player42,
+    player43,
+    player44,
+    player45,
+    player46,
+    player47,
+    player48,
+    player49,
+    player50,
+    player51,
+    player52,
+    player53,
+    player54,
+    player55,
+    player56,
+    player57,
+    player58,
+    player59,
+    player60,
   };
   const playerImageConversion = image[playerImage];
 

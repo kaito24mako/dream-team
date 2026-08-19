@@ -33,7 +33,7 @@ export const players = [
     id: 4,
     fullName: "Darius Hayes",
     position: "C",
-    rarity: "Legendary",
+    rarity: "Common",
     offensiveRating: 97,
     defensiveRating: 96,
     overallRating: 97,
@@ -62,7 +62,7 @@ export const players = [
   {
     id: 7,
     fullName: "Caleb Turner",
-    position: "C",
+    position: "SG",
     rarity: "Superstar",
     offensiveRating: 87,
     defensiveRating: 91,
@@ -72,8 +72,8 @@ export const players = [
   {
     id: 8,
     fullName: "Isaiah Morgan",
-    position: "SG",
-    rarity: "Common",
+    position: "C",
+    rarity: "Legendary",
     offensiveRating: 52,
     defensiveRating: 59,
     overallRating: 56,
@@ -152,7 +152,7 @@ export const players = [
   {
     id: 16,
     fullName: "Cameron Davis",
-    position: "PG",
+    position: "SG",
     rarity: "Common",
     offensiveRating: 62,
     defensiveRating: 54,
@@ -162,7 +162,7 @@ export const players = [
   {
     id: 17,
     fullName: "Xavier Thompson",
-    position: "SG",
+    position: "PG",
     rarity: "Legendary",
     offensiveRating: 99,
     defensiveRating: 97,
@@ -192,7 +192,7 @@ export const players = [
   {
     id: 20,
     fullName: "Damian Wright",
-    position: "PG",
+    position: "SG",
     rarity: "Superstar",
     offensiveRating: 92,
     defensiveRating: 94,
@@ -352,7 +352,7 @@ export const players = [
   {
     id: 36,
     fullName: "Darius Coleman",
-    position: "SG",
+    position: "PF",
     rarity: "Legendary",
     offensiveRating: 96,
     defensiveRating: 99,
@@ -362,7 +362,7 @@ export const players = [
   {
     id: 37,
     fullName: "Logan Mitchell",
-    position: "PF",
+    position: "SG",
     rarity: "Common",
     offensiveRating: 59,
     defensiveRating: 63,
