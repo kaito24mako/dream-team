@@ -1,10 +1,13 @@
 {
-  "name": "server",
+  "name": "Server for Dream Team",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "The backend server for the Dream Team application.",
+  "main": "server.js",
+  "author": "Kaito Watanabe",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "keywords": [],
   "type": "commonjs",
@@ -12,5 +15,9 @@
     "express": "^5.2.1",
     "mysql2": "^3.23.3",
     "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14"
   }
 }
