@@ -10,6 +10,7 @@ type Props = {
   size?: Size;
   bgColor?: BgColor;
   textColor?: TextColor;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 function Button({
@@ -19,6 +20,7 @@ function Button({
   size = "default",
   bgColor = "default",
   textColor = "default",
+  onClick,
 }: Props) {
   const sizeClasses: Record<Size, string> = {
     default: "",
@@ -41,6 +43,7 @@ function Button({
     <button
       type={type}
       className={`btn ${sizeClasses[size]} ${bgColorClasses[bgColor]} ${textColorClasses[textColor]} ${className}`}
+      onClick={onClick}
     >
       {children}
     </button>

@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 import { currentUser } from "../../utils/data/getUsers";
 import {
@@ -8,9 +9,12 @@ import {
   lineupPF,
   lineupC,
 } from "../../utils/data/getLineup";
-import { getSelectedOpponent } from "../../utils/data/getOpponents";
+import {
+  getSelectedOpponent,
+  getRandomRating,
+} from "../../utils/data/getOpponents";
 
-// import Button from "../components/common/button/Button";
+import Button from "../../components/common/button/Button";
 import Scoreboard from "../../components/features/battle-page/Scoreboard";
 import Team from "../../components/features/battle-page/Team";
 import VSList from "../../components/features/battle-page/VSList";
@@ -28,19 +32,49 @@ import enemy5 from "../../assets/card/enemy/enemy5.png";
 function BattlePage() {
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
-
   const selectedOpponent = getSelectedOpponent(level);
 
-  // get a random offensive and defensive rating for the opponent's players
-  function getRandomRating() {
-    const randomRating = Number(
-      Math.floor(
-        Math.random() *
-          (selectedOpponent.maxRating - selectedOpponent.minRating + 1),
-      ) + selectedOpponent.minRating,
-    );
-    return randomRating;
+  const [battleStarted, setBattleStarted] = useState(false);
+
+  // using state to prevent the ratings from generating again on re-render
+  //! prevent page reloads from re-generating the ratings
+  const [enemyPGOffensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemySGOffensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemySFOffensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemyPFOffensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemyCOffensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+
+  const [enemyPGDefensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemySGDefensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemySFDefensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemyPFDefensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+  const [enemyCDefensiveRating] = useState(() =>
+    getRandomRating(selectedOpponent),
+  );
+
+  function handleStartBattle() {
+    setBattleStarted(true);
   }
+
+  function handleBattle() {}
 
   return (
     <main className="flex flex-col gap-5 pb-5">
@@ -146,8 +180,16 @@ function BattlePage() {
           )}
         </Team>
 
-        {/* <Button className="btn-info w-fit mx-auto">Start Match</Button> */}
-        <VSList />
+        {battleStarted ? (
+          <VSList />
+        ) : (
+          <Button
+            className="btn-info w-fit mx-auto"
+            onClick={handleStartBattle}
+          >
+            Start Match
+          </Button>
+        )}
 
         {/* opponent's team */}
         <Team teamName={selectedOpponent.teamName} teamNameColor="text-white">
@@ -156,8 +198,8 @@ function BattlePage() {
             playerRarity={level >= 9 ? red : black}
             playerPosition="PG"
             playerName="Ja Verant"
-            offenseCount={getRandomRating()}
-            defenseCount={getRandomRating()}
+            offenseCount={enemyPGOffensiveRating}
+            defenseCount={enemyPGDefensiveRating}
             isEnemy={true}
           />
           <RegularCardXS
@@ -165,8 +207,8 @@ function BattlePage() {
             playerRarity={level >= 9 ? red : black}
             playerPosition="SG"
             playerName="Jimmy Guttler"
-            offenseCount={getRandomRating()}
-            defenseCount={getRandomRating()}
+            offenseCount={enemySGOffensiveRating}
+            defenseCount={enemySGDefensiveRating}
             isEnemy={true}
           />
           <RegularCardXS
@@ -174,8 +216,8 @@ function BattlePage() {
             playerRarity={level >= 9 ? red : black}
             playerPosition="SF"
             playerName="Kevin Reaper"
-            offenseCount={getRandomRating()}
-            defenseCount={getRandomRating()}
+            offenseCount={enemySFOffensiveRating}
+            defenseCount={enemySFDefensiveRating}
             isEnemy={true}
           />
           <RegularCardXS
@@ -183,8 +225,8 @@ function BattlePage() {
             playerRarity={level >= 9 ? red : black}
             playerPosition="PF"
             playerName="Zion Dunkson"
-            offenseCount={getRandomRating()}
-            defenseCount={getRandomRating()}
+            offenseCount={enemyPFOffensiveRating}
+            defenseCount={enemyPFDefensiveRating}
             isEnemy={true}
           />
           <RegularCardXS
@@ -192,8 +234,8 @@ function BattlePage() {
             playerRarity={level >= 9 ? red : black}
             playerPosition="C"
             playerName="Joel Jimbeed"
-            offenseCount={getRandomRating()}
-            defenseCount={getRandomRating()}
+            offenseCount={enemyCOffensiveRating}
+            defenseCount={enemyCDefensiveRating}
             isEnemy={true}
           />
         </Team>

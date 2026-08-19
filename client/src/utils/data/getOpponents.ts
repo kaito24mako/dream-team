@@ -8,3 +8,12 @@ export function getSelectedOpponent(level) {
 
   return selectedOpponent;
 }
+
+//* get a random offensive and defensive rating for the opponent's players
+export function getRandomRating(opponent) {
+  const randomRating = Number(
+    Math.floor(Math.random() * (opponent.maxRating - opponent.minRating + 1)) +
+      opponent.minRating,
+  );
+  return randomRating;
+}
