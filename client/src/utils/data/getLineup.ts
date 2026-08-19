@@ -11,6 +11,10 @@ export const lineupSF = players.find((player) => player.id === lineup.SF);
 export const lineupPF = players.find((player) => player.id === lineup.PF);
 export const lineupC = players.find((player) => player.id === lineup.C);
 
+//* get an array of the full player objects from the user's lineup
+//? this is how it should be on the database? this is preferrable
+export const userLineup = [lineupPG, lineupSG, lineupSF, lineupPF, lineupC];
+
 //* get the lineup's statistical averages
 export const offensiveAverage = Math.round(
   (lineupPG.offensiveRating +

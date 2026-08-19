@@ -2,13 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 import { currentUser } from "../../utils/data/getUsers";
-import {
-  lineupPG,
-  lineupSG,
-  lineupSF,
-  lineupPF,
-  lineupC,
-} from "../../utils/data/getLineup";
+import { userLineup } from "../../utils/data/getLineup";
 import {
   getSelectedOpponent,
   getRandomRating,
@@ -32,49 +26,93 @@ import enemy5 from "../../assets/card/enemy/enemy5.png";
 function BattlePage() {
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
+
   const selectedOpponent = getSelectedOpponent(level);
 
   const [battleStarted, setBattleStarted] = useState(false);
 
+  const [matchupOutcome, setMatchupOutcome] = useState("");
+
   // using state to prevent the ratings from generating again on re-render
   //! prevent page reloads from re-generating the ratings
-  const [enemyPGOffensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemySGOffensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemySFOffensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemyPFOffensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemyCOffensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
+  const [opponentLineup] = useState(() => [
+    {
+      position: "PG",
+      name: "Ja Verant",
+      image: enemy1,
+      offensiveRating: getRandomRating(selectedOpponent),
+      defensiveRating: getRandomRating(selectedOpponent),
+    },
+    {
+      position: "SG",
+      name: "Jimmy Guttler",
+      image: enemy2,
+      offensiveRating: getRandomRating(selectedOpponent),
+      defensiveRating: getRandomRating(selectedOpponent),
+    },
+    {
+      position: "SF",
+      name: "Kevin Reaper",
+      image: enemy3,
+      offensiveRating: getRandomRating(selectedOpponent),
+      defensiveRating: getRandomRating(selectedOpponent),
+    },
+    {
+      position: "PF",
+      name: "Zion Dunkson",
+      image: enemy4,
+      offensiveRating: getRandomRating(selectedOpponent),
+      defensiveRating: getRandomRating(selectedOpponent),
+    },
+    {
+      position: "C",
+      name: "Joel Jimbeed",
+      image: enemy5,
+      offensiveRating: getRandomRating(selectedOpponent),
+      defensiveRating: getRandomRating(selectedOpponent),
+    },
+  ]);
 
-  const [enemyPGDefensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemySGDefensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemySFDefensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemyPFDefensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
-  const [enemyCDefensiveRating] = useState(() =>
-    getRandomRating(selectedOpponent),
-  );
+  //* battle logic
 
   function handleStartBattle() {
     setBattleStarted(true);
+    getPlayerOveralls();
   }
 
-  function handleBattle() {}
+  function getPlayerOveralls() {
+    // get an array of the user's players' overall ratings at each position
+    const userOverallRating = userLineup.map(
+      (position) => position.overallRating,
+    );
+    console.log("userOverallRating:", userOverallRating);
+
+    // get an array of the opponent's players' overall ratings at each position
+    const opponentOverallRating = opponentLineup.map(
+      (player) => (player.offensiveRating + player.defensiveRating) / 2,
+    );
+    console.log("opponentOverallRating:", opponentOverallRating);
+
+    comparePlayerRatings(userOverallRating, opponentOverallRating);
+  }
+
+  function comparePlayerRatings(userOverallRating, opponentOverallRating) {
+    const positions = ["PG", "SG", "SF", "PF", "C"];
+
+    // compare the ratings of the user and opponent's players at each position
+    positions.forEach((position, index) => {
+      if (userOverallRating[index] < opponentOverallRating[index]) {
+        alert(`your ${position} lost`);
+        setMatchupOutcome("lost");
+      } else if (userOverallRating[index] > opponentOverallRating[index]) {
+        alert(`your ${position} won`);
+        setMatchupOutcome("won");
+      } else if (userOverallRating[index] === opponentOverallRating[index]) {
+        alert("it is a draw");
+        setMatchupOutcome("draw");
+      }
+    });
+  }
 
   return (
     <main className="flex flex-col gap-5 pb-5">
@@ -83,100 +121,28 @@ function BattlePage() {
       <div className="flex flex-row md:flex-col md:gap-5">
         {/* user's team */}
         <Team teamName={currentUser.teamName} teamNameColor="text-primary">
-          {lineupPG.rarity === "Legendary" ? (
-            <FullArtCardXS
-              playerImage={lineupPG.image}
-              playerRarity={lineupPG.rarity}
-              playerPosition={lineupPG.position}
-              playerName={lineupPG.fullName}
-              offenseCount={lineupPG.offensiveRating}
-              defenseCount={lineupPG.defensiveRating}
-            />
-          ) : (
-            <RegularCardXS
-              playerImage={lineupPG.image}
-              playerRarity={lineupPG.rarity}
-              playerPosition={lineupPG.position}
-              playerName={lineupPG.fullName}
-              offenseCount={lineupPG.offensiveRating}
-              defenseCount={lineupPG.defensiveRating}
-            />
-          )}
-          {lineupSG.rarity === "Legendary" ? (
-            <FullArtCardXS
-              playerImage={lineupSG.image}
-              playerRarity={lineupSG.rarity}
-              playerPosition={lineupSG.position}
-              playerName={lineupSG.fullName}
-              offenseCount={lineupSG.offensiveRating}
-              defenseCount={lineupSG.defensiveRating}
-            />
-          ) : (
-            <RegularCardXS
-              playerImage={lineupSG.image}
-              playerRarity={lineupSG.rarity}
-              playerPosition={lineupSG.position}
-              playerName={lineupSG.fullName}
-              offenseCount={lineupSG.offensiveRating}
-              defenseCount={lineupSG.defensiveRating}
-            />
-          )}
-          {lineupSF.rarity === "Legendary" ? (
-            <FullArtCardXS
-              playerImage={lineupSF.image}
-              playerRarity={lineupSF.rarity}
-              playerPosition={lineupSF.position}
-              playerName={lineupSF.fullName}
-              offenseCount={lineupSF.offensiveRating}
-              defenseCount={lineupSF.defensiveRating}
-            />
-          ) : (
-            <RegularCardXS
-              playerImage={lineupSF.image}
-              playerRarity={lineupSF.rarity}
-              playerPosition={lineupSF.position}
-              playerName={lineupSF.fullName}
-              offenseCount={lineupSF.offensiveRating}
-              defenseCount={lineupSF.defensiveRating}
-            />
-          )}
-          {lineupPF.rarity === "Legendary" ? (
-            <FullArtCardXS
-              playerImage={lineupPF.image}
-              playerRarity={lineupPF.rarity}
-              playerPosition={lineupPF.position}
-              playerName={lineupPF.fullName}
-              offenseCount={lineupPF.offensiveRating}
-              defenseCount={lineupPF.defensiveRating}
-            />
-          ) : (
-            <RegularCardXS
-              playerImage={lineupPF.image}
-              playerRarity={lineupPF.rarity}
-              playerPosition={lineupPF.position}
-              playerName={lineupPF.fullName}
-              offenseCount={lineupPF.offensiveRating}
-              defenseCount={lineupPF.defensiveRating}
-            />
-          )}
-          {lineupC.rarity === "Legendary" ? (
-            <FullArtCardXS
-              playerImage={lineupC.image}
-              playerRarity={lineupC.rarity}
-              playerPosition={lineupC.position}
-              playerName={lineupC.fullName}
-              offenseCount={lineupC.offensiveRating}
-              defenseCount={lineupC.defensiveRating}
-            />
-          ) : (
-            <RegularCardXS
-              playerImage={lineupC.image}
-              playerRarity={lineupC.rarity}
-              playerPosition={lineupC.position}
-              playerName={lineupC.fullName}
-              offenseCount={lineupC.offensiveRating}
-              defenseCount={lineupC.defensiveRating}
-            />
+          {userLineup.map((player) =>
+            player.rarity === "Legendary" ? (
+              <FullArtCardXS
+                key={player.id}
+                playerImage={player.image}
+                playerRarity={player.rarity}
+                playerPosition={player.position}
+                playerName={player.fullName}
+                offenseCount={player.offensiveRating}
+                defenseCount={player.defensiveRating}
+              />
+            ) : (
+              <RegularCardXS
+                key={player.id}
+                playerImage={player.image}
+                playerRarity={player.rarity}
+                playerPosition={player.position}
+                playerName={player.fullName}
+                offenseCount={player.offensiveRating}
+                defenseCount={player.defensiveRating}
+              />
+            ),
           )}
         </Team>
 
@@ -193,51 +159,18 @@ function BattlePage() {
 
         {/* opponent's team */}
         <Team teamName={selectedOpponent.teamName} teamNameColor="text-white">
-          <RegularCardXS
-            playerImage={enemy1}
-            playerRarity={level >= 9 ? red : black}
-            playerPosition="PG"
-            playerName="Ja Verant"
-            offenseCount={enemyPGOffensiveRating}
-            defenseCount={enemyPGDefensiveRating}
-            isEnemy={true}
-          />
-          <RegularCardXS
-            playerImage={enemy2}
-            playerRarity={level >= 9 ? red : black}
-            playerPosition="SG"
-            playerName="Jimmy Guttler"
-            offenseCount={enemySGOffensiveRating}
-            defenseCount={enemySGDefensiveRating}
-            isEnemy={true}
-          />
-          <RegularCardXS
-            playerImage={enemy3}
-            playerRarity={level >= 9 ? red : black}
-            playerPosition="SF"
-            playerName="Kevin Reaper"
-            offenseCount={enemySFOffensiveRating}
-            defenseCount={enemySFDefensiveRating}
-            isEnemy={true}
-          />
-          <RegularCardXS
-            playerImage={enemy4}
-            playerRarity={level >= 9 ? red : black}
-            playerPosition="PF"
-            playerName="Zion Dunkson"
-            offenseCount={enemyPFOffensiveRating}
-            defenseCount={enemyPFDefensiveRating}
-            isEnemy={true}
-          />
-          <RegularCardXS
-            playerImage={enemy5}
-            playerRarity={level >= 9 ? red : black}
-            playerPosition="C"
-            playerName="Joel Jimbeed"
-            offenseCount={enemyCOffensiveRating}
-            defenseCount={enemyCDefensiveRating}
-            isEnemy={true}
-          />
+          {opponentLineup.map((player) => (
+            <RegularCardXS
+              key={player.image}
+              playerPosition={player.position}
+              playerName={player.name}
+              offenseCount={player.offensiveRating}
+              defenseCount={player.defensiveRating}
+              playerImage={player.image}
+              playerRarity={level >= 9 ? red : black}
+              isEnemy={true}
+            />
+          ))}
         </Team>
       </div>
     </main>
