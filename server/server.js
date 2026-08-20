@@ -1,16 +1,19 @@
-// bring in express and required modules
+//* bring in express and required modules
 // initialise express
 const express = require("express");
 const app = express();
 
-// initialise middleware
+//* bring in config file
+const config = require("./config/config");
+
+//* initialise middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// connect sequelize to the mysql db
+//* connect sequelize to the mysql db
 const sequelize = require("./config/database");
 
-// test db connection
+//* test db connection
 async function startServer() {
   try {
     await sequelize.authenticate();
@@ -20,3 +23,8 @@ async function startServer() {
   }
 }
 startServer();
+
+//* listen for requests
+app.listen(config.port, () => {
+  console.log(`Server is running on port ${config.port}`);
+});

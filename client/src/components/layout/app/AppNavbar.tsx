@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 import { IoIosLogOut } from "react-icons/io";
@@ -35,15 +35,36 @@ function AppNavbar() {
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="flex gap-5 px-1">
             <li>
-              <Link to="/home">Home</Link>
+              <NavLink
+                to="/home"
+                className={({ isActive }) =>
+                  isActive ? "text-primary font-semibold" : ""
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/league">League</Link>
+              <NavLink
+                to="/league"
+                className={({ isActive }) =>
+                  isActive ? "text-primary font-semibold" : ""
+                }
+              >
+                League
+              </NavLink>
             </li>
             <li>
-              <Link to="/packs">Packs</Link>
+              <NavLink
+                to="/packs"
+                className={({ isActive }) =>
+                  isActive ? "text-primary font-semibold" : ""
+                }
+              >
+                Packs
+              </NavLink>
             </li>
           </ul>
         </div>
