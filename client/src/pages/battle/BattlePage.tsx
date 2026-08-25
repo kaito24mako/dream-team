@@ -31,8 +31,6 @@ function BattlePage() {
 
   const [battleStarted, setBattleStarted] = useState(false);
 
-  const [matchupOutcome, setMatchupOutcome] = useState("");
-
   // using state to prevent the ratings from generating again on re-render
   //! prevent page reloads from re-generating the ratings
   const [opponentLineup] = useState(() => [
@@ -102,14 +100,11 @@ function BattlePage() {
     // compare the ratings of the user and opponent's players at each position
     positions.forEach((position, index) => {
       if (userOverallRating[index] < opponentOverallRating[index]) {
-        alert(`your ${position} ${matchupOutcome}`);
-        setMatchupOutcome("lost");
+        alert(`your ${position} lost`);
       } else if (userOverallRating[index] > opponentOverallRating[index]) {
-        alert(`your ${position} ${matchupOutcome}`);
-        setMatchupOutcome("won");
+        alert(`your ${position} won`);
       } else if (userOverallRating[index] === opponentOverallRating[index]) {
-        alert(`it is a ${matchupOutcome}`);
-        setMatchupOutcome("draw");
+        alert(`it is a draw`);
       }
     });
   }
@@ -118,65 +113,69 @@ function BattlePage() {
   //? how to show indication of winner and loser on each card
 
   return (
-    <main className="flex flex-col gap-5 pb-5">
-      <Scoreboard />
+    <>
+      <title>Battle | Dream Team</title>
 
-      <div className="flex flex-row md:flex-col md:gap-5">
-        {/* user's team */}
-        <Team teamName={currentUser.teamName} teamNameColor="text-primary">
-          {userLineup.map((player) =>
-            player.rarity === "Legendary" ? (
-              <FullArtCardXS
-                key={player.id}
-                playerImage={player.image}
-                playerRarity={player.rarity}
-                playerPosition={player.position}
-                playerName={player.fullName}
-                offenseCount={player.offensiveRating}
-                defenseCount={player.defensiveRating}
-              />
-            ) : (
-              <RegularCardXS
-                key={player.id}
-                playerImage={player.image}
-                playerRarity={player.rarity}
-                playerPosition={player.position}
-                playerName={player.fullName}
-                offenseCount={player.offensiveRating}
-                defenseCount={player.defensiveRating}
-              />
-            ),
+      <main className="flex flex-col gap-5 pb-5">
+        <Scoreboard />
+
+        <div className="flex flex-row md:flex-col md:gap-5">
+          {/* user's team */}
+          <Team teamName={currentUser.teamName} teamNameColor="text-primary">
+            {userLineup.map((player) =>
+              player.rarity === "Legendary" ? (
+                <FullArtCardXS
+                  key={player.id}
+                  playerImage={player.image}
+                  playerRarity={player.rarity}
+                  playerPosition={player.position}
+                  playerName={player.fullName}
+                  offenseCount={player.offensiveRating}
+                  defenseCount={player.defensiveRating}
+                />
+              ) : (
+                <RegularCardXS
+                  key={player.id}
+                  playerImage={player.image}
+                  playerRarity={player.rarity}
+                  playerPosition={player.position}
+                  playerName={player.fullName}
+                  offenseCount={player.offensiveRating}
+                  defenseCount={player.defensiveRating}
+                />
+              ),
+            )}
+          </Team>
+
+          {battleStarted ? (
+            <VSList />
+          ) : (
+            <Button
+              className="btn-info w-fit mx-auto"
+              onClick={handleStartBattle}
+            >
+              Start Match
+            </Button>
           )}
-        </Team>
 
-        {battleStarted ? (
-          <VSList />
-        ) : (
-          <Button
-            className="btn-info w-fit mx-auto"
-            onClick={handleStartBattle}
-          >
-            Start Match
-          </Button>
-        )}
-
-        {/* opponent's team */}
-        <Team teamName={selectedOpponent.teamName} teamNameColor="text-white">
-          {opponentLineup.map((player) => (
-            <RegularCardXS
-              key={player.image}
-              playerPosition={player.position}
-              playerName={player.name}
-              offenseCount={player.offensiveRating}
-              defenseCount={player.defensiveRating}
-              playerImage={player.image}
-              playerRarity={level >= 9 ? red : black}
-              isEnemy={true}
-            />
-          ))}
-        </Team>
-      </div>
-    </main>
+          {/* opponent's team */}
+          <Team teamName={selectedOpponent.teamName} teamNameColor="text-white">
+            {opponentLineup.map((player) => (
+              <RegularCardXS
+                key={player.image}
+                playerPosition={player.position}
+                playerName={player.name}
+                offenseCount={player.offensiveRating}
+                defenseCount={player.defensiveRating}
+                playerImage={player.image}
+                playerRarity={level >= 9 ? red : black}
+                isEnemy={true}
+              />
+            ))}
+          </Team>
+        </div>
+      </main>
+    </>
   );
 }
 export default BattlePage;
