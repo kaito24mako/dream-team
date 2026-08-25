@@ -18,6 +18,9 @@ async function startServer() {
   try {
     await sequelize.authenticate();
     console.log("MySQL connection successful!");
+
+    await sequelize.sync();
+    console.log("Database synced successfully");
   } catch (error) {
     console.error("Unable to connect to MySQL:", error);
   }

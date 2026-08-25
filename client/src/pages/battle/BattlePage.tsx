@@ -102,13 +102,13 @@ function BattlePage() {
     // compare the ratings of the user and opponent's players at each position
     positions.forEach((position, index) => {
       if (userOverallRating[index] < opponentOverallRating[index]) {
-        alert(`your ${position} lost`);
+        alert(`your ${position} ${matchupOutcome}`);
         setMatchupOutcome("lost");
       } else if (userOverallRating[index] > opponentOverallRating[index]) {
-        alert(`your ${position} won`);
+        alert(`your ${position} ${matchupOutcome}`);
         setMatchupOutcome("won");
       } else if (userOverallRating[index] === opponentOverallRating[index]) {
-        alert("it is a draw");
+        alert(`it is a ${matchupOutcome}`);
         setMatchupOutcome("draw");
       }
     });
