@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import { DaisyContextProvider } from "./context/DaisyContextComponent";
+import { PlayerContextProvider } from "./utils/context/PlayerContextComponent";
 
 import LandingLayout from "./components/layout/landing/LandingLayout";
 import LandingPage from "./pages/landing/LandingPage";
@@ -20,7 +19,7 @@ import BattlePage from "./pages/battle/BattlePage";
 
 function App() {
   return (
-    <DaisyContextProvider>
+    <PlayerContextProvider>
       <Router>
         <Routes>
           <Route element={<LandingLayout />}>
@@ -44,7 +43,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </DaisyContextProvider>
+    </PlayerContextProvider>
   );
 }
 export default App;

@@ -20,13 +20,20 @@ app.use(cors());
 //** routes
 
 // * UserPlayer
+//# notes:
+//# the id in the params = the user's id
 
 // get all players of a user
-app.get("/api/users/:id/players", async (req, res) => {
+app.get("/api/users/:id/userPlayers", async (req, res) => {
   console.log("/api/users/:id/players - GET");
 
-  const userPlayers = await UserPlayer.findAll();
-  console.log(userPlayers);
+  const { id } = req.params;
+
+  const userPlayers = await UserPlayer.findAll({
+    where: {
+      userId: id,
+    },
+  });
 
   res.status(200).send(userPlayers);
 });
@@ -35,10 +42,11 @@ app.get("/api/users/:id/players", async (req, res) => {
 app.post("/api/users/:id/players/add", async (req, res) => {
   console.log("/api/users/:id/players/add - POST");
 
-  const { userId, playerId, quantity } = req.body;
+  const { id } = req.params;
+  const { playerId, quantity } = req.body;
 
   const userPlayer = await UserPlayer.create({
-    userId,
+    userId: id,
     playerId,
     quantity,
   });
@@ -53,7 +61,6 @@ app.get("/api/players", async (req, res) => {
   console.log("/api/players - GET");
 
   const players = await Player.findAll();
-  console.log(players);
 
   res.status(200).send(players);
 });
@@ -62,7 +69,6 @@ app.get("/api/players", async (req, res) => {
 app.post("/api/players/add", async (req, res) => {
   console.log("/api/players/add - POST");
 
-  // destructure the request
   const {
     fullName,
     position,
@@ -73,7 +79,6 @@ app.post("/api/players/add", async (req, res) => {
     image,
   } = req.body;
 
-  // to create a player in postman
   const player = await Player.create({
     fullName,
     position,
@@ -84,7 +89,6 @@ app.post("/api/players/add", async (req, res) => {
     image,
   });
 
-  // send a response from the db to the client
   res.status(200).send(player);
 });
 
@@ -95,9 +99,55 @@ app.get("/api/users", async (req, res) => {
   console.log("/api/users - GET");
 
   const users = await User.findAll();
-  console.log(users);
 
   res.status(200).send(users);
+});
+
+// get a user by id
+app.get("/api/users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const user = await User.findByPk(id, {
+    where: { id: id },
+  });
+
+  res.status(200).send(user);
+});
+
+// get a user with all their players
+app.get("/api/users/:id/user-and-players", async (req, res) => {
+  const { id } = req.params;
+
+  // includes the entire Player object
+  // and the quantity of the userPlayer
+  const user = await User.findByPk(id, {
+    include: {
+      model: Player,
+      through: {
+        attributes: ["quantity"],
+      },
+    },
+  });
+
+  res.status(200).send(user);
+});
+
+// get all players of a user
+app.get("/api/users/:id/players", async (req, res) => {
+  const { id } = req.params;
+
+  // includes the entire Player object
+  // and the quantity of the userPlayer
+  const user = await User.findByPk(id, {
+    include: {
+      model: Player,
+      through: {
+        attributes: ["quantity"],
+      },
+    },
+  });
+
+  res.status(200).send(user.Players);
 });
 
 // create new user

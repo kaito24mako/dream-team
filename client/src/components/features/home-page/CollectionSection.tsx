@@ -1,5 +1,4 @@
 import { TbCards } from "react-icons/tb";
-import { players } from "../../../data/players";
 import { useEffect } from "react";
 
 import SectionHeading from "../../common/text/SectionHeading";
@@ -11,21 +10,19 @@ import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
 import {
-  useProducts,
-  useProductsGetAll,
-} from "../../../context/DaisyContext.jsx";
+  usePlayers,
+  useGetAllPlayers,
+} from "../../../utils/context/PlayerContext.jsx";
 
 function CollectionSection() {
-  // //! USING THE DAISYCONTEXT
-  // const productList = useProducts();
-  // const getAll = useProductsGetAll();
-  // console.log(productList);
+  // using context to get the data
+  const players = usePlayers();
+  const getAllPlayers = useGetAllPlayers();
+  // console.log("players state", players);
 
-  // useEffect(() => {
-  //   getAll();
-  // }, []);
-
-  // //! "PLAYERS" THAT I'M PASSING THROUGH NEEDS TO BE THE DATA FROM THE CONTEXT
+  useEffect(() => {
+    getAllPlayers();
+  }, [getAllPlayers]);
 
   return (
     <section className="mt-6">
