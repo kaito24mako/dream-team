@@ -1,8 +1,6 @@
-// this file holds our database models
-// it allows the server to create the tables in the database
+// imports
 const { Sequelize } = require("sequelize");
 const sequelize = require("../config/database");
-
 const User = require("./user");
 const Player = require("./player");
 const UserPlayer = require("./userPlayer");

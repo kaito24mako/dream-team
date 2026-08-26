@@ -1,17 +1,27 @@
-// const sequelize = require("../config/database");
-// const Player = require("../models/player");
-// const players = require("./playersData");
+const db = require("../models");
+const players = require("./playersData");
+const { Player } = db;
 
-// //* to add Player data to MySQL db
-// async function seedPlayers() {
-//   try {
-//     await sequelize.sync();
-//     await Player.bulkCreate(players);
-//     console.log("Players seeded successfully");
-//   } catch (error) {
-//     console.error(error);
-//   } finally {
-//     await sequelize.close();
-//   }
-// }
-// seedPlayers();
+//* to add player data from playersData.js to the db
+async function seedPlayers() {
+  try {
+    await db.sequelize.sync();
+    await Player.bulkCreate(players, {
+      updateOnDuplicate: [
+        "fullName",
+        "position",
+        "rarity",
+        "offensiveRating",
+        "defensiveRating",
+        "overallRating",
+        "image",
+      ],
+    });
+    console.log("Players seeded successfully");
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await db.sequelize.close();
+  }
+}
+seedPlayers();
