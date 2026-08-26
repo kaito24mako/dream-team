@@ -1,10 +1,18 @@
-import { currentUser } from "../../utils/data/getUsers";
+import { useEffect } from "react";
+import { useUser, useUserGetById } from "../../utils/context/UserContext.jsx";
 import { offensiveAverage, defensiveAverage } from "../../utils/data/getLineup";
 
 import Statistic from "../../components/common/statistic/Statistic";
 import MatchesSection from "../../components/features/league-page/MatchesSection";
 
 function LeaguePage() {
+  const user = useUser();
+  const getUserById = useUserGetById();
+
+  useEffect(() => {
+    getUserById();
+  }, [getUserById]);
+
   return (
     <>
       <title>League | Dream Team</title>
@@ -14,7 +22,7 @@ function LeaguePage() {
           <div className="flex flex-col items-start md:items-center">
             <p className="font-primary text-xl">It's Game Time</p>
             <p className="font-primary text-primary text-4xl">
-              {currentUser.teamName}
+              {user.teamName}
             </p>
           </div>
 

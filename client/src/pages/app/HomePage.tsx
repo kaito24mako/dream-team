@@ -9,7 +9,9 @@ import LineupSection from "../../components/features/home-page/LineupSection";
 import CollectionSection from "../../components/features/home-page/CollectionSection";
 
 function HomePage() {
+  // user state
   const user = useUser();
+  // get a user and their players
   const getUserAndPlayers = useUserGetPlayers();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function HomePage() {
 
         <LineupSection />
 
-        <CollectionSection />
+        <CollectionSection user={user} />
       </main>
     </>
   );

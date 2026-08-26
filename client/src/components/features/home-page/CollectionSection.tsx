@@ -1,5 +1,4 @@
 import { TbCards } from "react-icons/tb";
-import { useEffect } from "react";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
@@ -9,20 +8,10 @@ import Divider from "../../common/divider/Divider";
 import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
-import {
-  usePlayers,
-  usePlayersGetAll,
-} from "../../../utils/context/PlayerContext.jsx";
-
-function CollectionSection() {
-  // using context to get the data
-  const players = usePlayers();
-  const getAllPlayers = usePlayersGetAll();
-  // console.log("players state", players);
-
-  useEffect(() => {
-    getAllPlayers();
-  }, [getAllPlayers]);
+function CollectionSection({ user }) {
+  // to get only the Players that the user owns
+  const players = user.Players || [];
+  console.log("players the user owns", players);
 
   return (
     <section className="mt-6">
