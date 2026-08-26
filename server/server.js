@@ -104,6 +104,7 @@ app.get("/api/users", async (req, res) => {
 });
 
 // get a user by id
+
 app.get("/api/users/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -133,6 +134,7 @@ app.get("/api/users/:id/user-and-players", async (req, res) => {
 });
 
 // get all players of a user
+// usage: CollectionSection
 app.get("/api/users/:id/players", async (req, res) => {
   const { id } = req.params;
 

@@ -11,13 +11,13 @@ import FullArtCard from "../../common/playerCard/FullArtCard";
 
 import {
   usePlayers,
-  useGetAllPlayers,
+  usePlayersGetAll,
 } from "../../../utils/context/PlayerContext.jsx";
 
 function CollectionSection() {
   // using context to get the data
   const players = usePlayers();
-  const getAllPlayers = useGetAllPlayers();
+  const getAllPlayers = usePlayersGetAll();
   // console.log("players state", players);
 
   useEffect(() => {

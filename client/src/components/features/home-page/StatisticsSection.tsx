@@ -1,18 +1,23 @@
+import { useEffect } from "react";
 import {
-  teamRecord,
-  winRate,
-  collectionProgress,
-} from "../../../utils/data/getUsers";
-import {
-  lineup,
   offensiveAverage,
   defensiveAverage,
 } from "../../../utils/data/getLineup";
+import {
+  useUser,
+  useUserGetById,
+} from "../../../utils/context/UserContext.jsx";
 
 import Statistic from "../../common/statistic/Statistic";
 
 function StatisticsSection() {
-  console.log(lineup);
+  const user = useUser();
+  const getUserById = useUserGetById();
+  console.log("user state", user);
+
+  useEffect(() => {
+    getUserById();
+  }, [getUserById]);
 
   return (
     <section className="flex gap-5 overflow-x-scroll overflow-y-hidden">
@@ -35,13 +40,15 @@ function StatisticsSection() {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Team Record"
-          count={teamRecord}
+          count={user.wins + "-" + user.losses}
           countSize="medium"
           textAlign="end"
         />
         <Statistic
           title="Win Rate"
-          count={winRate}
+          count={
+            Math.round((user.wins / (user.wins + user.losses)) * 100) + "%"
+          }
           countSize="medium"
           textAlign="end"
         />
@@ -57,7 +64,7 @@ function StatisticsSection() {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Collection Progress"
-          count={collectionProgress}
+          count={user.totalCards + "/" + 60}
           countSize="medium"
           textAlign="end"
         />

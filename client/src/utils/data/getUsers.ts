@@ -1,3 +1,5 @@
+//! NOT NEEDED WITH API
+
 import { users } from "../../data/users";
 import { currentUserId } from "../../data/session";
 

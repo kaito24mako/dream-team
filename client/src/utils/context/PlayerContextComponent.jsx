@@ -1,4 +1,3 @@
-//* import created contexts and data
 import { useState } from "react";
 import {
   PlayerContext,
@@ -14,7 +13,7 @@ import axios from "axios";
 export function PlayerContextProvider({ children }) {
   const [players, setPlayers] = useState([]);
 
-  // get all the players of a user
+  // get all players of a user
   async function getAllPlayers() {
     console.log("Get all players - PlayerContextComponent.jsx");
 
