@@ -1,23 +1,19 @@
-import { useEffect } from "react";
 import {
   offensiveAverage,
   defensiveAverage,
 } from "../../../utils/data/getLineup";
-import {
-  useUser,
-  useUserGetById,
-} from "../../../utils/context/UserContext.jsx";
 
 import Statistic from "../../common/statistic/Statistic";
 
-function StatisticsSection() {
-  const user = useUser();
-  const getUserById = useUserGetById();
-  console.log("user state", user);
+function StatisticsSection({ user }) {
+  // to get only the Players that the user owns
+  const players = user.Players || [];
+  console.log("players", players);
 
-  useEffect(() => {
-    getUserById();
-  }, [getUserById]);
+  // to get only the legendary Players that the user owns
+  const legendaryPlayers = players.filter(
+    (player) => player.rarity === "Legendary",
+  );
 
   return (
     <section className="flex gap-5 overflow-x-scroll overflow-y-hidden">
@@ -70,7 +66,7 @@ function StatisticsSection() {
         />
         <Statistic
           title="Legendaries"
-          count={7}
+          count={legendaryPlayers.length}
           countSize="medium"
           textAlign="end"
         />

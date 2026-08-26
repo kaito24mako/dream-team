@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { UserContext, UserContextGetById } from "./UserContext";
+import {
+  UserContext,
+  UserContextGetById,
+  UserContextGetPlayers,
+} from "./UserContext";
 
 import axios from "axios";
 
@@ -10,18 +14,30 @@ export function UserContextProvider({ children }) {
   async function getUserById() {
     console.log("Get a user - PlayerContextComponent.jsx");
 
-    // hit the endpoint to get the data
     const res = await axios.get("http://localhost:3001/api/users/1");
-    console.log("response data", res.data);
+    console.log("getUserById - res", res.data);
 
-    // put the user data into state
+    setUser(res.data);
+  }
+
+  // get a user and all their players by id
+  async function getUserAndPlayers() {
+    console.log("Get a user and their players - PlayerContextComponent.jsx");
+
+    const res = await axios.get(
+      "http://localhost:3001/api/users/1/user-and-players",
+    );
+    console.log("getUserAndPlayers - res", res.data);
+
     setUser(res.data);
   }
 
   return (
     <UserContext.Provider value={user}>
       <UserContextGetById.Provider value={getUserById}>
-        {children}
+        <UserContextGetPlayers.Provider value={getUserAndPlayers}>
+          {children}
+        </UserContextGetPlayers.Provider>
       </UserContextGetById.Provider>
     </UserContext.Provider>
   );
