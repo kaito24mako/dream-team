@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import { DaisyContextProvider } from "./context/DaisyContextComponent";
+
 import LandingLayout from "./components/layout/landing/LandingLayout";
 import LandingPage from "./pages/landing/LandingPage";
 
@@ -18,29 +20,31 @@ import BattlePage from "./pages/battle/BattlePage";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route element={<LandingLayout />}>
-          <Route path="/" element={<LandingPage />} />
-        </Route>
+    <DaisyContextProvider>
+      <Router>
+        <Routes>
+          <Route element={<LandingLayout />}>
+            <Route path="/" element={<LandingPage />} />
+          </Route>
 
-        <Route element={<AuthLayout />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Route>
+          <Route element={<AuthLayout />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Route>
 
-        <Route element={<AppLayout />}>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/league" element={<LeaguePage />} />
-          <Route path="/packs" element={<PacksPage />} />
-          <Route path="/how-to-play" element={<HowToPlayPage />} />
-        </Route>
+          <Route element={<AppLayout />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/league" element={<LeaguePage />} />
+            <Route path="/packs" element={<PacksPage />} />
+            <Route path="/how-to-play" element={<HowToPlayPage />} />
+          </Route>
 
-        <Route element={<BattleLayout />}>
-          <Route path="/battle/:levelSlug" element={<BattlePage />} />
-        </Route>
-      </Routes>
-    </Router>
+          <Route element={<BattleLayout />}>
+            <Route path="/battle/:levelSlug" element={<BattlePage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </DaisyContextProvider>
   );
 }
 export default App;

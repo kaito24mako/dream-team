@@ -1,5 +1,6 @@
 import { TbCards } from "react-icons/tb";
 import { players } from "../../../data/players";
+import { useEffect } from "react";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
@@ -9,7 +10,23 @@ import Divider from "../../common/divider/Divider";
 import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
+import {
+  useProducts,
+  useProductsGetAll,
+} from "../../../context/DaisyContext.jsx";
+
 function CollectionSection() {
+  // //! USING THE DAISYCONTEXT
+  // const productList = useProducts();
+  // const getAll = useProductsGetAll();
+  // console.log(productList);
+
+  // useEffect(() => {
+  //   getAll();
+  // }, []);
+
+  // //! "PLAYERS" THAT I'M PASSING THROUGH NEEDS TO BE THE DATA FROM THE CONTEXT
+
   return (
     <section className="mt-6">
       <div className="flex justify-between items-end">

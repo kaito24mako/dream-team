@@ -10,7 +10,9 @@ export type User = {
   id: number;
   fullName: string;
   username: string;
+  email: string;
   password: string;
+  isAdmin: boolean;
   teamName: string;
   currency: number;
   lineup: Lineup;
@@ -24,7 +26,9 @@ export const users: User[] = [
     id: 1,
     fullName: "Kaito Watanabe",
     username: "kaito24mako",
+    email: "kaitowatanabemcc@gmail.com",
     password: "Ka1tomccau!",
+    isAdmin: true,
     teamName: "Kanazawa Demons",
     currency: 650,
     lineup: {
@@ -42,7 +46,9 @@ export const users: User[] = [
     id: 2,
     fullName: "Bey Mel",
     username: "beymel",
+    email: "beymel@gmail.com",
     password: "Ka1tomccau!",
+    isAdmin: false,
     teamName: "Cebu Cats",
     currency: 400,
     lineup: {

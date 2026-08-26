@@ -1,5 +1,7 @@
+const path = require("path");
+
 //* require env variables
-require("dotenv").config();
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 //* export config options for our server
 module.exports = {
