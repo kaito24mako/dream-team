@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { currentUser } from "../../../utils/data/getUsers";
+import { useUser } from "../../../utils/context/UserContext.jsx";
 import { getSelectedOpponent } from "../../../utils/data/getOpponents";
 
 import CoinIcon from "../../common/icon/ui/CoinIcon";
@@ -11,6 +11,9 @@ function BattleNavbar() {
   const level = Number(levelSlug.replace("lvl", ""));
 
   const selectedOpponent = getSelectedOpponent(level);
+
+  // get the user data
+  const user = useUser();
 
   return (
     <header className="bg-base-200 shadow-sm w-full rounded-md text-sm py-2.5 px-2 md:px-10">
@@ -44,7 +47,7 @@ function BattleNavbar() {
         <div className="navbar-end">
           <div className="text-coin mr-2.5 mt-0.5 flex items-center gap-1">
             <CoinIcon />
-            {currentUser.currency}
+            {user.currency}
           </div>
         </div>
       </nav>

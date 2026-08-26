@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-
-import { currentUser } from "../../utils/data/getUsers";
+import { useUser } from "../../utils/context/UserContext.jsx";
 import { userLineup } from "../../utils/data/getLineup";
 import {
   getSelectedOpponent,
@@ -112,6 +111,9 @@ function BattlePage() {
   //? how to move the VS after each matchup
   //? how to show indication of winner and loser on each card
 
+  // get the user data
+  const user = useUser();
+
   return (
     <>
       <title>Battle | Dream Team</title>
@@ -121,7 +123,7 @@ function BattlePage() {
 
         <div className="flex flex-row md:flex-col md:gap-5">
           {/* user's team */}
-          <Team teamName={currentUser.teamName} teamNameColor="text-primary">
+          <Team teamName={user.teamName} teamNameColor="text-primary">
             {userLineup.map((player) =>
               player.rarity === "Legendary" ? (
                 <FullArtCardXS

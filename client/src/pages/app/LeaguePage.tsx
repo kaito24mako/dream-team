@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useUser, useUserGetById } from "../../utils/context/UserContext.jsx";
+import { useUser } from "../../utils/context/UserContext.jsx";
 import { offensiveAverage, defensiveAverage } from "../../utils/data/getLineup";
 
 import Statistic from "../../components/common/statistic/Statistic";
@@ -7,11 +6,6 @@ import MatchesSection from "../../components/features/league-page/MatchesSection
 
 function LeaguePage() {
   const user = useUser();
-  const getUserById = useUserGetById();
-
-  useEffect(() => {
-    getUserById();
-  }, [getUserById]);
 
   return (
     <>
