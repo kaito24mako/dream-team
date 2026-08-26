@@ -13,13 +13,26 @@ import axios from "axios";
 export function PlayerContextProvider({ children }) {
   const [players, setPlayers] = useState([]);
 
-  // get all players of a user
+  // get all players
   async function getAllPlayers() {
     console.log("Get all players - PlayerContextComponent.jsx");
 
     // hit the endpoint to get the data
-    const res = await axios.get("http://localhost:3001/api/users/1/players");
+    const res = await axios.get("http://localhost:3001/api/players");
     console.log("getAllPlayers - res", res.data);
+
+    // put the user's owned players data into state
+    setPlayers(res.data);
+  }
+
+  //! NOT USING ATM
+  // get all players of a user
+  async function getAllUserPlayers() {
+    console.log("Get all players of a user - PlayerContextComponent.jsx");
+
+    // hit the endpoint to get the data
+    const res = await axios.get("http://localhost:3001/api/users/1/players");
+    console.log("getAllUserPlayers - res", res.data);
 
     // put the user's owned players data into state
     setPlayers(res.data);
@@ -64,17 +77,9 @@ export function PlayerContextProvider({ children }) {
   // create the return
   return (
     <PlayerContext.Provider value={players}>
-      {/* <PlayerContextUpdate.Provider value={updateProduct}>
-        <PlayerContextDelete.Provider value={deleteProduct}>
-          <PlayerContextAdd.Provider value={addProduct}>
-            <PlayerContextGetById.Provider value={getProductById}> */}
       <PlayerContextGetAll.Provider value={getAllPlayers}>
         {children}
       </PlayerContextGetAll.Provider>
-      {/* </PlayerContextGetById.Provider>
-          </PlayerContextAdd.Provider>
-        </PlayerContextDelete.Provider>
-      </PlayerContextUpdate.Provider> */}
     </PlayerContext.Provider>
   );
 }

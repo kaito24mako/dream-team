@@ -13,7 +13,7 @@ function BuyPacksSection() {
   return (
     <section className="mb-8">
       <SectionHeading
-        heading="Buy Packs"
+        heading="BUY PACKS"
         Icon={AiOutlineShoppingCart}
         divider={true}
       />

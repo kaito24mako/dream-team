@@ -17,3 +17,19 @@ export const featuredPlayersRandom = players
 export function getPlayerByName(name) {
   return players.find((player) => player.fullName === name);
 }
+
+//* sort players by rarity
+export function sortPlayersByRarity(players) {
+  const rarityOrder = {
+    Common: 1,
+    Rare: 2,
+    Superstar: 3,
+    Legendary: 4,
+  };
+
+  const sortedPlayers = [...players].sort(
+    (a, b) => rarityOrder[a.rarity] - rarityOrder[b.rarity],
+  );
+
+  return sortedPlayers;
+}

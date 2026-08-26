@@ -1,21 +1,22 @@
 import { RxLightningBolt } from "react-icons/rx";
-
-import { featuredPlayersRandom } from "../../../utils/data/getPlayers";
+import { sortPlayersByRarity } from "../../../utils/data/getPlayers";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 import CardList from "../../common/list/CardList";
 
-function FeaturedSection() {
+function GallerySection({ players }) {
+  const sortedPlayers = sortPlayersByRarity(players);
+
   return (
     <section>
       <SectionHeading
-        heading="Featured Cards"
+        heading="ALL CARDS"
         Icon={RxLightningBolt}
         divider={true}
       />
       <CardList>
-        {featuredPlayersRandom.map((player) => (
+        {sortedPlayers.map((player) => (
           <FullArtCard
             key={player.id}
             playerImage={player.image}
@@ -30,4 +31,4 @@ function FeaturedSection() {
     </section>
   );
 }
-export default FeaturedSection;
+export default GallerySection;
