@@ -19,7 +19,7 @@ export function getPlayerByName(name) {
 }
 
 //* sort players by rarity
-export function sortPlayersByRarity(players) {
+export function sortByRarity(players) {
   const rarityOrder = {
     Common: 1,
     Rare: 2,
@@ -29,6 +29,23 @@ export function sortPlayersByRarity(players) {
 
   const sortedPlayers = [...players].sort(
     (a, b) => rarityOrder[a.rarity] - rarityOrder[b.rarity],
+  );
+
+  return sortedPlayers;
+}
+
+//* sort players by position
+export function sortByPosition(players) {
+  const positionOrder = {
+    PG: 1,
+    SG: 2,
+    SF: 3,
+    PF: 4,
+    C: 5,
+  };
+
+  const sortedPlayers = [...players].sort(
+    (a, b) => positionOrder[a.position] - positionOrder[b.position],
   );
 
   return sortedPlayers;

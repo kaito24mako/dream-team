@@ -31,7 +31,7 @@ export function PlayerContextProvider({ children }) {
     console.log("Get all players of a user - PlayerContextComponent.jsx");
 
     // hit the endpoint to get the data
-    const res = await axios.get("http://localhost:3001/api/users/1/players");
+    const res = await axios.get("http://localhost:3001/api/users/5/players");
     console.log("getAllUserPlayers - res", res.data);
 
     // put the user's owned players data into state

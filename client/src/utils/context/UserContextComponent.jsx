@@ -14,7 +14,7 @@ export function UserContextProvider({ children }) {
   async function getUserById() {
     console.log("Get a user - PlayerContextComponent.jsx");
 
-    const res = await axios.get("http://localhost:3001/api/users/1");
+    const res = await axios.get("http://localhost:3001/api/users/5");
     console.log("getUserById - res", res.data);
 
     setUser(res.data);
@@ -25,7 +25,7 @@ export function UserContextProvider({ children }) {
     console.log("Get a user and their players - PlayerContextComponent.jsx");
 
     const res = await axios.get(
-      "http://localhost:3001/api/users/1/user-and-players",
+      "http://localhost:3001/api/users/5/user-and-players",
     );
     console.log("getUserAndPlayers - res", res.data);
 
