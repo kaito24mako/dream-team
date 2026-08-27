@@ -8,9 +8,9 @@ import {
 } from "../../utils/data/getOpponents";
 
 import Button from "../../components/common/button/Button";
-import Scoreboard from "../../components/features/battle-page/Scoreboard";
-import Team from "../../components/features/battle-page/Team";
-import VSList from "../../components/features/battle-page/VSList";
+import Scoreboard from "../../components/features/battle-page/Scoreboard.js";
+import Team from "../../components/features/battle-page/Team.js";
+import VSList from "../../components/features/battle-page/VSList.js";
 import RegularCardXS from "../../components/common/playerCard/RegularCardXS";
 import FullArtCardXS from "../../components/common/playerCard/FullArtCardXS";
 

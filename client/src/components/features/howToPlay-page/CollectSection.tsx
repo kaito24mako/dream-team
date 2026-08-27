@@ -1,3 +1,5 @@
+import packsScreenshot from "../../../assets/screenshots/packs-ss.png";
+
 function CollectSection() {
   return (
     <div className="flex flex-col gap-3">
@@ -11,9 +13,9 @@ function CollectSection() {
         <p>
           These players will be added to your{" "}
           <span className="font-bold text-secondary">collection</span>, which
-          you can then choose to add to your{" "}
-          <span className="font-bold text-secondary">lineup</span> to compete in
-          matches.
+          you can choose to add to your{" "}
+          <span className="font-bold text-secondary">starting lineup</span> to
+          compete in matches.
         </p>
       </div>
 
@@ -53,8 +55,13 @@ function CollectSection() {
         <div className="collapse-content p-0!">
           <p className="mt-2">
             There are four unique packs, each with different drop rates for
-            player rarities (outlined on the front cover of each pack).
+            player rarities.
           </p>
+          <img
+            src={packsScreenshot}
+            alt="The packs with their chances for pulling different player rarities"
+            className="w-180 rounded-lg border border-base-300 shadow-sm mt-2"
+          />
         </div>
       </div>
     </div>

@@ -62,10 +62,8 @@ function CompeteSection() {
             </p>
             <p>
               Your{" "}
-              <span className="font-bold text-secondary">
-                win percentage increases by 10%
-              </span>{" "}
-              for each{" "}
+              <span className="font-bold text-secondary">win percentage</span>{" "}
+              increases by 10% for each{" "}
               <span className="font-bold text-secondary">
                 position match-up
               </span>{" "}
