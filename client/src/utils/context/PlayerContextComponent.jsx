@@ -13,7 +13,8 @@ import axios from "axios";
 export function PlayerContextProvider({ children }) {
   const [players, setPlayers] = useState([]);
 
-  // get all players
+  //* get all players
+  // usage: to display all players in /packs -> GallerySection.jsx
   async function getAllPlayers() {
     console.log("Get all players - PlayerContextComponent.jsx");
 
@@ -21,17 +22,16 @@ export function PlayerContextProvider({ children }) {
     const res = await axios.get("http://localhost:3001/api/players");
     console.log("getAllPlayers - res", res.data);
 
-    // put the user's owned players data into state
+    // put the players data into state
     setPlayers(res.data);
   }
 
-  //! NOT USING ATM
-  // get all players of a user
+  //* get all players of a user
+  // usage: none
   async function getAllUserPlayers() {
     console.log("Get all players of a user - PlayerContextComponent.jsx");
 
-    // hit the endpoint to get the data
-    const res = await axios.get("http://localhost:3001/api/users/5/players");
+    const res = await axios.get("http://localhost:3001/api/users/1/players");
     console.log("getAllUserPlayers - res", res.data);
 
     // put the user's owned players data into state

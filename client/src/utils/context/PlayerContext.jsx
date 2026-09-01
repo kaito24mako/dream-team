@@ -12,6 +12,9 @@ export const PlayerContextGetAll = createContext();
 export function usePlayers() {
   return useContext(PlayerContext);
 }
+export function usePlayersGetAll() {
+  return useContext(PlayerContextGetAll);
+}
 // export function useProductsUpdate() {
 //   return useContext(PlayerContextUpdate);
 // }
@@ -24,6 +27,3 @@ export function usePlayers() {
 // export function useProductsGetById() {
 //   return useContext(PlayerContextGetById);
 // }
-export function usePlayersGetAll() {
-  return useContext(PlayerContextGetAll);
-}

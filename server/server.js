@@ -17,44 +17,98 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-//** routes
+//** User - routes
 
-// * UserPlayer
-//# notes:
-//# the id in the params = the user's id
+//* get all users
+app.get("/api/users", async (req, res) => {
+  console.log("/api/users - GET");
 
-// get all players of a user
-app.get("/api/users/:id/userPlayers", async (req, res) => {
-  console.log("/api/users/:id/players - GET");
+  const users = await User.findAll();
 
+  res.status(200).send(users);
+});
+
+//* get a user by id
+app.get("/api/users/:id", async (req, res) => {
   const { id } = req.params;
 
-  const userPlayers = await UserPlayer.findAll({
-    where: {
-      userId: id,
+  const user = await User.findByPk(id, {
+    where: { id: id },
+  });
+
+  res.status(200).send(user);
+});
+
+//* get a user with all their players
+app.get("/api/users/:id/user-and-players", async (req, res) => {
+  const { id } = req.params;
+
+  // includes the entire Player object
+  // and the quantity of the userPlayer
+  const user = await User.findByPk(id, {
+    include: {
+      model: Player,
+      through: {
+        attributes: ["quantity"],
+      },
     },
   });
 
-  res.status(200).send(userPlayers);
+  res.status(200).send(user);
 });
 
-// create a player for a user
-app.post("/api/users/:id/players/add", async (req, res) => {
-  console.log("/api/users/:id/players/add - POST");
-
+//* get all players of a user
+// usage: CollectionSection
+app.get("/api/users/:id/players", async (req, res) => {
   const { id } = req.params;
-  const { playerId, quantity } = req.body;
 
-  const userPlayer = await UserPlayer.create({
-    userId: id,
-    playerId,
-    quantity,
+  // includes the entire Player object
+  // and the quantity of the userPlayer
+  const user = await User.findByPk(id, {
+    include: {
+      model: Player,
+      through: {
+        attributes: ["quantity"],
+      },
+    },
   });
 
-  res.status(200).send(userPlayer);
+  res.status(200).send(user.Players);
 });
 
-// * Player
+//* create new user
+app.post("/api/users/add", async (req, res) => {
+  console.log("/api/users/add - POST");
+
+  // destructure the request
+  const {
+    fullName,
+    username,
+    password,
+    teamName,
+    currency,
+    wins,
+    losses,
+    totalCards,
+  } = req.body;
+
+  // to create a user in postman
+  const user = await User.create({
+    fullName,
+    username,
+    password,
+    teamName,
+    currency,
+    wins,
+    losses,
+    totalCards,
+  });
+
+  // send a response from the db to the client
+  res.status(200).send(user);
+});
+
+//** Player - routes
 
 // get all players
 app.get("/api/players", async (req, res) => {
@@ -92,96 +146,39 @@ app.post("/api/players/add", async (req, res) => {
   res.status(200).send(player);
 });
 
-// * User
+//** UserPlayer - routes
+//# notes:
+//# the id in the params = the user's id
 
-// get all users
-app.get("/api/users", async (req, res) => {
-  console.log("/api/users - GET");
+//* get all players of a user
+app.get("/api/users/:id/userPlayers", async (req, res) => {
+  console.log("/api/users/:id/players - GET");
 
-  const users = await User.findAll();
-
-  res.status(200).send(users);
-});
-
-// get a user by id
-
-app.get("/api/users/:id", async (req, res) => {
   const { id } = req.params;
 
-  const user = await User.findByPk(id, {
-    where: { id: id },
-  });
-
-  res.status(200).send(user);
-});
-
-// get a user with all their players
-app.get("/api/users/:id/user-and-players", async (req, res) => {
-  const { id } = req.params;
-
-  // includes the entire Player object
-  // and the quantity of the userPlayer
-  const user = await User.findByPk(id, {
-    include: {
-      model: Player,
-      through: {
-        attributes: ["quantity"],
-      },
+  const userPlayers = await UserPlayer.findAll({
+    where: {
+      userId: id,
     },
   });
 
-  res.status(200).send(user);
+  res.status(200).send(userPlayers);
 });
 
-// get all players of a user
-// usage: CollectionSection
-app.get("/api/users/:id/players", async (req, res) => {
+//* create a player for a user
+app.post("/api/users/:id/players/add", async (req, res) => {
+  console.log("/api/users/:id/players/add - POST");
+
   const { id } = req.params;
+  const { playerId, quantity } = req.body;
 
-  // includes the entire Player object
-  // and the quantity of the userPlayer
-  const user = await User.findByPk(id, {
-    include: {
-      model: Player,
-      through: {
-        attributes: ["quantity"],
-      },
-    },
+  const userPlayer = await UserPlayer.create({
+    userId: id,
+    playerId,
+    quantity,
   });
 
-  res.status(200).send(user.Players);
-});
-
-// create new user
-app.post("/api/users/add", async (req, res) => {
-  console.log("/api/users/add - POST");
-
-  // destructure the request
-  const {
-    fullName,
-    username,
-    password,
-    teamName,
-    currency,
-    wins,
-    losses,
-    totalCards,
-  } = req.body;
-
-  // to create a user in postman
-  const user = await User.create({
-    fullName,
-    username,
-    password,
-    teamName,
-    currency,
-    wins,
-    losses,
-    totalCards,
-  });
-
-  // send a response from the db to the client
-  res.status(200).send(user);
+  res.status(200).send(userPlayer);
 });
 
 // app.get("/api/products/edit/:id", (req, res) => {

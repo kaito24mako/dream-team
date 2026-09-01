@@ -8,9 +8,12 @@ import BuyPacksSection from "../../components/features/cards-page/BuyPacksSectio
 import GallerySection from "../../components/features/cards-page/GallerySection.js";
 
 function PacksPage() {
+  // get players state
   const players = usePlayers();
+  // get all players
   const getAllPlayers = usePlayersGetAll();
 
+  // update players state with all players in the db
   useEffect(() => {
     getAllPlayers();
   }, [getAllPlayers]);

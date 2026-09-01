@@ -14,6 +14,7 @@ function HomePage() {
   // get a user and their players
   const getUserAndPlayers = useUserGetPlayers();
 
+  // updates the user state with the user's details and players
   useEffect(() => {
     getUserAndPlayers();
   }, [getUserAndPlayers]);
