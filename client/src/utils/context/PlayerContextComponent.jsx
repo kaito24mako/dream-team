@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  PlayerContext,
-  PlayerContextUpdate,
-  PlayerContextAdd,
-  PlayerContextDelete,
-  PlayerContextGetById,
-  PlayerContextGetAll,
-} from "./PlayerContext";
+import { PlayerContext } from "./PlayerContext";
 
 import axios from "axios";
 
@@ -28,10 +21,10 @@ export function PlayerContextProvider({ children }) {
 
   //* get all players of a user
   // usage: none
-  async function getAllUserPlayers() {
+  async function getAllPlayersByUser() {
     console.log("Get all players of a user - PlayerContextComponent.jsx");
 
-    const res = await axios.get("http://localhost:3001/api/users/1/players");
+    const res = await axios.get("http://localhost:3001/api/users/5/players");
     console.log("getAllUserPlayers - res", res.data);
 
     // put the user's owned players data into state
@@ -76,10 +69,10 @@ export function PlayerContextProvider({ children }) {
 
   // create the return
   return (
-    <PlayerContext.Provider value={players}>
-      <PlayerContextGetAll.Provider value={getAllPlayers}>
-        {children}
-      </PlayerContextGetAll.Provider>
+    <PlayerContext.Provider
+      value={{ players, getAllPlayers, getAllPlayersByUser }}
+    >
+      {children}
     </PlayerContext.Provider>
   );
 }

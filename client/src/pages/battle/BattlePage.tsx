@@ -23,6 +23,8 @@ import enemy4 from "../../assets/card/enemy/enemy4.png";
 import enemy5 from "../../assets/card/enemy/enemy5.png";
 
 function BattlePage() {
+  const { user } = useUser();
+
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
 
@@ -110,9 +112,6 @@ function BattlePage() {
 
   //? how to move the VS after each matchup
   //? how to show indication of winner and loser on each card
-
-  // get the user data
-  const user = useUser();
 
   return (
     <>

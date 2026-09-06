@@ -1,17 +1,18 @@
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
-import { useUserGetById } from "../../../utils/context/UserContext.jsx";
+import { useUser } from "../../../utils/context/UserContext.jsx";
 
 import AppNavbar from "./AppNavbar";
 import Footer from "../Footer";
 
 function AppLayout() {
-  // get the user once on mount
-  const getUserById = useUserGetById();
+  // get the user and player details once on mount
+  // needed to keep the "user" state updated every refresh
+  const { getUserAndPlayers } = useUser();
 
   useEffect(() => {
-    getUserById();
-  }, [getUserById]);
+    getUserAndPlayers();
+  }, [getUserAndPlayers]);
 
   return (
     <div className="flex flex-col min-h-dvh">

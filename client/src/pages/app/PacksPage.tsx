@@ -1,17 +1,13 @@
 import { useEffect } from "react";
-import {
-  usePlayers,
-  usePlayersGetAll,
-} from "../../utils/context/PlayerContext.jsx";
+import { usePlayers } from "../../utils/context/PlayerContext.jsx";
 
 import BuyPacksSection from "../../components/features/cards-page/BuyPacksSection";
 import GallerySection from "../../components/features/cards-page/GallerySection.js";
 
 function PacksPage() {
-  // get players state
-  const players = usePlayers();
+  // players state
   // get all players
-  const getAllPlayers = usePlayersGetAll();
+  const { players, getAllPlayers } = usePlayers();
 
   // update players state with all players in the db
   useEffect(() => {

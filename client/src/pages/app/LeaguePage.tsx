@@ -5,7 +5,7 @@ import Statistic from "../../components/common/statistic/Statistic";
 import MatchesSection from "../../components/features/league-page/MatchesSection";
 
 function LeaguePage() {
-  const user = useUser();
+  const { user } = useUser();
 
   return (
     <>

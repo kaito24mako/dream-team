@@ -6,11 +6,11 @@ import {
 import Statistic from "../../common/statistic/Statistic";
 
 function StatisticsSection({ user }) {
-  // to get only the Players that the user owns
+  // to get only the players that the user owns
   const players = user.Players || [];
   console.log("players the user owns", players);
 
-  // to get only the legendary Players that the user owns
+  // to get only the legendary players that the user owns
   const legendaryPlayers = players.filter(
     (player) => player.rarity === "Legendary",
   );

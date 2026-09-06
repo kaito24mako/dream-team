@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 import { IoIosLogOut } from "react-icons/io";
-
 import { useUser } from "../../../utils/context/UserContext.jsx";
 
 import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
@@ -10,7 +9,7 @@ import CoinIcon from "../../common/icon/ui/CoinIcon";
 import logo from "../../../assets/icon/logo.png";
 
 function AppNavbar() {
-  const user = useUser();
+  const { user } = useUser();
 
   return (
     <header className="max-lg:collapse bg-base-200 w-full rounded-md text-sm py-2 px-2 md:px-10">

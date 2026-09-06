@@ -1,29 +1,9 @@
 import { createContext, useContext } from "react";
 
-// contexts
+// create the context
 export const PlayerContext = createContext();
-export const PlayerContextUpdate = createContext();
-export const PlayerContextAdd = createContext();
-export const PlayerContextDelete = createContext();
-export const PlayerContextGetById = createContext();
-export const PlayerContextGetAll = createContext();
 
-// custom hooks to use the contexts
+// custom hook to use the context in other components
 export function usePlayers() {
   return useContext(PlayerContext);
 }
-export function usePlayersGetAll() {
-  return useContext(PlayerContextGetAll);
-}
-// export function useProductsUpdate() {
-//   return useContext(PlayerContextUpdate);
-// }
-// export function useProductsAdd() {
-//   return useContext(PlayerContextAdd);
-// }
-// export function useProductsDelete() {
-//   return useContext(PlayerContextDelete);
-// }
-// export function useProductsGetById() {
-//   return useContext(PlayerContextGetById);
-// }

@@ -13,7 +13,7 @@ function BattleNavbar() {
   const selectedOpponent = getSelectedOpponent(level);
 
   // get the user data
-  const user = useUser();
+  const { user } = useUser();
 
   return (
     <header className="bg-base-200 shadow-sm w-full rounded-md text-sm py-2.5 px-2 md:px-10">
