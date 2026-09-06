@@ -11,8 +11,11 @@ function AppLayout() {
   // needed to keep the "user" state updated every refresh
   const { getUserAndPlayers } = useUser();
 
+  //? need to get userId as params
+  const userId = 5;
+
   useEffect(() => {
-    getUserAndPlayers();
+    getUserAndPlayers(userId);
   }, []);
 
   return (

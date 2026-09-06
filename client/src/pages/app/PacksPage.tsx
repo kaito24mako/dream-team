@@ -5,14 +5,12 @@ import BuyPacksSection from "../../components/features/cards-page/BuyPacksSectio
 import GallerySection from "../../components/features/cards-page/GallerySection.js";
 
 function PacksPage() {
-  // players state
-  // get all players
-  const { players, getAllPlayers } = usePlayers();
+  const { players, getAllPlayers, loading, errorMsg } = usePlayers();
 
-  // update players state with all players in the db
+  // once on mount, update players state with all players in the db
   useEffect(() => {
     getAllPlayers();
-  }, [getAllPlayers]);
+  }, []);
 
   return (
     <>
@@ -20,7 +18,12 @@ function PacksPage() {
 
       <main className="flex flex-col gap-4 mb-15">
         <BuyPacksSection />
-        <GallerySection players={players} />
+
+        <GallerySection
+          players={players}
+          loading={loading}
+          errorMsg={errorMsg}
+        />
       </main>
     </>
   );

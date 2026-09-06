@@ -8,12 +8,12 @@ import SearchForm from "../../common/form/SearchForm";
 import DropdownBtn from "../../common/button/DropdownBtn";
 import Divider from "../../common/divider/Divider";
 
-function GallerySection({ players }) {
+function GallerySection({ players, loading, errorMsg }) {
   //* filter by rarity
   const [rarityFilter, setRarityFilter] = useState("");
 
   const filteredPlayers = rarityFilter
-    ? players.filter((player) => player.rarity === rarityFilter)
+    ? players.filter((p) => p.rarity === rarityFilter)
     : players;
 
   function handleSortByRarity(rarity) {
@@ -23,6 +23,9 @@ function GallerySection({ players }) {
       setRarityFilter(rarity);
     }
   }
+
+  if (loading) return <span>Loading players...</span>;
+  if (errorMsg) return <span className="text-error">{errorMsg}</span>;
 
   return (
     <section>

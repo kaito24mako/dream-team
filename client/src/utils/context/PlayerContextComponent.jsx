@@ -5,18 +5,26 @@ import axios from "axios";
 
 export function PlayerContextProvider({ children }) {
   const [players, setPlayers] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   //* get all players
-  // usage: to display all players in /packs -> GallerySection.jsx
+  // usage: PacksPage.jsx
   async function getAllPlayers() {
-    console.log("Get all players - PlayerContextComponent.jsx");
+    try {
+      setLoading(true);
+      setErrorMsg(null);
 
-    // hit the endpoint to get the data
-    const res = await axios.get("http://localhost:3001/api/players");
-    console.log("getAllPlayers - res", res.data);
+      const res = await axios.get("http://localhost:3001/api/players");
+      console.log("getAllPlayers(), data:", res.data);
 
-    // put the players data into state
-    setPlayers(res.data);
+      setPlayers(res.data);
+    } catch (err) {
+      console.error("Failed to get all players:", err);
+      setErrorMsg(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   //* get all players of a user by id
@@ -67,10 +75,9 @@ export function PlayerContextProvider({ children }) {
   //   setProductList(newList);
   // }
 
-  // create the return
   return (
     <PlayerContext.Provider
-      value={{ players, getAllPlayers, getAllPlayersByUser }}
+      value={{ players, loading, errorMsg, getAllPlayers, getAllPlayersByUser }}
     >
       {children}
     </PlayerContext.Provider>
