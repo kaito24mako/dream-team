@@ -1,5 +1,4 @@
 import { RiTeamLine } from "react-icons/ri";
-
 import {
   lineupPG,
   lineupSG,

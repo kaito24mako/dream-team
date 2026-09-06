@@ -25,6 +25,12 @@ const UserPlayer = sequelize.define("UserPlayer", {
   },
   quantity: {
     type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  inLineup: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
   },
 });
 

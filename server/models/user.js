@@ -7,14 +7,26 @@ const User = sequelize.define("User", {
     primaryKey: true,
     autoIncrement: true,
   },
-  fullName: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      // Name cannot be empty
+      notEmpty: true,
+      // Name must contain between 3 and 30 characters
+      len: [3, 30],
+      // Only allow ASCII characters
+      isAscii: true,
+    },
   },
-  username: {
+  email: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
+    validate: {
+      isEmail: true,
+      len: [5, 255],
+    },
   },
   password: {
     type: DataTypes.STRING,
@@ -43,6 +55,11 @@ const User = sequelize.define("User", {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 0,
+  },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
   },
 });
 

@@ -8,9 +8,7 @@ const cors = require("cors");
 const app = express();
 
 // destructure the models to use in our routes
-const { Player } = db;
-const { User } = db;
-const { UserPlayer } = db;
+const { User, Player, UserPlayer } = db;
 
 // initialise middleware
 app.use(express.json());
@@ -40,6 +38,7 @@ app.get("/api/users/:id", async (req, res) => {
 });
 
 //* get a user with all their players
+// usage: AppLayout.jsx, BattleLayout.jsx
 app.get("/api/users/:id/user-and-players", async (req, res) => {
   const { id } = req.params;
 
@@ -49,7 +48,7 @@ app.get("/api/users/:id/user-and-players", async (req, res) => {
     include: {
       model: Player,
       through: {
-        attributes: ["quantity"],
+        attributes: ["quantity", "inLineup"],
       },
     },
   });
@@ -58,17 +57,16 @@ app.get("/api/users/:id/user-and-players", async (req, res) => {
 });
 
 //* get all players of a user
-// usage: CollectionSection
 app.get("/api/users/:id/players", async (req, res) => {
   const { id } = req.params;
 
   // includes the entire Player object
-  // and the quantity of the userPlayer
+  // and the quantity & lineup from UserPlayer
   const user = await User.findByPk(id, {
     include: {
       model: Player,
       through: {
-        attributes: ["quantity"],
+        attributes: ["quantity", "inLineup"],
       },
     },
   });
@@ -82,26 +80,28 @@ app.post("/api/users/add", async (req, res) => {
 
   // destructure the request
   const {
-    fullName,
-    username,
+    name,
+    email,
     password,
     teamName,
     currency,
     wins,
     losses,
     totalCards,
+    isAdmin,
   } = req.body;
 
   // to create a user in postman
   const user = await User.create({
-    fullName,
-    username,
+    name,
+    email,
     password,
     teamName,
     currency,
     wins,
     losses,
     totalCards,
+    isAdmin,
   });
 
   // send a response from the db to the client
@@ -110,7 +110,8 @@ app.post("/api/users/add", async (req, res) => {
 
 //** Player - routes
 
-// get all players
+//* get all players
+// usage: PacksPage.jsx
 app.get("/api/players", async (req, res) => {
   console.log("/api/players - GET");
 
@@ -119,7 +120,7 @@ app.get("/api/players", async (req, res) => {
   res.status(200).send(players);
 });
 
-// create new player
+//* create new player
 app.post("/api/players/add", async (req, res) => {
   console.log("/api/players/add - POST");
 
@@ -147,12 +148,10 @@ app.post("/api/players/add", async (req, res) => {
 });
 
 //** UserPlayer - routes
-//# notes:
-//# the id in the params = the user's id
 
 //* get all players of a user
 app.get("/api/users/:id/userPlayers", async (req, res) => {
-  console.log("/api/users/:id/players - GET");
+  console.log("/api/users/:id/userPlayers - GET");
 
   const { id } = req.params;
 
@@ -170,31 +169,17 @@ app.post("/api/users/:id/players/add", async (req, res) => {
   console.log("/api/users/:id/players/add - POST");
 
   const { id } = req.params;
-  const { playerId, quantity } = req.body;
+  const { playerId, quantity, inLineup } = req.body;
 
   const userPlayer = await UserPlayer.create({
     userId: id,
     playerId,
     quantity,
+    inLineup,
   });
 
   res.status(200).send(userPlayer);
 });
-
-// app.get("/api/products/edit/:id", (req, res) => {
-//   console.log("/api/products/edit/:id - GET by ID");
-//   res.status(200).send("Get a product by ID");
-// });
-
-// app.put("/api/products/edit/:id", (req, res) => {
-//   console.log("/api/products/edit/:id - PUT by ID");
-//   res.status(200).send("Update a product by ID");
-// });
-
-// app.delete("/api/products/edit/:id", (req, res) => {
-//   console.log("/api/products/edit/:id - DELETE by ID");
-//   res.status(200).send("Delete a product by ID");
-// });
 
 async function startServer() {
   try {
