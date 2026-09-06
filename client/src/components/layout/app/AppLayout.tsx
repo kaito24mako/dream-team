@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser } from "../../../utils/context/UserContext.jsx";
+// import { currentUserId } from "../../../data/session.js";
 
 import AppNavbar from "./AppNavbar";
 import Footer from "../Footer";

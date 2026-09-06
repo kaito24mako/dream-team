@@ -19,12 +19,12 @@ export function PlayerContextProvider({ children }) {
     setPlayers(res.data);
   }
 
-  //* get all players of a user
+  //* get all players of a user by id
   // usage: none
   async function getAllPlayersByUser() {
     console.log("Get all players of a user - PlayerContextComponent.jsx");
 
-    const res = await axios.get("http://localhost:3001/api/users/5/players");
+    const res = await axios.get("http://localhost:3001/api/users/1/players");
     console.log("getAllUserPlayers - res", res.data);
 
     // put the user's owned players data into state
