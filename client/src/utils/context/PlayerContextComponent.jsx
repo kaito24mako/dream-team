@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { PlayerContext } from "./PlayerContext";
 
 import axios from "axios";
@@ -8,7 +8,7 @@ export function PlayerContextProvider({ children }) {
 
   //* get all players
   // usage: to display all players in /packs -> GallerySection.jsx
-  async function getAllPlayers() {
+  const getAllPlayers = useCallback(async () => {
     console.log("Get all players - PlayerContextComponent.jsx");
 
     // hit the endpoint to get the data
@@ -17,11 +17,11 @@ export function PlayerContextProvider({ children }) {
 
     // put the players data into state
     setPlayers(res.data);
-  }
+  }, []);
 
   //* get all players of a user by id
   // usage: none
-  async function getAllPlayersByUser() {
+  const getAllPlayersByUser = useCallback(async () => {
     console.log("Get all players of a user - PlayerContextComponent.jsx");
 
     const res = await axios.get("http://localhost:3001/api/users/1/players");
@@ -29,7 +29,7 @@ export function PlayerContextProvider({ children }) {
 
     // put the user's owned players data into state
     setPlayers(res.data);
-  }
+  }, []);
 
   // create functions to update the state
   // function getProductById(id) {
@@ -67,12 +67,12 @@ export function PlayerContextProvider({ children }) {
   //   setProductList(newList);
   // }
 
-  // create the return
+  const value = useMemo(
+    () => ({ players, getAllPlayers, getAllPlayersByUser }),
+    [players, getAllPlayers, getAllPlayersByUser],
+  );
+
   return (
-    <PlayerContext.Provider
-      value={{ players, getAllPlayers, getAllPlayersByUser }}
-    >
-      {children}
-    </PlayerContext.Provider>
+    <PlayerContext.Provider value={value}>{children}</PlayerContext.Provider>
   );
 }
