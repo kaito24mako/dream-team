@@ -13,7 +13,7 @@ function AppLayout() {
 
   useEffect(() => {
     getUserAndPlayers();
-  }, [getUserAndPlayers]);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-dvh">

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useUser } from "../../utils/context/UserContext.jsx";
 
 import StatisticsSection from "../../components/features/home-page/StatisticsSection";
@@ -8,12 +7,7 @@ import CollectionSection from "../../components/features/home-page/CollectionSec
 function HomePage() {
   // user state
   // get a user and their players
-  const { user, getUserAndPlayers } = useUser();
-
-  // updates the user state with the user's details and players
-  useEffect(() => {
-    getUserAndPlayers();
-  }, [getUserAndPlayers]);
+  const { user } = useUser();
 
   return (
     <>
