@@ -5,15 +5,17 @@ import {
 
 import Statistic from "../../common/statistic/Statistic";
 
-function StatisticsSection({ user }) {
+function StatisticsSection({ user, loading, errorMsg }) {
   // to get only the players that the user owns
   const players = user.Players || [];
-  console.log("players the user owns", players);
 
   // to get only the legendary players that the user owns
   const legendaryPlayers = players.filter(
     (player) => player.rarity === "Legendary",
   );
+
+  if (loading) return <span>Loading statistics...</span>;
+  if (errorMsg) return <span className="text-error">{errorMsg}</span>;
 
   return (
     <section className="flex gap-5 overflow-x-scroll overflow-y-hidden">
@@ -48,12 +50,6 @@ function StatisticsSection({ user }) {
           countSize="medium"
           textAlign="end"
         />
-        {/* <Statistic
-        title="Win Streak"
-        count="5W"
-        countSize="medium"
-        textAlign="end"
-      /> */}
       </div>
 
       <div className="divider divider-horizontal m-0"></div>

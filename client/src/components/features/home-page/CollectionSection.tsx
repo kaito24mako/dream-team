@@ -8,10 +8,12 @@ import Divider from "../../common/divider/Divider";
 import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
-function CollectionSection({ user }) {
+function CollectionSection({ user, loading, errorMsg }) {
   // to get only the Players that the user owns
   const players = user.Players || [];
-  console.log("players the user owns", players);
+
+  if (loading) return <span>Loading players...</span>;
+  if (errorMsg) return <span className="text-error">{errorMsg}</span>;
 
   return (
     <section className="mt-6">
