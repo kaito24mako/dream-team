@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useUser } from "../../utils/context/UserContext.jsx";
 
 import StatisticsSection from "../../components/features/home-page/StatisticsSection";
@@ -6,14 +5,8 @@ import LineupSection from "../../components/features/home-page/LineupSection";
 import CollectionSection from "../../components/features/home-page/CollectionSection";
 
 function HomePage() {
-  // user state
-  // get a user and their players
-  const { user, getUserAndPlayers } = useUser();
-
-  // updates the user state with the user's details and players
-  useEffect(() => {
-    getUserAndPlayers();
-  }, [getUserAndPlayers]);
+  // user is loaded once by AppLayout on mount
+  const { user } = useUser();
 
   return (
     <>

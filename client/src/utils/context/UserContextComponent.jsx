@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { UserContext } from "./UserContext";
 
 import axios from "axios";
@@ -10,7 +10,7 @@ export function UserContextProvider({ children }) {
 
   //* get a user by id
   // usage: none
-  async function getUserById() {
+  const getUserById = useCallback(async () => {
     try {
       setLoading(true);
       setErrorMsg(null);
@@ -25,11 +25,11 @@ export function UserContextProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   //* get a user and all their players by id
   // usage: to display a user's details and players in HomePage.jsx
-  async function getUserAndPlayers() {
+  const getUserAndPlayers = useCallback(async () => {
     try {
       setLoading(true);
       setErrorMsg(null);
@@ -46,13 +46,12 @@ export function UserContextProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
-  return (
-    <UserContext.Provider
-      value={{ user, loading, errorMsg, getUserById, getUserAndPlayers }}
-    >
-      {children}
-    </UserContext.Provider>
+  const value = useMemo(
+    () => ({ user, loading, errorMsg, getUserById, getUserAndPlayers }),
+    [user, loading, errorMsg, getUserById, getUserAndPlayers],
   );
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
