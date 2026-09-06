@@ -71,31 +71,6 @@
   --color-court: #8b5a2b;
 
   --text-xxs: 11px;
-
-  /* --breakpoint-3xl: 110rem;
-
-  --animate-marquee: marquee 15s linear infinite;
-  --animate-shine: shine 3.5s linear infinite;
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0%);
-    }
-
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes shine {
-    0% {
-      background-position: 200% 0%;
-    }
-
-    100% {
-      background-position: -200% 0%;
-    }
-  } */
 }
 
 body {

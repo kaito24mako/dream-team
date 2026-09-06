@@ -7,28 +7,18 @@ function RegisterForm() {
       link="/login"
       buttonTitle="Create Account"
     >
-      <label className="label mt-2">Full name</label>
+      <label className="label mt-2">Name</label>
       <input
         type="text"
         className="input focus-within:outline-none focus-within:ring-0"
-        name="fullName"
-        placeholder="full name"
-        required
-      />
-
-      <label className="label mt-2">Username</label>
-      <input
-        type="text"
-        className="input focus-within:outline-none focus-within:ring-0"
-        name="username"
-        placeholder="username"
-        minLength={4}
+        name="name"
+        placeholder="name"
         required
       />
 
       <label className="label mt-2">Email</label>
       <input
-        type="email"
+        type="text"
         className="input focus-within:outline-none focus-within:ring-0"
         name="email"
         placeholder="email"
@@ -42,7 +32,7 @@ function RegisterForm() {
         name="password"
         placeholder="password"
         pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\x21-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E])[\x20-\x7E]+$"
-        title="Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+        title="Password must contain at least one uppercase letter, lowercase letter, number, and special character"
         required
       />
 

@@ -15,7 +15,7 @@ import FullArtCard from "../../common/playerCard/FullArtCard";
 
 import grid from "../../../assets/bg/grid-black.png";
 
-function LineupSection() {
+function LineupSection({ user }) {
   return (
     <section className="mt-6">
       <SectionHeading heading="STARTING LINEUP" Icon={RiTeamLine} />

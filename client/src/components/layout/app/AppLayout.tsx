@@ -12,7 +12,7 @@ function AppLayout() {
   const { getUserAndPlayers } = useUser();
 
   //? need to get userId as params
-  const userId = 5;
+  const userId = 1;
 
   useEffect(() => {
     getUserAndPlayers(userId);

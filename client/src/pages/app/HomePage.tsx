@@ -21,7 +21,7 @@ function HomePage() {
 
         <StatisticsSection user={user} loading={loading} errorMsg={errorMsg} />
 
-        <LineupSection />
+        <LineupSection user={user} />
 
         <CollectionSection user={user} loading={loading} errorMsg={errorMsg} />
       </main>
