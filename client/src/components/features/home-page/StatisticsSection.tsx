@@ -1,13 +1,18 @@
+import { getLineupAverages } from "../../../utils/data/getLineup";
+
 import Statistic from "../../common/statistic/Statistic";
 
-function StatisticsSection({ user, loading, errorMsg }) {
-  // to get only the players that the user owns
+function StatisticsSection({ user, lineup, loading, errorMsg }) {
+  // get only the players that the user owns
   const players = user.Players || [];
 
-  // to get only the legendary players that the user owns
+  // get only the legendary players that the user owns
   const legendaryPlayers = players.filter(
     (player) => player.rarity === "Legendary",
   );
+
+  // get the offensive and defensive averages of the lineup
+  const { offensiveAverage, defensiveAverage } = getLineupAverages(lineup);
 
   if (loading) return <span>Loading statistics...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
@@ -17,13 +22,13 @@ function StatisticsSection({ user, loading, errorMsg }) {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Offense"
-          count={99}
+          count={offensiveAverage}
           countSize="large"
           textAlign="center"
         />
         <Statistic
           title="Defense"
-          count={99}
+          count={defensiveAverage}
           countSize="large"
           textAlign="center"
         />

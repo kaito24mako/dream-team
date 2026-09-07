@@ -55,6 +55,13 @@ app.get("/api/users/:id/user-and-players", async (req, res) => {
     },
   });
 
+  // order Players by position
+  const positionOrder = ["PG", "SG", "SF", "PF", "C"];
+  const orderedPlayers = user.Players.sort(
+    (a, b) =>
+      positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position),
+  );
+
   res.status(200).send(user);
 });
 
@@ -120,7 +127,14 @@ app.get("/api/players", async (req, res) => {
 
   const players = await Player.findAll();
 
-  res.status(200).send(players);
+  // order players by position
+  const positionOrder = ["PG", "SG", "SF", "PF", "C"];
+  const orderedPlayers = players.sort(
+    (a, b) =>
+      positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position),
+  );
+
+  res.status(200).send(orderedPlayers);
 });
 
 //* create new player
@@ -284,12 +298,13 @@ app.put("/api/users/:id/lineup/add", async (req, res) => {
 });
 
 //* remove a player from the lineup
+// usage: LineupPosition.tsx
 app.put("/api/users/:id/lineup/remove", async (req, res) => {
   try {
     const { id } = req.params;
     const { playerId } = req.body;
 
-    // get the UserPlayer object of the player
+    // make sure the user owns the player
     const userPlayer = await UserPlayer.findOne({
       where: {
         userId: id,

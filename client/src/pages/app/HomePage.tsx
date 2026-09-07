@@ -17,7 +17,12 @@ function HomePage() {
           <h1 className="text-4xl text-primary">{user.teamName}</h1>
         </div>
 
-        <StatisticsSection user={user} loading={loading} errorMsg={errorMsg} />
+        <StatisticsSection
+          user={user}
+          lineup={lineup}
+          loading={loading}
+          errorMsg={errorMsg}
+        />
 
         <LineupSection lineup={lineup} />
 

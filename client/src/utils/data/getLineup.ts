@@ -16,19 +16,22 @@ export const lineupC = players.find((player) => player.id === lineup.C);
 export const userLineup = [lineupPG, lineupSG, lineupSF, lineupPF, lineupC];
 
 //* get the lineup's statistical averages
-export const offensiveAverage = Math.round(
-  (lineupPG.offensiveRating +
-    lineupSG.offensiveRating +
-    lineupSF.offensiveRating +
-    lineupPF.offensiveRating +
-    lineupC.offensiveRating) /
-    5,
-);
-export const defensiveAverage = Math.round(
-  (lineupPG.defensiveRating +
-    lineupSG.defensiveRating +
-    lineupSF.defensiveRating +
-    lineupPF.defensiveRating +
-    lineupC.defensiveRating) /
-    5,
-);
+export function getLineupAverages(lineup) {
+  const lineupLength = lineup.length;
+
+  const offensiveAverage = lineupLength
+    ? Math.round(
+        lineup.reduce((total, player) => total + player.offensiveRating, 0) /
+          lineup.length,
+      )
+    : 0;
+
+  const defensiveAverage = lineupLength
+    ? Math.round(
+        lineup.reduce((total, player) => total + player.defensiveRating, 0) /
+          lineupLength,
+      )
+    : 0;
+
+  return { offensiveAverage, defensiveAverage };
+}

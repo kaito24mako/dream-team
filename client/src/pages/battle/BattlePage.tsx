@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "../../utils/context/UserContext.jsx";
-import { userLineup } from "../../utils/data/getLineup";
 import {
   getSelectedOpponent,
   getRandomRating,
@@ -23,7 +22,7 @@ import enemy4 from "../../assets/card/enemy/enemy4.png";
 import enemy5 from "../../assets/card/enemy/enemy5.png";
 
 function BattlePage() {
-  const { user, loading, errorMsg } = useUser();
+  const { user, lineup, loading, errorMsg } = useUser();
 
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
@@ -81,9 +80,7 @@ function BattlePage() {
 
   function getPlayerOveralls() {
     // get an array of the user's players' overall ratings at each position
-    const userOverallRating = userLineup.map(
-      (position) => position.overallRating,
-    );
+    const userOverallRating = lineup.map((position) => position.overallRating);
     console.log("userOverallRating:", userOverallRating);
 
     // get an array of the opponent's players' overall ratings at each position
@@ -126,7 +123,7 @@ function BattlePage() {
         <div className="flex flex-row md:flex-col md:gap-5">
           {/* user's team */}
           <Team teamName={user.teamName} teamNameColor="text-primary">
-            {userLineup.map((player) =>
+            {lineup.map((player) =>
               player.rarity === "Legendary" ? (
                 <FullArtCardXS
                   key={player.id}

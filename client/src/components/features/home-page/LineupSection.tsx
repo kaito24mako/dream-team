@@ -44,7 +44,11 @@ function LineupSection({ lineup }) {
             const player = lineup.find((p) => p.position === position);
 
             return (
-              <LineupPosition position={position} key={position}>
+              <LineupPosition
+                player={player}
+                position={position}
+                key={position}
+              >
                 {renderCard(player, position)}
               </LineupPosition>
             );

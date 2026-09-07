@@ -8,13 +8,14 @@ import court from "../../../assets/bg/court.png";
 function BattleLayout() {
   // get the user and player details once on mount
   // needed to keep the "user" state updated every refresh
-  const { getUserAndPlayers } = useUser();
+  const { getUserAndPlayers, getLineup } = useUser();
 
   //? need to get userId as params
   const userId = 1;
 
   useEffect(() => {
     getUserAndPlayers(userId);
+    getLineup(userId);
   }, []);
 
   return (
