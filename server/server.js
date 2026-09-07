@@ -18,6 +18,7 @@ app.use(cors());
 //** User - routes
 
 //* get all users
+// usage: TESTING
 app.get("/api/users", async (req, res) => {
   console.log("/api/users - GET");
 
@@ -27,6 +28,7 @@ app.get("/api/users", async (req, res) => {
 });
 
 //* get a user by id
+// usage: TESTING
 app.get("/api/users/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -57,6 +59,7 @@ app.get("/api/users/:id/user-and-players", async (req, res) => {
 });
 
 //* get all players of a user
+// usage: NONE - REDUNDANT
 app.get("/api/users/:id/players", async (req, res) => {
   const { id } = req.params;
 
@@ -150,6 +153,7 @@ app.post("/api/players/add", async (req, res) => {
 //** UserPlayer - routes
 
 //* get all players of a user
+// usage: TESTING
 app.get("/api/users/:id/userPlayers", async (req, res) => {
   console.log("/api/users/:id/userPlayers - GET");
 
@@ -181,6 +185,99 @@ app.post("/api/users/:id/players/add", async (req, res) => {
   res.status(200).send(userPlayer);
 });
 
+//* get the user with their lineup
+app.get("/api/users/:id/lineup", async (req, res) => {
+  console.log("/api/users/:id/lineup - GET");
+
+  const { id } = req.params;
+
+  const user = await User.findByPk(id, {
+    include: {
+      model: Player,
+      through: {
+        where: {
+          inLineup: true,
+        },
+        attributes: ["quantity", "inLineup"],
+      },
+    },
+  });
+
+  if (!user) {
+    return res.status(404).send({
+      message: "User not found",
+    });
+  }
+
+  res.status(200).send(user);
+});
+
+//* add a player to the lineup
+app.put("/api/users/:id/lineup/add", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { playerId } = req.body;
+
+    // get the UserPlayer object of the player
+    const userPlayer = await UserPlayer.findOne({
+      where: {
+        userId: id,
+        playerId,
+      },
+    });
+
+    if (!userPlayer) {
+      return res.status(404).send({
+        message: "User does not own this player",
+      });
+    }
+
+    userPlayer.inLineup = true;
+
+    await userPlayer.save();
+
+    res.status(200).send(userPlayer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      message: "Failed to add player to lineup",
+    });
+  }
+});
+
+//* remove a player from the lineup
+app.put("/api/users/:id/lineup/remove", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { playerId } = req.body;
+
+    // get the UserPlayer object of the player
+    const userPlayer = await UserPlayer.findOne({
+      where: {
+        userId: id,
+        playerId,
+      },
+    });
+
+    if (!userPlayer) {
+      return res.status(404).send({
+        message: "User does not own this player",
+      });
+    }
+
+    userPlayer.inLineup = false;
+
+    await userPlayer.save();
+
+    res.status(200).send(userPlayer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      message: "Failed to remove player from lineup",
+    });
+  }
+});
+
 async function startServer() {
   try {
     await db.sequelize.authenticate();
@@ -188,7 +285,7 @@ async function startServer() {
 
     // creates the tables from our code to the database
     // sync({alter: true}) = only makes changes to differences in tables
-    await db.sequelize.sync({ alter: true });
+    await db.sequelize.sync();
     console.log("Database synced successfully");
 
     app.listen(config.port, () => {
