@@ -185,7 +185,7 @@ app.post("/api/users/:id/players/add", async (req, res) => {
   res.status(200).send(userPlayer);
 });
 
-//* get the user with their lineup
+//* get the lineup
 // usage: AppLayout.jsx
 app.get("/api/users/:id/lineup", async (req, res) => {
   console.log("/api/users/:id/lineup - GET");
@@ -210,7 +210,15 @@ app.get("/api/users/:id/lineup", async (req, res) => {
     });
   }
 
-  res.status(200).send(user.Players);
+  // order Players by position
+  const positionOrder = ["PG", "SG", "SF", "PF", "C"];
+
+  const lineup = user.Players.sort(
+    (a, b) =>
+      positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position),
+  );
+
+  res.status(200).send(lineup);
 });
 
 //* add a player to the lineup

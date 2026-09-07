@@ -9,11 +9,7 @@ import FullArtCard from "../../common/playerCard/FullArtCard";
 import grid from "../../../assets/bg/grid-black.png";
 
 function LineupSection({ lineup }) {
-  const lineupPG = lineup.find((player) => player.position === "PG");
-  const lineupSG = lineup.find((player) => player.position === "SG");
-  const lineupSF = lineup.find((player) => player.position === "SF");
-  const lineupPF = lineup.find((player) => player.position === "PF");
-  const lineupC = lineup.find((player) => player.position === "C");
+  const positions = ["PG", "SG", "SF", "PF", "C"];
 
   // returns different markdown depending on certain conditions - for cleaner code
   function renderCard(player, position) {
@@ -43,21 +39,16 @@ function LineupSection({ lineup }) {
         style={{ backgroundImage: `url(${grid})` }}
       >
         <CardList>
-          <LineupPosition position="PG">
-            {renderCard(lineupPG, "PG")}
-          </LineupPosition>
-          <LineupPosition position="SG">
-            {renderCard(lineupSG, "SG")}
-          </LineupPosition>
-          <LineupPosition position="SF">
-            {renderCard(lineupSF, "SF")}
-          </LineupPosition>
-          <LineupPosition position="PF">
-            {renderCard(lineupPF, "PF")}
-          </LineupPosition>
-          <LineupPosition position="C">
-            {renderCard(lineupC, "C")}
-          </LineupPosition>
+          {positions.map((position) => {
+            // to check if theres a player in that position in the lineup
+            const player = lineup.find((p) => p.position === position);
+
+            return (
+              <LineupPosition position={position} key={position}>
+                {renderCard(player, position)}
+              </LineupPosition>
+            );
+          })}
         </CardList>
       </div>
     </section>
