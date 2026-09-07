@@ -1,4 +1,5 @@
 import { TbCards } from "react-icons/tb";
+import { useUser } from "../../../utils/context/UserContext.jsx";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
@@ -9,6 +10,11 @@ import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function CollectionSection({ user, loading, errorMsg }) {
+  // use as onClick function to add a player to lineup
+  const { addToLineup } = useUser();
+
+  const userId = 1;
+
   // to get only the Players that the user owns
   const players = user.Players || [];
 
@@ -51,6 +57,7 @@ function CollectionSection({ user, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
+              onClick={() => addToLineup(userId, player.id)}
             />
           ) : (
             <RegularCard
@@ -61,6 +68,7 @@ function CollectionSection({ user, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
+              onClick={() => addToLineup(userId, player.id)}
             />
           ),
         )}

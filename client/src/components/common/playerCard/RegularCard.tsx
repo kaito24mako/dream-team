@@ -76,6 +76,7 @@ type Props = {
   playerName: string;
   offenseCount: number;
   defenseCount: number;
+  onClick?: () => void;
 };
 
 function RegularCard({
@@ -86,6 +87,7 @@ function RegularCard({
   playerName,
   offenseCount,
   defenseCount,
+  onClick,
 }: Props) {
   // to connect the player data's 'rarity' value to an imported asset...
   const rarityBg: Record<string, string> = {
@@ -162,7 +164,7 @@ function RegularCard({
   const playerImageConversion = image[playerImage];
 
   return (
-    <div className={is3D ? "hover-3d" : undefined}>
+    <div className={is3D ? "hover-3d" : undefined} onClick={onClick}>
       <div className="w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden">
         {/* top half */}
         <div

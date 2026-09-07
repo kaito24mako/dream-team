@@ -9,14 +9,14 @@ import Footer from "../Footer";
 function AppLayout() {
   // get the user and player details once on mount
   // needed to keep the "user" state updated every refresh
-  const { getUserAndPlayers, getUserLineup } = useUser();
+  const { getUserAndPlayers, getLineup } = useUser();
 
   //? need to get userId as params
   const userId = 1;
 
   useEffect(() => {
     getUserAndPlayers(userId);
-    getUserLineup(userId);
+    getLineup(userId);
   }, []);
 
   return (

@@ -24,7 +24,7 @@ export function UserContextProvider({ children }) {
       setUser(res.data);
     } catch (err) {
       console.error("Failed to get user and players:", err);
-      setErrorMsg(err.message);
+      setErrorMsg("Failed to get user and players");
     } finally {
       setLoading(false);
     }
@@ -32,7 +32,7 @@ export function UserContextProvider({ children }) {
 
   //* get a user's lineup
   // usage: AppLayout.jsx
-  async function getUserLineup(userId) {
+  async function getLineup(userId) {
     try {
       setLoading(true);
       setErrorMsg(null);
@@ -45,6 +45,31 @@ export function UserContextProvider({ children }) {
       setLineup(res.data);
     } catch (err) {
       console.error("Failed to get the user's lineup:", err);
+      setErrorMsg("Failed to get the lineup");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  //* add a player to the user's lineup
+  async function addToLineup(userId, playerId) {
+    try {
+      setLoading(true);
+      setErrorMsg(null);
+
+      const res = await axios.put(
+        `http://localhost:3001/api/users/${userId}/lineup/add`,
+        {
+          playerId: playerId,
+        },
+      );
+      console.log("addToLineup(), data:", res.data);
+
+      // refresh the lineup
+      await getLineup(userId);
+    } catch (err) {
+      console.error("Failed to add player to lineup:", err);
+      setErrorMsg("Failed to add player to lineup");
     } finally {
       setLoading(false);
     }
@@ -78,7 +103,8 @@ export function UserContextProvider({ children }) {
         errorMsg,
         getUserById,
         getUserAndPlayers,
-        getUserLineup,
+        getLineup,
+        addToLineup,
       }}
     >
       {children}

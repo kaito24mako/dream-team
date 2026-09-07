@@ -192,6 +192,7 @@ app.get("/api/users/:id/lineup", async (req, res) => {
 
   const { id } = req.params;
 
+  // get the User with Players and UserPlayers in which "inLineup" is true
   const user = await User.findByPk(id, {
     include: {
       model: Player,
@@ -212,7 +213,6 @@ app.get("/api/users/:id/lineup", async (req, res) => {
 
   // order Players by position
   const positionOrder = ["PG", "SG", "SF", "PF", "C"];
-
   const lineup = user.Players.sort(
     (a, b) =>
       positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position),
@@ -227,7 +227,10 @@ app.put("/api/users/:id/lineup/add", async (req, res) => {
     const { id } = req.params;
     const { playerId } = req.body;
 
-    // get the UserPlayer object of the player
+    // find the player being added
+    const player = await Player.findByPk(playerId);
+
+    // make sure the user owns this player
     const userPlayer = await UserPlayer.findOne({
       where: {
         userId: id,
@@ -241,6 +244,32 @@ app.put("/api/users/:id/lineup/add", async (req, res) => {
       });
     }
 
+    // get the user's current lineup
+    const user = await User.findByPk(id, {
+      include: {
+        model: Player,
+        through: {
+          where: {
+            inLineup: true,
+          },
+        },
+      },
+    });
+
+    // find the player already in the lineup with the same position
+    const existingPlayer = user.Players.find(
+      (exPlayer) => exPlayer.position === player.position,
+    );
+
+    // remove the existing player from the lineup
+    if (existingPlayer) {
+      await UserPlayer.update(
+        { inLineup: false },
+        { where: { userId: id, playerId: existingPlayer.id } },
+      );
+    }
+
+    // add the new player
     userPlayer.inLineup = true;
 
     await userPlayer.save();
