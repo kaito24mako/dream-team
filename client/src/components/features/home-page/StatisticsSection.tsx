@@ -1,8 +1,3 @@
-import {
-  offensiveAverage,
-  defensiveAverage,
-} from "../../../utils/data/getLineup";
-
 import Statistic from "../../common/statistic/Statistic";
 
 function StatisticsSection({ user, loading, errorMsg }) {
@@ -22,13 +17,13 @@ function StatisticsSection({ user, loading, errorMsg }) {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Offense"
-          count={offensiveAverage}
+          count={99}
           countSize="large"
           textAlign="center"
         />
         <Statistic
           title="Defense"
-          count={defensiveAverage}
+          count={99}
           countSize="large"
           textAlign="center"
         />

@@ -1,5 +1,4 @@
 import { useUser } from "../../utils/context/UserContext.jsx";
-import { offensiveAverage, defensiveAverage } from "../../utils/data/getLineup";
 
 import Statistic from "../../components/common/statistic/Statistic";
 import MatchesSection from "../../components/features/league-page/MatchesSection";
@@ -23,13 +22,13 @@ function LeaguePage() {
           <div className="flex gap-6">
             <Statistic
               title="Offense"
-              count={offensiveAverage}
+              count={99}
               countSize="large"
               textAlign="center"
             />
             <Statistic
               title="Defense"
-              count={defensiveAverage}
+              count={99}
               countSize="large"
               textAlign="center"
             />

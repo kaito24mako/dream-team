@@ -5,6 +5,7 @@ import axios from "axios";
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState([]);
+  const [lineup, setLineup] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -24,6 +25,26 @@ export function UserContextProvider({ children }) {
     } catch (err) {
       console.error("Failed to get user and players:", err);
       setErrorMsg(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  //* get a user's lineup
+  // usage: AppLayout.jsx
+  async function getUserLineup(userId) {
+    try {
+      setLoading(true);
+      setErrorMsg(null);
+
+      const res = await axios.get(
+        `http://localhost:3001/api/users/${userId}/lineup`,
+      );
+      console.log("getUserLineup(), data:", res.data);
+
+      setLineup(res.data);
+    } catch (err) {
+      console.error("Failed to get the user's lineup:", err);
     } finally {
       setLoading(false);
     }
@@ -50,7 +71,15 @@ export function UserContextProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ user, loading, errorMsg, getUserById, getUserAndPlayers }}
+      value={{
+        user,
+        lineup,
+        loading,
+        errorMsg,
+        getUserById,
+        getUserAndPlayers,
+        getUserLineup,
+      }}
     >
       {children}
     </UserContext.Provider>

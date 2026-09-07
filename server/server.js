@@ -186,6 +186,7 @@ app.post("/api/users/:id/players/add", async (req, res) => {
 });
 
 //* get the user with their lineup
+// usage: AppLayout.jsx
 app.get("/api/users/:id/lineup", async (req, res) => {
   console.log("/api/users/:id/lineup - GET");
 
@@ -209,7 +210,7 @@ app.get("/api/users/:id/lineup", async (req, res) => {
     });
   }
 
-  res.status(200).send(user);
+  res.status(200).send(user.Players);
 });
 
 //* add a player to the lineup

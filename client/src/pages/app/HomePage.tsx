@@ -7,7 +7,7 @@ import CollectionSection from "../../components/features/home-page/CollectionSec
 function HomePage() {
   // user state
   // get a user and their players
-  const { user, loading, errorMsg } = useUser();
+  const { user, lineup, loading, errorMsg } = useUser();
 
   return (
     <>
@@ -21,7 +21,7 @@ function HomePage() {
 
         <StatisticsSection user={user} loading={loading} errorMsg={errorMsg} />
 
-        <LineupSection user={user} />
+        <LineupSection lineup={lineup} />
 
         <CollectionSection user={user} loading={loading} errorMsg={errorMsg} />
       </main>
