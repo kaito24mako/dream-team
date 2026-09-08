@@ -5,7 +5,6 @@ import axios from "axios";
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState([]);
-  const [lineup, setLineup] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -24,77 +23,9 @@ export function UserContextProvider({ children }) {
       setUser(res.data);
     } catch (err) {
       console.error("Failed to get user and players:", err);
-      setErrorMsg("Failed to get user and players");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  //* get a user's lineup
-  // usage: AppLayout.jsx
-  async function getLineup(userId) {
-    try {
-      setLoading(true);
-      setErrorMsg(null);
-
-      const res = await axios.get(
-        `http://localhost:3001/api/users/${userId}/lineup`,
+      setErrorMsg(
+        "Failed to retrieve the user details and players. Please try again.",
       );
-      console.log("getUserLineup(), data:", res.data);
-
-      setLineup(res.data);
-    } catch (err) {
-      console.error("Failed to get the user's lineup:", err);
-      setErrorMsg("Failed to get lineup");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  //* add a player to the user's lineup
-  async function addToLineup(userId, playerId) {
-    try {
-      setLoading(true);
-      setErrorMsg(null);
-
-      const res = await axios.put(
-        `http://localhost:3001/api/users/${userId}/lineup/add`,
-        {
-          playerId: playerId,
-        },
-      );
-      console.log("addToLineup(), data:", res.data);
-
-      // refresh the lineup
-      await getLineup(userId);
-    } catch (err) {
-      console.error("Failed to add player to lineup:", err);
-      setErrorMsg("Failed to add player to lineup");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  //* remove a player to the user's lineup
-  // usage: LineupPosition.tsx
-  async function removeFromLineup(userId, playerId) {
-    try {
-      setLoading(true);
-      setErrorMsg(null);
-
-      const res = await axios.put(
-        `http://localhost:3001/api/users/${userId}/lineup/remove`,
-        {
-          playerId: playerId,
-        },
-      );
-      console.log("removeFromLineup(), data:", res.data);
-
-      // refresh the lineup
-      await getLineup(userId);
-    } catch (err) {
-      console.error("Failed to remove player to lineup:", err);
-      setErrorMsg("Failed to remove player to lineup");
     } finally {
       setLoading(false);
     }
@@ -113,7 +44,7 @@ export function UserContextProvider({ children }) {
       setUser(res.data);
     } catch (err) {
       console.error("Failed to get user:", err);
-      setErrorMsg(err.message);
+      setErrorMsg("Failed to retrieve the user details. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -123,14 +54,10 @@ export function UserContextProvider({ children }) {
     <UserContext.Provider
       value={{
         user,
-        lineup,
         loading,
         errorMsg,
         getUserById,
         getUserAndPlayers,
-        getLineup,
-        addToLineup,
-        removeFromLineup,
       }}
     >
       {children}

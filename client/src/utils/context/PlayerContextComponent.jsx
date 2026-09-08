@@ -21,7 +21,7 @@ export function PlayerContextProvider({ children }) {
       setPlayers(res.data);
     } catch (err) {
       console.error("Failed to get all players:", err);
-      setErrorMsg(err.message);
+      setErrorMsg("Failed to retrieve the players. Please try again.");
     } finally {
       setLoading(false);
     }

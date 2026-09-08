@@ -8,7 +8,7 @@ import RegularCard from "../../common/playerCard/RegularCard";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 import grid from "../../../assets/bg/grid-black.png";
 
-function LineupSection({ lineup }) {
+function LineupSection({ lineup, loading, errorMsg }) {
   const positions = ["PG", "SG", "SF", "PF", "C"];
 
   // returns different markdown depending on certain conditions - for cleaner code
@@ -30,17 +30,20 @@ function LineupSection({ lineup }) {
     );
   }
 
-  return (
-    <section className="mt-6">
-      <SectionHeading heading="STARTING LINEUP" Icon={RiTeamLine} />
+  let content;
 
+  if (loading) {
+    content = <span>Loading lineup...</span>;
+  } else if (errorMsg) {
+    content = <span className="text-error">{errorMsg}</span>;
+  } else {
+    content = (
       <div
         className="bg-cover bg-full border border-border p-5 sm:p-7"
         style={{ backgroundImage: `url(${grid})` }}
       >
         <CardList>
           {positions.map((position) => {
-            // to check if theres a player in that position in the lineup
             const player = lineup.find((p) => p.position === position);
 
             return (
@@ -55,6 +58,13 @@ function LineupSection({ lineup }) {
           })}
         </CardList>
       </div>
+    );
+  }
+
+  return (
+    <section className="mt-6">
+      <SectionHeading heading="STARTING LINEUP" Icon={RiTeamLine} />
+      {content}
     </section>
   );
 }

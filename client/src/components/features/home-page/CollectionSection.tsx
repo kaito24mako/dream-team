@@ -1,5 +1,5 @@
 import { TbCards } from "react-icons/tb";
-import { useUser } from "../../../utils/context/UserContext.jsx";
+import { useLineup } from "../../../utils/context/LineupContext.jsx";
 import {
   filterPlayers,
   handleSortByRating,
@@ -20,7 +20,7 @@ function CollectionSection({ user, loading, errorMsg }) {
   const userId = 1;
 
   // add a player to lineup function
-  const { addToLineup } = useUser();
+  const { addToLineup } = useLineup();
 
   // to get only the Players that the user owns
   const players = user.Players || [];
@@ -38,13 +38,11 @@ function CollectionSection({ user, loading, errorMsg }) {
     ratingSort,
   );
 
-  if (loading) return <span>Loading players...</span>;
-  if (errorMsg) return <span className="text-error">{errorMsg}</span>;
-
   return (
     <section className="mt-6">
       <div className="flex justify-between items-end">
         <SectionHeading heading="MY COLLECTION" Icon={TbCards} />
+
         <div className="flex flex-col sm:flex-row items-center gap-2 mb-3">
           <SearchForm />
           <div className="flex">
@@ -78,6 +76,9 @@ function CollectionSection({ user, loading, errorMsg }) {
       </div>
 
       <Divider color="default" />
+
+      {loading && <span>Loading players...</span>}
+      {errorMsg && <span className="text-error">{errorMsg}</span>}
 
       <CardList className="px-7">
         {filteredPlayers.map((player) =>

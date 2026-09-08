@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser } from "../../../utils/context/UserContext.jsx";
+import { useLineup } from "../../../utils/context/LineupContext.jsx";
 
 import BattleNavbar from "./BattleNavbar";
 import court from "../../../assets/bg/court.png";
@@ -8,7 +9,8 @@ import court from "../../../assets/bg/court.png";
 function BattleLayout() {
   // get the user and player details once on mount
   // needed to keep the "user" state updated every refresh
-  const { getUserAndPlayers, getLineup } = useUser();
+  const { getUserAndPlayers } = useUser();
+  const { getLineup } = useLineup();
 
   //? need to get userId as params
   const userId = 1;

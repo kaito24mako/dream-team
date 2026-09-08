@@ -28,9 +28,6 @@ function GallerySection({ players, loading, errorMsg }) {
     ratingSort,
   );
 
-  if (loading) return <span>Loading players...</span>;
-  if (errorMsg) return <span className="text-error">{errorMsg}</span>;
-
   return (
     <section>
       <div className="flex justify-between items-end">
@@ -69,6 +66,9 @@ function GallerySection({ players, loading, errorMsg }) {
       </div>
 
       <Divider color="default" />
+
+      {loading && <span>Loading players...</span>}
+      {errorMsg && <span className="text-error">{errorMsg}</span>}
 
       <CardList>
         {filteredPlayers.map((player) => (

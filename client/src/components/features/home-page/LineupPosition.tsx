@@ -1,4 +1,4 @@
-import { useUser } from "../../../utils/context/UserContext.jsx";
+import { useLineup } from "../../../utils/context/LineupContext";
 import Button from "../../common/button/Button";
 
 function LineupPosition({
@@ -10,7 +10,7 @@ function LineupPosition({
   player;
   position: string;
 }) {
-  const { removeFromLineup } = useUser();
+  const { removeFromLineup } = useLineup();
 
   const userId = 1;
 

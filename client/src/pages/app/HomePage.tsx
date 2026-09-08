@@ -1,11 +1,17 @@
 import { useUser } from "../../utils/context/UserContext.jsx";
+import { useLineup } from "../../utils/context/LineupContext.jsx";
 
 import StatisticsSection from "../../components/features/home-page/StatisticsSection";
 import LineupSection from "../../components/features/home-page/LineupSection";
 import CollectionSection from "../../components/features/home-page/CollectionSection";
 
 function HomePage() {
-  const { user, lineup, loading, errorMsg } = useUser();
+  const { user, loading: userLoading, errorMsg: userErrorMsg } = useUser();
+  const {
+    lineup,
+    loading: lineupLoading,
+    errorMsg: lineupErrorMsg,
+  } = useLineup();
 
   return (
     <>
@@ -20,13 +26,21 @@ function HomePage() {
         <StatisticsSection
           user={user}
           lineup={lineup}
-          loading={loading}
-          errorMsg={errorMsg}
+          loading={userLoading}
+          errorMsg={userErrorMsg}
         />
 
-        <LineupSection lineup={lineup} />
+        <LineupSection
+          lineup={lineup}
+          loading={lineupLoading}
+          errorMsg={lineupErrorMsg}
+        />
 
-        <CollectionSection user={user} loading={loading} errorMsg={errorMsg} />
+        <CollectionSection
+          user={user}
+          loading={userLoading}
+          errorMsg={userErrorMsg}
+        />
       </main>
     </>
   );

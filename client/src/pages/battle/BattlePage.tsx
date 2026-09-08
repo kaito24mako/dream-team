@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useUser } from "../../utils/context/UserContext.jsx";
+import { useLineup } from "../../utils/context/LineupContext.jsx";
 import {
   getSelectedOpponent,
   getRandomRating,
@@ -22,7 +23,14 @@ import enemy4 from "../../assets/card/enemy/enemy4.png";
 import enemy5 from "../../assets/card/enemy/enemy5.png";
 
 function BattlePage() {
-  const { user, lineup, loading, errorMsg } = useUser();
+  const { user, loading: userLoading, errorMsg: userErrorMsg } = useUser();
+  const {
+    lineup,
+    loading: lineupLoading,
+    errorMsg: lineupErrorMsg,
+  } = useLineup();
+  const loading = userLoading || lineupLoading;
+  const errorMsg = userErrorMsg || lineupErrorMsg;
 
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
