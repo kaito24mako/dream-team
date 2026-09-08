@@ -1,5 +1,5 @@
 import { useUser } from "../../utils/context/UserContext.jsx";
-import { getLineupAverages } from "../../utils/data/getLineup.js";
+import { getLineupAverages } from "../../utils/helpers/getLineup.js";
 
 import Statistic from "../../components/common/statistic/Statistic";
 import MatchesSection from "../../components/features/league-page/MatchesSection";

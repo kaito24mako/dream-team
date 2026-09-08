@@ -45,7 +45,7 @@ export function UserContextProvider({ children }) {
       setLineup(res.data);
     } catch (err) {
       console.error("Failed to get the user's lineup:", err);
-      setErrorMsg("Failed to get the lineup");
+      setErrorMsg("Failed to get lineup");
     } finally {
       setLoading(false);
     }

@@ -1,10 +1,10 @@
 type Props = {
   buttonText: string;
   dropdownItems: string[];
-  handleClick?: (item: string) => void;
+  onClick?: (item: string) => void;
 };
 
-function DropdownBtn({ buttonText, dropdownItems, handleClick }: Props) {
+function DropdownBtn({ buttonText, dropdownItems, onClick }: Props) {
   return (
     <div className="dropdown dropdown-end">
       <button
@@ -20,7 +20,7 @@ function DropdownBtn({ buttonText, dropdownItems, handleClick }: Props) {
       >
         {dropdownItems.map((item) => (
           <li key={item}>
-            <button type="button" onClick={() => handleClick(item)}>
+            <button type="button" onClick={() => onClick(item)}>
               {item}
             </button>
           </li>

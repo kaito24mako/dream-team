@@ -1,4 +1,4 @@
-import { getLineupAverages } from "../../../utils/data/getLineup";
+import { getLineupAverages } from "../../../utils/helpers/getLineup";
 
 import Statistic from "../../common/statistic/Statistic";
 

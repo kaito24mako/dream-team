@@ -1,5 +1,12 @@
 import { TbCards } from "react-icons/tb";
 import { useUser } from "../../../utils/context/UserContext.jsx";
+import {
+  filterPlayers,
+  handleSortByRating,
+  handleFilterByPosition,
+  handleFilterByRarity,
+} from "../../../utils/helpers/getPlayers.js";
+import { useState } from "react";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
@@ -10,13 +17,26 @@ import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function CollectionSection({ user, loading, errorMsg }) {
-  // use as onClick function to add a player to lineup
-  const { addToLineup } = useUser();
-
   const userId = 1;
+
+  // add a player to lineup function
+  const { addToLineup } = useUser();
 
   // to get only the Players that the user owns
   const players = user.Players || [];
+
+  //* filters
+  const [rarityFilter, setRarityFilter] = useState("");
+  const [positionFilter, setPositionFilter] = useState("");
+  const [ratingSort, setRatingSort] = useState("");
+
+  // get list of players who have been filtered/sorted
+  const filteredPlayers = filterPlayers(
+    players,
+    rarityFilter,
+    positionFilter,
+    ratingSort,
+  );
 
   if (loading) return <span>Loading players...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
@@ -30,15 +50,28 @@ function CollectionSection({ user, loading, errorMsg }) {
           <div className="flex">
             <DropdownBtn
               buttonText="Rating"
-              dropdownItems={["Highest", "Lowest"]}
+              dropdownItems={["All", "Highest", "Lowest"]}
+              onClick={(rating) => handleSortByRating(rating, setRatingSort)}
             />
             <DropdownBtn
               buttonText="Position"
-              dropdownItems={["PG", "SG", "SF", "PF", "C"]}
+              dropdownItems={["All", "PG", "SG", "SF", "PF", "C"]}
+              onClick={(position) =>
+                handleFilterByPosition(position, setPositionFilter)
+              }
             />
             <DropdownBtn
               buttonText="Rarity"
-              dropdownItems={["Legendary", "Superstar", "Rare", "Common"]}
+              dropdownItems={[
+                "All",
+                "Legendary",
+                "Superstar",
+                "Rare",
+                "Common",
+              ]}
+              onClick={(rarity) =>
+                handleFilterByRarity(rarity, setRarityFilter)
+              }
             />
           </div>
         </div>
@@ -47,7 +80,7 @@ function CollectionSection({ user, loading, errorMsg }) {
       <Divider color="default" />
 
       <CardList className="px-7">
-        {players.map((player) =>
+        {filteredPlayers.map((player) =>
           player.rarity === "Legendary" ? (
             <FullArtCard
               key={player.id}

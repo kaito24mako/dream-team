@@ -4,7 +4,7 @@ import { useUser } from "../../utils/context/UserContext.jsx";
 import {
   getSelectedOpponent,
   getRandomRating,
-} from "../../utils/data/getOpponents";
+} from "../../utils/helpers/getOpponents.js";
 
 import Button from "../../components/common/button/Button";
 import Scoreboard from "../../components/features/battle-page/Scoreboard.js";

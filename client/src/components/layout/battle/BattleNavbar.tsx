@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useUser } from "../../../utils/context/UserContext.jsx";
-import { getSelectedOpponent } from "../../../utils/data/getOpponents";
+import { getSelectedOpponent } from "../../../utils/helpers/getOpponents.js";
 
 import CoinIcon from "../../common/icon/ui/CoinIcon";
 import CurrencyItem from "../../features/league-page/CurrencyItem";

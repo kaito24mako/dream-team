@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { RxLightningBolt } from "react-icons/rx";
+import {
+  filterPlayers,
+  handleFilterByPosition,
+  handleFilterByRarity,
+  handleSortByRating,
+} from "../../../utils/helpers/getPlayers";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import FullArtCard from "../../common/playerCard/FullArtCard";
@@ -9,20 +15,18 @@ import DropdownBtn from "../../common/button/DropdownBtn";
 import Divider from "../../common/divider/Divider";
 
 function GallerySection({ players, loading, errorMsg }) {
-  //* filter by rarity
+  //* filters
   const [rarityFilter, setRarityFilter] = useState("");
+  const [positionFilter, setPositionFilter] = useState("");
+  const [ratingSort, setRatingSort] = useState("");
 
-  const filteredPlayers = rarityFilter
-    ? players.filter((p) => p.rarity === rarityFilter)
-    : players;
-
-  function handleSortByRarity(rarity) {
-    if (rarity === "All") {
-      setRarityFilter("");
-    } else {
-      setRarityFilter(rarity);
-    }
-  }
+  // get list of players who have been filtered/sorted
+  const filteredPlayers = filterPlayers(
+    players,
+    rarityFilter,
+    positionFilter,
+    ratingSort,
+  );
 
   if (loading) return <span>Loading players...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
@@ -38,10 +42,14 @@ function GallerySection({ players, loading, errorMsg }) {
             <DropdownBtn
               buttonText="Rating"
               dropdownItems={["Highest", "Lowest"]}
+              onClick={(rating) => handleSortByRating(rating, setRatingSort)}
             />
             <DropdownBtn
               buttonText="Position"
               dropdownItems={["PG", "SG", "SF", "PF", "C"]}
+              onClick={(position) =>
+                handleFilterByPosition(position, setPositionFilter)
+              }
             />
             <DropdownBtn
               buttonText="Rarity"
@@ -52,7 +60,9 @@ function GallerySection({ players, loading, errorMsg }) {
                 "Rare",
                 "Common",
               ]}
-              handleClick={handleSortByRarity}
+              onClick={(rarity) =>
+                handleFilterByRarity(rarity, setRarityFilter)
+              }
             />
           </div>
         </div>

@@ -2,7 +2,7 @@ import { TbCards } from "react-icons/tb";
 import { RiTeamLine } from "react-icons/ri";
 import { PiCoins } from "react-icons/pi";
 
-import { getPlayerByName } from "../../../utils/data/getPlayers";
+import { getPlayerByName } from "../../../utils/helpers/getPlayers";
 
 import RegularCard from "../../common/playerCard/RegularCard";
 import FullArtCard from "../../common/playerCard/FullArtCard";
