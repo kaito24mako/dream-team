@@ -387,7 +387,7 @@ app.post("/api/auth/login", async (req, res) => {
         if (err) throw err;
 
         // send token as a response
-        res.json({ token });
+        res.json({ user: payload.user, token });
       },
     );
   } catch (err) {
@@ -449,7 +449,7 @@ app.post("/api/auth/register", async (req, res) => {
         if (err) throw err;
 
         // send token as a response
-        res.json({ token });
+        res.json({ user: payload.user, token });
       },
     );
   } catch (err) {

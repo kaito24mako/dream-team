@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 import AuthForm from "../../common/form/AuthForm";
 
+type RegisterFormErrors = Partial<
+  Record<"name" | "teamName" | "email" | "password" | "passwordCompare", string>
+>;
+
 function RegisterForm() {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,7 +16,7 @@ function RegisterForm() {
     email: "",
     password: "",
     passwordCompare: "",
-    errors: {},
+    errors: {} as RegisterFormErrors,
   });
 
   // state to show the status of saving a new user
@@ -30,19 +34,22 @@ function RegisterForm() {
 
   // if we can save the new user or not
   const canSave =
-    name !== "" && teamName !== "" && email !== "" && registerStatus === "idle";
+    name !== "" &&
+    teamName !== "" &&
+    email !== "" &&
+    password !== "" &&
+    passwordCompare !== "" &&
+    registerStatus === "idle";
 
   // on form submission
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log("handleSubmit(), formData:", formData);
 
-    // validation
+    // validations
     if (!name) {
       setFormData({ ...formData, errors: { name: "Name is required" } });
       return;
-    } else {
-      setFormData({ ...formData, errors: { name: "" } });
     }
 
     if (!teamName) {
@@ -51,18 +58,11 @@ function RegisterForm() {
         errors: { teamName: "Team name is required" },
       });
       return;
-    } else {
-      setFormData({ ...formData, errors: { teamName: "" } });
     }
 
     if (!email) {
-      setFormData({
-        ...formData,
-        errors: { email: "Email is required" },
-      });
+      setFormData({ ...formData, errors: { email: "Email is required" } });
       return;
-    } else {
-      setFormData({ ...formData, errors: { email: "" } });
     }
 
     if (!password) {
@@ -71,44 +71,41 @@ function RegisterForm() {
         errors: { password: "Password is required" },
       });
       return;
-    } else {
-      setFormData({ ...formData, errors: { password: "" } });
     }
 
     if (!passwordCompare) {
       setFormData({
         ...formData,
-        errors: { passwordCompare: "Password is required" },
+        errors: { passwordCompare: "Please re-enter your password" },
       });
       return;
-    } else {
-      setFormData({ ...formData, errors: { passwordCompare: "" } });
     }
 
     if (password !== passwordCompare) {
       setFormData({
         ...formData,
-        errors: { password: "Passwords do not match" },
+        errors: { passwordCompare: "Passwords do not match" },
       });
       return;
-    } else {
-      setFormData({ ...formData, errors: { password: "" } });
     }
 
-    // if we can save the user
+    // reset errors
+    setFormData({ ...formData, errors: {} });
+
+    // if we can save the user, register the user
     try {
       if (canSave) {
         setRegisterStatus("pending");
         // call the register action
-        dispatch(register({ name, teamName, email, password })).unwrap();
+        await dispatch(register({ name, teamName, email, password })).unwrap();
+        console.log("Successfully registered a user");
+        navigate("/login");
       }
     } catch (err) {
       console.error(err);
     } finally {
       setRegisterStatus("idle");
     }
-
-    navigate("/login");
   }
 
   return (
@@ -125,8 +122,8 @@ function RegisterForm() {
         placeholder="name"
         value={name}
         onChange={(e) => handleChange(e)}
-        required
       />
+      {errors.name && <p className="text-error text-xs mt-1">{errors.name}</p>}
 
       <label className="label mt-2">Team Name</label>
       <input
@@ -136,8 +133,10 @@ function RegisterForm() {
         placeholder="team name"
         value={teamName}
         onChange={(e) => handleChange(e)}
-        required
       />
+      {errors.teamName && (
+        <p className="text-error text-xs mt-1">{errors.teamName}</p>
+      )}
 
       <label className="label mt-2">Email</label>
       <input
@@ -147,8 +146,10 @@ function RegisterForm() {
         placeholder="email"
         value={email}
         onChange={(e) => handleChange(e)}
-        required
       />
+      {errors.email && (
+        <p className="text-error text-xs mt-1">{errors.email}</p>
+      )}
 
       <label className="label mt-2">Password</label>
       <input
@@ -160,8 +161,10 @@ function RegisterForm() {
         // title="Password must contain at least one uppercase letter, lowercase letter, number, and special character"
         value={password}
         onChange={(e) => handleChange(e)}
-        required
       />
+      {errors.password && (
+        <p className="text-error text-xs mt-1">{errors.password}</p>
+      )}
 
       <label htmlFor="passwordCompare" className="label mt-2">
         Re-enter Password
@@ -173,12 +176,10 @@ function RegisterForm() {
         name="passwordCompare"
         value={passwordCompare}
         onChange={(e) => handleChange(e)}
-        required
       />
-
-      {/* {errors.passwordCompare && (
-        <div className="invalid-feedback">{errors.passwordCompare}</div>
-      )} */}
+      {errors.passwordCompare && (
+        <p className="text-error text-xs mt-1">{errors.passwordCompare}</p>
+      )}
 
       {/* <p className="label text-xs opacity-75">
         Must contain:

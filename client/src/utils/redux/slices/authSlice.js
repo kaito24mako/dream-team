@@ -23,33 +23,26 @@ export const login = createAsyncThunk(
   async ({ email, password }) => {
     console.log("Logging in - authSlice.js");
 
-    try {
-      // get response from our api route
-      const res = await axios.post(`${baseURL}/login`, {
-        email,
-        password,
-      });
-      console.log("response with token for logging in:", res.data.token);
+    // get response from our api route
+    const res = await axios.post(`${baseURL}/login`, {
+      email,
+      password,
+    });
 
-      if (res.data) {
-        if (res.status === 400) throw new Error({ message: res.data });
-      }
+    console.log("Response for logging in:", res.data);
 
-      // set token into local storage
-      localStorage.setItem("token", res.data.token);
+    // set token into local storage
+    localStorage.setItem("token", res.data.token);
 
-      // set token into http request header
-      setAuthToken(localStorage.token);
+    // set token into http request header
+    setAuthToken(res.data.token);
 
-      // get the logged in user from the db
-      const response = await axios.get(`${baseURL}`);
-      console.log("Logged in user:", response.data);
+    //! get the logged in user from the db - NOT WORKING ATM
+    // const response = await axios.get(`${baseURL}`);
+    // console.log("Logged in user:", response.data);
+    // return response.data;
 
-      return response.data();
-    } catch (err) {
-      console.log("Failed to log in", err.message);
-      return err.message;
-    }
+    return res.data;
   },
 );
 
@@ -73,30 +66,23 @@ export const loadUser = createAsyncThunk("auth/loadUser", async () => {
 export const register = createAsyncThunk("auth/register", async (newUser) => {
   console.log("Register user - authSlice.js");
 
-  try {
-    // get response from our api route
-    const res = await axios.post(`${baseURL}/register`, newUser);
-    console.log("response for registering user:", res.data);
+  // get response from our api route
+  const res = await axios.post(`${baseURL}/register`, newUser);
 
-    if (res.data) {
-      if (res.status === 400) throw new Error({ message: res.data });
-    }
+  console.log("Response for registering user:", res.data);
 
-    // set token into local storage
-    localStorage.setItem("token", res.data.token);
+  // set token into local storage
+  localStorage.setItem("token", res.data.token);
 
-    // set token into http request header
-    setAuthToken(localStorage.token);
+  // set token into http request header
+  setAuthToken(res.data.token);
 
-    // get the logged in user from the dbs
-    const response = await axios.get(`${baseURL}`);
-    console.log("Registered user:", response.data);
+  //! get the logged in user from the dbs - NOT WORKING ATM
+  // const response = await axios.get(`${baseURL}`);
+  // console.log("Registered user:", response.data);
+  // return response.data;
 
-    return response.data();
-  } catch (err) {
-    console.log("Failed to register user", err.message);
-    return err.message;
-  }
+  return res.data;
 });
 
 //** create slice and reducers
@@ -125,10 +111,10 @@ const authSlice = createSlice({
       // login.fulfilled
       .addCase(login.fulfilled, (state, action) => {
         state.status = "successful";
-        state.user = action.payload;
-        state.isAdmin = action.payload.isAdmin;
+        state.user = action.payload.user;
+        state.isAdmin = action.payload.user.isAdmin;
         state.isAuth = true;
-        state.token = localStorage.getItem("token");
+        state.token = action.payload.token;
         state.error = null;
       })
       // login.rejected
@@ -139,13 +125,13 @@ const authSlice = createSlice({
         state.isAuth = false;
         state.token = null;
         localStorage.removeItem("token");
-        state.error = action.payload;
+        state.error = action.error.message;
       })
-      // load.pending
+      // loadUser.pending
       .addCase(loadUser.pending, (state) => {
         state.status = "loading";
       })
-      // load.fulfilled
+      // loadUser.fulfilled
       .addCase(loadUser.fulfilled, (state, action) => {
         state.status = "successful";
         state.user = action.payload;
@@ -153,13 +139,13 @@ const authSlice = createSlice({
         state.isAuth = true;
         state.error = null;
       })
-      // load.rejected
+      // loadUser.rejected
       .addCase(loadUser.rejected, (state, action) => {
         state.status = "failed";
         state.user = null;
         state.isAdmin = false;
         state.isAuth = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       })
       // register.pending
       .addCase(register.pending, (state) => {
@@ -168,10 +154,10 @@ const authSlice = createSlice({
       // register.fulfilled
       .addCase(register.fulfilled, (state, action) => {
         state.status = "successful";
-        state.user = action.payload;
-        state.isAdmin = action.payload.isAdmin;
+        state.user = action.payload.user;
+        state.isAdmin = action.payload.user.isAdmin;
         state.isAuth = true;
-        state.token = localStorage.getItem("token");
+        state.token = action.payload.token;
         state.error = null;
       })
       // register.rejected
@@ -182,7 +168,7 @@ const authSlice = createSlice({
         state.isAuth = false;
         state.token = null;
         localStorage.removeItem("token");
-        state.error = action.payload;
+        state.error = action.error.message;
       });
   },
 });
