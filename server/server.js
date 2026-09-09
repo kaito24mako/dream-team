@@ -4,6 +4,7 @@ const config = require("./config/config");
 const db = require("./models");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // initialise express app variable
 const app = express();
@@ -86,6 +87,7 @@ app.get("/api/users/:id/players", async (req, res) => {
 });
 
 //* create new user
+// usage: REDUNDANT WITH AUTH ROUTE
 app.post("/api/users/add", async (req, res) => {
   console.log("/api/users/add - POST");
 
@@ -356,7 +358,38 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).send({ message: "Invalid login details" });
     }
 
-    res.status(200).send(user);
+    // generate a web token to send to the client, which contains their credentials
+
+    // create the payload
+    const payload = {
+      user: {
+        userId: user.id,
+        name: user.name,
+        email: user.email,
+        teamName: user.teamName,
+        currency: user.currency,
+        wins: user.wins,
+        losses: user.losses,
+        totalCards: user.totalCards,
+        isAdmin: user.isAdmin,
+      },
+    };
+
+    // sign the token and set when it expires
+    jwt.sign(
+      payload,
+      config.auth.jwtSecret,
+      {
+        expiresIn: "7d",
+        algorithm: "HS512",
+      },
+      (err, token) => {
+        if (err) throw err;
+
+        // send token as a response
+        res.json({ token });
+      },
+    );
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error", error: err.message });
@@ -387,7 +420,38 @@ app.post("/api/auth/register", async (req, res) => {
     // save to database
     const newUserRes = await User.create(newUser);
 
-    res.status(200).send(newUserRes);
+    // generate a web token to send to the client, which contains their credentials...
+
+    // create the payload
+    const payload = {
+      user: {
+        userId: newUserRes.id,
+        name: newUserRes.name,
+        email: newUserRes.email,
+        teamName: newUserRes.teamName,
+        currency: newUserRes.currency,
+        wins: newUserRes.wins,
+        losses: newUserRes.losses,
+        totalCards: newUserRes.totalCards,
+        isAdmin: newUserRes.isAdmin,
+      },
+    };
+
+    // sign the token and set when it expires
+    jwt.sign(
+      payload,
+      config.auth.jwtSecret,
+      {
+        expiresIn: "7d",
+        algorithm: "HS512",
+      },
+      (err, token) => {
+        if (err) throw err;
+
+        // send token as a response
+        res.json({ token });
+      },
+    );
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error", error: err.message });
