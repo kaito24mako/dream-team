@@ -2,7 +2,10 @@ import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { useUser } from "../../../utils/context/UserContext.jsx";
 import { useLineup } from "../../../utils/context/LineupContext.jsx";
-// import { currentUserId } from "../../../data/session.js";
+
+// session management
+import { useSelector } from "react-redux";
+import { getUser } from "../../../utils/redux/slices/authSlice.js";
 
 import AppNavbar from "./AppNavbar";
 import Footer from "../Footer";
@@ -13,13 +16,15 @@ function AppLayout() {
   const { getUserAndPlayers } = useUser();
   const { getLineup } = useLineup();
 
-  //? need to get userId as params
-  const userId = 1;
+  const authUser = useSelector(getUser);
+  const userId = authUser?.userId;
 
   useEffect(() => {
+    if (!userId) return;
+
     getUserAndPlayers(userId);
     getLineup(userId);
-  }, []);
+  }, [userId]);
 
   return (
     <div className="flex flex-col min-h-dvh">

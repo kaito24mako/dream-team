@@ -3,6 +3,10 @@ import { useEffect } from "react";
 import { useUser } from "../../../utils/context/UserContext.jsx";
 import { useLineup } from "../../../utils/context/LineupContext.jsx";
 
+// session management
+import { useSelector } from "react-redux";
+import { getUser } from "../../../utils/redux/slices/authSlice.js";
+
 import BattleNavbar from "./BattleNavbar";
 import court from "../../../assets/bg/court.png";
 
@@ -12,13 +16,16 @@ function BattleLayout() {
   const { getUserAndPlayers } = useUser();
   const { getLineup } = useLineup();
 
-  //? need to get userId as params
-  const userId = 1;
+  // get the logged in user's id
+  const authUser = useSelector(getUser);
+  const userId = authUser?.userId;
 
   useEffect(() => {
+    if (!userId) return;
+
     getUserAndPlayers(userId);
     getLineup(userId);
-  }, []);
+  }, [userId]);
 
   return (
     <div className="flex flex-col min-h-dvh">
