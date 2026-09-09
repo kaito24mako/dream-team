@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../../utils/redux/slices/authSlice.js";
+
 import AuthForm from "../../common/form/AuthForm";
 
 function LoginForm() {
@@ -10,9 +13,10 @@ function LoginForm() {
 
   const { email, password, errors } = formData;
 
+  const dispatch = useDispatch();
+
   // on changes to input fields
   function handleChange(e) {
-    console.log("handleChange(), formData:", formData);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
@@ -20,6 +24,11 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
     console.log("handleSubmit(), formData:", formData);
+
+    //? add validation
+
+    // dispatch the login action
+    dispatch(login({ email, password }));
   }
 
   return (

@@ -99,10 +99,12 @@ export const register = createAsyncThunk("auth/register", async (newUser) => {
   }
 });
 
-//** create slice
+//** create slice and reducers
 const authSlice = createSlice({
   name: "auth",
   initialState,
+
+  //* reducers - when "logout" action is called, set the state to this
   reducers: {
     logout: (state) => {
       console.log("logout reducer");

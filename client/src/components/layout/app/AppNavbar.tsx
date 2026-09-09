@@ -1,8 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
 import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 import { IoIosLogOut } from "react-icons/io";
+
+import { Link, NavLink } from "react-router-dom";
 import { useUser } from "../../../utils/context/UserContext.jsx";
+import { logout } from "../../../utils/redux/slices/authSlice.js";
+import { useDispatch } from "react-redux";
 
 import HamburgerIcon from "../../common/icon/ui/HamburgerIcon";
 import CoinIcon from "../../common/icon/ui/CoinIcon";
@@ -10,6 +13,14 @@ import logo from "../../../assets/icon/logo.png";
 
 function AppNavbar() {
   const { user } = useUser();
+
+  //* setup usage of logout action
+  const dispatch = useDispatch();
+
+  function leave() {
+    console.log("Log out clicked");
+    dispatch(logout());
+  }
 
   return (
     <header className="max-lg:collapse bg-base-200 w-full rounded-md text-sm py-2 px-2 md:px-10">
@@ -87,13 +98,12 @@ function AppNavbar() {
               </Link>
             </li>
             <li>
-              <Link to="/" aria-label="Log out">
+              <Link to="/" aria-label="Log out" onClick={leave}>
                 <IoIosLogOut className="w-6 h-6 md:hidden" />
                 <span className="hidden md:inline">Log Out</span>
               </Link>
             </li>
           </ul>
-          {/* <ThemeToggle /> */}
         </div>
       </nav>
 
