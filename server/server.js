@@ -3,6 +3,7 @@ const express = require("express");
 const config = require("./config/config");
 const db = require("./models");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 
 // initialise express app variable
 const app = express();
@@ -237,10 +238,12 @@ app.get("/api/users/:id/lineup", async (req, res) => {
 
 //* add a player to the lineup
 app.put("/api/users/:id/lineup/add", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { playerId } = req.body;
+  console.log("/api/users/:id/lineup/add - POST");
 
+  const { id } = req.params;
+  const { playerId } = req.body;
+
+  try {
     // find the player being added
     const player = await Player.findByPk(playerId);
 
@@ -289,21 +292,21 @@ app.put("/api/users/:id/lineup/add", async (req, res) => {
     await userPlayer.save();
 
     res.status(200).send(userPlayer);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({
-      message: "Failed to add player to lineup",
-    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Failed to add player to lineup" });
   }
 });
 
 //* remove a player from the lineup
 // usage: LineupPosition.tsx
 app.put("/api/users/:id/lineup/remove", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { playerId } = req.body;
+  console.log("/api/users/:id/lineup/remove - POST");
 
+  const { id } = req.params;
+  const { playerId } = req.body;
+
+  try {
     // make sure the user owns the player
     const userPlayer = await UserPlayer.findOne({
       where: {
@@ -323,11 +326,63 @@ app.put("/api/users/:id/lineup/remove", async (req, res) => {
     await userPlayer.save();
 
     res.status(200).send(userPlayer);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({
-      message: "Failed to remove player from lineup",
-    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Failed to remove player from lineup" });
+  }
+});
+
+//** Auth routes
+
+//* login
+app.post("/api/auth/login", async (req, res) => {
+  console.log("/api/auth/login - POST");
+
+  const { email, password } = req.body;
+
+  try {
+    // check if the user exists
+    const user = await User.findOne({ where: { email: email } });
+
+    if (!user) {
+      return res.status(400).send({ message: "Invalid login details" });
+    }
+
+    res.status(200).send(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Server error", error: err.message });
+  }
+});
+
+//* register
+app.post("/api/auth/register", async (req, res) => {
+  console.log("/api/auth/register - POST");
+
+  const { name, teamName, email, password } = req.body;
+
+  try {
+    // check if the user exists
+    const user = await User.findOne({ where: { email: email } });
+
+    if (user) {
+      return res.status(400).send({ message: "User already exists" });
+    }
+
+    // create a new user object
+    const newUser = { name, teamName, email, password };
+
+    // use bcrypt to hash and salt the password
+    const salt = await bcrypt.genSalt(12);
+    newUser.password = await bcrypt.hash(password, salt);
+
+    // save to database
+    const newUserRes = await User.create(newUser);
+
+    res.status(200).send(newUserRes);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Server error", error: err.message });
   }
 });
 
@@ -344,8 +399,8 @@ async function startServer() {
     app.listen(config.port, () => {
       console.log(`Server is running on port ${config.port}`);
     });
-  } catch (error) {
-    console.error("Unable to connect to MySQL:", error);
+  } catch (err) {
+    console.error("Unable to connect to MySQL:", err);
     process.exit(1);
   }
 }

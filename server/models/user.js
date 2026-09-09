@@ -11,11 +11,8 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      // Name cannot be empty
       notEmpty: true,
-      // Name must contain between 3 and 30 characters
       len: [3, 30],
-      // Only allow ASCII characters
       isAscii: true,
     },
   },
