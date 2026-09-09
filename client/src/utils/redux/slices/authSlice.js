@@ -20,70 +20,93 @@ const initialState = {
 //* log in - action
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ email, password }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     console.log("Logging in - authSlice.js");
 
-    // get response from our api route
-    const res = await axios.post(`${baseURL}/login`, {
-      email,
-      password,
-    });
+    try {
+      // get response from our api route
+      const res = await axios.post(`${baseURL}/login`, {
+        email,
+        password,
+      });
 
-    console.log("Response for logging in:", res.data);
+      console.log("Response for logging in:", res.data);
 
-    // set token into local storage
-    localStorage.setItem("token", res.data.token);
+      // set token into local storage
+      localStorage.setItem("token", res.data.token);
 
-    // set token into http request header
-    setAuthToken(res.data.token);
+      // set token into http request header
+      setAuthToken(res.data.token);
 
-    //! get the logged in user from the db - NOT WORKING ATM
-    // const response = await axios.get(`${baseURL}`);
-    // console.log("Logged in user:", response.data);
-    // return response.data;
+      //! get the logged in user from the db - NOT WORKING ATM
+      // const response = await axios.get(`${baseURL}`);
+      // console.log("Logged in user:", response.data);
+      // return response.data;
 
-    return res.data;
+      return res.data;
+    } catch (err) {
+      console.log("Failed to login user:", err.message);
+      return rejectWithValue(
+        err.response?.data?.message || "Loading user failed",
+      );
+    }
   },
 );
 
 //* load user - action
-export const loadUser = createAsyncThunk("auth/loadUser", async () => {
-  console.log("Load user - authSlice.js");
+export const loadUser = createAsyncThunk(
+  "auth/loadUser",
+  async ({ rejectWithValue }) => {
+    console.log("Load user - authSlice.js");
 
-  try {
-    // get response from our api route
-    const res = await axios.get(`${baseURL}`);
-    console.log("Loaded user:", res.data);
+    try {
+      // get response from our api route
+      const res = await axios.get(`${baseURL}`);
+      console.log("Loaded user:", res.data);
 
-    return res.data;
-  } catch (err) {
-    console.log("Failed to load user", err.message);
-    return err.message;
-  }
-});
+      return res.data;
+    } catch (err) {
+      console.log("Failed to load user:", err.message);
+      return rejectWithValue(
+        err.response?.data?.message || "Loading user failed",
+      );
+    }
+  },
+);
 
 //* register user - action
-export const register = createAsyncThunk("auth/register", async (newUser) => {
-  console.log("Register user - authSlice.js");
+export const register = createAsyncThunk(
+  "auth/register",
+  async (newUser, { rejectWithValue }) => {
+    console.log("Register user - authSlice.js");
 
-  // get response from our api route
-  const res = await axios.post(`${baseURL}/register`, newUser);
+    try {
+      // get response from our api route
+      const res = await axios.post(`${baseURL}/register`, newUser);
 
-  console.log("Response for registering user:", res.data);
+      console.log("Response for registering user:", res.data);
 
-  // set token into local storage
-  localStorage.setItem("token", res.data.token);
+      // set token into local storage
+      localStorage.setItem("token", res.data.token);
 
-  // set token into http request header
-  setAuthToken(res.data.token);
+      // set token into http request header
+      setAuthToken(res.data.token);
 
-  //! get the logged in user from the dbs - NOT WORKING ATM
-  // const response = await axios.get(`${baseURL}`);
-  // console.log("Registered user:", response.data);
-  // return response.data;
+      //! get the logged in user from the dbs - NOT WORKING ATM
+      // const response = await axios.get(`${baseURL}`);
+      // console.log("Registered user:", response.data);
+      // return response.data;
 
-  return res.data;
-});
+      return res.data;
+    } catch (err) {
+      console.log("Failed to register user:", err.message);
+      // send error message to frontend - unwrap() in RegisterForm.tsx will throw it
+      return rejectWithValue(
+        err.response?.data?.message || "Registration failed",
+      );
+    }
+  },
+);
 
 //** create slice and reducers
 const authSlice = createSlice({
@@ -91,6 +114,7 @@ const authSlice = createSlice({
   initialState,
 
   //* reducers - when "logout" action is called, set the state to this
+  // action.payload is the payload returned from the register/login routes
   reducers: {
     logout: (state) => {
       console.log("logout reducer");
@@ -125,7 +149,7 @@ const authSlice = createSlice({
         state.isAuth = false;
         state.token = null;
         localStorage.removeItem("token");
-        state.error = action.error.message;
+        state.error = action.payload;
       })
       // loadUser.pending
       .addCase(loadUser.pending, (state) => {
@@ -145,7 +169,7 @@ const authSlice = createSlice({
         state.user = null;
         state.isAdmin = false;
         state.isAuth = false;
-        state.error = action.error.message;
+        state.error = action.payload;
       })
       // register.pending
       .addCase(register.pending, (state) => {
@@ -168,7 +192,7 @@ const authSlice = createSlice({
         state.isAuth = false;
         state.token = null;
         localStorage.removeItem("token");
-        state.error = action.error.message;
+        state.error = action.payload;
       });
   },
 });

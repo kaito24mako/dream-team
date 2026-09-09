@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 import AuthForm from "../../common/form/AuthForm";
 
 type RegisterFormErrors = Partial<
-  Record<"name" | "teamName" | "email" | "password" | "passwordCompare", string>
+  Record<
+    "name" | "teamName" | "email" | "password" | "passwordCompare" | "server",
+    string
+  >
 >;
 
 function RegisterForm() {
@@ -27,11 +30,6 @@ function RegisterForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // on changes to input fields
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
-
   // if we can save the new user or not
   const canSave =
     name !== "" &&
@@ -41,10 +39,15 @@ function RegisterForm() {
     passwordCompare !== "" &&
     registerStatus === "idle";
 
+  // on changes to input fields
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
   // on form submission
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("handleSubmit(), formData:", formData);
+    console.log("register - handleSubmit(), formData:", formData);
 
     // validations
     if (!name) {
@@ -96,13 +99,17 @@ function RegisterForm() {
     try {
       if (canSave) {
         setRegisterStatus("pending");
+
         // call the register action
         await dispatch(register({ name, teamName, email, password })).unwrap();
-        console.log("Successfully registered a user");
+
+        console.log("Successfully registered the user");
+
         navigate("/login");
       }
     } catch (err) {
       console.error(err);
+      setFormData({ ...formData, errors: { server: err } });
     } finally {
       setRegisterStatus("idle");
     }
@@ -191,6 +198,10 @@ function RegisterForm() {
         • 1 number
         <br />• 1 special character
       </p> */}
+
+      {errors.server && (
+        <p className="text-error text-xs mt-1">{errors.server}</p>
+      )}
     </AuthForm>
   );
 }
