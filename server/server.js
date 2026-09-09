@@ -348,6 +348,14 @@ app.post("/api/auth/login", async (req, res) => {
       return res.status(400).send({ message: "Invalid login details" });
     }
 
+    // use bcrypt to check if the entered password matches the password in the db
+    // both passwords are hashed and salted
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).send({ message: "Invalid login details" });
+    }
+
     res.status(200).send(user);
   } catch (err) {
     console.error(err);
