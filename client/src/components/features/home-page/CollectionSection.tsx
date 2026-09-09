@@ -7,6 +7,8 @@ import {
   handleFilterByRarity,
 } from "../../../utils/helpers/getPlayers.js";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../../utils/redux/slices/authSlice.js";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
@@ -17,15 +19,17 @@ import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 
 function CollectionSection({ user, loading, errorMsg }) {
-  const userId = 1;
+  // get the logged in user's id
+  const authUser = useSelector(getUser);
+  const userId = authUser?.userId;
 
-  // add a player to lineup function
+  // add a player to lineup
   const { addToLineup } = useLineup();
 
   // to get only the Players that the user owns
   const players = user.Players || [];
 
-  //* filters
+  // filters
   const [rarityFilter, setRarityFilter] = useState("");
   const [positionFilter, setPositionFilter] = useState("");
   const [ratingSort, setRatingSort] = useState("");

@@ -16,6 +16,7 @@ function AppLayout() {
   const { getUserAndPlayers } = useUser();
   const { getLineup } = useLineup();
 
+  // get the logged in user's id
   const authUser = useSelector(getUser);
   const userId = authUser?.userId;
 

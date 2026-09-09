@@ -1,6 +1,10 @@
 import { useLineup } from "../../../utils/context/LineupContext";
 import Button from "../../common/button/Button";
 
+// session management
+import { useSelector } from "react-redux";
+import { getUser } from "../../../utils/redux/slices/authSlice.js";
+
 function LineupPosition({
   children,
   player,
@@ -12,7 +16,8 @@ function LineupPosition({
 }) {
   const { removeFromLineup } = useLineup();
 
-  const userId = 1;
+  const authUser = useSelector(getUser);
+  const userId = authUser?.userId;
 
   return (
     <div className="flex flex-col gap-4 mx-auto">
