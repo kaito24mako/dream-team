@@ -17,8 +17,6 @@ function StatisticsSection({ user, lineup, loading, errorMsg }) {
   if (loading) return <span>Loading statistics...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
 
-  console.log("user wins:", user.wins);
-
   return (
     <section className="flex gap-5 overflow-x-scroll overflow-y-hidden">
       <div className="flex flex-col sm:flex-row gap-5">

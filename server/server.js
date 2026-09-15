@@ -1,10 +1,11 @@
-// bring in express, config, sequelize, our database, cors, and required modules
+// bring in express, config, sequelize, our database, cors, middleware, and required modules
 const express = require("express");
 const config = require("./config/config");
 const db = require("./models");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const auth = require("./middleware/auth");
 
 // initialise express app variable
 const app = express();
@@ -492,8 +493,27 @@ app.post("/api/auth/register", async (req, res) => {
     console.error(err);
     res.status(500).send({ message: "Server error", error: err.message });
   }
+});
 
-  // loadUser action
+//* gets the logged in user
+// auth is the middlware - runs before hitting the route
+// uses the loadUser action
+// ensures after login and refresh, the user stays logged in due to their valid token header
+app.get("/api/auth", auth, async (req, res) => {
+  // set up options for sending back the user without their password
+  const options = {
+    attributes: { exclude: ["password"] },
+  };
+
+  try {
+    // get the user
+    const user = await User.findByPk(req.user.userId, options);
+    console.log("user:", user);
+    res.status(200).json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
 });
 
 async function startServer() {
