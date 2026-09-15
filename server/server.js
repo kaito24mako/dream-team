@@ -115,7 +115,7 @@ app.post("/api/users/add", async (req, res) => {
     const salt = await bcrypt.genSalt(12);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // to create a user in postman
+    // to create a user
     const user = await User.create({
       name,
       email,
@@ -492,6 +492,8 @@ app.post("/api/auth/register", async (req, res) => {
     console.error(err);
     res.status(500).send({ message: "Server error", error: err.message });
   }
+
+  // loadUser action
 });
 
 async function startServer() {
