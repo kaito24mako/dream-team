@@ -117,7 +117,7 @@ const authSlice = createSlice({
   // action.payload is the payload returned from the register/login routes
   reducers: {
     logout: (state) => {
-      console.log("logout reducer");
+      console.log("Logout reducer activated");
       localStorage.removeItem("token");
       state.user = null;
       state.token = null;
