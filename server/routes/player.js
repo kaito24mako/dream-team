@@ -11,7 +11,11 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   console.log("/api/players - GET");
 
-  const players = await Player.findAll();
+  const options = {
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+  };
+
+  const players = await Player.findAll(options);
 
   // order players by position
   const positionOrder = ["PG", "SG", "SF", "PF", "C"];

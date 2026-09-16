@@ -1,5 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const config = require("../config/config");
 
 const User = sequelize.define("User", {
   id: {
@@ -59,5 +62,33 @@ const User = sequelize.define("User", {
     defaultValue: false,
   },
 });
+
+//* add function to User model that signs the token
+User.prototype.signToken = function (payload) {
+  console.log("Signing token...");
+  console.log("Payload:", payload);
+
+  // sign the token with the payload and our secret
+  const token = jwt.sign(payload, config.auth.jwtSecret, {
+    expiresIn: "7d",
+    algorithm: "HS512",
+  });
+
+  return token;
+};
+
+//* add function to User model that hashes the password
+User.prototype.hashPassword = async function (password) {
+  console.log("Hashing password...");
+  console.log("Password:", password);
+
+  // generate salt with bcrypt
+  const salt = await bcrypt.genSalt(12);
+
+  // hash password with bcrypt
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  return hashedPassword;
+};
 
 module.exports = User;

@@ -49,21 +49,26 @@ router.post("/login", async (req, res) => {
       },
     };
 
-    // sign the token and set when it expires
-    jwt.sign(
-      payload,
-      config.auth.jwtSecret,
-      {
-        expiresIn: "7d",
-        algorithm: "HS512",
-      },
-      (err, token) => {
-        if (err) throw err;
+    // sign the token
+    const token = User.prototype.signToken(payload);
+    console.log("Token:", token);
+    res.status(200).json({ user: payload.user, token });
 
-        // send token as a response
-        res.json({ user: payload.user, token });
-      },
-    );
+    // sign the token and set when it expires
+    // jwt.sign(
+    //   payload,
+    //   config.auth.jwtSecret,
+    //   {
+    //     expiresIn: "7d",
+    //     algorithm: "HS512",
+    //   },
+    //   (err, token) => {
+    //     if (err) throw err;
+
+    //     // send token as a response
+    //     res.json({ user: payload.user, token });
+    //   },
+    // );
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error", error: err.message });
@@ -87,9 +92,9 @@ router.post("/register", async (req, res) => {
     // create a new user object
     const newUser = { name, teamName, email, password };
 
-    // use bcrypt to hash and salt the password
-    const salt = await bcrypt.genSalt(12);
-    newUser.password = await bcrypt.hash(password, salt);
+    // hash and salt password
+    const hashedPassword = await User.prototype.hashPassword(password);
+    newUser.password = hashedPassword;
 
     // save to database
     const newUserRes = await User.create(newUser);
@@ -111,21 +116,26 @@ router.post("/register", async (req, res) => {
       },
     };
 
-    // sign the token and set when it expires
-    jwt.sign(
-      payload,
-      config.auth.jwtSecret,
-      {
-        expiresIn: "7d",
-        algorithm: "HS512",
-      },
-      (err, token) => {
-        if (err) throw err;
+    // sign the token
+    const token = User.prototype.signToken(payload);
+    console.log("Token:", token);
+    res.status(200).json({ user: payload.user, token });
 
-        // send token as a response
-        res.json({ user: payload.user, token });
-      },
-    );
+    // sign the token and set when it expires
+    // jwt.sign(
+    //   payload,
+    //   config.auth.jwtSecret,
+    //   {
+    //     expiresIn: "7d",
+    //     algorithm: "HS512",
+    //   },
+    //   (err, token) => {
+    //     if (err) throw err;
+
+    //     // send token as a response
+    //     res.json({ user: payload.user, token });
+    //   },
+    // );
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error", error: err.message });

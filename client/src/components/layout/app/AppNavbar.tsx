@@ -14,13 +14,41 @@ import logo from "../../../assets/icon/logo.png";
 function AppNavbar() {
   const { user } = useUser();
 
-  //* setup usage of logout action
+  // setup usage of logout action
   const dispatch = useDispatch();
 
   function leave() {
     console.log("Log out clicked");
     dispatch(logout());
   }
+
+  //* for showing certain links based on if user is logged in or an admin
+  //* dont need for this app!
+  // setup selectors
+  // const isAdmin = useSelector(getIsAdmin);
+  // const isAuth = useSelector(getIsAuth);
+
+  // const authLinks = (
+  //   <Fragment key={"2"}>
+  //     <li>
+  //       <Link to="/" aria-label="Log out" onClick={leave}>
+  //         <IoIosLogOut className="w-6 h-6 md:hidden" />
+  //         <span className="hidden md:inline">Log Out</span>
+  //       </Link>
+  //     </li>
+  //   </Fragment>
+  // );
+
+  // const loginRegisterLinks = (
+  //   <Fragment key={"3"}>
+  //     <li>
+  //       <Link to="/" aria-label="Log out" onClick={leave}>
+  //         <IoIosLogOut className="w-6 h-6 md:hidden" />
+  //         <span className="hidden md:inline">Log Out</span>
+  //       </Link>
+  //     </li>
+  //   </Fragment>
+  // );
 
   return (
     <header className="max-lg:collapse bg-base-200 w-full rounded-md text-sm py-2 px-2 md:px-10">

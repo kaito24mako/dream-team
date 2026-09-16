@@ -8,7 +8,7 @@ const baseURL = "http://localhost:3001/api/auth";
 //** create initial state for auth
 const initialState = {
   user: {},
-  token: "",
+  token: localStorage.getItem("token"),
   isAdmin: false,
   isAuth: false,
   status: "idle",
@@ -38,11 +38,6 @@ export const login = createAsyncThunk(
       // set token into http request header
       setAuthToken(res.data.token);
 
-      //! get the logged in user from the db - NOT WORKING ATM
-      // const response = await axios.get(`${baseURL}`);
-      // console.log("Logged in user:", response.data);
-      // return response.data;
-
       return res.data;
     } catch (err) {
       console.log("Failed to login user:", err.message);
@@ -56,7 +51,7 @@ export const login = createAsyncThunk(
 //* load user - action
 export const loadUser = createAsyncThunk(
   "auth/loadUser",
-  async ({ rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     console.log("Load user - authSlice.js");
 
     try {
@@ -64,7 +59,7 @@ export const loadUser = createAsyncThunk(
       const res = await axios.get(`${baseURL}`);
       console.log("Loaded user:", res.data);
 
-      return res.data;
+      return { ...res.data, userId: res.data.id };
     } catch (err) {
       console.log("Failed to load user:", err.message);
       return rejectWithValue(
@@ -161,6 +156,7 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isAdmin = action.payload.isAdmin;
         state.isAuth = true;
+        state.token = localStorage.getItem("token");
         state.error = null;
       })
       // loadUser.rejected

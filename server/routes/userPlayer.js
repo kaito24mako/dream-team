@@ -6,7 +6,36 @@ const router = express.Router();
 
 //** UserPlayer routes
 
-//* get all players of a user
+//==== user and player data ====//
+
+//* get a user with all their players (full details)
+// usage: AppLayout.jsx, BattleLayout.jsx
+router.get("/:id/user-and-players", async (req, res) => {
+  const { id } = req.params;
+
+  // includes the entire Player object and the quantity from userPlayer
+  const user = await User.findByPk(id, {
+    include: {
+      model: Player,
+      through: {
+        attributes: ["quantity", "inLineup"],
+      },
+    },
+    //! FIX
+    exclude: ["password", "updatedAt", "createdAt"],
+  });
+
+  // order Players by position
+  const positionOrder = ["PG", "SG", "SF", "PF", "C"];
+  const orderedPlayers = user.Players.sort(
+    (a, b) =>
+      positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position),
+  );
+
+  res.status(200).send(user);
+});
+
+//* get all userPlayers of a user
 // usage: TESTING
 router.get("/:id/userPlayers", async (req, res) => {
   console.log("/api/users/:id/userPlayers - GET");
@@ -20,6 +49,25 @@ router.get("/:id/userPlayers", async (req, res) => {
   });
 
   res.status(200).send(userPlayers);
+});
+
+//* get all players of a user
+// usage: NONE - REDUNDANT
+router.get("/:id/players", async (req, res) => {
+  const { id } = req.params;
+
+  // includes the entire Player object
+  // and the quantity & lineup from UserPlayer
+  const user = await User.findByPk(id, {
+    include: {
+      model: Player,
+      through: {
+        attributes: ["quantity", "inLineup"],
+      },
+    },
+  });
+
+  res.status(200).send(user.Players);
 });
 
 //* create a player for a user
@@ -38,6 +86,8 @@ router.post("/:id/players/add", async (req, res) => {
 
   res.status(200).send(userPlayer);
 });
+
+//====== lineup data =======/
 
 //* get the lineup
 // usage: AppLayout.jsx

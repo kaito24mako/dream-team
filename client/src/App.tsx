@@ -14,6 +14,7 @@ import AppLayout from "./components/layout/app/AppLayout";
 import HomePage from "./pages/app/HomePage";
 import LeaguePage from "./pages/app/LeaguePage";
 import PacksPage from "./pages/app/PacksPage";
+import OpenPackPage from "./pages/app/OpenPackPage";
 import HowToPlayPage from "./pages/app/HowToPlayPage";
 
 import BattleLayout from "./components/layout/battle/BattleLayout";
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/league" element={<LeaguePage />} />
                 <Route path="/packs" element={<PacksPage />} />
+                <Route path="/packs/open" element={<OpenPackPage />} />
                 <Route path="/how-to-play" element={<HowToPlayPage />} />
               </Route>
 
