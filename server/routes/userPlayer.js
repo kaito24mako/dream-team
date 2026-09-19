@@ -4,7 +4,7 @@ const db = require("../models");
 const { User, Player, UserPlayer } = db;
 const router = express.Router();
 
-//** UserPlayer routes
+const { PACKS, getRandomPlayer } = require("../utils/helpers/getRandomPlayer");
 
 //==== user and player data ====//
 
@@ -175,7 +175,7 @@ router.put("/:id/lineup/add", async (req, res) => {
       );
     }
 
-    // add the new player
+    // add player to the lineup
     userPlayer.inLineup = true;
 
     await userPlayer.save();
@@ -210,6 +210,7 @@ router.put("/:id/lineup/remove", async (req, res) => {
       });
     }
 
+    // remove player from lineup
     userPlayer.inLineup = false;
 
     await userPlayer.save();
@@ -218,6 +219,73 @@ router.put("/:id/lineup/remove", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Failed to remove player from lineup" });
+  }
+});
+
+//===== pack opening =======/
+
+router.post("/:id/packs/:packType/open", async (req, res) => {
+  try {
+    const { id, packType } = req.params;
+
+    const pack = PACKS[packType];
+
+    if (!pack) {
+      return res.status(400).json({
+        message: "Invalid pack type",
+      });
+    }
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    // check coins
+    if (user.currency < pack.price) {
+      return res.status(400).json({
+        message: "Not enough coins",
+      });
+    }
+
+    // generate random player
+    const selectedPlayer = await getRandomPlayer(packType);
+
+    // check if user already owns player
+    const [userPlayer, created] = await UserPlayer.findOrCreate({
+      where: {
+        userId: id,
+        playerId: selectedPlayer.id,
+      },
+      defaults: {
+        quantity: 1,
+      },
+    });
+
+    // for duplicate cards
+    if (!created) {
+      userPlayer.quantity += 1;
+      await userPlayer.save();
+    }
+
+    // subtract pack price
+    user.currency -= pack.price;
+    await user.save();
+
+    res.status(200).json({
+      message: "Pack opened!",
+      player: selectedPlayer,
+      quantity: userPlayer.quantity,
+      currency: user.currency,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Failed to open pack",
+    });
   }
 });
 
