@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 import SectionHeading from "../../common/text/SectionHeading";
@@ -8,8 +9,16 @@ import basicPack from "../../../assets/card/pack/basic-pack.png";
 import premiumPack from "../../../assets/card/pack/premium-pack2.png";
 import hofPack from "../../../assets/card/pack/hof-pack.png";
 import positionPack from "../../../assets/card/pack/position-pack.png";
+import PackModal from "./PackModal";
+
+type SelectedPack = {
+  title: string;
+  price: number;
+};
 
 function BuyPacksSection() {
+  const [selectedPack, setSelectedPack] = useState<SelectedPack | null>(null);
+
   return (
     <section className="mb-8">
       <SectionHeading
@@ -30,6 +39,7 @@ function BuyPacksSection() {
             "2% for legendary",
           ]}
           price={300}
+          onBuy={() => setSelectedPack({ title: "Basic Pack", price: 300 })}
         />
         <Pack
           packBg={premiumPack}
@@ -42,6 +52,7 @@ function BuyPacksSection() {
             "10% for legendary",
           ]}
           price={500}
+          onBuy={() => setSelectedPack({ title: "Premium Pack", price: 500 })}
         />
         <Pack
           packBg={hofPack}
@@ -54,6 +65,7 @@ function BuyPacksSection() {
             "25% for legendary",
           ]}
           price={1000}
+          onBuy={() => setSelectedPack({ title: "HOF Pack", price: 1000 })}
         />
         <Pack
           packBg={positionPack}
@@ -66,8 +78,16 @@ function BuyPacksSection() {
             "15% for legendary",
           ]}
           price={800}
+          onBuy={() => setSelectedPack({ title: "Position Pack", price: 800 })}
         />
       </CardList>
+
+      {selectedPack && (
+        <PackModal
+          selectedPack={selectedPack}
+          setSelectedPack={setSelectedPack}
+        />
+      )}
     </section>
   );
 }

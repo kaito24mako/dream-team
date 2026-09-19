@@ -3,7 +3,11 @@ function OpenPackPage() {
     <>
       <title>Open pack | Dream Team</title>
 
-      <main>hi</main>
+      <main className="flex flex-col gap-4 mb-15">
+        <div>
+          <span>Opening pack...</span>
+        </div>
+      </main>
     </>
   );
 }

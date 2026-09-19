@@ -3,7 +3,7 @@ import { RiUserAddLine } from "react-icons/ri";
 function EmptyCard({ playerPosition }: { playerPosition: string }) {
   return (
     <div>
-      <div className="w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden">
+      <div className="w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-secondary border border-border-base rounded-lg shadow-sm">
         {/* top half */}
         <div className="relative flex h-38 lg:h-58 items-center justify-center bg-base-300">
           <RiUserAddLine className="text-6xl lg:text-8xl text-base-content/30" />
