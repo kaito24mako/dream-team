@@ -1,7 +1,11 @@
 import Button from "../../common/button/Button";
 import MysteryCard from "../../common/playerCard/MysteryCard";
 
-function PackModal({ selectedPack, setSelectedPack }) {
+import { usePack } from "../../../utils/context/PackContext.jsx";
+
+function PackModal({ user, selectedPack, setSelectedPack }) {
+  const { openPack } = usePack();
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
@@ -31,7 +35,7 @@ function PackModal({ selectedPack, setSelectedPack }) {
             size="small"
             textColor="black"
             className="bg-primary p-4"
-            onClick={() => setSelectedPack(null)}
+            onClick={() => openPack(user.id, selectedPack.type)}
           >
             Confirm
           </Button>

@@ -133,8 +133,10 @@ router.put("/:id/edit", async (req, res) => {
       const options = {
         attributes: { exclude: ["password", "createdAt", "updatedAt"] },
       };
+
       // get the user
       const user = await User.findByPk(id, options);
+
       res.status(200).send(user);
     }
   } catch (err) {
@@ -160,6 +162,24 @@ router.delete("/:id", async (req, res) => {
     console.error(err);
     res.status(500).send({ message: "Failed to delete user" });
   }
+});
+
+//* edit the currency
+// usage: testing only!
+router.put("/:id/edit/currency", async (req, res) => {
+  const { id } = req.params;
+  const { currency } = req.body;
+
+  const user = await User.findByPk(id);
+
+  if (!user) {
+    return res.status(404).send({ message: "User not found" });
+  }
+
+  user.currency = currency;
+  await user.save();
+
+  res.status(200).send(user);
 });
 
 module.exports = router;

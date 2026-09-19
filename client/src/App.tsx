@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserContextProvider } from "./utils/context/UserContextComponent";
 import { PlayerContextProvider } from "./utils/context/PlayerContextComponent";
 import { LineupContextProvider } from "./utils/context/LineupContextComponent";
+import { PackContextProvider } from "./utils/context/PackContextComponent.jsx";
 
 import LandingLayout from "./components/layout/landing/LandingLayout";
 import LandingPage from "./pages/landing/LandingPage";
@@ -24,35 +25,37 @@ function App() {
   return (
     <UserContextProvider>
       <LineupContextProvider>
-        <PlayerContextProvider>
-          <Router>
-            <Routes>
-              <Route element={<LandingLayout />}>
-                <Route path="/" element={<LandingPage />} />
-              </Route>
+        <PackContextProvider>
+          <PlayerContextProvider>
+            <Router>
+              <Routes>
+                <Route element={<LandingLayout />}>
+                  <Route path="/" element={<LandingPage />} />
+                </Route>
 
-              <Route element={<AuthLayout />}>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-              </Route>
+                <Route element={<AuthLayout />}>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                </Route>
 
-              <Route element={<AppLayout />}>
-                <Route path="/home" element={<HomePage />} />
-                <Route path="/league" element={<LeaguePage />} />
-                <Route path="/packs" element={<PacksPage />} />
-                <Route path="/packs/open" element={<OpenPackPage />} />
-                <Route path="/how-to-play" element={<HowToPlayPage />} />
-              </Route>
+                <Route element={<AppLayout />}>
+                  <Route path="/home" element={<HomePage />} />
+                  <Route path="/league" element={<LeaguePage />} />
+                  <Route path="/packs" element={<PacksPage />} />
+                  <Route path="/packs/open" element={<OpenPackPage />} />
+                  <Route path="/how-to-play" element={<HowToPlayPage />} />
+                </Route>
 
-              <Route element={<BattleLayout />}>
-                <Route
-                  path="/league/match/:levelSlug"
-                  element={<BattlePage />}
-                />
-              </Route>
-            </Routes>
-          </Router>
-        </PlayerContextProvider>
+                <Route element={<BattleLayout />}>
+                  <Route
+                    path="/league/match/:levelSlug"
+                    element={<BattlePage />}
+                  />
+                </Route>
+              </Routes>
+            </Router>
+          </PlayerContextProvider>
+        </PackContextProvider>
       </LineupContextProvider>
     </UserContextProvider>
   );

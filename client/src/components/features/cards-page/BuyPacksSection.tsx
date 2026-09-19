@@ -14,9 +14,10 @@ import PackModal from "./PackModal";
 type SelectedPack = {
   title: string;
   price: number;
+  type: string;
 };
 
-function BuyPacksSection() {
+function BuyPacksSection({ user }) {
   const [selectedPack, setSelectedPack] = useState<SelectedPack | null>(null);
 
   return (
@@ -39,7 +40,9 @@ function BuyPacksSection() {
             "2% for legendary",
           ]}
           price={300}
-          onBuy={() => setSelectedPack({ title: "Basic Pack", price: 300 })}
+          onBuy={() =>
+            setSelectedPack({ title: "Basic Pack", price: 300, type: "basic" })
+          }
         />
         <Pack
           packBg={premiumPack}
@@ -52,7 +55,13 @@ function BuyPacksSection() {
             "10% for legendary",
           ]}
           price={500}
-          onBuy={() => setSelectedPack({ title: "Premium Pack", price: 500 })}
+          onBuy={() =>
+            setSelectedPack({
+              title: "Premium Pack",
+              price: 500,
+              type: "premium",
+            })
+          }
         />
         <Pack
           packBg={hofPack}
@@ -65,7 +74,13 @@ function BuyPacksSection() {
             "25% for legendary",
           ]}
           price={1000}
-          onBuy={() => setSelectedPack({ title: "HOF Pack", price: 1000 })}
+          onBuy={() =>
+            setSelectedPack({
+              title: "HOF Pack",
+              price: 1000,
+              type: "hallOfFame",
+            })
+          }
         />
         <Pack
           packBg={positionPack}
@@ -78,12 +93,19 @@ function BuyPacksSection() {
             "15% for legendary",
           ]}
           price={800}
-          onBuy={() => setSelectedPack({ title: "Position Pack", price: 800 })}
+          onBuy={() =>
+            setSelectedPack({
+              title: "Position Pack",
+              price: 800,
+              type: "position",
+            })
+          }
         />
       </CardList>
 
       {selectedPack && (
         <PackModal
+          user={user}
           selectedPack={selectedPack}
           setSelectedPack={setSelectedPack}
         />
