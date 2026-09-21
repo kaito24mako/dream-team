@@ -247,7 +247,7 @@ router.post("/:id/packs/:packType/open", async (req, res) => {
     // check coins
     if (user.currency < pack.price) {
       return res.status(400).json({
-        message: "Not enough coins",
+        message: "Not enough coins!",
       });
     }
 

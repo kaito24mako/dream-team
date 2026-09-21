@@ -7,7 +7,7 @@ import RegularCard from "../../common/playerCard/RegularCard.js";
 import FullArtCard from "../../common/playerCard/FullArtCard.js";
 
 function PackModal({ user, selectedPack, setSelectedPack }) {
-  const { openPack, pulledPlayer, loading } = usePack();
+  const { openPack, pulledPlayer, loading, errorMsg } = usePack();
 
   const [isBought, setIsBought] = useState(false);
 
@@ -31,9 +31,7 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
             coins?
           </p>
         ) : (
-          <p className="mb-4">
-            Congratulations! This player will now be in your collection.
-          </p>
+          <p className="mb-4">You obtained {pulledPlayer.fullName}!</p>
         )}
 
         {/* buttons */}
@@ -51,9 +49,11 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
                 size="small"
                 textColor="black"
                 className="bg-primary p-4"
-                onClick={() => {
-                  openPack(user.id, selectedPack.type);
-                  setIsBought(true);
+                onClick={async () => {
+                  const player = await openPack(user.id, selectedPack.type);
+                  if (player) {
+                    setIsBought(true);
+                  }
                 }}
               >
                 Confirm
@@ -76,11 +76,13 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
         {/* card */}
         {loading ? (
           <span>Opening pack...</span>
+        ) : errorMsg ? (
+          <span className="text-error">{errorMsg}</span>
         ) : (
           <div className="flex justify-center">
             {!isBought ? (
               <MysteryCard />
-            ) : isBought && pulledPlayer.rarity === "legendary" ? (
+            ) : isBought && pulledPlayer.rarity === "Legendary" ? (
               <FullArtCard
                 playerImage={pulledPlayer.image}
                 playerRarity={pulledPlayer.rarity}

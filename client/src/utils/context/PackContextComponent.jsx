@@ -4,7 +4,7 @@ import { PackContext } from "./PackContext";
 import axios from "axios";
 
 export function PackContextProvider({ children }) {
-  const [pulledPlayer, setPulledPlayer] = useState([]);
+  const [pulledPlayer, setPulledPlayer] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
@@ -22,8 +22,12 @@ export function PackContextProvider({ children }) {
       console.log("Player pulled:", res.data.player, "Pack type:", packType);
 
       setPulledPlayer(res.data.player);
+
+      return res.data.player;
     } catch (err) {
       console.error("Failed to open pack:", err);
+      setErrorMsg(err.response?.data?.message || "Failed to open pack");
+      return null;
     } finally {
       setLoading(false);
     }

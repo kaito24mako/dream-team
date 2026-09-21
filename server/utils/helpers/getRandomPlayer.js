@@ -3,32 +3,32 @@ const { Player } = db;
 
 const PACKS = {
   basic: {
-    price: 100,
+    price: 300,
     odds: {
-      Common: 70,
-      Rare: 25,
-      Superstar: 4,
-      Legendary: 1,
+      Common: 60,
+      Rare: 30,
+      Superstar: 8,
+      Legendary: 2,
     },
   },
 
   premium: {
-    price: 250,
+    price: 500,
     odds: {
       Common: 30,
-      Rare: 50,
-      Superstar: 17,
-      Legendary: 3,
+      Rare: 40,
+      Superstar: 20,
+      Legendary: 10,
     },
   },
 
   hallOfFame: {
-    price: 500,
+    price: 1000,
     odds: {
       Common: 0,
-      Rare: 20,
-      Superstar: 60,
-      Legendary: 20,
+      Rare: 40,
+      Superstar: 35,
+      Legendary: 25,
     },
   },
 };
