@@ -7,6 +7,7 @@ import EmptyCard from "../../common/playerCard/EmptyCard";
 import RegularCard from "../../common/playerCard/RegularCard";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 import grid from "../../../assets/bg/grid-black.png";
+import Divider from "../../common/divider/Divider";
 
 function LineupSection({ lineup, loading, errorMsg }) {
   const positions = ["PG", "SG", "SF", "PF", "C"];
@@ -38,10 +39,7 @@ function LineupSection({ lineup, loading, errorMsg }) {
     content = <span className="text-error">{errorMsg}</span>;
   } else {
     content = (
-      <div
-        className="bg-cover bg-full border border-border p-5 sm:p-7"
-        style={{ backgroundImage: `url(${grid})` }}
-      >
+      <div className="mb-5">
         <CardList>
           {positions.map((position) => {
             const player = lineup.find((p) => p.position === position);
@@ -64,6 +62,9 @@ function LineupSection({ lineup, loading, errorMsg }) {
   return (
     <section className="mt-6">
       <SectionHeading heading="STARTING LINEUP" Icon={RiTeamLine} />
+
+      <Divider color="default" />
+
       {content}
     </section>
   );

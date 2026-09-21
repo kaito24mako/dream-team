@@ -20,6 +20,7 @@ function AppLayout() {
   const authUser = useSelector(getUser);
   const userId = authUser?.userId;
 
+  // update the user and lineup states on initial load
   useEffect(() => {
     if (!userId) return;
 

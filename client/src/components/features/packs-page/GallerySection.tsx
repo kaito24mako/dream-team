@@ -9,6 +9,7 @@ import {
 
 import SectionHeading from "../../common/text/SectionHeading";
 import FullArtCard from "../../common/playerCard/FullArtCard";
+import RegularCard from "../../common/playerCard/RegularCard";
 import CardList from "../../common/list/CardList";
 import SearchForm from "../../common/form/SearchForm";
 import DropdownBtn from "../../common/button/DropdownBtn";
@@ -71,17 +72,29 @@ function GallerySection({ players, loading, errorMsg }) {
       {errorMsg && <span className="text-error">{errorMsg}</span>}
 
       <CardList>
-        {filteredPlayers.map((player) => (
-          <FullArtCard
-            key={player.id}
-            playerImage={player.image}
-            playerRarity={player.rarity}
-            playerPosition={player.position}
-            playerName={player.fullName}
-            offenseCount={player.offensiveRating}
-            defenseCount={player.defensiveRating}
-          />
-        ))}
+        {filteredPlayers.map((player) =>
+          player.rarity === "Legendary" ? (
+            <FullArtCard
+              key={player.id}
+              playerImage={player.image}
+              playerRarity={player.rarity}
+              playerPosition={player.position}
+              playerName={player.fullName}
+              offenseCount={player.offensiveRating}
+              defenseCount={player.defensiveRating}
+            />
+          ) : (
+            <RegularCard
+              key={player.id}
+              playerImage={player.image}
+              playerRarity={player.rarity}
+              playerPosition={player.position}
+              playerName={player.fullName}
+              offenseCount={player.offensiveRating}
+              defenseCount={player.defensiveRating}
+            />
+          ),
+        )}
       </CardList>
     </section>
   );

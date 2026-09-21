@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { usePack } from "../../../utils/context/PackContext.jsx";
+import { useUser } from "../../../utils/context/UserContext.jsx";
 
 import Button from "../../common/button/Button.js";
 import MysteryCard from "../../common/playerCard/MysteryCard.js";
@@ -8,6 +9,7 @@ import FullArtCard from "../../common/playerCard/FullArtCard.js";
 
 function PackModal({ user, selectedPack, setSelectedPack }) {
   const { openPack, pulledPlayer, loading, errorMsg } = usePack();
+  const { getUserAndPlayers } = useUser();
 
   const [isBought, setIsBought] = useState(false);
 
@@ -54,6 +56,7 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
                   if (player) {
                     setIsBought(true);
                   }
+                  getUserAndPlayers(user.id);
                 }}
               >
                 Confirm
