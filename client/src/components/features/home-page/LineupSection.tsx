@@ -6,7 +6,6 @@ import LineupPosition from "./LineupPosition";
 import EmptyCard from "../../common/playerCard/EmptyCard";
 import RegularCard from "../../common/playerCard/RegularCard";
 import FullArtCard from "../../common/playerCard/FullArtCard";
-import grid from "../../../assets/bg/grid-black.png";
 import Divider from "../../common/divider/Divider";
 
 function LineupSection({ lineup, loading, errorMsg }) {
