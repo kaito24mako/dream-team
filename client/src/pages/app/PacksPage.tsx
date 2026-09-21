@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { usePlayers } from "../../utils/context/PlayerContext.jsx";
 import { useUser } from "../../utils/context/UserContext.jsx";
 
-import BuyPacksSection from "../../components/features/cards-page/BuyPacksSection";
-import GallerySection from "../../components/features/cards-page/GallerySection.js";
+import BuyPacksSection from "../../components/features/packs-page/BuyPacksSection";
+import GallerySection from "../../components/features/packs-page/GallerySection.js";
 
 function PacksPage() {
   const { players, getAllPlayers, loading, errorMsg } = usePlayers();

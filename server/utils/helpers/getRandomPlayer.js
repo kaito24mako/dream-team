@@ -1,5 +1,4 @@
 const db = require("../../models");
-
 const { Player } = db;
 
 const PACKS = {
@@ -80,9 +79,3 @@ module.exports = {
   PACKS,
   getRandomPlayer,
 };
-
-// async function randomPlayer() {
-//   const player = await getRandomPlayer("basic");
-//   console.log(player);
-// }
-// randomPlayer();
