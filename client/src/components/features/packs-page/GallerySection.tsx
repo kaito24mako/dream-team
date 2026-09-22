@@ -16,7 +16,7 @@ import DropdownBtn from "../../common/button/DropdownBtn";
 import Divider from "../../common/divider/Divider";
 
 function GallerySection({ players, loading, errorMsg }) {
-  //* filters
+  // filters
   const [rarityFilter, setRarityFilter] = useState("");
   const [positionFilter, setPositionFilter] = useState("");
   const [ratingSort, setRatingSort] = useState("");
@@ -39,12 +39,12 @@ function GallerySection({ players, loading, errorMsg }) {
           <div className="flex">
             <DropdownBtn
               buttonText="Rating"
-              dropdownItems={["Highest", "Lowest"]}
+              dropdownItems={["All", "Highest", "Lowest"]}
               onClick={(rating) => handleSortByRating(rating, setRatingSort)}
             />
             <DropdownBtn
               buttonText="Position"
-              dropdownItems={["PG", "SG", "SF", "PF", "C"]}
+              dropdownItems={["All", "PG", "SG", "SF", "PF", "C"]}
               onClick={(position) =>
                 handleFilterByPosition(position, setPositionFilter)
               }

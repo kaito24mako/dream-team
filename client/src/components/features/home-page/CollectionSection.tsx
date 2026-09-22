@@ -23,10 +23,10 @@ function CollectionSection({ user, loading, errorMsg }) {
   const authUser = useSelector(getUser);
   const userId = authUser?.userId;
 
-  // add a player to lineup
+  // function for adding a player to lineup
   const { addToLineup } = useLineup();
 
-  // to get only the Players that the user owns
+  // to get only the players that the user owns
   const players = user.Players || [];
 
   // filters
