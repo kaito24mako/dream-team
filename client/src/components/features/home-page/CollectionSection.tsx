@@ -17,6 +17,7 @@ import RegularCard from "../../common/playerCard/RegularCard";
 import Divider from "../../common/divider/Divider";
 import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
+import PlayerModal from "../../common/modal/PlayerModal.js";
 
 function CollectionSection({ user, loading, errorMsg }) {
   // get the logged in user's id
@@ -33,6 +34,8 @@ function CollectionSection({ user, loading, errorMsg }) {
   const [rarityFilter, setRarityFilter] = useState("");
   const [positionFilter, setPositionFilter] = useState("");
   const [ratingSort, setRatingSort] = useState("");
+
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   // get list of players who have been filtered/sorted
   const filteredPlayers = filterPlayers(
@@ -95,7 +98,7 @@ function CollectionSection({ user, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
-              onClick={() => addToLineup(userId, player.id)}
+              onClick={() => setSelectedPlayer(player)}
             />
           ) : (
             <RegularCard
@@ -106,11 +109,20 @@ function CollectionSection({ user, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
-              onClick={() => addToLineup(userId, player.id)}
+              onClick={() => setSelectedPlayer(player)}
             />
           ),
         )}
       </CardList>
+
+      {selectedPlayer && (
+        <PlayerModal
+          userId={userId}
+          addToLineup={addToLineup}
+          selectedPlayer={selectedPlayer}
+          setSelectedPlayer={setSelectedPlayer}
+        />
+      )}
     </section>
   );
 }

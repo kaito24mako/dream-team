@@ -9,7 +9,7 @@ import basicPack from "../../../assets/card/pack/basic-pack.png";
 import premiumPack from "../../../assets/card/pack/premium-pack2.png";
 import hofPack from "../../../assets/card/pack/hof-pack.png";
 import positionPack from "../../../assets/card/pack/position-pack.png";
-import PackModal from "./PackModal";
+import PackModal from "../../common/modal/PackModal";
 
 type SelectedPack = {
   title: string;

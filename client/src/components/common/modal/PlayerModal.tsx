@@ -1,0 +1,47 @@
+import Button from "../button/Button";
+
+function PlayerModal({
+  userId,
+  addToLineup,
+  selectedPlayer,
+  setSelectedPlayer,
+}) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+      onClick={() => setSelectedPlayer(null)}
+    >
+      <div
+        className="w-full max-w-sm rounded-lg bg-base-100 p-8 md:p-9 shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex flex-col gap-5 items-center text-center">
+          <div className="flex gap-2">
+            <span>{selectedPlayer.position}</span>
+            <span className="font-semibold">{selectedPlayer.fullName}</span>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            {" "}
+            <span>Offensive: {selectedPlayer.offensiveRating}</span>
+            <span>Defensive: {selectedPlayer.defensiveRating}</span>
+            <span>Quantity owned: {selectedPlayer.UserPlayer.quantity}</span>
+          </div>
+
+          <Button
+            bgColor="primary"
+            textColor="black"
+            size="small"
+            onClick={(e) => {
+              e.stopPropagation();
+              addToLineup(userId, selectedPlayer.id);
+            }}
+          >
+            Add to lineup
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+export default PlayerModal;
