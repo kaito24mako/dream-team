@@ -6,6 +6,7 @@ function StatisticsSection({ user, lineup, loading, errorMsg }) {
   // get only the players that the user owns
   const players = user.Players || [];
 
+  // total unique cards collected
   // get only the legendary players that the user owns
   const legendaryPlayers = players.filter(
     (player) => player.rarity === "Legendary",
@@ -56,7 +57,7 @@ function StatisticsSection({ user, lineup, loading, errorMsg }) {
       <div className="flex flex-col sm:flex-row gap-5">
         <Statistic
           title="Collection Progress"
-          count={user.totalCards + "/" + 60}
+          count={players.length + "/" + 60}
           countSize="medium"
           textAlign="end"
         />

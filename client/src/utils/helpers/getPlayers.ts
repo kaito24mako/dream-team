@@ -2,7 +2,7 @@ import { players } from "../../data/players";
 
 //* get all filtered players
 // usage: CollectionSection.tsx, GallerySection.tsx
-export function filterPlayers(
+export function getFilteredPlayers(
   players,
   rarityState,
   positionState,
@@ -42,4 +42,11 @@ export function handleFilterByRarity(rarity, setState) {
 // usage: ScrollableSection.tsx
 export function getPlayerByName(name) {
   return players.find((player) => player.fullName === name);
+}
+
+//* get filtered and searched players
+export function getSearchedPlayers(filteredPlayers, searchQuery) {
+  return filteredPlayers.filter((player) =>
+    player.fullName.toLowerCase().includes(searchQuery.toLowerCase().trim()),
+  );
 }

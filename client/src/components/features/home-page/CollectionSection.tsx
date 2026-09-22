@@ -1,10 +1,11 @@
 import { TbCards } from "react-icons/tb";
 import { useLineup } from "../../../utils/context/LineupContext.jsx";
 import {
-  filterPlayers,
   handleSortByRating,
   handleFilterByPosition,
   handleFilterByRarity,
+  getFilteredPlayers,
+  getSearchedPlayers,
 } from "../../../utils/helpers/getPlayers.js";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -34,16 +35,19 @@ function CollectionSection({ user, loading, errorMsg }) {
   const [rarityFilter, setRarityFilter] = useState("");
   const [positionFilter, setPositionFilter] = useState("");
   const [ratingSort, setRatingSort] = useState("");
+  const [search, setSearch] = useState("");
 
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   // get list of players who have been filtered/sorted
-  const filteredPlayers = filterPlayers(
+  const filteredPlayers = getFilteredPlayers(
     players,
     rarityFilter,
     positionFilter,
     ratingSort,
   );
+
+  const searchedPlayers = getSearchedPlayers(filteredPlayers, search);
 
   return (
     <section className="mt-6">
@@ -51,7 +55,7 @@ function CollectionSection({ user, loading, errorMsg }) {
         <SectionHeading heading="MY COLLECTION" Icon={TbCards} />
 
         <div className="flex flex-col sm:flex-row items-center gap-2 mb-3">
-          <SearchForm />
+          <SearchForm value={search} onSearch={setSearch} />
           <div className="flex">
             <DropdownBtn
               buttonText="Rating"
@@ -88,7 +92,7 @@ function CollectionSection({ user, loading, errorMsg }) {
       {errorMsg && <span className="text-error">{errorMsg}</span>}
 
       <CardList className="px-7">
-        {filteredPlayers.map((player) =>
+        {searchedPlayers.map((player) =>
           player.rarity === "Legendary" ? (
             <FullArtCard
               key={player.id}

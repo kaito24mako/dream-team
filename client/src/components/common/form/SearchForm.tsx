@@ -1,4 +1,4 @@
-function SearchForm() {
+function SearchForm({ value, onSearch }) {
   return (
     <label className="input input-sm bg-base-300 shadow-sm border-none focus-within:outline-none focus-within:ring-0">
       <svg
@@ -17,7 +17,13 @@ function SearchForm() {
           <path d="m21 21-4.3-4.3"></path>
         </g>
       </svg>
-      <input type="search" className="grow" placeholder="Search" />
+      <input
+        type="search"
+        className="grow"
+        placeholder="Search"
+        value={value}
+        onChange={(e) => onSearch(e.target.value)}
+      />
     </label>
   );
 }

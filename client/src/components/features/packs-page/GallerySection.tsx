@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { RxLightningBolt } from "react-icons/rx";
+import { VscCollection } from "react-icons/vsc";
 import {
-  filterPlayers,
   handleFilterByPosition,
   handleFilterByRarity,
   handleSortByRating,
+  getFilteredPlayers,
+  getSearchedPlayers,
 } from "../../../utils/helpers/getPlayers";
 
 import SectionHeading from "../../common/text/SectionHeading";
@@ -20,22 +21,25 @@ function GallerySection({ players, loading, errorMsg }) {
   const [rarityFilter, setRarityFilter] = useState("");
   const [positionFilter, setPositionFilter] = useState("");
   const [ratingSort, setRatingSort] = useState("");
+  const [search, setSearch] = useState("");
 
   // get list of players who have been filtered/sorted
-  const filteredPlayers = filterPlayers(
+  const filteredPlayers = getFilteredPlayers(
     players,
     rarityFilter,
     positionFilter,
     ratingSort,
   );
 
+  const searchedPlayers = getSearchedPlayers(filteredPlayers, search);
+
   return (
     <section>
       <div className="flex justify-between items-end">
-        <SectionHeading heading="ALL CARDS" Icon={RxLightningBolt} />
+        <SectionHeading heading="ALL CARDS" Icon={VscCollection} />
 
         <div className="flex flex-col sm:flex-row items-center gap-2 mb-3">
-          <SearchForm />
+          <SearchForm value={search} onSearch={setSearch} />
           <div className="flex">
             <DropdownBtn
               buttonText="Rating"
@@ -72,7 +76,7 @@ function GallerySection({ players, loading, errorMsg }) {
       {errorMsg && <span className="text-error">{errorMsg}</span>}
 
       <CardList>
-        {filteredPlayers.map((player) =>
+        {searchedPlayers.map((player) =>
           player.rarity === "Legendary" ? (
             <FullArtCard
               key={player.id}
