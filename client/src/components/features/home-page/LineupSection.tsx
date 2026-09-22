@@ -18,8 +18,10 @@ function LineupSection({ lineup, loading, errorMsg }) {
 
   const { addToLineup, removeFromLineup } = useLineup();
 
+  // set the clicked player in state
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
+  // to check for positions in the lineup that have no players
   const lineup_positions = ["PG", "SG", "SF", "PF", "C"];
 
   let content;
