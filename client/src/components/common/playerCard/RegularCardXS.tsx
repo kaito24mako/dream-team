@@ -60,7 +60,7 @@ function RegularCardXS({
   const playerImageConversion = image[playerImage];
 
   return (
-    <div className="w-30 h-40 lg:w-38 lg:h-55 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden">
+    <div className="w-30 h-40 lg:w-38 lg:h-55 font-base border border-border-base rounded-lg shadow-sm overflow-hidden">
       {/* top half */}
       <div
         className="relative h-20 lg:h-30 bg-base-300 bg-cover bg-center"

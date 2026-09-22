@@ -11,7 +11,7 @@ import Divider from "../../common/divider/Divider";
 function LineupSection({ lineup, loading, errorMsg }) {
   const positions = ["PG", "SG", "SF", "PF", "C"];
 
-  // returns different markdown depending on certain conditions - for cleaner code
+  // returns different markdown depending onons - for cleaner code
   function renderCard(player, position) {
     if (!player) return <EmptyCard playerPosition={position} />;
 

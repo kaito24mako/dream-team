@@ -61,7 +61,7 @@ function FullArtCardXS({
 
   return (
     <div
-      className="relative w-30 h-40 lg:w-38 lg:h-55 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
+      className="relative w-30 h-40 lg:w-38 lg:h-55 font-base border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url(${playerRarityConversion})` }}
     >
       <img src={playerImageConversion} className="absolute" />

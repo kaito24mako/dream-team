@@ -166,7 +166,7 @@ function FullArtCard({
   return (
     <div className={is3D ? "hover-3d" : undefined} onClick={onClick}>
       <div
-        className="relative w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-secondary border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
+        className="relative w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-base border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${playerRarityConversion})` }}
       >
         <img src={playerImageConversion} className="absolute" />
