@@ -25,7 +25,7 @@ function CollectionSection({ user, loading, errorMsg }) {
   const userId = authUser?.userId;
 
   // function for adding a player to lineup
-  const { addToLineup } = useLineup();
+  const { addToLineup, removeFromLineup } = useLineup();
 
   // to get only the players that the user owns
   const players = user.Players || [];
@@ -119,6 +119,7 @@ function CollectionSection({ user, loading, errorMsg }) {
         <PlayerModal
           userId={userId}
           addToLineup={addToLineup}
+          removeFromLineup={removeFromLineup}
           selectedPlayer={selectedPlayer}
           setSelectedPlayer={setSelectedPlayer}
         />

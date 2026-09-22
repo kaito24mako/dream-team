@@ -3,9 +3,12 @@ import Button from "../button/Button";
 function PlayerModal({
   userId,
   addToLineup,
+  removeFromLineup,
   selectedPlayer,
   setSelectedPlayer,
 }) {
+  const isInLineup = selectedPlayer.UserPlayer?.inLineup;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
@@ -34,10 +37,15 @@ function PlayerModal({
             size="small"
             onClick={(e) => {
               e.stopPropagation();
-              addToLineup(userId, selectedPlayer.id);
+              if (isInLineup) {
+                removeFromLineup(userId, selectedPlayer.id);
+              } else {
+                addToLineup(userId, selectedPlayer.id);
+              }
+              setSelectedPlayer(null);
             }}
           >
-            Add to lineup
+            {isInLineup ? "Remove from lineup" : "Add to lineup"}
           </Button>
         </div>
       </div>

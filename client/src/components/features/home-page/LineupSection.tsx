@@ -1,34 +1,26 @@
 import { RiTeamLine } from "react-icons/ri";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getUser } from "../../../utils/redux/slices/authSlice.js";
+import { useLineup } from "../../../utils/context/LineupContext.jsx";
 
 import SectionHeading from "../../common/text/SectionHeading";
 import CardList from "../../common/list/CardList";
-import LineupPosition from "./LineupPosition";
 import EmptyCard from "../../common/playerCard/EmptyCard";
 import RegularCard from "../../common/playerCard/RegularCard";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 import Divider from "../../common/divider/Divider";
+import PlayerModal from "../../common/modal/PlayerModal.js";
 
 function LineupSection({ lineup, loading, errorMsg }) {
-  const positions = ["PG", "SG", "SF", "PF", "C"];
+  const authUser = useSelector(getUser);
+  const userId = authUser?.userId;
 
-  // returns different markdown depending onons - for cleaner code
-  function renderCard(player, position) {
-    if (!player) return <EmptyCard playerPosition={position} />;
+  const { addToLineup, removeFromLineup } = useLineup();
 
-    // render the type of card depending on the player's rarity
-    const Card = player.rarity === "Legendary" ? FullArtCard : RegularCard;
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
-    return (
-      <Card
-        playerImage={player.image}
-        playerRarity={player.rarity}
-        playerPosition={player.position}
-        playerName={player.fullName}
-        offenseCount={player.offensiveRating}
-        defenseCount={player.defensiveRating}
-      />
-    );
-  }
+  const lineup_positions = ["PG", "SG", "SF", "PF", "C"];
 
   let content;
 
@@ -40,17 +32,33 @@ function LineupSection({ lineup, loading, errorMsg }) {
     content = (
       <div className="mb-5">
         <CardList>
-          {positions.map((position) => {
+          {lineup_positions.map((position) => {
             const player = lineup.find((p) => p.position === position);
 
-            return (
-              <LineupPosition
-                player={player}
-                position={position}
-                key={position}
-              >
-                {renderCard(player, position)}
-              </LineupPosition>
+            return !player ? (
+              <EmptyCard key={position} playerPosition={position} />
+            ) : player.rarity === "Legendary" ? (
+              <FullArtCard
+                key={player.id}
+                playerImage={player.image}
+                playerRarity={player.rarity}
+                playerPosition={player.position}
+                playerName={player.fullName}
+                offenseCount={player.offensiveRating}
+                defenseCount={player.defensiveRating}
+                onClick={() => setSelectedPlayer(player)}
+              />
+            ) : (
+              <RegularCard
+                key={player.id}
+                playerImage={player.image}
+                playerRarity={player.rarity}
+                playerPosition={player.position}
+                playerName={player.fullName}
+                offenseCount={player.offensiveRating}
+                defenseCount={player.defensiveRating}
+                onClick={() => setSelectedPlayer(player)}
+              />
             );
           })}
         </CardList>
@@ -65,6 +73,16 @@ function LineupSection({ lineup, loading, errorMsg }) {
       <Divider color="default" />
 
       {content}
+
+      {selectedPlayer && (
+        <PlayerModal
+          userId={userId}
+          addToLineup={addToLineup}
+          removeFromLineup={removeFromLineup}
+          selectedPlayer={selectedPlayer}
+          setSelectedPlayer={setSelectedPlayer}
+        />
+      )}
     </section>
   );
 }
