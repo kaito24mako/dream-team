@@ -22,7 +22,7 @@ function RegisterForm() {
     errors: {} as RegisterFormErrors,
   });
 
-  // state to show the status of saving a new user
+  // state to show the status of saving a new user - same as loading
   const [registerStatus, setRegisterStatus] = useState("idle");
 
   const { name, teamName, email, password, passwordCompare, errors } = formData;
@@ -47,7 +47,6 @@ function RegisterForm() {
   // on form submission
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("register - handleSubmit(), formData:", formData);
 
     // validations
     if (!name) {
@@ -95,6 +94,8 @@ function RegisterForm() {
     // reset errors
     setFormData({ ...formData, errors: {} });
 
+    setRegisterStatus("pending");
+
     // if we can save the user, register the user
     try {
       if (canSave) {
@@ -118,7 +119,9 @@ function RegisterForm() {
   return (
     <AuthForm
       legend="Create Account"
-      buttonTitle="Create Account"
+      buttonTitle={
+        registerStatus === "pending" ? "Creating account..." : "Create account"
+      }
       onSubmit={handleSubmit}
     >
       <label className="label mt-2">Name</label>

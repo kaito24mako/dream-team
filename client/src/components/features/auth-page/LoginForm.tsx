@@ -8,6 +8,9 @@ import AuthForm from "../../common/form/AuthForm";
 type LoginFormErrors = Partial<Record<"email" | "password" | "server", string>>;
 
 function LoginForm() {
+  // state to show the status of logging in a user - same as loading
+  const [loginStatus, setLoginStatus] = useState("idle");
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,7 +30,6 @@ function LoginForm() {
   // on form submission
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("login - handleSubmit(), formData:", formData);
 
     if (!email) {
       setFormData({ ...formData, errors: { email: "Email is required" } });
@@ -45,21 +47,27 @@ function LoginForm() {
     // reset errors
     setFormData({ ...formData, errors: {} });
 
+    setLoginStatus("pending");
+
     try {
       // dispatch the login action
       await dispatch(login({ email, password })).unwrap();
-
-      console.log("Successfully logged in");
 
       navigate("/home");
     } catch (err) {
       console.error(err);
       setFormData({ ...formData, errors: { server: err } });
+    } finally {
+      setLoginStatus("idle");
     }
   }
 
   return (
-    <AuthForm legend="Login" buttonTitle="Login" onSubmit={handleSubmit}>
+    <AuthForm
+      legend="Login"
+      buttonTitle={loginStatus === "pending" ? "Logging in..." : "Log in"}
+      onSubmit={handleSubmit}
+    >
       <label className="label">Email</label>
       <input
         type="text"
