@@ -165,7 +165,6 @@ router.delete("/:id", async (req, res) => {
 });
 
 //* edit the currency
-// usage: testing only!
 router.put("/:id/edit/currency", async (req, res) => {
   const { id } = req.params;
   const { currency } = req.body;

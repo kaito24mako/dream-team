@@ -13,6 +13,7 @@ import Divider from "../../common/divider/Divider";
 import PlayerModal from "../../common/modal/PlayerModal.js";
 
 function LineupSection({ lineup, loading, errorMsg }) {
+  // to get the logged in user's id
   const authUser = useSelector(getUser);
   const userId = authUser?.userId;
 

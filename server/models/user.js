@@ -51,11 +51,13 @@ const User = sequelize.define("User", {
     allowNull: false,
     defaultValue: 0,
   },
+  //! dont need!
   totalCards: {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 0,
   },
+  //! dont need!
   isAdmin: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
