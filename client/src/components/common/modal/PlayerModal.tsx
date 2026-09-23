@@ -45,13 +45,6 @@ function PlayerModal({
 
           <div className="flex gap-3">
             <Button
-              size="small"
-              className="bg-neutral-700 p-4"
-              onClick={() => setSelectedPlayer(null)}
-            >
-              Close
-            </Button>
-            <Button
               bgColor="primary"
               textColor="black"
               size="small"
@@ -66,6 +59,13 @@ function PlayerModal({
               }}
             >
               {isInLineup ? "Remove from lineup" : "Add to lineup"}
+            </Button>
+            <Button
+              size="small"
+              className="bg-neutral-700 p-4"
+              onClick={() => setSelectedPlayer(null)}
+            >
+              Close
             </Button>
           </div>
         </div>

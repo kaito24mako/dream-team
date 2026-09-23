@@ -58,13 +58,6 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
             <>
               <Button
                 size="small"
-                className="bg-neutral-700 p-4"
-                onClick={() => setSelectedPack(null)}
-              >
-                Cancel
-              </Button>
-              <Button
-                size="small"
                 textColor="black"
                 className="bg-primary p-4"
                 onClick={async () => {
@@ -76,6 +69,13 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
                 }}
               >
                 Confirm
+              </Button>
+              <Button
+                size="small"
+                className="bg-neutral-700 p-4"
+                onClick={() => setSelectedPack(null)}
+              >
+                Cancel
               </Button>
             </>
           ) : (

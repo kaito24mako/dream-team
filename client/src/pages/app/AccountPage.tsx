@@ -111,12 +111,19 @@ function AccountPage() {
             </div>
 
             <div className="flex gap-3">
-              <Button bgColor="primary" type="submit" className="p-4">
+              <Button
+                bgColor="primary"
+                textColor="black"
+                size="small"
+                type="submit"
+                className="p-4"
+              >
                 Save
               </Button>
 
               <Button
                 className="bg-neutral-700 p-4"
+                size="small"
                 onClick={() => {
                   resetForm();
                   setIsEditing(false);
@@ -145,6 +152,8 @@ function AccountPage() {
 
             <Button
               bgColor="primary"
+              textColor="black"
+              size="small"
               className="w-fit"
               onClick={() => setIsEditing(true)}
             >
