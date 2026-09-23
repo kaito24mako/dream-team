@@ -105,40 +105,37 @@ router.put("/:id/edit", async (req, res) => {
   } = req.body;
 
   try {
-    // hash the password
-    const hashedPassword = await User.prototype.hashPassword(password);
+    const updateData = {
+      name,
+      email,
+      teamName,
+      currency,
+      wins,
+      losses,
+      totalCards,
+      isAdmin,
+    };
 
-    // update the user
-    const updated = await User.update(
-      {
-        name,
-        email,
-        password: hashedPassword,
-        teamName,
-        currency,
-        wins,
-        losses,
-        totalCards,
-        isAdmin,
-      },
-      { where: { id: id } },
-    );
-
-    if (!updated) return res.status(404).send({ message: "User not found" });
-
-    if (updated) {
-      console.log("Updated user:", updated);
-
-      // exclude password
-      const options = {
-        attributes: { exclude: ["password", "createdAt", "updatedAt"] },
-      };
-
-      // get the user
-      const user = await User.findByPk(id, options);
-
-      res.status(200).send(user);
+    // Only update password if the user entered a new one
+    if (password) {
+      updateData.password = await User.prototype.hashPassword(password);
     }
+
+    const [updatedRows] = await User.update(updateData, {
+      where: { id: id },
+    });
+
+    if (updatedRows === 0) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    const options = {
+      attributes: { exclude: ["password", "createdAt", "updatedAt"] },
+    };
+
+    const user = await User.findByPk(id, options);
+
+    res.status(200).send(user);
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Failed to edit user" });
