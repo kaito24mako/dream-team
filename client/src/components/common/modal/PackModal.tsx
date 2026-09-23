@@ -33,7 +33,23 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
             coins?
           </p>
         ) : (
-          <p className="mb-4">You obtained {pulledPlayer.fullName}!</p>
+          <p className="mb-4">
+            You obtained{" "}
+            <span
+              className={`font-semibold ${
+                pulledPlayer.rarity === "Legendary"
+                  ? "text-rarity-legendary"
+                  : pulledPlayer.rarity === "Superstar"
+                    ? "text-rarity-superstar"
+                    : pulledPlayer.rarity === "Rare"
+                      ? "text-rarity-rare"
+                      : ""
+              }`}
+            >
+              {pulledPlayer.fullName}
+            </span>
+            !
+          </p>
         )}
 
         {/* buttons */}
