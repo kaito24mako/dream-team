@@ -13,6 +13,7 @@ import Team from "../../components/features/battle-page/Team.js";
 import VSList from "../../components/features/battle-page/VSList.js";
 import RegularCardXS from "../../components/common/playerCard/RegularCardXS";
 import FullArtCardXS from "../../components/common/playerCard/FullArtCardXS";
+import ResultFrame from "../../components/features/battle-page/ResultFrame";
 
 import black from "../../assets/card/rarity/black-bg.png";
 import red from "../../assets/card/rarity/red-bg.png";
@@ -37,6 +38,8 @@ function BattlePage() {
 
   const selectedOpponent = getSelectedOpponent(level);
 
+  // to track if win, loss, or draw
+  const [battleResults, setBattleResults] = useState({});
   const [battleStarted, setBattleStarted] = useState(false);
 
   // using state to prevent the ratings from generating again on re-render
@@ -79,44 +82,41 @@ function BattlePage() {
     },
   ]);
 
-  //* battle logic
+  //* Battle logic
 
+  // Compare overalls between positions to get the user's result of each matchup
   function handleStartBattle() {
     setBattleStarted(true);
-    getPlayerOveralls();
-  }
 
-  function getPlayerOveralls() {
-    // get an array of the user's players' overall ratings at each position
-    const userOverallRating = lineup.map((position) => position.overallRating);
-    console.log("userOverallRating:", userOverallRating);
+    const results = {};
 
-    // get an array of the opponent's players' overall ratings at each position
-    const opponentOverallRating = opponentLineup.map(
-      (player) => (player.offensiveRating + player.defensiveRating) / 2,
-    );
-    console.log("opponentOverallRating:", opponentOverallRating);
+    // compare ratings by position
+    lineup.forEach((player, index) => {
+      const opponentOverall =
+        (opponentLineup[index].offensiveRating +
+          opponentLineup[index].defensiveRating) /
+        2;
 
-    comparePlayerRatings(userOverallRating, opponentOverallRating);
-  }
-
-  function comparePlayerRatings(userOverallRating, opponentOverallRating) {
-    const positions = ["PG", "SG", "SF", "PF", "C"];
-
-    // compare the ratings of the user and opponent's players at each position
-    positions.forEach((position, index) => {
-      if (userOverallRating[index] < opponentOverallRating[index]) {
-        alert(`your ${position} lost`);
-      } else if (userOverallRating[index] > opponentOverallRating[index]) {
-        alert(`your ${position} won`);
-      } else if (userOverallRating[index] === opponentOverallRating[index]) {
-        alert(`it is a draw`);
-      }
+      results[player.position] =
+        player.overallRating > opponentOverall
+          ? "win"
+          : player.overallRating < opponentOverall
+            ? "loss"
+            : "draw";
     });
+
+    setBattleResults(results);
+  }
+
+  // Get the opponent's result of each matchup
+  function getOpponentResult(result) {
+    if (result === "win") return "loss";
+    if (result === "loss") return "win";
+
+    return result;
   }
 
   //? how to move the VS after each matchup
-  //? how to show indication of winner and loser on each card
 
   if (loading) return <span>Loading players...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
@@ -131,29 +131,32 @@ function BattlePage() {
         <div className="flex flex-row md:flex-col md:gap-5">
           {/* user's team */}
           <Team teamName={user.teamName} teamNameColor="text-primary">
-            {lineup.map((player) =>
-              player.rarity === "Legendary" ? (
-                <FullArtCardXS
-                  key={player.id}
-                  playerImage={player.image}
-                  playerRarity={player.rarity}
-                  playerPosition={player.position}
-                  playerName={player.fullName}
-                  offenseCount={player.offensiveRating}
-                  defenseCount={player.defensiveRating}
-                />
-              ) : (
-                <RegularCardXS
-                  key={player.id}
-                  playerImage={player.image}
-                  playerRarity={player.rarity}
-                  playerPosition={player.position}
-                  playerName={player.fullName}
-                  offenseCount={player.offensiveRating}
-                  defenseCount={player.defensiveRating}
-                />
-              ),
-            )}
+            {lineup.map((player) => (
+              <ResultFrame
+                key={player.id}
+                result={battleResults[player.position]}
+              >
+                {player.rarity === "Legendary" ? (
+                  <FullArtCardXS
+                    playerImage={player.image}
+                    playerRarity={player.rarity}
+                    playerPosition={player.position}
+                    playerName={player.fullName}
+                    offenseCount={player.offensiveRating}
+                    defenseCount={player.defensiveRating}
+                  />
+                ) : (
+                  <RegularCardXS
+                    playerImage={player.image}
+                    playerRarity={player.rarity}
+                    playerPosition={player.position}
+                    playerName={player.fullName}
+                    offenseCount={player.offensiveRating}
+                    defenseCount={player.defensiveRating}
+                  />
+                )}
+              </ResultFrame>
+            ))}
           </Team>
 
           {battleStarted ? (
@@ -170,16 +173,20 @@ function BattlePage() {
           {/* opponent's team */}
           <Team teamName={selectedOpponent.teamName} teamNameColor="text-white">
             {opponentLineup.map((player) => (
-              <RegularCardXS
+              <ResultFrame
                 key={player.image}
-                playerPosition={player.position}
-                playerName={player.name}
-                offenseCount={player.offensiveRating}
-                defenseCount={player.defensiveRating}
-                playerImage={player.image}
-                playerRarity={level >= 9 ? red : black}
-                isEnemy={true}
-              />
+                result={getOpponentResult(battleResults[player.position])}
+              >
+                <RegularCardXS
+                  playerPosition={player.position}
+                  playerName={player.name}
+                  offenseCount={player.offensiveRating}
+                  defenseCount={player.defensiveRating}
+                  playerImage={player.image}
+                  playerRarity={level >= 9 ? red : black}
+                  isEnemy={true}
+                />
+              </ResultFrame>
             ))}
           </Team>
         </div>
