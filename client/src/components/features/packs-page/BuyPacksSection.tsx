@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-import SectionHeading from "../../common/text/SectionHeading";
 import CardList from "../../common/list/CardList";
 import Pack from "../../common/pack/Pack";
+import PackModal from "../../common/modal/PackModal";
+import MajorHeading from "../../common/text/MajorHeading";
 
 import basicPack from "../../../assets/card/pack/basic-pack.png";
 import premiumPack from "../../../assets/card/pack/premium-pack2.png";
 import hofPack from "../../../assets/card/pack/hof-pack.png";
 import positionPack from "../../../assets/card/pack/position-pack.png";
-import PackModal from "../../common/modal/PackModal";
 
 type SelectedPack = {
   title: string;
@@ -21,11 +21,12 @@ function BuyPacksSection({ user }) {
   const [selectedPack, setSelectedPack] = useState<SelectedPack | null>(null);
 
   return (
-    <section className="mb-8">
-      <SectionHeading
+    <section className="mb-8 p-6 pb-10 bg-base-200 rounded-md shadow-neutral-100">
+      <MajorHeading
         heading="BUY PACKS"
         Icon={AiOutlineShoppingCart}
         divider={true}
+        description="Spend your currency to improve your team with new players."
       />
 
       <CardList>

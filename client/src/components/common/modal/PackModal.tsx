@@ -64,8 +64,8 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
                   const player = await openPack(user.id, selectedPack.type);
                   if (player) {
                     setIsBought(true);
+                    await getUserAndPlayers(user.id);
                   }
-                  getUserAndPlayers(user.id);
                 }}
               >
                 Confirm
