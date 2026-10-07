@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useUser } from "../../utils/context/UserContext.jsx";
 import { useLineup } from "../../utils/context/LineupContext.jsx";
 import {
@@ -38,9 +38,17 @@ function BattlePage() {
 
   const selectedOpponent = getSelectedOpponent(level);
 
+  // to track if a match has started
+  const [battleStarted, setBattleStarted] = useState(false);
+
   // to track if win, loss, or draw
   const [battleResults, setBattleResults] = useState({});
-  const [battleStarted, setBattleStarted] = useState(false);
+
+  // to track the index of each positional matchup
+  const [matchupIndex, setMatchupIndex] = useState(0);
+
+  // to track if the matchup timer is occuring
+  const revealTimeouts = useRef([]);
 
   // using state to prevent the ratings from generating again on re-render
   //! prevent page reloads from re-generating the ratings
@@ -84,28 +92,49 @@ function BattlePage() {
 
   //* Battle logic
 
+  // Clear matchup timer after mount
+  function clearRevealTimeouts() {
+    revealTimeouts.current.forEach((timeout) => clearTimeout(timeout));
+    revealTimeouts.current = [];
+  }
+  useEffect(() => {
+    return clearRevealTimeouts;
+  }, []);
+
   // Compare overalls between positions to get the user's result of each matchup
   function handleStartBattle() {
+    clearRevealTimeouts();
     setBattleStarted(true);
+    setBattleResults({});
+    setMatchupIndex(0);
 
-    const results = {};
-
-    // compare ratings by position
+    // compare overalls per position with a timer
     lineup.forEach((player, index) => {
-      const opponentOverall =
-        (opponentLineup[index].offensiveRating +
-          opponentLineup[index].defensiveRating) /
-        2;
+      const timeout = setTimeout(() => {
+        const opponentOverall =
+          (opponentLineup[index].offensiveRating +
+            opponentLineup[index].defensiveRating) /
+          2;
 
-      results[player.position] =
-        player.overallRating > opponentOverall
-          ? "win"
-          : player.overallRating < opponentOverall
-            ? "loss"
-            : "draw";
+        const result =
+          player.overallRating > opponentOverall
+            ? "win"
+            : player.overallRating < opponentOverall
+              ? "loss"
+              : "draw";
+
+        // set matchupIndex to be the index of the current positional matchup
+        setMatchupIndex(index);
+
+        // set result
+        setBattleResults((currentResults) => ({
+          ...currentResults,
+          [player.position]: result,
+        }));
+      }, index * 1300);
+
+      revealTimeouts.current.push(timeout);
     });
-
-    setBattleResults(results);
   }
 
   // Get the opponent's result of each matchup
@@ -115,8 +144,6 @@ function BattlePage() {
 
     return result;
   }
-
-  //? how to move the VS after each matchup
 
   if (loading) return <span>Loading players...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
@@ -160,7 +187,7 @@ function BattlePage() {
           </Team>
 
           {battleStarted ? (
-            <VSList />
+            <VSList matchupIndex={matchupIndex} />
           ) : (
             <Button
               className="btn-info w-fit mx-auto"
