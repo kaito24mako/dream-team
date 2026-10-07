@@ -175,7 +175,9 @@ router.put("/:id/edit/currency", async (req, res) => {
   user.currency = currency;
   await user.save();
 
-  res.status(200).send(user);
+  // send the user response without the password
+  const { password: _password, ...userWithoutPassword } = user.toJSON();
+  res.status(200).send(userWithoutPassword);
 });
 
 module.exports = router;

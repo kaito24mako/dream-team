@@ -50,6 +50,31 @@ export function UserContextProvider({ children }) {
     }
   }
 
+  //* update a user's currency
+  // usage: BattlePage.jsx
+  async function updateUserCurrency(userId, currency) {
+    try {
+      setErrorMsg(null);
+
+      const res = await axios.put(
+        `http://localhost:3001/api/users/${userId}/edit/currency`,
+        { currency },
+      );
+      console.log("updateUserCurrency(), data:", res.data);
+
+      setUser((user) => ({
+        ...user,
+        currency: res.data.currency,
+      }));
+
+      return res.data;
+    } catch (err) {
+      console.error("Failed to update user currency:", err);
+      setErrorMsg("Failed to update your currency. Please try again.");
+      return null;
+    }
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -58,6 +83,7 @@ export function UserContextProvider({ children }) {
         errorMsg,
         getUserById,
         getUserAndPlayers,
+        updateUserCurrency,
       }}
     >
       {children}

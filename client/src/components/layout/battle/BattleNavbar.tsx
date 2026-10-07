@@ -7,9 +7,9 @@ import CurrencyItem from "../../features/league-page/CurrencyItem";
 import logo from "../../../assets/icon/logo.png";
 
 function BattleNavbar() {
+  // use the level param to find the opponent chosen in the league page
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
-
   const selectedOpponent = getSelectedOpponent(level);
 
   // get the user data

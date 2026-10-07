@@ -15,7 +15,7 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
+      className="fixed flex items-center justify-center inset-0 z-50 bg-black/60 px-4"
       onClick={() => setSelectedPack(null)}
     >
       <div
@@ -53,9 +53,16 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
         )}
 
         {/* buttons */}
-        <div className="flex justify-start gap-3 mb-6">
+        <div className="flex justify-start gap-2 mb-6">
           {!isBought ? (
             <>
+              <Button
+                size="small"
+                className="bg-neutral-700 p-4"
+                onClick={() => setSelectedPack(null)}
+              >
+                Cancel
+              </Button>
               <Button
                 size="small"
                 textColor="black"
@@ -69,13 +76,6 @@ function PackModal({ user, selectedPack, setSelectedPack }) {
                 }}
               >
                 Confirm
-              </Button>
-              <Button
-                size="small"
-                className="bg-neutral-700 p-4"
-                onClick={() => setSelectedPack(null)}
-              >
-                Cancel
               </Button>
             </>
           ) : (

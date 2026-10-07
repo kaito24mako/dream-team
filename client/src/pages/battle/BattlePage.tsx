@@ -23,7 +23,12 @@ import enemy4 from "../../assets/card/enemy/enemy4.png";
 import enemy5 from "../../assets/card/enemy/enemy5.png";
 
 function BattlePage() {
-  const { user, loading: userLoading, errorMsg: userErrorMsg } = useUser();
+  const {
+    user,
+    loading: userLoading,
+    errorMsg: userErrorMsg,
+    updateUserCurrency,
+  } = useUser();
   const {
     lineup,
     loading: lineupLoading,
@@ -32,24 +37,28 @@ function BattlePage() {
   const loading = userLoading || lineupLoading;
   const errorMsg = userErrorMsg || lineupErrorMsg;
 
+  // use the level param to find the opponent chosen in the league page
   const { levelSlug } = useParams();
   const level = Number(levelSlug.replace("lvl", ""));
-
   const selectedOpponent = getSelectedOpponent(level);
 
   // to track if a match has started
   const [battleStarted, setBattleStarted] = useState(false);
 
+  // to track if a battle has finished
+  const [battleFinished, setBattleFinished] = useState(false);
+
   // to track if win, loss, or draw
   const [battleResults, setBattleResults] = useState({});
+
+  // if the user is the final winner or not
+  const [isWinner, setIsWinner] = useState(false);
 
   // to track the user's chance of winning
   const [winPercentage, setWinPercentage] = useState(50);
 
   // to track the index of each positional matchup
   const [matchupIndex, setMatchupIndex] = useState(0);
-
-  const [battleFinished, setBattleFinished] = useState(false);
 
   // to track if the matchup timer is occuring
   const revealTimeouts = useRef([]);
@@ -109,6 +118,8 @@ function BattlePage() {
   function handleStartBattle() {
     clearRevealTimeouts();
     setBattleStarted(true);
+    setBattleFinished(false);
+    setIsWinner(false);
     setBattleResults({});
     setWinPercentage(50);
     setMatchupIndex(0);
@@ -146,9 +157,9 @@ function BattlePage() {
 
         // increment/decrement the win percentage
         if (result === "win") {
-          setWinPercentage((currentPercentage) => currentPercentage + 10);
+          setWinPercentage((percentage) => percentage + 10);
         } else if (result === "loss") {
-          setWinPercentage((currentPercentage) => currentPercentage - 10);
+          setWinPercentage((percentage) => percentage - 10);
         }
 
         if (index === lineup.length - 1) {
@@ -160,18 +171,50 @@ function BattlePage() {
     });
   }
 
-  function handleMatchEnd(finalResults) {
-    console.log("Match ended", finalResults);
-
-    setBattleFinished(true);
-  }
-
   // Get the opponent's result of each matchup
   function getOpponentResult(result) {
     if (result === "win") return "loss";
     if (result === "loss") return "win";
-
     return result;
+  }
+
+  //* After match has finished
+
+  function handleMatchEnd(finalResults) {
+    console.log("Match ended", finalResults);
+    getFinalResult(finalResults);
+    setBattleFinished(true);
+  }
+
+  // Get the final result based on the win percentage
+  function getFinalResult(finalResults) {
+    // calculate final win percentage from the finalResults array
+    const finalWinPercentage =
+      50 +
+      Object.values(finalResults).filter((result) => result === "win").length *
+        10 -
+      Object.values(finalResults).filter((result) => result === "loss").length *
+        10;
+    const randomValue = Math.random() * 100;
+    const userWon = randomValue <= finalWinPercentage;
+
+    setIsWinner(userWon);
+    getReward(userWon);
+
+    console.log("Is user the winner?", userWon);
+    console.log("final battle results:", finalResults);
+  }
+
+  // Update the user's currency
+  function getReward(userWon) {
+    // ensure currency doesnt go below 0
+    const currencyChange = userWon
+      ? selectedOpponent.reward
+      : -selectedOpponent.loss;
+
+    const updatedCurrency = Math.max(0, user.currency + currencyChange);
+
+    updateUserCurrency(user.id, updatedCurrency);
   }
 
   if (loading) return <span>Loading players...</span>;
@@ -184,8 +227,11 @@ function BattlePage() {
       <main className="flex flex-col gap-5 pb-5">
         <Scoreboard
           winPercentage={winPercentage}
+          battleStarted={battleStarted}
           onStartBattle={handleStartBattle}
           battleFinished={battleFinished}
+          isWinner={isWinner}
+          selectedOpponent={selectedOpponent}
         />
 
         <div className="flex flex-row md:flex-col md:gap-5">
