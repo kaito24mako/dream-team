@@ -7,7 +7,6 @@ import {
   getRandomRating,
 } from "../../utils/helpers/getOpponents.js";
 
-import Button from "../../components/common/button/Button";
 import Scoreboard from "../../components/features/battle-page/Scoreboard.js";
 import Team from "../../components/features/battle-page/Team.js";
 import VSList from "../../components/features/battle-page/VSList.js";
@@ -44,8 +43,13 @@ function BattlePage() {
   // to track if win, loss, or draw
   const [battleResults, setBattleResults] = useState({});
 
+  // to track the user's chance of winning
+  const [winPercentage, setWinPercentage] = useState(50);
+
   // to track the index of each positional matchup
   const [matchupIndex, setMatchupIndex] = useState(0);
+
+  const [battleFinished, setBattleFinished] = useState(false);
 
   // to track if the matchup timer is occuring
   const revealTimeouts = useRef([]);
@@ -106,22 +110,30 @@ function BattlePage() {
     clearRevealTimeouts();
     setBattleStarted(true);
     setBattleResults({});
+    setWinPercentage(50);
     setMatchupIndex(0);
 
-    // compare overalls per position with a timer
+    const allResults = {};
+
+    // compare overalls per position
+    lineup.forEach((player, index) => {
+      const opponentOverall =
+        (opponentLineup[index].offensiveRating +
+          opponentLineup[index].defensiveRating) /
+        2;
+
+      allResults[player.position] =
+        player.overallRating > opponentOverall
+          ? "win"
+          : player.overallRating < opponentOverall
+            ? "loss"
+            : "draw";
+    });
+
+    // reveal each result with a timer
     lineup.forEach((player, index) => {
       const timeout = setTimeout(() => {
-        const opponentOverall =
-          (opponentLineup[index].offensiveRating +
-            opponentLineup[index].defensiveRating) /
-          2;
-
-        const result =
-          player.overallRating > opponentOverall
-            ? "win"
-            : player.overallRating < opponentOverall
-              ? "loss"
-              : "draw";
+        const result = allResults[player.position];
 
         // set matchupIndex to be the index of the current positional matchup
         setMatchupIndex(index);
@@ -131,10 +143,27 @@ function BattlePage() {
           ...currentResults,
           [player.position]: result,
         }));
-      }, index * 1300);
+
+        // increment/decrement the win percentage
+        if (result === "win") {
+          setWinPercentage((currentPercentage) => currentPercentage + 10);
+        } else if (result === "loss") {
+          setWinPercentage((currentPercentage) => currentPercentage - 10);
+        }
+
+        if (index === lineup.length - 1) {
+          handleMatchEnd(allResults);
+        }
+      }, index * 1400);
 
       revealTimeouts.current.push(timeout);
     });
+  }
+
+  function handleMatchEnd(finalResults) {
+    console.log("Match ended", finalResults);
+
+    setBattleFinished(true);
   }
 
   // Get the opponent's result of each matchup
@@ -153,7 +182,11 @@ function BattlePage() {
       <title>Battle | Dream Team</title>
 
       <main className="flex flex-col gap-5 pb-5">
-        <Scoreboard />
+        <Scoreboard
+          winPercentage={winPercentage}
+          onStartBattle={handleStartBattle}
+          battleFinished={battleFinished}
+        />
 
         <div className="flex flex-row md:flex-col md:gap-5">
           {/* user's team */}
@@ -189,12 +222,7 @@ function BattlePage() {
           {battleStarted ? (
             <VSList matchupIndex={matchupIndex} />
           ) : (
-            <Button
-              className="btn-info w-fit mx-auto"
-              onClick={handleStartBattle}
-            >
-              Start Match
-            </Button>
+            <div className="h-10" />
           )}
 
           {/* opponent's team */}
