@@ -13,7 +13,7 @@ type Props = {
 function Pack({ packBg, title, content, chances, price, onBuy }: Props) {
   return (
     <div
-      className="flex flex-col justify-between gap-8 bg-neutral-950 rounded-lg shadow-md text-neutral-100 py-7 px-8 sm:px-10 overflow-hidden bg-cover bg-center w-43 sm:w-58 h-80"
+      className="flex flex-col justify-between gap-8 bg-neutral-950 rounded-lg shadow-md text-neutral-100 py-7 px-5 lg:px-8 overflow-hidden bg-cover bg-center w-38 sm:w-58 h-80"
       style={{ backgroundImage: `url(${packBg})` }}
     >
       <div className="text-start">
@@ -30,7 +30,7 @@ function Pack({ packBg, title, content, chances, price, onBuy }: Props) {
         <Button
           bgColor="primary"
           textColor="black"
-          className="btn-xs sm:btn-sm"
+          className="btn-sm"
           onClick={onBuy}
         >
           <div className="flex items-center gap-1">

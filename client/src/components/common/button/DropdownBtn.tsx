@@ -10,7 +10,7 @@ function DropdownBtn({ buttonText, dropdownItems, onClick }: Props) {
       <button
         tabIndex={0}
         role="button"
-        className="btn btn-xs sm:btn-sm btn-outline btn-primary m-1"
+        className="btn btn-sm btn-outline btn-primary m-1"
       >
         {buttonText}
       </button>

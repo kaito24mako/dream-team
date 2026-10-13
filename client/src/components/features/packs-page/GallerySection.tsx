@@ -35,11 +35,12 @@ function GallerySection({ players, loading, errorMsg }) {
 
   return (
     <section>
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end">
         <SectionHeading heading="ALL CARDS" Icon={VscCollection} />
 
-        <div className="flex flex-col sm:flex-row items-center gap-2 mb-3">
+        <div className="flex items-center gap-2 mb-3">
           <SearchForm value={search} onSearch={setSearch} />
+
           <div className="flex">
             <DropdownBtn
               buttonText="Rating"

@@ -170,7 +170,7 @@ function FullArtCardXS({
       </p>
 
       {/* bottom half */}
-      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center text-center gap-2 h-20 lg:h-25 bg-base-300/50">
+      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center text-center gap-2 h-17.5 lg:h-21.5 bg-base-300/50">
         <p className="text-xs lg:text-sm">{playerName}</p>
 
         <div className="flex gap-3 lg:gap-4">

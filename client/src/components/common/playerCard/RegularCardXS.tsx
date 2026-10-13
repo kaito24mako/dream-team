@@ -163,14 +163,14 @@ function RegularCardXS({
     <div className="w-30 h-40 lg:w-38 lg:h-55 font-base border border-border-base rounded-lg shadow-sm overflow-hidden">
       {/* top half */}
       <div
-        className="relative h-20 lg:h-30 bg-base-300 bg-cover bg-center"
+        className="relative h-22 lg:h-33 bg-base-300 bg-cover bg-center"
         style={{
           backgroundImage: `url(${isEnemy ? playerRarity : playerRarityConversion})`,
         }}
       >
         <img
           src={isEnemy ? playerImage : playerImageConversion}
-          className={`${isEnemy && "w-20! lg:w-29!"} w-15 h-20 lg:w-23 lg:h-30 mx-auto`}
+          className={`${isEnemy && "w-22! lg:w-30!"} w-16 h-22 lg:w-23 lg:h-33 mx-auto`}
         />
         <p className="absolute top-1 lg:top-0.5 left-2 text-xs lg:text-base">
           {playerPosition}
@@ -178,7 +178,7 @@ function RegularCardXS({
       </div>
 
       {/* bottom half */}
-      <div className="flex flex-col items-center justify-center gap-1 lg:gap-2 h-20 lg:h-25 bg-base-200 text-center">
+      <div className="flex flex-col items-center justify-center gap-1 lg:gap-2 h-18 lg:h-22 bg-base-200 text-center">
         <p className="text-xs lg:text-sm">{playerName}</p>
 
         <div className="flex gap-3 lg:gap-4">

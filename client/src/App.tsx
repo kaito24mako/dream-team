@@ -20,6 +20,8 @@ import AccountPage from "./pages/app/AccountPage.js";
 
 import BattleLayout from "./components/layout/battle/BattleLayout";
 import BattlePage from "./pages/battle/BattlePage";
+import AdminPage from "./pages/admin/AdminPage.js";
+import AddPlayerPage from "./pages/admin/AddPlayerPage.js";
 
 function App() {
   return (
@@ -44,6 +46,9 @@ function App() {
                   <Route path="/packs" element={<PacksPage />} />
                   <Route path="/how-to-play" element={<HowToPlayPage />} />
                   <Route path="/account" element={<AccountPage />} />
+                  <Route path="/admin" element={<AdminPage />}>
+                    <Route path="add-player" element={<AddPlayerPage />} />
+                  </Route>
                 </Route>
 
                 <Route element={<BattleLayout />}>
