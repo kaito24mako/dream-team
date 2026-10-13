@@ -162,8 +162,10 @@ function BattlePage() {
           setWinPercentage((percentage) => percentage - 10);
         }
 
+        // after all five matchups...
         if (index === lineup.length - 1) {
-          handleMatchEnd(allResults);
+          getFinalResult(allResults);
+          setBattleFinished(true);
         }
       }, index * 1400);
 
@@ -179,12 +181,6 @@ function BattlePage() {
   }
 
   //* After match has finished
-
-  function handleMatchEnd(finalResults) {
-    console.log("Match ended", finalResults);
-    getFinalResult(finalResults);
-    setBattleFinished(true);
-  }
 
   // Get the final result based on the win percentage
   function getFinalResult(finalResults) {
