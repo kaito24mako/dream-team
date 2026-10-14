@@ -7,7 +7,7 @@ import axios from "axios";
 import Button from "../../components/common/button/Button";
 
 function AccountPage() {
-  const { user, loading, errorMsg, getUserById } = useUser();
+  const { user, loading, errorMsg, getUserAndPlayers } = useUser();
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -24,7 +24,7 @@ function AccountPage() {
   // update the user state with the current user
   useEffect(() => {
     if (userId) {
-      getUserById(userId);
+      getUserAndPlayers(userId);
     }
   }, [userId]);
 
@@ -52,7 +52,7 @@ function AccountPage() {
         formData,
       );
 
-      await getUserById(userId);
+      await getUserAndPlayers(userId);
       setIsEditing(false);
     } catch (err) {
       console.error("Failed to update account:", err);

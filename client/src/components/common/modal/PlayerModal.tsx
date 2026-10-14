@@ -1,4 +1,5 @@
 import Button from "../button/Button";
+import { useUser } from "../../../utils/context/UserContext.jsx";
 
 function PlayerModal({
   userId,
@@ -7,6 +8,7 @@ function PlayerModal({
   selectedPlayer,
   setSelectedPlayer,
 }) {
+  const { getUserAndPlayers } = useUser();
   const isInLineup = selectedPlayer.UserPlayer?.inLineup;
 
   return (
@@ -48,13 +50,14 @@ function PlayerModal({
               bgColor="primary"
               textColor="black"
               size="small"
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.stopPropagation();
                 if (isInLineup) {
-                  removeFromLineup(userId, selectedPlayer.id);
+                  await removeFromLineup(userId, selectedPlayer.id);
                 } else {
-                  addToLineup(userId, selectedPlayer.id);
+                  await addToLineup(userId, selectedPlayer.id);
                 }
+                await getUserAndPlayers(userId);
                 setSelectedPlayer(null);
               }}
             >
