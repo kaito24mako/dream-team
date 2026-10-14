@@ -1,6 +1,6 @@
 function SearchForm({ value, onSearch }) {
   return (
-    <label className="input input-sm bg-base-300 shadow-sm border-none focus-within:outline-none focus-within:ring-0">
+    <label className="input input-sm bg-white/5 shadow-sm border-none focus-within:outline-none focus-within:ring-0">
       <svg
         className="h-[1em] opacity-50"
         xmlns="http://www.w3.org/2000/svg"

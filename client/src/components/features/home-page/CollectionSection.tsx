@@ -108,6 +108,7 @@ function CollectionSection({ user, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
+              pointerCursor={true}
               onClick={() => setSelectedPlayer(player)}
             />
           ) : (
@@ -119,6 +120,7 @@ function CollectionSection({ user, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
+              pointerCursor={true}
               onClick={() => setSelectedPlayer(player)}
             />
           ),

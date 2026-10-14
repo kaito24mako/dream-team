@@ -67,7 +67,7 @@ function CompeteSection() {
               <span className="font-bold text-secondary">
                 position match-up
               </span>{" "}
-              that you win. There are five position match-ups in a match.
+              that you win, and decreases by 10% for each that you lose.
             </p>
             <p>
               You win a{" "}

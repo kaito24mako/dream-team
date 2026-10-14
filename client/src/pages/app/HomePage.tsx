@@ -15,7 +15,7 @@ function HomePage() {
 
   return (
     <>
-      <title>Home | Dream Team</title>
+      <title>Team | Dream Team</title>
 
       <main className="flex flex-col gap-4 mb-15">
         <div className="font-primary">

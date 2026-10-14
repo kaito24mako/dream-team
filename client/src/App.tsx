@@ -41,7 +41,7 @@ function App() {
                 </Route>
 
                 <Route element={<AppLayout />}>
-                  <Route path="/home" element={<HomePage />} />
+                  <Route path="/team" element={<HomePage />} />
                   <Route path="/league" element={<LeaguePage />} />
                   <Route path="/packs" element={<PacksPage />} />
                   <Route path="/how-to-play" element={<HowToPlayPage />} />

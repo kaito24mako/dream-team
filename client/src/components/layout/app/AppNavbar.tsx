@@ -1,6 +1,12 @@
 import { PiQuestionLight } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 import { IoIosLogOut } from "react-icons/io";
+import {
+  IoCashOutline,
+  IoHomeOutline,
+  IoShirtOutline,
+  IoTrophyOutline,
+} from "react-icons/io5";
 
 import { Link, NavLink } from "react-router-dom";
 import { useUser } from "../../../utils/context/UserContext.jsx";
@@ -22,10 +28,10 @@ function AppNavbar() {
   }
 
   return (
-    <header className="bg-base-200 w-full rounded-md text-sm py-3 px-6 md:px-10 lg:px-25 fixed z-100">
+    <header className="bg-base-100 shadow-sm w-full text-sm py-3 px-6 md:px-10 lg:px-25 fixed z-100">
       <nav className="grid grid-cols-[1fr_auto_1fr] items-center gap-x-2 gap-y-2 lg:grid-cols-[1fr_auto_1fr]">
         <Link
-          to="/home"
+          to="/team"
           className="col-start-2 row-start-1 justify-self-center lg:col-start-1 lg:justify-self-start"
         >
           <img
@@ -43,13 +49,14 @@ function AppNavbar() {
         <ul className="col-span-2 col-start-1 row-start-2 flex justify-start gap-x-4 px-1 sm:gap-x-5 lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:justify-center">
           <li>
             <NavLink
-              to="/home"
+              to="/team"
               className={({
                 isActive,
-              }) => `hover:underline hover:underline-offset-3
+              }) => `flex items-center gap-1.5 hover:text-primary
                 ${isActive ? "text-primary font-semibold underline underline-offset-3" : ""}`}
             >
-              Home
+              <IoShirtOutline className="h-4 w-4" />
+              <span>Team</span>
             </NavLink>
           </li>
           <li>
@@ -57,10 +64,11 @@ function AppNavbar() {
               to="/league"
               className={({
                 isActive,
-              }) => `hover:underline hover:underline-offset-3
+              }) => `flex items-center gap-1.5 hover:text-primary
                 ${isActive ? "text-primary font-semibold underline underline-offset-3" : ""}`}
             >
-              League
+              <IoTrophyOutline className="h-4 w-4" />
+              <span>League</span>
             </NavLink>
           </li>
           <li>
@@ -68,17 +76,18 @@ function AppNavbar() {
               to="/packs"
               className={({
                 isActive,
-              }) => `hover:underline hover:underline-offset-3
+              }) => `flex items-center gap-1.5 hover:text-primary
                 ${isActive ? "text-primary font-semibold underline underline-offset-3" : ""}`}
             >
-              Packs
+              <IoCashOutline className="h-4 w-4" />
+              <span>Packs</span>
             </NavLink>
           </li>
         </ul>
 
         <div className="col-start-3 row-start-2 flex items-center justify-end lg:col-span-1 lg:col-start-3 lg:row-start-1">
           <div className="flex items-center gap-1">
-            <div className="text-coin mr-1 hidden items-center gap-1 px-2 lg:flex">
+            <div className="text-coin mr-1 hidden items-center gap-1 pr-3 lg:flex">
               <CoinIcon />
               {user.currency}
             </div>
@@ -88,22 +97,22 @@ function AppNavbar() {
                 aria-label="Guide"
                 className={({
                   isActive,
-                }) => `flex gap-1 items-center hover:underline hover:underline-offset-3
+                }) => `flex gap-1 items-center hover:text-primary
                 ${isActive ? "text-primary font-semibold underline underline-offset-3" : ""}`}
               >
-                <PiQuestionLight className="w-6 h-6 flex md:hidden" />
-                <span className="hidden md:flex">How to play</span>
+                <PiQuestionLight className="h-5 w-5" />
+                <span className="hidden lg:flex">How to play</span>
               </NavLink>
               <NavLink
                 to="/account"
                 aria-label="Account"
                 className={({
                   isActive,
-                }) => `flex gap-1 items-center  hover:underline hover:underline-offset-3
+                }) => `flex gap-1.5 items-center hover:text-primary
                 ${isActive ? "text-primary font-semibold underline underline-offset-3" : ""}`}
               >
-                <VscAccount className="w-5 h-5 flex md:hidden" />
-                <span className="hidden md:flex">My account</span>
+                <VscAccount className="h-4 w-4" />
+                <span className="hidden lg:flex">My account</span>
               </NavLink>
               <NavLink
                 to="/"
@@ -111,11 +120,11 @@ function AppNavbar() {
                 onClick={leave}
                 className={({
                   isActive,
-                }) => `flex gap-1 items-center hover:underline hover:underline-offset-3
+                }) => `flex gap-1 items-center hover:text-error
                 ${isActive ? "text-primary font-semibold" : ""}`}
               >
-                <IoIosLogOut className="w-5 h-5" />
-                <span className="hidden sm:flex">Log out</span>
+                <IoIosLogOut className="h-5 w-5" />
+                <span className="hidden lg:flex">Log out</span>
               </NavLink>
             </div>
           </div>

@@ -53,7 +53,7 @@ function LoginForm() {
       // dispatch the login action
       await dispatch(login({ email, password })).unwrap();
 
-      navigate("/home");
+      navigate("/team");
     } catch (err) {
       console.error(err);
       setFormData({ ...formData, errors: { server: err } });

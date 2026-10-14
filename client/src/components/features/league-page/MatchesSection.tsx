@@ -1,4 +1,4 @@
-import { AiOutlineSchedule } from "react-icons/ai";
+import { IoTrophyOutline } from "react-icons/io5";
 import { opponents } from "../../../data/opponents";
 
 import MatchItem from "./MatchItem";
@@ -11,7 +11,7 @@ function MatchesSection() {
       <MajorHeading
         heading="LEAGUE MATCHES"
         description="Battle for rewards. The greater the opponent, the higher the payout."
-        Icon={AiOutlineSchedule}
+        Icon={IoTrophyOutline}
       />
 
       <ul className="flex flex-col gap-5">

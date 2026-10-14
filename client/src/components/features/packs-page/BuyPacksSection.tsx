@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { IoCashOutline } from "react-icons/io5";
 
 import CardList from "../../common/list/CardList";
 import Pack from "../../common/pack/Pack";
 import PackModal from "../../common/modal/PackModal";
 import MajorHeading from "../../common/text/MajorHeading";
+import SectionWrapper from "../../common/wrapper/SectionWrapper";
 
 import basicPack from "../../../assets/card/pack/basic-pack.png";
-import premiumPack from "../../../assets/card/pack/premium-pack2.png";
-import hofPack from "../../../assets/card/pack/hof-pack.png";
-import positionPack from "../../../assets/card/pack/position-pack.png";
-import SectionWrapper from "../../common/wrapper/SectionWrapper";
+import premiumPack from "../../../assets/card/pack/premium-pack.png";
+import dreamPack from "../../../assets/card/pack/dream-pack.png";
 
 type SelectedPack = {
   title: string;
@@ -25,9 +24,9 @@ function BuyPacksSection({ user }) {
     <SectionWrapper className="mb-8 mt-2!">
       <MajorHeading
         heading="BUY PACKS"
-        Icon={AiOutlineShoppingCart}
+        Icon={IoCashOutline}
         divider={true}
-        description="Spend your currency to improve your team with new players."
+        description="Spend currency to improve your team with new players."
       />
       <CardList>
         <Pack
@@ -65,8 +64,8 @@ function BuyPacksSection({ user }) {
           }
         />
         <Pack
-          packBg={hofPack}
-          title="HOF Pack"
+          packBg={dreamPack}
+          title="Dream Pack"
           content="1 player"
           chances={[
             "0% for common",
@@ -77,13 +76,13 @@ function BuyPacksSection({ user }) {
           price={1000}
           onBuy={() =>
             setSelectedPack({
-              title: "HOF Pack",
+              title: "Dream Pack",
               price: 1000,
               type: "hallOfFame",
             })
           }
         />
-        <Pack
+        {/* <Pack
           packBg={positionPack}
           title="Position Pack"
           content="1 positional player"
@@ -101,7 +100,7 @@ function BuyPacksSection({ user }) {
               type: "position",
             })
           }
-        />
+        /> */}
       </CardList>
 
       {selectedPack && (

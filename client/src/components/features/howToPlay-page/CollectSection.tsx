@@ -54,7 +54,7 @@ function CollectSection() {
         <h3 className="text-lg collapse-title p-0!">Packs</h3>
         <div className="collapse-content p-0!">
           <p className="mt-2">
-            There are four unique packs, each with different drop rates for
+            There are three unique packs, each with different drop rates for
             player rarities.
           </p>
           <img

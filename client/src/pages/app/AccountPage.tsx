@@ -72,7 +72,10 @@ function AccountPage() {
       <title>My Account | Dream Team</title>
 
       <main className="flex flex-col gap-5 mb-15">
-        <h1 className="text-4xl text-primary">My Account</h1>
+        <div className="flex flex-col gap-3">
+          <h1 className="text-4xl text-primary">My Account</h1>
+          <p>Edit your account details.</p>
+        </div>
 
         {loading && "Loading user details..."}
         {errorMsg && <span className="text-error">{errorMsg}</span>}
@@ -80,7 +83,7 @@ function AccountPage() {
         {isEditing ? (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
-              <p className="font-semibold">Name</p>
+              <p className="font-semibold text-secondary">Name</p>
               <input
                 name="name"
                 value={formData.name}
@@ -90,7 +93,7 @@ function AccountPage() {
             </div>
 
             <div className="flex flex-col gap-1">
-              <p className="font-semibold">Team Name</p>
+              <p className="font-semibold text-secondary">Team Name</p>
               <input
                 name="teamName"
                 value={formData.teamName}
@@ -100,7 +103,7 @@ function AccountPage() {
             </div>
 
             <div className="flex flex-col gap-1">
-              <p className="font-semibold">E-mail</p>
+              <p className="font-semibold text-secondary">E-mail</p>
               <input
                 name="email"
                 type="email"
@@ -112,16 +115,6 @@ function AccountPage() {
 
             <div className="flex gap-3">
               <Button
-                bgColor="primary"
-                textColor="black"
-                size="small"
-                type="submit"
-                className="p-4"
-              >
-                Save
-              </Button>
-
-              <Button
                 className="bg-neutral-700 p-4"
                 size="small"
                 onClick={() => {
@@ -131,22 +124,31 @@ function AccountPage() {
               >
                 Cancel
               </Button>
+              <Button
+                bgColor="primary"
+                textColor="black"
+                size="small"
+                type="submit"
+                className="p-4"
+              >
+                Save
+              </Button>
             </div>
           </form>
         ) : (
           <>
             <div className="flex flex-col">
-              <p className="font-semibold">Name</p>
+              <p className="font-semibold text-secondary">Name</p>
               <span>{user.name}</span>
             </div>
 
             <div className="flex flex-col">
-              <p className="font-semibold">Team Name</p>
+              <p className="font-semibold text-secondary">Team Name</p>
               <span>{user.teamName}</span>
             </div>
 
             <div className="flex flex-col">
-              <p className="font-semibold">E-mail</p>
+              <p className="font-semibold text-secondary">E-mail</p>
               <span>{user.email}</span>
             </div>
 

@@ -13,15 +13,17 @@ type Props = {
 function Pack({ packBg, title, content, chances, price, onBuy }: Props) {
   return (
     <div
-      className="flex flex-col justify-between gap-8 bg-neutral-950 rounded-lg shadow-md text-neutral-100 py-7 px-5 lg:px-8 overflow-hidden bg-cover bg-center w-38 sm:w-58 h-80"
+      className="relative flex flex-col justify-between gap-8 bg-neutral-950 rounded-lg shadow-md text-neutral-100 py-7 px-5 lg:px-8 overflow-hidden bg-cover bg-center w-38 sm:w-58 h-80"
       style={{ backgroundImage: `url(${packBg})` }}
     >
-      <div className="text-start">
+      <div className="absolute inset-0 bg-black/35" />
+
+      <div className="relative text-start drop-shadow-md">
         <h3 className="text-lg sm:text-xl lg:text-2xl">{title}</h3>
         <p className="text-xs sm:text-sm">{content}</p>
       </div>
 
-      <div className="flex flex-col gap-7">
+      <div className="relative flex flex-col gap-7 drop-shadow-md">
         <ul className="text-xxs sm:text-xs lg:text-sm">
           {chances.map((chance) => (
             <li key={chance}>⊙ {chance}</li>

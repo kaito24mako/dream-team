@@ -50,6 +50,7 @@ function LineupSection({ lineup, loading, errorMsg }) {
                 playerName={player.fullName}
                 offenseCount={player.offensiveRating}
                 defenseCount={player.defensiveRating}
+                pointerCursor={true}
                 onClick={() => setSelectedPlayer(player)}
               />
             ) : (
@@ -61,6 +62,7 @@ function LineupSection({ lineup, loading, errorMsg }) {
                 playerName={player.fullName}
                 offenseCount={player.offensiveRating}
                 defenseCount={player.defensiveRating}
+                pointerCursor={true}
                 onClick={() => setSelectedPlayer(player)}
               />
             );
