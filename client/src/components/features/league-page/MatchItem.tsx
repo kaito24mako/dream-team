@@ -1,4 +1,7 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../utils/context/UserContext.jsx";
+import { useLineup } from "../../../utils/context/LineupContext.jsx";
+
 import Button from "../../common/button/Button";
 import CurrencyItem from "./CurrencyItem";
 
@@ -19,6 +22,20 @@ function MatchItem({
   reward,
   loss,
 }: Props) {
+  const navigate = useNavigate();
+  const { user } = useUser();
+  const { lineup } = useLineup();
+
+  // instead of state, use a variable to calculate per render
+  const locked =
+    lineup.length < 5 ? "lineup" : user.currency < loss ? "currency" : "none";
+
+  function handleToPlay() {
+    if (locked === "none") {
+      navigate(`/league/match/lvl${level}`);
+    }
+  }
+
   return (
     <li className="flex justify-between items-center text-center text-sm lg:text-sm bg-base-300 py-4 px-4 sm:px-6 rounded-sm">
       <div className="flex items-center gap-5 pr-10">
@@ -45,11 +62,20 @@ function MatchItem({
           currency={loss}
           currencyColor="text-red-500"
         />
-        <Link to={`/league/match/lvl${level}`}>
-          <Button size="small" bgColor="primary" textColor="black">
-            Play
-          </Button>
-        </Link>
+
+        <p className="text-error">
+          {locked === "currency" && "Not enough currency"}
+          {locked === "lineup" && "Need a full lineup"}
+        </p>
+        <Button
+          size="small"
+          bgColor="primary"
+          textColor="black"
+          onClick={handleToPlay}
+          disabled={locked !== "none"}
+        >
+          {locked !== "none" ? "Locked" : "Play"}
+        </Button>
       </div>
     </li>
   );

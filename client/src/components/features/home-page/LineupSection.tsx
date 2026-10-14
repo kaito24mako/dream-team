@@ -79,7 +79,6 @@ function LineupSection({ lineup, loading, errorMsg }) {
         description="Assemble your starting five players to compete against the league."
         Icon={RiTeamLine}
       />
-
       <Divider color="default" />
 
       {content}

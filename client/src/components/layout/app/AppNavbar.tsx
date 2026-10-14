@@ -3,7 +3,6 @@ import { VscAccount } from "react-icons/vsc";
 import { IoIosLogOut } from "react-icons/io";
 import {
   IoCashOutline,
-  IoHomeOutline,
   IoShirtOutline,
   IoTrophyOutline,
 } from "react-icons/io5";

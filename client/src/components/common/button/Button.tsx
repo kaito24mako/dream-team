@@ -11,6 +11,7 @@ type Props = {
   bgColor?: BgColor;
   textColor?: TextColor;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 };
 
 function Button({
@@ -21,6 +22,7 @@ function Button({
   bgColor = "default",
   textColor = "default",
   onClick,
+  disabled = false,
 }: Props) {
   const sizeClasses: Record<Size, string> = {
     default: "",
@@ -44,6 +46,7 @@ function Button({
       type={type}
       className={`btn ${sizeClasses[size]} ${bgColorClasses[bgColor]} ${textColorClasses[textColor]} ${className}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
