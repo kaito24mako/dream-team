@@ -1,4 +1,14 @@
+import { useId } from "react";
+
 function CoinIcon({ className = "h-3 w-3" }: { className?: string }) {
+  const iconId = useId().replaceAll(":", "");
+  const goldId = `${iconId}-gold`;
+  const ringId = `${iconId}-ring`;
+  const letterId = `${iconId}-letter`;
+  const shineId = `${iconId}-shine`;
+  const shadowId = `${iconId}-shadow`;
+  const starId = `${iconId}-star`;
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,7 +17,7 @@ function CoinIcon({ className = "h-3 w-3" }: { className?: string }) {
       aria-label="Coin"
     >
       <defs>
-        <radialGradient id="gold" cx="35%" cy="30%" r="75%">
+        <radialGradient id={goldId} cx="35%" cy="30%" r="75%">
           <stop offset="0%" stopColor="#FFF9C4" />
           <stop offset="18%" stopColor="#FFE082" />
           <stop offset="45%" stopColor="#FFD54F" />
@@ -15,41 +25,41 @@ function CoinIcon({ className = "h-3 w-3" }: { className?: string }) {
           <stop offset="100%" stopColor="#C17900" />
         </radialGradient>
 
-        <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={ringId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FFF3B0" />
           <stop offset="25%" stopColor="#FFD54F" />
           <stop offset="55%" stopColor="#FBC02D" />
           <stop offset="100%" stopColor="#A66A00" />
         </linearGradient>
 
-        <linearGradient id="letter" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={letterId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FFF6BF" />
           <stop offset="40%" stopColor="#FFD54F" />
           <stop offset="100%" stopColor="#B97800" />
         </linearGradient>
 
-        <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={shineId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="white" stopOpacity="0.8" />
           <stop offset="40%" stopColor="white" stopOpacity="0.15" />
           <stop offset="100%" stopColor="white" stopOpacity="0" />
         </linearGradient>
 
-        <filter id="shadow">
+        <filter id={shadowId}>
           <feDropShadow dx="0" dy="8" stdDeviation="8" floodOpacity="0.35" />
         </filter>
 
         <polygon
-          id="star"
+          id={starId}
           points="0,-12 3.5,-3.5 12,-3.5 5.5,2.5 8,11 0,6 -8,11 -5.5,2.5 -12,-3.5 -3.5,-3.5"
         />
       </defs>
 
-      <g filter="url(#shadow)">
+      <g filter={`url(#${shadowId})`}>
         <circle
           cx="256"
           cy="256"
           r="245"
-          fill="url(#ring)"
+          fill={`url(#${ringId})`}
           stroke="#8B5A00"
           strokeWidth="5"
         />
@@ -67,24 +77,24 @@ function CoinIcon({ className = "h-3 w-3" }: { className?: string }) {
           cx="256"
           cy="256"
           r="175"
-          fill="url(#gold)"
+          fill={`url(#${goldId})`}
           stroke="#C89010"
           strokeWidth="4"
         />
 
         <g fill="#FFE082" stroke="#A66A00" strokeWidth="2">
-          <use href="#star" transform="translate(256 62)" />
-          <use href="#star" transform="translate(352 90)" />
-          <use href="#star" transform="translate(422 160)" />
-          <use href="#star" transform="translate(450 256)" />
-          <use href="#star" transform="translate(422 352)" />
-          <use href="#star" transform="translate(352 422)" />
-          <use href="#star" transform="translate(256 450)" />
-          <use href="#star" transform="translate(160 422)" />
-          <use href="#star" transform="translate(90 352)" />
-          <use href="#star" transform="translate(62 256)" />
-          <use href="#star" transform="translate(90 160)" />
-          <use href="#star" transform="translate(160 90)" />
+          <use href={`#${starId}`} transform="translate(256 62)" />
+          <use href={`#${starId}`} transform="translate(352 90)" />
+          <use href={`#${starId}`} transform="translate(422 160)" />
+          <use href={`#${starId}`} transform="translate(450 256)" />
+          <use href={`#${starId}`} transform="translate(422 352)" />
+          <use href={`#${starId}`} transform="translate(352 422)" />
+          <use href={`#${starId}`} transform="translate(256 450)" />
+          <use href={`#${starId}`} transform="translate(160 422)" />
+          <use href={`#${starId}`} transform="translate(90 352)" />
+          <use href={`#${starId}`} transform="translate(62 256)" />
+          <use href={`#${starId}`} transform="translate(90 160)" />
+          <use href={`#${starId}`} transform="translate(160 90)" />
         </g>
 
         <g transform="translate(256 265)">
@@ -99,7 +109,7 @@ function CoinIcon({ className = "h-3 w-3" }: { className?: string }) {
            C22-38 22 38 -12 38
            H-46
             Z"
-            fill="url(#letter)"
+            fill={`url(#${letterId})`}
             stroke="#8B5A00"
             strokeWidth="6"
           />
@@ -114,7 +124,7 @@ function CoinIcon({ className = "h-3 w-3" }: { className?: string }) {
            V-34
            H-6
             Z"
-            fill="url(#letter)"
+            fill={`url(#${letterId})`}
             stroke="#8B5A00"
             strokeWidth="6"
           />
@@ -125,7 +135,7 @@ function CoinIcon({ className = "h-3 w-3" }: { className?: string }) {
           cy="170"
           rx="170"
           ry="95"
-          fill="url(#shine)"
+          fill={`url(#${shineId})`}
           transform="rotate(-25 195 170)"
         />
       </g>

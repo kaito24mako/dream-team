@@ -169,7 +169,7 @@ function FullArtCard({
         className="relative w-37 h-65 md:w-40 lg:w-60 lg:h-85 font-base border border-border-base rounded-lg shadow-sm overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${playerRarityConversion})` }}
       >
-        <img src={playerImageConversion} className="absolute" />
+        <img src={playerImageConversion} className="absolute pt-7 md:p-0" />
         <p className="absolute top-2 lg:top-1.5 left-3 text-sm lg:text-lg">
           {playerPosition}
         </p>
