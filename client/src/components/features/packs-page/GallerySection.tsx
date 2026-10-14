@@ -16,13 +16,15 @@ import DropdownBtn from "../../common/button/DropdownBtn";
 import Divider from "../../common/divider/Divider";
 import SectionWrapper from "../../common/wrapper/SectionWrapper";
 import MajorHeading from "../../common/text/MajorHeading";
+import PlayerModal from "../../common/modal/PlayerModal";
 
-function GallerySection({ players, loading, errorMsg }) {
+function GallerySection({ user, players, loading, errorMsg }) {
   // filters
   const [rarityFilter, setRarityFilter] = useState("");
   const [positionFilter, setPositionFilter] = useState("");
   const [ratingSort, setRatingSort] = useState("");
   const [search, setSearch] = useState("");
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   // get list of players who have been filtered/sorted
   const filteredPlayers = getFilteredPlayers(
@@ -33,6 +35,21 @@ function GallerySection({ players, loading, errorMsg }) {
   );
 
   const searchedPlayers = getSearchedPlayers(filteredPlayers, search);
+
+  // check if the user owns the selected player
+  function handleSelectedPlayer(player) {
+    const ownedPlayer = user.Players?.find(
+      (ownedPlayer) => ownedPlayer.id === player.id,
+    );
+
+    setSelectedPlayer({
+      ...player,
+      UserPlayer: ownedPlayer?.UserPlayer || {
+        quantity: 0,
+        inLineup: false,
+      },
+    });
+  }
 
   return (
     <SectionWrapper className="mt-0!">
@@ -92,6 +109,8 @@ function GallerySection({ players, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
+              pointerCursor={true}
+              onClick={() => handleSelectedPlayer(player)}
             />
           ) : (
             <RegularCard
@@ -102,10 +121,19 @@ function GallerySection({ players, loading, errorMsg }) {
               playerName={player.fullName}
               offenseCount={player.offensiveRating}
               defenseCount={player.defensiveRating}
+              pointerCursor={true}
+              onClick={() => handleSelectedPlayer(player)}
             />
           ),
         )}
       </CardList>
+
+      {selectedPlayer && (
+        <PlayerModal
+          selectedPlayer={selectedPlayer}
+          setSelectedPlayer={setSelectedPlayer}
+        />
+      )}
     </SectionWrapper>
   );
 }

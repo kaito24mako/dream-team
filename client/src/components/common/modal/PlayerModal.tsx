@@ -39,30 +39,34 @@ function PlayerModal({
           </div>
 
           <div className="flex flex-col gap-2">
-            {" "}
             <span>Offensive: {selectedPlayer.offensiveRating}</span>
             <span>Defensive: {selectedPlayer.defensiveRating}</span>
-            <span>Quantity owned: {selectedPlayer.UserPlayer.quantity}</span>
+            {selectedPlayer.UserPlayer && (
+              <span>Quantity owned: {selectedPlayer.UserPlayer.quantity}</span>
+            )}
           </div>
 
           <div className="flex gap-3">
-            <Button
-              bgColor="primary"
-              textColor="black"
-              size="small"
-              onClick={async (e) => {
-                e.stopPropagation();
-                if (isInLineup) {
-                  await removeFromLineup(userId, selectedPlayer.id);
-                } else {
-                  await addToLineup(userId, selectedPlayer.id);
-                }
-                await getUserAndPlayers(userId);
-                setSelectedPlayer(null);
-              }}
-            >
-              {isInLineup ? "Remove from lineup" : "Add to lineup"}
-            </Button>
+            {(addToLineup || removeFromLineup) && (
+              <Button
+                bgColor="primary"
+                textColor="black"
+                size="small"
+                onClick={async (e) => {
+                  e.stopPropagation();
+                  if (isInLineup) {
+                    await removeFromLineup?.(userId, selectedPlayer.id);
+                  } else {
+                    await addToLineup?.(userId, selectedPlayer.id);
+                  }
+                  await getUserAndPlayers(userId);
+                  setSelectedPlayer(null);
+                }}
+              >
+                {isInLineup ? "Remove from lineup" : "Add to lineup"}
+              </Button>
+            )}
+
             <Button
               size="small"
               className="bg-neutral-700 p-4"

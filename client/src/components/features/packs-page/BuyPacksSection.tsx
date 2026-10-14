@@ -82,25 +82,6 @@ function BuyPacksSection({ user }) {
             })
           }
         />
-        {/* <Pack
-          packBg={positionPack}
-          title="Position Pack"
-          content="1 positional player"
-          chances={[
-            "20% for common",
-            "40% for rare",
-            "25% for superstar",
-            "15% for legendary",
-          ]}
-          price={800}
-          onBuy={() =>
-            setSelectedPack({
-              title: "Position Pack",
-              price: 800,
-              type: "position",
-            })
-          }
-        /> */}
       </CardList>
 
       {selectedPack && (

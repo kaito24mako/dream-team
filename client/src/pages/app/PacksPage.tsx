@@ -22,6 +22,7 @@ function PacksPage() {
         <BuyPacksSection user={user} />
 
         <GallerySection
+          user={user}
           players={players}
           loading={loading}
           errorMsg={errorMsg}
