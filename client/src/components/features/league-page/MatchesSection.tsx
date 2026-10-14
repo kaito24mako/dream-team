@@ -1,14 +1,18 @@
 import { AiOutlineSchedule } from "react-icons/ai";
-
 import { opponents } from "../../../data/opponents";
 
-import SectionHeading from "../../common/text/SectionHeading";
 import MatchItem from "./MatchItem";
+import MajorHeading from "../../common/text/MajorHeading";
+import SectionWrapper from "../../common/wrapper/SectionWrapper";
 
 function MatchesSection() {
   return (
-    <section className="border border-border rounded-sm bg-base-200 p-4 pb-6 sm:p-6 sm:px-8 sm:pb-8 max-w-7xl mx-auto">
-      <SectionHeading heading="LEAGUE MATCHES" Icon={AiOutlineSchedule} />
+    <SectionWrapper className="max-w-7xl">
+      <MajorHeading
+        heading="LEAGUE MATCHES"
+        description="Battle for rewards. The greater the opponent, the higher the payout."
+        Icon={AiOutlineSchedule}
+      />
 
       <ul className="flex flex-col gap-5">
         {opponents.map((opponent) => (
@@ -23,7 +27,7 @@ function MatchesSection() {
           />
         ))}
       </ul>
-    </section>
+    </SectionWrapper>
   );
 }
 export default MatchesSection;

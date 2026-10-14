@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { getUser } from "../../../utils/redux/slices/authSlice.js";
 import { useLineup } from "../../../utils/context/LineupContext.jsx";
 
-import SectionHeading from "../../common/text/SectionHeading";
 import CardList from "../../common/list/CardList";
 import EmptyCard from "../../common/playerCard/EmptyCard";
 import RegularCard from "../../common/playerCard/RegularCard";
@@ -12,6 +11,7 @@ import FullArtCard from "../../common/playerCard/FullArtCard";
 import Divider from "../../common/divider/Divider";
 import PlayerModal from "../../common/modal/PlayerModal.js";
 import MajorHeading from "../../common/text/MajorHeading.js";
+import SectionWrapper from "../../common/wrapper/SectionWrapper.js";
 
 function LineupSection({ lineup, loading, errorMsg }) {
   // to get the logged in user's id
@@ -71,10 +71,10 @@ function LineupSection({ lineup, loading, errorMsg }) {
   }
 
   return (
-    <section className="mt-6 p-6 pb-10 bg-base-200 rounded-md shadow-neutral-100">
+    <SectionWrapper>
       <MajorHeading
         heading="STARTING LINEUP"
-        description="Create your starting five players to compete against the league."
+        description="Assemble your starting five players to compete against the league."
         Icon={RiTeamLine}
       />
 
@@ -91,7 +91,7 @@ function LineupSection({ lineup, loading, errorMsg }) {
           setSelectedPlayer={setSelectedPlayer}
         />
       )}
-    </section>
+    </SectionWrapper>
   );
 }
 export default LineupSection;

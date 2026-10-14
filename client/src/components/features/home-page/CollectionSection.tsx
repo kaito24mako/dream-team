@@ -11,7 +11,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getUser } from "../../../utils/redux/slices/authSlice.js";
 
-import SectionHeading from "../../common/text/SectionHeading";
 import SearchForm from "../../common/form/SearchForm";
 import DropdownBtn from "../../common/button/DropdownBtn";
 import RegularCard from "../../common/playerCard/RegularCard";
@@ -19,6 +18,8 @@ import Divider from "../../common/divider/Divider";
 import CardList from "../../common/list/CardList";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 import PlayerModal from "../../common/modal/PlayerModal.js";
+import MajorHeading from "../../common/text/MajorHeading.js";
+import SectionWrapper from "../../common/wrapper/SectionWrapper.js";
 
 function CollectionSection({ user, loading, errorMsg }) {
   // get the logged in user's id
@@ -50,9 +51,14 @@ function CollectionSection({ user, loading, errorMsg }) {
   const searchedPlayers = getSearchedPlayers(filteredPlayers, search);
 
   return (
-    <section className="mt-6">
+    <SectionWrapper>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end">
-        <SectionHeading heading="MY COLLECTION" Icon={TbCards} />
+        {/* <SectionHeading heading="MY COLLECTION" Icon={TbCards} /> */}
+        <MajorHeading
+          heading="MY COLLECTION"
+          description="View your collected players and add to your lineup."
+          Icon={TbCards}
+        />
 
         <div className="flex items-center gap-2 mb-3">
           <SearchForm value={search} onSearch={setSearch} />
@@ -128,7 +134,7 @@ function CollectionSection({ user, loading, errorMsg }) {
           setSelectedPlayer={setSelectedPlayer}
         />
       )}
-    </section>
+    </SectionWrapper>
   );
 }
 export default CollectionSection;

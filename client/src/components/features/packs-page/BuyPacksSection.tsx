@@ -10,6 +10,7 @@ import basicPack from "../../../assets/card/pack/basic-pack.png";
 import premiumPack from "../../../assets/card/pack/premium-pack2.png";
 import hofPack from "../../../assets/card/pack/hof-pack.png";
 import positionPack from "../../../assets/card/pack/position-pack.png";
+import SectionWrapper from "../../common/wrapper/SectionWrapper";
 
 type SelectedPack = {
   title: string;
@@ -21,14 +22,13 @@ function BuyPacksSection({ user }) {
   const [selectedPack, setSelectedPack] = useState<SelectedPack | null>(null);
 
   return (
-    <section className="mb-8 p-6 pb-10 bg-base-200 rounded-md shadow-neutral-100">
+    <SectionWrapper className="mb-8 mt-2!">
       <MajorHeading
         heading="BUY PACKS"
         Icon={AiOutlineShoppingCart}
         divider={true}
         description="Spend your currency to improve your team with new players."
       />
-
       <CardList>
         <Pack
           packBg={basicPack}
@@ -111,7 +111,7 @@ function BuyPacksSection({ user }) {
           setSelectedPack={setSelectedPack}
         />
       )}
-    </section>
+    </SectionWrapper>
   );
 }
 export default BuyPacksSection;

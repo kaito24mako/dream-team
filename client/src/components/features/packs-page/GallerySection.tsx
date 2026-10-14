@@ -8,13 +8,14 @@ import {
   getSearchedPlayers,
 } from "../../../utils/helpers/getPlayers";
 
-import SectionHeading from "../../common/text/SectionHeading";
 import FullArtCard from "../../common/playerCard/FullArtCard";
 import RegularCard from "../../common/playerCard/RegularCard";
 import CardList from "../../common/list/CardList";
 import SearchForm from "../../common/form/SearchForm";
 import DropdownBtn from "../../common/button/DropdownBtn";
 import Divider from "../../common/divider/Divider";
+import SectionWrapper from "../../common/wrapper/SectionWrapper";
+import MajorHeading from "../../common/text/MajorHeading";
 
 function GallerySection({ players, loading, errorMsg }) {
   // filters
@@ -34,9 +35,13 @@ function GallerySection({ players, loading, errorMsg }) {
   const searchedPlayers = getSearchedPlayers(filteredPlayers, search);
 
   return (
-    <section>
+    <SectionWrapper className="mt-0!">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end">
-        <SectionHeading heading="ALL CARDS" Icon={VscCollection} />
+        <MajorHeading
+          heading="ALL CARDS"
+          description="View the entire database, containing 60 players."
+          Icon={VscCollection}
+        />
 
         <div className="flex items-center gap-2 mb-3">
           <SearchForm value={search} onSearch={setSearch} />
@@ -101,7 +106,7 @@ function GallerySection({ players, loading, errorMsg }) {
           ),
         )}
       </CardList>
-    </section>
+    </SectionWrapper>
   );
 }
 export default GallerySection;
