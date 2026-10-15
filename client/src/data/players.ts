@@ -17,7 +17,7 @@ export const players = [
     offensiveRating: 58,
     defensiveRating: 61,
     overallRating: 60,
-    image: "player2",
+    image: "/images/players/player2.png",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const players = [
     offensiveRating: 76,
     defensiveRating: 81,
     overallRating: 79,
-    image: "player3",
+    image: "/images/players/player3.png",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export const players = [
     offensiveRating: 97,
     defensiveRating: 96,
     overallRating: 97,
-    image: "player4",
+    image: "/images/players/player4.png",
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export const players = [
     offensiveRating: 64,
     defensiveRating: 57,
     overallRating: 61,
-    image: "player5",
+    image: "/images/players/player5.png",
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ export const players = [
     offensiveRating: 73,
     defensiveRating: 78,
     overallRating: 76,
-    image: "player6",
+    image: "/images/players/player6.png",
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ export const players = [
     offensiveRating: 87,
     defensiveRating: 91,
     overallRating: 89,
-    image: "player7",
+    image: "/images/players/player7.png",
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ export const players = [
     offensiveRating: 52,
     defensiveRating: 59,
     overallRating: 56,
-    image: "player8",
+    image: "/images/players/player8.png",
   },
   {
     id: 9,
@@ -87,7 +87,7 @@ export const players = [
     offensiveRating: 82,
     defensiveRating: 75,
     overallRating: 79,
-    image: "player9",
+    image: "/images/players/player9.png",
   },
   {
     id: 10,
@@ -97,7 +97,7 @@ export const players = [
     offensiveRating: 66,
     defensiveRating: 63,
     overallRating: 65,
-    image: "player10",
+    image: "/images/players/player10.png",
   },
   {
     id: 11,
@@ -107,7 +107,7 @@ export const players = [
     offensiveRating: 94,
     defensiveRating: 90,
     overallRating: 92,
-    image: "player11",
+    image: "/images/players/player11.png",
   },
   {
     id: 12,
@@ -117,7 +117,7 @@ export const players = [
     offensiveRating: 71,
     defensiveRating: 74,
     overallRating: 73,
-    image: "player12",
+    image: "/images/players/player12.png",
   },
   {
     id: 13,
@@ -127,7 +127,7 @@ export const players = [
     offensiveRating: 55,
     defensiveRating: 67,
     overallRating: 61,
-    image: "player13",
+    image: "/images/players/player13.png",
   },
   {
     id: 14,
@@ -137,7 +137,7 @@ export const players = [
     offensiveRating: 86,
     defensiveRating: 89,
     overallRating: 88,
-    image: "player14",
+    image: "/images/players/player14.png",
   },
   {
     id: 15,
@@ -147,7 +147,7 @@ export const players = [
     offensiveRating: 79,
     defensiveRating: 83,
     overallRating: 81,
-    image: "player15",
+    image: "/images/players/player15.png",
   },
   {
     id: 16,
@@ -157,7 +157,7 @@ export const players = [
     offensiveRating: 62,
     defensiveRating: 54,
     overallRating: 58,
-    image: "player16",
+    image: "/images/players/player16.png",
   },
   {
     id: 17,
@@ -167,7 +167,7 @@ export const players = [
     offensiveRating: 99,
     defensiveRating: 97,
     overallRating: 98,
-    image: "player17",
+    image: "/images/players/player17.png",
   },
   {
     id: 18,
@@ -177,7 +177,7 @@ export const players = [
     offensiveRating: 77,
     defensiveRating: 72,
     overallRating: 75,
-    image: "player18",
+    image: "/images/players/player18.png",
   },
   {
     id: 19,
@@ -187,7 +187,7 @@ export const players = [
     offensiveRating: 60,
     defensiveRating: 65,
     overallRating: 63,
-    image: "player19",
+    image: "/images/players/player19.png",
   },
   {
     id: 20,
@@ -197,7 +197,7 @@ export const players = [
     offensiveRating: 92,
     defensiveRating: 94,
     overallRating: 93,
-    image: "player20",
+    image: "/images/players/player20.png",
   },
   {
     id: 21,
@@ -207,7 +207,7 @@ export const players = [
     offensiveRating: 84,
     defensiveRating: 80,
     overallRating: 82,
-    image: "player21",
+    image: "/images/players/player21.png",
   },
   {
     id: 22,
@@ -217,7 +217,7 @@ export const players = [
     offensiveRating: 57,
     defensiveRating: 62,
     overallRating: 60,
-    image: "player22",
+    image: "/images/players/player22.png",
   },
   {
     id: 23,
@@ -227,7 +227,7 @@ export const players = [
     offensiveRating: 89,
     defensiveRating: 86,
     overallRating: 88,
-    image: "player23",
+    image: "/images/players/player23.png",
   },
   {
     id: 24,
@@ -237,7 +237,7 @@ export const players = [
     offensiveRating: 69,
     defensiveRating: 64,
     overallRating: 67,
-    image: "player24",
+    image: "/images/players/player24.png",
   },
   {
     id: 25,
@@ -247,7 +247,7 @@ export const players = [
     offensiveRating: 74,
     defensiveRating: 82,
     overallRating: 78,
-    image: "player25",
+    image: "/images/players/player25.png",
   },
   {
     id: 26,
@@ -257,7 +257,7 @@ export const players = [
     offensiveRating: 53,
     defensiveRating: 58,
     overallRating: 56,
-    image: "player26",
+    image: "/images/players/player26.png",
   },
   {
     id: 27,
@@ -267,7 +267,7 @@ export const players = [
     offensiveRating: 90,
     defensiveRating: 93,
     overallRating: 92,
-    image: "player27",
+    image: "/images/players/player27.png",
   },
   {
     id: 28,
@@ -277,7 +277,7 @@ export const players = [
     offensiveRating: 81,
     defensiveRating: 77,
     overallRating: 79,
-    image: "player28",
+    image: "/images/players/player28.png",
   },
   {
     id: 29,
@@ -287,7 +287,7 @@ export const players = [
     offensiveRating: 61,
     defensiveRating: 56,
     overallRating: 59,
-    image: "player29",
+    image: "/images/players/player29.png",
   },
   {
     id: 30,
@@ -297,7 +297,7 @@ export const players = [
     offensiveRating: 72,
     defensiveRating: 79,
     overallRating: 76,
-    image: "player30",
+    image: "/images/players/player30.png",
   },
   {
     id: 31,
@@ -307,7 +307,7 @@ export const players = [
     offensiveRating: 53,
     defensiveRating: 55,
     overallRating: 54,
-    image: "player31",
+    image: "/images/players/player31.png",
   },
   {
     id: 32,
@@ -317,7 +317,7 @@ export const players = [
     offensiveRating: 88,
     defensiveRating: 92,
     overallRating: 90,
-    image: "player32",
+    image: "/images/players/player32.png",
   },
   {
     id: 33,
@@ -327,7 +327,7 @@ export const players = [
     offensiveRating: 83,
     defensiveRating: 78,
     overallRating: 81,
-    image: "player33",
+    image: "/images/players/player33.png",
   },
   {
     id: 34,
@@ -337,7 +337,7 @@ export const players = [
     offensiveRating: 65,
     defensiveRating: 68,
     overallRating: 67,
-    image: "player34",
+    image: "/images/players/player34.png",
   },
   {
     id: 35,
@@ -347,7 +347,7 @@ export const players = [
     offensiveRating: 75,
     defensiveRating: 80,
     overallRating: 78,
-    image: "player35",
+    image: "/images/players/player35.png",
   },
   {
     id: 36,
@@ -357,7 +357,7 @@ export const players = [
     offensiveRating: 96,
     defensiveRating: 99,
     overallRating: 98,
-    image: "player36",
+    image: "/images/players/player36.png",
   },
   {
     id: 37,
@@ -367,7 +367,7 @@ export const players = [
     offensiveRating: 59,
     defensiveRating: 63,
     overallRating: 61,
-    image: "player37",
+    image: "/images/players/player37.png",
   },
   {
     id: 38,
@@ -377,7 +377,7 @@ export const players = [
     offensiveRating: 85,
     defensiveRating: 91,
     overallRating: 88,
-    image: "player38",
+    image: "/images/players/player38.png",
   },
   {
     id: 39,
@@ -387,7 +387,7 @@ export const players = [
     offensiveRating: 80,
     defensiveRating: 84,
     overallRating: 82,
-    image: "player39",
+    image: "/images/players/player39.png",
   },
   {
     id: 40,
@@ -397,7 +397,7 @@ export const players = [
     offensiveRating: 56,
     defensiveRating: 60,
     overallRating: 58,
-    image: "player40",
+    image: "/images/players/player40.png",
   },
   {
     id: 41,
@@ -407,7 +407,7 @@ export const players = [
     offensiveRating: 93,
     defensiveRating: 87,
     overallRating: 90,
-    image: "player41",
+    image: "/images/players/player41.png",
   },
   {
     id: 42,
@@ -417,7 +417,7 @@ export const players = [
     offensiveRating: 78,
     defensiveRating: 83,
     overallRating: 81,
-    image: "player42",
+    image: "/images/players/player42.png",
   },
   {
     id: 43,
@@ -427,7 +427,7 @@ export const players = [
     offensiveRating: 51,
     defensiveRating: 64,
     overallRating: 58,
-    image: "player43",
+    image: "/images/players/player43.png",
   },
   {
     id: 44,
@@ -437,7 +437,7 @@ export const players = [
     offensiveRating: 76,
     defensiveRating: 73,
     overallRating: 75,
-    image: "player44",
+    image: "/images/players/player44.png",
   },
   {
     id: 45,
@@ -447,7 +447,7 @@ export const players = [
     offensiveRating: 91,
     defensiveRating: 95,
     overallRating: 93,
-    image: "player45",
+    image: "/images/players/player45.png",
   },
   {
     id: 46,
@@ -457,7 +457,7 @@ export const players = [
     offensiveRating: 63,
     defensiveRating: 57,
     overallRating: 60,
-    image: "player46",
+    image: "/images/players/player46.png",
   },
   {
     id: 47,
@@ -467,7 +467,7 @@ export const players = [
     offensiveRating: 82,
     defensiveRating: 76,
     overallRating: 79,
-    image: "player47",
+    image: "/images/players/player47.png",
   },
   {
     id: 48,
@@ -477,7 +477,7 @@ export const players = [
     offensiveRating: 67,
     defensiveRating: 69,
     overallRating: 68,
-    image: "player48",
+    image: "/images/players/player48.png",
   },
   {
     id: 49,
@@ -487,7 +487,7 @@ export const players = [
     offensiveRating: 98,
     defensiveRating: 95,
     overallRating: 97,
-    image: "player49",
+    image: "/images/players/player49.png",
   },
   {
     id: 50,
@@ -497,7 +497,7 @@ export const players = [
     offensiveRating: 54,
     defensiveRating: 62,
     overallRating: 58,
-    image: "player50",
+    image: "/images/players/player50.png",
   },
   {
     id: 51,
@@ -507,7 +507,7 @@ export const players = [
     offensiveRating: 73,
     defensiveRating: 81,
     overallRating: 77,
-    image: "player51",
+    image: "/images/players/player51.png",
   },
   {
     id: 52,
@@ -517,7 +517,7 @@ export const players = [
     offensiveRating: 87,
     defensiveRating: 90,
     overallRating: 89,
-    image: "player52",
+    image: "/images/players/player52.png",
   },
   {
     id: 53,
@@ -527,7 +527,7 @@ export const players = [
     offensiveRating: 58,
     defensiveRating: 66,
     overallRating: 62,
-    image: "player53",
+    image: "/images/players/player53.png",
   },
   {
     id: 54,
@@ -537,7 +537,7 @@ export const players = [
     offensiveRating: 84,
     defensiveRating: 79,
     overallRating: 82,
-    image: "player54",
+    image: "/images/players/player54.png",
   },
   {
     id: 55,
@@ -547,7 +547,7 @@ export const players = [
     offensiveRating: 62,
     defensiveRating: 68,
     overallRating: 65,
-    image: "player55",
+    image: "/images/players/player55.png",
   },
   {
     id: 56,
@@ -557,7 +557,7 @@ export const players = [
     offensiveRating: 95,
     defensiveRating: 89,
     overallRating: 92,
-    image: "player56",
+    image: "/images/players/player56.png",
   },
   {
     id: 57,
@@ -567,7 +567,7 @@ export const players = [
     offensiveRating: 55,
     defensiveRating: 61,
     overallRating: 58,
-    image: "player57",
+    image: "/images/players/player57.png",
   },
   {
     id: 58,
@@ -577,7 +577,7 @@ export const players = [
     offensiveRating: 77,
     defensiveRating: 82,
     overallRating: 80,
-    image: "player58",
+    image: "/images/players/player58.png",
   },
   {
     id: 59,
@@ -587,7 +587,7 @@ export const players = [
     offensiveRating: 69,
     defensiveRating: 65,
     overallRating: 67,
-    image: "player59",
+    image: "/images/players/player59.png",
   },
   {
     id: 60,
@@ -597,6 +597,6 @@ export const players = [
     offensiveRating: 97,
     defensiveRating: 98,
     overallRating: 98,
-    image: "player60",
+    image: "/images/players/player60.png",
   },
 ];

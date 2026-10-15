@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const playerRoutes = require("./routes/player");
 const userPlayerRoutes = require("./routes/userPlayer");
+const path = require("path");
 
 // initialise express app variable
 const app = express();
@@ -15,6 +16,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(express.static(path.join(_dirname, "public")));
 
 // use imported routes
 app.use("/api/auth", authRoutes);
