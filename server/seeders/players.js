@@ -3,6 +3,7 @@ const players = require("./playersData");
 const { Player } = db;
 
 //* to add player data from playersData.js to the db
+//# npm run seed:players
 async function seedPlayers() {
   try {
     await db.sequelize.sync();
@@ -17,7 +18,7 @@ async function seedPlayers() {
         "image",
       ],
     });
-    console.log("Players seeded successfully");
+    console.log("Successfully seeded players");
   } catch (error) {
     console.error(error);
   } finally {

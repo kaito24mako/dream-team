@@ -3,6 +3,7 @@ const express = require("express");
 const config = require("./config/config");
 const db = require("./models");
 const cors = require("cors");
+const morganMiddleware = require("./lib/logger");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const playerRoutes = require("./routes/player");
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(morganMiddleware);
 
 // use imported routes
 app.use("/api/auth", authRoutes);
