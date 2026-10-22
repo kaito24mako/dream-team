@@ -8,7 +8,7 @@ function claimError(status, message) {
 
 async function claimStarterPack(userId) {
   return db.sequelize.transaction(async (transaction) => {
-    // Serialize claims for this account, including requests from other devices.
+    // serialize claims for this account, including requests from other devices
     const user = await db.User.findByPk(userId, {
       transaction,
       lock: transaction.LOCK.UPDATE,

@@ -22,5 +22,12 @@ sync. The player catalog must contain a Common player for every position; run
 The old direct player grant endpoint now requires an authenticated admin.
 Paid packs remain available after the starter gift.
 
-Run `npm test` for the starter claim service and route tests. These use an
-in-memory database double; they do not exercise MySQL itself.
+Completed battles use the authenticated endpoint `POST /api/users/matches/result`
+with `{ "isWinner": true, "level": 1 }`. It increments wins or losses and updates
+coins together in a transaction, using the existing database totals and the
+league's reward schedule. The response refreshes those totals in the client;
+win rate is calculated from wins divided by total games. This uses existing
+columns and does not require another migration.
+
+Run `npm test` for the starter claim and match result tests. These use an in-memory
+database double; they do not exercise MySQL itself.

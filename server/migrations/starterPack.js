@@ -15,8 +15,8 @@ async function migrate() {
       });
     }
 
-    // Preserve eligibility for empty accounts, and exclude established teams.
-    // This is safe to rerun: it never resets an existing claim.
+    // preserve eligibility for empty accounts, and exclude established teams
+    // this is safe to rerun: it never resets an existing claim
     const quote = (name) => queryInterface.queryGenerator.quoteIdentifier(name);
     const users = queryInterface.queryGenerator.quoteTable(userTable);
     const ownership = queryInterface.queryGenerator.quoteTable(db.UserPlayer.getTableName());

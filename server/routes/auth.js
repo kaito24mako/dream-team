@@ -8,7 +8,7 @@ const auth = require("../middleware/auth");
 const { User } = db;
 const router = express.Router();
 
-//** Auth routes
+//** auth routes
 
 //* login
 router.post("/login", async (req, res) => {
@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
       return res.status(400).send({ message: "Invalid login details" });
     }
 
-    // generate a web token to send to the client, which contains their credentials...
+    // generate a web token to send to the client, which contains their credentials
 
     // create the payload
     const payload = {
@@ -99,7 +99,7 @@ router.post("/register", async (req, res) => {
     // save to database
     const newUserRes = await User.create(newUser);
 
-    // generate a web token to send to the client, which contains their credentials...
+    // generate a web token to send to the client, which contains their credentials
 
     // create the payload
     const payload = {

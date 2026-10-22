@@ -1,10 +1,53 @@
 const express = require("express");
 const db = require("../models");
+const auth = require("../middleware/auth");
 
 const { User } = db;
 const router = express.Router();
 
-//** User routes
+//** user routes
+
+// league coin amounts, ordered from level 1 to 10
+const REWARDS = [100, 150, 200, 250, 300, 400, 500, 600, 800, 1000];
+const PENALTIES = [0, 0, 50, 50, 100, 100, 200, 300, 400, 500];
+
+// save the signed-in user's match result
+router.post("/matches/result", auth, async (req, res) => {
+  const { isWinner, level } = req.body || {};
+
+  // only accept a win/loss and a valid league level
+  if (typeof isWinner !== "boolean" || !Number.isInteger(level) || level < 1 || level > REWARDS.length) {
+    return res.status(400).json({ message: "Invalid match result or level." });
+  }
+
+  try {
+    // save the record and coins together
+    const result = await db.sequelize.transaction(async (transaction) => {
+      const user = await User.findByPk(req.user.userId, {
+        transaction,
+        // stop simultaneous matches from overwriting each other
+        lock: transaction.LOCK.UPDATE,
+      });
+      if (!user) return null;
+
+      if (isWinner) user.wins += 1;
+      else user.losses += 1;
+
+      const coins = isWinner ? REWARDS[level - 1] : -PENALTIES[level - 1];
+      // coins cannot fall below zero
+      user.currency = Math.max(0, user.currency + coins);
+      await user.save({ transaction });
+
+      return { wins: user.wins, losses: user.losses, currency: user.currency };
+    });
+
+    if (!result) return res.status(404).json({ message: "User not found" });
+    res.status(200).json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to save match result." });
+  }
+});
 
 //* get all users
 // usage: TESTING
@@ -116,7 +159,7 @@ router.put("/:id/edit", async (req, res) => {
       isAdmin,
     };
 
-    // Only update password if the user entered a new one
+    // only update password if the user entered a new one
     if (password) {
       updateData.password = await User.prototype.hashPassword(password);
     }
@@ -159,25 +202,6 @@ router.delete("/:id", async (req, res) => {
     console.error(err);
     res.status(500).send({ message: "Failed to delete user" });
   }
-});
-
-//* edit the currency
-router.put("/:id/edit/currency", async (req, res) => {
-  const { id } = req.params;
-  const { currency } = req.body;
-
-  const user = await User.findByPk(id);
-
-  if (!user) {
-    return res.status(404).send({ message: "User not found" });
-  }
-
-  user.currency = currency;
-  await user.save();
-
-  // send the user response without the password
-  const { password: _password, ...userWithoutPassword } = user.toJSON();
-  res.status(200).send(userWithoutPassword);
 });
 
 module.exports = router;

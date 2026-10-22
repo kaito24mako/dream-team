@@ -1,4 +1,4 @@
-//! NOT NEEDED WITH API
+//! not needed with the API
 
 import { users } from "../../data/users";
 import { currentUserId } from "../../data/session";

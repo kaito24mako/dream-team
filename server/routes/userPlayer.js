@@ -13,7 +13,7 @@ const { PACKS, getRandomPlayer } = require("../utils/helpers/getRandomPlayer");
 
 router.post("/starter-pack/claim", auth, async (req, res) => {
   try {
-    // Always use the authenticated account, never an ID supplied by the client.
+    // always use the authenticated account, never an ID supplied by the client
     const players = await claimStarterPack(req.user.userId);
     res.status(201).json({
       message: "Your five starter players are ready!",

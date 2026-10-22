@@ -19,7 +19,7 @@ function CollectSection() {
         </p>
       </div>
 
-      {/* Rarities */}
+      {/* rarities */}
       <div className="collapse collapse-arrow bg-base-200 p-5">
         <input type="checkbox" />
         <h3 className="text-lg collapse-title p-0!">Rarities</h3>
@@ -48,7 +48,7 @@ function CollectSection() {
         </ul>
       </div>
 
-      {/* Packs */}
+      {/* packs */}
       <div className="collapse collapse-arrow bg-base-200 p-5">
         <input type="checkbox" />
         <h3 className="text-lg collapse-title p-0!">Packs</h3>

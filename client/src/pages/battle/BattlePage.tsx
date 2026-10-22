@@ -27,7 +27,7 @@ function BattlePage() {
     user,
     loading: userLoading,
     errorMsg: userErrorMsg,
-    updateUserCurrency,
+    saveMatchResult,
   } = useUser();
   const {
     lineup,
@@ -42,29 +42,18 @@ function BattlePage() {
   const level = Number(levelSlug.replace("lvl", ""));
   const selectedOpponent = getSelectedOpponent(level);
 
-  // to track if a match has started
   const [battleStarted, setBattleStarted] = useState(false);
-
-  // to track if a battle has finished
   const [battleFinished, setBattleFinished] = useState(false);
-
-  // to track if win, loss, or draw
+  const [saveError, setSaveError] = useState("");
   const [battleResults, setBattleResults] = useState({});
-
-  // if the user is the final winner or not
   const [isWinner, setIsWinner] = useState(false);
-
-  // to track the user's chance of winning
   const [winPercentage, setWinPercentage] = useState(50);
-
-  // to track the index of each positional matchup
   const [matchupIndex, setMatchupIndex] = useState(0);
 
-  // to track if the matchup timer is occuring
+  const matchStarted = useRef(false);
   const revealTimeouts = useRef([]);
 
-  // using state to prevent the ratings from generating again on re-render
-  //! prevent page reloads from re-generating the ratings
+  // generate opponent ratings once per match
   const [opponentLineup] = useState(() => [
     {
       position: "PG",
@@ -103,9 +92,7 @@ function BattlePage() {
     },
   ]);
 
-  //* Battle logic
-
-  // Clear matchup timer after mount
+  // stop the reveal timers when leaving the page
   function clearRevealTimeouts() {
     revealTimeouts.current.forEach((timeout) => clearTimeout(timeout));
     revealTimeouts.current = [];
@@ -114,19 +101,16 @@ function BattlePage() {
     return clearRevealTimeouts;
   }, []);
 
-  // Compare overalls between positions to get the user's result of each matchup
   function handleStartBattle() {
+    // require five players and ignore extra clicks
+    if (matchStarted.current || lineup.length !== 5) return;
+    matchStarted.current = true;
     clearRevealTimeouts();
     setBattleStarted(true);
-    setBattleFinished(false);
-    setIsWinner(false);
-    setBattleResults({});
-    setWinPercentage(50);
-    setMatchupIndex(0);
 
     const allResults = {};
 
-    // compare overalls per position
+    // compare each player with the opponent in the same position
     lineup.forEach((player, index) => {
       const opponentOverall =
         (opponentLineup[index].offensiveRating +
@@ -141,31 +125,28 @@ function BattlePage() {
             : "draw";
     });
 
-    // reveal each result with a timer
+    // reveal each matchup in order
     lineup.forEach((player, index) => {
       const timeout = setTimeout(() => {
         const result = allResults[player.position];
 
-        // set matchupIndex to be the index of the current positional matchup
         setMatchupIndex(index);
 
-        // set result
         setBattleResults((currentResults) => ({
           ...currentResults,
           [player.position]: result,
         }));
 
-        // increment/decrement the win percentage
+        // each matchup changes the win chance by 10%
         if (result === "win") {
           setWinPercentage((percentage) => percentage + 10);
         } else if (result === "loss") {
           setWinPercentage((percentage) => percentage - 10);
         }
 
-        // after all five matchups...
+        // save the result after the last matchup
         if (index === lineup.length - 1) {
-          getFinalResult(allResults);
-          setBattleFinished(true);
+          void getFinalResult(allResults);
         }
       }, index * 1400);
 
@@ -173,44 +154,35 @@ function BattlePage() {
     });
   }
 
-  // Get the opponent's result of each matchup
   function getOpponentResult(result) {
     if (result === "win") return "loss";
     if (result === "loss") return "win";
     return result;
   }
 
-  //* After match has finished
-
-  // Get the final result based on the win percentage
-  function getFinalResult(finalResults) {
-    // calculate final win percentage from the finalResults array
+  async function getFinalResult(finalResults) {
+    // use the five matchups to calculate the final win chance
     const finalWinPercentage =
       50 +
       Object.values(finalResults).filter((result) => result === "win").length *
         10 -
       Object.values(finalResults).filter((result) => result === "loss").length *
         10;
-    const randomValue = Math.random() * 100;
-    const userWon = randomValue <= finalWinPercentage;
+    const userWon = Math.random() * 100 <= finalWinPercentage;
 
     setIsWinner(userWon);
-    getReward(userWon);
 
-    console.log("Is user the winner?", userWon);
-    console.log("final battle results:", finalResults);
-  }
-
-  // Update the user's currency
-  function getReward(userWon) {
-    // ensure currency doesnt go below 0
-    const currencyChange = userWon
-      ? selectedOpponent.reward
-      : -selectedOpponent.loss;
-
-    const updatedCurrency = Math.max(0, user.currency + currencyChange);
-
-    updateUserCurrency(user.id, updatedCurrency);
+    try {
+      // save the result before showing the exit button
+      await saveMatchResult(userWon, level);
+    } catch (err) {
+      console.error("Failed to save match result:", err);
+      setSaveError(
+        "Could not save your match result. Your record and coins may not have updated.",
+      );
+    } finally {
+      setBattleFinished(true);
+    }
   }
 
   if (loading) return <span>Loading players...</span>;
@@ -228,7 +200,14 @@ function BattlePage() {
           battleFinished={battleFinished}
           isWinner={isWinner}
           selectedOpponent={selectedOpponent}
+          canStart={lineup.length === 5}
         />
+
+        {saveError && (
+          <p role="alert" className="text-error text-center">
+            {saveError}
+          </p>
+        )}
 
         <div className="flex flex-row md:flex-col md:gap-5">
           {/* user's team */}

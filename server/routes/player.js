@@ -4,7 +4,7 @@ const db = require("../models");
 const { Player } = db;
 const router = express.Router();
 
-//** Player routes
+//** player routes
 
 //* get all players
 // usage: PacksPage.jsx

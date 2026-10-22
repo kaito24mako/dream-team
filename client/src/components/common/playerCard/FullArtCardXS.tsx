@@ -23,7 +23,7 @@ function FullArtCardXS({
   offenseCount,
   defenseCount,
 }: Props) {
-  // to connect the player data's 'rarity' value to an imported asset...
+  // to connect the player data's 'rarity' value to an imported asset
   const rarityBg: Record<string, string> = {
     Common,
     Rare,

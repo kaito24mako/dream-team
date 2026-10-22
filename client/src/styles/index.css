@@ -7,7 +7,7 @@
   name: "light";
   default: true;
 
-  /* Brand */
+  /* brand */
   --color-primary: #ea580c;
   --color-primary-content: #171717;
 
@@ -20,7 +20,7 @@
   --color-border: #7E6156;
   --color-border-base: #d4d4d4;
 
-  /* Base bg and text */
+  /* base bg and text */
   --color-base-100: #f5f5f5;
   --color-base-200: #e5e5e5;
   --color-base-300: #d4d4d4;
@@ -32,7 +32,7 @@
   name: "dark";
   prefersdark: true;
 
-  /* Brand */
+  /* brand */
   --color-primary: #EE6730;
   --color-primary-content: #FAFAFA;
 
@@ -45,7 +45,7 @@
   --color-border: #7E6156;
   --color-border-base: #09090b;
 
-  /* Base bg and text */
+  /* base bg and text */
   --color-base-100: #171717;
   --color-base-200: #1C1C1C;
   --color-base-300: #212121;

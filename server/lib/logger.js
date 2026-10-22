@@ -1,12 +1,12 @@
-// Bring in winston and morgan
+// bring in winston and morgan
 const winston = require("winston");
 const morgan = require("morgan");
 const { combine, timestamp, json } = winston.format;
 
 // create the logger
 // level: specifies the level to log to (checking);
-// format: how we want our logs to look.
-// transports: Specifies where we are logging to.
+// format: how we want our logs to look
+// transports: Specifies where we are logging to
 const logger = winston.createLogger({
   level: "http",
   format: combine(timestamp({ format: "YYYY-MM-DD hh:mm:ss.SSS A" }), json()),
@@ -16,7 +16,7 @@ const logger = winston.createLogger({
   ],
 });
 
-// Set up morgan
+// set up morgan
 const morganMiddleware = morgan(
   function (tokens, req, res) {
     return JSON.stringify({

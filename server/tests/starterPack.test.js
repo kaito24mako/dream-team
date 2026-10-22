@@ -1,7 +1,7 @@
 const assert = require("node:assert/strict");
 const { test, beforeEach } = require("node:test");
 
-// Exercise the real service and route without touching the development database.
+// exercise the real service and route without touching the development database
 let state;
 let failure;
 let queue = Promise.resolve();

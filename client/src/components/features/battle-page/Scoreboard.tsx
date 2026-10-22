@@ -9,6 +9,7 @@ function Scoreboard({
   isWinner,
   onStartBattle,
   selectedOpponent,
+  canStart = true,
 }) {
   return (
     <div className="w-fit mx-auto rounded-b-md border-x border-b border-border bg-base-200 px-5 py-4 shadow-md md:px-8">
@@ -24,6 +25,7 @@ function Scoreboard({
           <Button
             className="btn-info min-w-30 shadow-sm"
             onClick={onStartBattle}
+            disabled={!canStart}
           >
             Start Match
           </Button>

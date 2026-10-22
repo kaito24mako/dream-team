@@ -31,48 +31,15 @@ export function UserContextProvider({ children }) {
     }
   }
 
-  //* get a user by id
-  // usage: none
-  async function getUserById(userId) {
-    try {
-      setLoading(true);
-      setErrorMsg(null);
+  // save wins, losses and coins after a match
+  async function saveMatchResult(isWinner, level) {
+    const res = await axios.post(
+      "http://localhost:3001/api/users/matches/result",
+      { isWinner, level },
+    );
 
-      const res = await axios.get(`http://localhost:3001/api/users/${userId}`);
-      console.log("getUserById(), data:", res.data);
-
-      setUser(res.data);
-    } catch (err) {
-      console.error("Failed to get user:", err);
-      setErrorMsg("Failed to retrieve the user details. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  //* update a user's currency
-  // usage: BattlePage.jsx
-  async function updateUserCurrency(userId, currency) {
-    try {
-      setErrorMsg(null);
-
-      const res = await axios.put(
-        `http://localhost:3001/api/users/${userId}/edit/currency`,
-        { currency },
-      );
-      console.log("updateUserCurrency(), data:", res.data);
-
-      setUser((user) => ({
-        ...user,
-        currency: res.data.currency,
-      }));
-
-      return res.data;
-    } catch (err) {
-      console.error("Failed to update user currency:", err);
-      setErrorMsg("Failed to update your currency. Please try again.");
-      return null;
-    }
+    // update the totals without removing the player's collection
+    setUser((user) => ({ ...user, ...res.data }));
   }
 
   return (
@@ -81,9 +48,8 @@ export function UserContextProvider({ children }) {
         user,
         loading,
         errorMsg,
-        getUserById,
         getUserAndPlayers,
-        updateUserCurrency,
+        saveMatchResult,
       }}
     >
       {children}

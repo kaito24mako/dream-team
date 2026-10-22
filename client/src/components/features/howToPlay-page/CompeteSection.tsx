@@ -12,7 +12,7 @@ function CompeteSection() {
         </p>
       </div>
 
-      {/* Difficulty */}
+      {/* difficulty */}
       <div className="collapse collapse-arrow bg-base-200 p-5">
         <input type="checkbox" />
         <h3 className="text-lg collapse-title p-0!">
@@ -49,7 +49,7 @@ function CompeteSection() {
         </div>
       </div>
 
-      {/* Win conditions */}
+      {/* win conditions */}
       <div className="collapse collapse-arrow bg-base-200 p-5">
         <input type="checkbox" />
         <h3 className="text-lg collapse-title p-0!">Win Conditions</h3>

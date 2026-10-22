@@ -15,6 +15,11 @@ function StatisticsSection({ user, lineup, loading, errorMsg }) {
   // get the offensive and defensive averages of the lineup
   const { offensiveAverage, defensiveAverage } = getLineupAverages(lineup);
 
+  // show 0% until the user has played a game
+  const wins = user.wins ?? 0;
+  const totalGames = wins + (user.losses ?? 0);
+  const winRate = totalGames > 0 ? Math.round((wins / totalGames) * 100) : 0;
+
   if (loading) return <span>Loading statistics...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
 
@@ -45,9 +50,7 @@ function StatisticsSection({ user, lineup, loading, errorMsg }) {
         />
         <Statistic
           title="Win Rate"
-          count={
-            Math.round((user.wins / (user.wins + user.losses)) * 100) + "%"
-          }
+          count={winRate + "%"}
           countSize="medium"
           textAlign="end"
         />
