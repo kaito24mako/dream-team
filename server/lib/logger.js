@@ -4,9 +4,9 @@ const morgan = require("morgan");
 const { combine, timestamp, json } = winston.format;
 
 // create the logger
-// Level: specifies the level to log to (checking);
-// Format: how we want our logs to look.
-// Transports: Specifies where we are logging to.
+// level: specifies the level to log to (checking);
+// format: how we want our logs to look.
+// transports: Specifies where we are logging to.
 const logger = winston.createLogger({
   level: "http",
   format: combine(timestamp({ format: "YYYY-MM-DD hh:mm:ss.SSS A" }), json()),

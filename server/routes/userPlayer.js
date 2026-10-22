@@ -1,5 +1,8 @@
 const express = require("express");
 const db = require("../models");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
+const claimStarterPack = require("../services/claimStarterPack");
 
 const { User, Player, UserPlayer } = db;
 const router = express.Router();
@@ -7,6 +10,23 @@ const router = express.Router();
 const { PACKS, getRandomPlayer } = require("../utils/helpers/getRandomPlayer");
 
 //==== user and player data ====//
+
+router.post("/starter-pack/claim", auth, async (req, res) => {
+  try {
+    // Always use the authenticated account, never an ID supplied by the client.
+    const players = await claimStarterPack(req.user.userId);
+    res.status(201).json({
+      message: "Your five starter players are ready!",
+      hasClaimedStarterPack: true,
+      players,
+    });
+  } catch (err) {
+    if (!err.status) console.error(err);
+    res.status(err.status || 500).json({
+      message: err.status ? err.message : "Failed to claim starter players. Please try again.",
+    });
+  }
+});
 
 //* get a user with all their players (full details)
 // usage: AppLayout.jsx, BattleLayout.jsx
@@ -21,8 +41,7 @@ router.get("/:id/user-and-players", async (req, res) => {
         attributes: ["quantity", "inLineup"],
       },
     },
-    //! FIX
-    exclude: ["password", "updatedAt", "createdAt"],
+    attributes: { exclude: ["password", "updatedAt", "createdAt"] },
   });
 
   // order Players by position
@@ -71,7 +90,7 @@ router.get("/:id/players", async (req, res) => {
 });
 
 //* create a player for a user
-router.post("/:id/players/add", async (req, res) => {
+router.post("/:id/players/add", auth, admin, async (req, res) => {
   console.log("/api/users/:id/players/add - POST");
 
   const { id } = req.params;

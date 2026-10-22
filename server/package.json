@@ -5,10 +5,11 @@
   "main": "server.js",
   "author": "Kaito Watanabe",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "seed:players": "node seeders/players.js"
+    "seed:players": "node seeders/players.js",
+    "migrate:starter-pack": "node migrations/starterPack.js"
   },
   "keywords": [],
   "type": "commonjs",

@@ -41,6 +41,11 @@ const User = sequelize.define("User", {
     allowNull: false,
     defaultValue: 0,
   },
+  hasClaimedStarterPack: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
   wins: {
     type: DataTypes.INTEGER,
     allowNull: false,

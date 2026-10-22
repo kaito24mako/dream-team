@@ -4,6 +4,7 @@ import { useLineup } from "../../utils/context/LineupContext.jsx";
 import StatisticsSection from "../../components/features/home-page/StatisticsSection";
 import LineupSection from "../../components/features/home-page/LineupSection";
 import CollectionSection from "../../components/features/home-page/CollectionSection";
+import StarterPackSection from "../../components/features/home-page/StarterPackSection";
 
 function HomePage() {
   const { user, loading: userLoading, errorMsg: userErrorMsg } = useUser();
@@ -22,6 +23,8 @@ function HomePage() {
           <p className="text-xl">Welcome to</p>
           <h1 className="text-4xl text-primary">{user.teamName}</h1>
         </div>
+
+        <StarterPackSection />
 
         <StatisticsSection
           user={user}
