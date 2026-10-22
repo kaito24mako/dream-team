@@ -45,8 +45,8 @@ function StarterPackSection() {
     <section className="rounded-xl bg-base-200 p-6 flex flex-col items-start gap-3">
       <h2 className="font-primary text-2xl">Your free starting five</h2>
       <p>
-        Claim five Common players: one PG, SG, SF, PF and C. They will join your
-        starting lineup. You can claim this gift once per account.
+        Claim five Common players rated 50–59: one PG, SG, SF, PF and C. They will
+        join your starting lineup. You can claim this gift once per account.
       </p>
       <Button bgColor="primary" onClick={claimPlayers} disabled={loading || claiming || claimed}>
         {claimed ? "Players claimed" : claiming ? "Claiming players…" : "Claim free players"}

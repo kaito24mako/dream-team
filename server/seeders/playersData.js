@@ -15,8 +15,8 @@ const players = [
     position: "PG",
     rarity: "Common",
     offensiveRating: 58,
-    defensiveRating: 61,
-    overallRating: 60,
+    defensiveRating: 60,
+    overallRating: 59,
     image: "/images/players/player2.png",
   },
   {
@@ -34,9 +34,9 @@ const players = [
     fullName: "Darius Hayes",
     position: "C",
     rarity: "Common",
-    offensiveRating: 97,
-    defensiveRating: 96,
-    overallRating: 97,
+    offensiveRating: 67,
+    defensiveRating: 66,
+    overallRating: 67,
     image: "/images/players/player4.png",
   },
   {
