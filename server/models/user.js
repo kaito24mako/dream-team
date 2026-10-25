@@ -56,6 +56,16 @@ const User = sequelize.define("User", {
     allowNull: false,
     defaultValue: 0,
   },
+  totalCards: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
 });
 
 //* add function to User model that signs the token

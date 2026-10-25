@@ -44,6 +44,8 @@ router.post("/login", async (req, res) => {
         currency: user.currency,
         wins: user.wins,
         losses: user.losses,
+        totalCards: user.totalCards,
+        isAdmin: user.isAdmin,
       },
     };
 
@@ -93,6 +95,8 @@ router.post("/register", async (req, res) => {
         currency: newUserRes.currency,
         wins: newUserRes.wins,
         losses: newUserRes.losses,
+        totalCards: newUserRes.totalCards,
+        isAdmin: newUserRes.isAdmin,
       },
     };
 
