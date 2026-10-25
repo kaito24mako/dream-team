@@ -56,24 +56,11 @@ const User = sequelize.define("User", {
     allowNull: false,
     defaultValue: 0,
   },
-  //! dont need!
-  totalCards: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-  },
-  //! dont need!
-  isAdmin: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
-  },
 });
 
 //* add function to User model that signs the token
 User.prototype.signToken = function (payload) {
   console.log("Signing token...");
-  console.log("Payload:", payload);
 
   // sign the token with the payload and our secret
   const token = jwt.sign(payload, config.auth.jwtSecret, {
@@ -87,7 +74,6 @@ User.prototype.signToken = function (payload) {
 //* add function to User model that hashes the password
 User.prototype.hashPassword = async function (password) {
   console.log("Hashing password...");
-  console.log("Password:", password);
 
   // generate salt with bcrypt
   const salt = await bcrypt.genSalt(12);

@@ -44,8 +44,6 @@ router.post("/login", async (req, res) => {
         currency: user.currency,
         wins: user.wins,
         losses: user.losses,
-        totalCards: user.totalCards,
-        isAdmin: user.isAdmin,
       },
     };
 
@@ -95,8 +93,6 @@ router.post("/register", async (req, res) => {
         currency: newUserRes.currency,
         wins: newUserRes.wins,
         losses: newUserRes.losses,
-        totalCards: newUserRes.totalCards,
-        isAdmin: newUserRes.isAdmin,
       },
     };
 
@@ -104,22 +100,6 @@ router.post("/register", async (req, res) => {
     const token = User.prototype.signToken(payload);
     console.log("Token:", token);
     res.status(200).json({ user: payload.user, token });
-
-    // sign the token and set when it expires
-    // jwt.sign(
-    //   payload,
-    //   config.auth.jwtSecret,
-    //   {
-    //     expiresIn: "7d",
-    //     algorithm: "HS512",
-    //   },
-    //   (err, token) => {
-    //     if (err) throw err;
-
-    //     // send token as a response
-    //     res.json({ user: payload.user, token });
-    //   },
-    // );
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Server error", error: err.message });

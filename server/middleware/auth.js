@@ -7,8 +7,6 @@ module.exports = function (req, res, next) {
   // get the token from the header
   const token = req.header("x-auth-token");
 
-  console.log("Token in middleware:", token);
-
   // deny access if there's no token
   if (!token) {
     return res

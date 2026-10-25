@@ -114,6 +114,7 @@ const authSlice = createSlice({
     logout: (state) => {
       console.log("Logout reducer activated");
       localStorage.removeItem("token");
+      setAuthToken(null);
       state.user = null;
       state.token = null;
       state.isAdmin = false;

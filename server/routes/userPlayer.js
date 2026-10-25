@@ -3,11 +3,17 @@ const db = require("../models");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 const claimStarterPack = require("../services/claimStarterPack");
-
+const { PACKS, getRandomPlayer } = require("../utils/helpers/getRandomPlayer");
 const { User, Player, UserPlayer } = db;
 const router = express.Router();
 
-const { PACKS, getRandomPlayer } = require("../utils/helpers/getRandomPlayer");
+// account mutations must target the owner of the verified token
+function requireOwnAccount(req, res, next) {
+  if (!req.user.userId || String(req.params.id) !== String(req.user.userId)) {
+    return res.status(403).json({ message: "Access denied" });
+  }
+  next();
+}
 
 //==== user and player data ====//
 
@@ -130,10 +136,10 @@ router.get("/:id/lineup", async (req, res) => {
 
 //* add a player to the lineup
 // usage: LineupSection.jsx
-router.put("/:id/lineup/add", async (req, res) => {
+router.put("/:id/lineup/add", auth, requireOwnAccount, async (req, res) => {
   console.log("/api/users/:id/lineup/add - POST");
 
-  const { id } = req.params;
+  const id = req.user.userId;
   const { playerId } = req.body;
 
   try {
@@ -193,10 +199,10 @@ router.put("/:id/lineup/add", async (req, res) => {
 
 //* remove a player from the lineup
 // usage: LineupSection.tsx
-router.put("/:id/lineup/remove", async (req, res) => {
+router.put("/:id/lineup/remove", auth, requireOwnAccount, async (req, res) => {
   console.log("/api/users/:id/lineup/remove - POST");
 
-  const { id } = req.params;
+  const id = req.user.userId;
   const { playerId } = req.body;
 
   try {
@@ -230,70 +236,76 @@ router.put("/:id/lineup/remove", async (req, res) => {
 
 //* open a pack with currency and obtain player
 // usage: PacksPage.jsx
-router.post("/:id/packs/:packType/open", async (req, res) => {
-  try {
-    const { id, packType } = req.params;
+router.post(
+  "/:id/packs/:packType/open",
+  auth,
+  requireOwnAccount,
+  async (req, res) => {
+    try {
+      const id = req.user.userId;
+      const { packType } = req.params;
 
-    const pack = PACKS[packType];
+      const pack = PACKS[packType];
 
-    if (!pack) {
-      return res.status(400).json({
-        message: "Invalid pack type",
+      if (!pack) {
+        return res.status(400).json({
+          message: "Invalid pack type",
+        });
+      }
+
+      const user = await User.findByPk(id);
+
+      if (!user) {
+        return res.status(404).json({
+          message: "User not found",
+        });
+      }
+
+      // check coins
+      if (user.currency < pack.price) {
+        return res.status(400).json({
+          message: "Not enough coins!",
+        });
+      }
+
+      // generate random player
+      const selectedPlayer = await getRandomPlayer(packType);
+
+      // check if user already owns player
+      const [userPlayer, created] = await UserPlayer.findOrCreate({
+        where: {
+          userId: id,
+          playerId: selectedPlayer.id,
+        },
+        defaults: {
+          quantity: 1,
+        },
+      });
+
+      // for duplicate cards
+      if (!created) {
+        userPlayer.quantity += 1;
+        await userPlayer.save();
+      }
+
+      // subtract pack price
+      user.currency -= pack.price;
+      await user.save();
+
+      res.status(200).json({
+        message: "Pack opened!",
+        player: selectedPlayer,
+        quantity: userPlayer.quantity,
+        currency: user.currency,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({
+        message: "Failed to open pack",
       });
     }
-
-    const user = await User.findByPk(id);
-
-    if (!user) {
-      return res.status(404).json({
-        message: "User not found",
-      });
-    }
-
-    // check coins
-    if (user.currency < pack.price) {
-      return res.status(400).json({
-        message: "Not enough coins!",
-      });
-    }
-
-    // generate random player
-    const selectedPlayer = await getRandomPlayer(packType);
-
-    // check if user already owns player
-    const [userPlayer, created] = await UserPlayer.findOrCreate({
-      where: {
-        userId: id,
-        playerId: selectedPlayer.id,
-      },
-      defaults: {
-        quantity: 1,
-      },
-    });
-
-    // for duplicate cards
-    if (!created) {
-      userPlayer.quantity += 1;
-      await userPlayer.save();
-    }
-
-    // subtract pack price
-    user.currency -= pack.price;
-    await user.save();
-
-    res.status(200).json({
-      message: "Pack opened!",
-      player: selectedPlayer,
-      quantity: userPlayer.quantity,
-      currency: user.currency,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      message: "Failed to open pack",
-    });
-  }
-});
+  },
+);
 
 //* obtain five free players for new users
 // usage: StarterPackSection.tsx
