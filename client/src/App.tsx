@@ -22,6 +22,7 @@ import BattleLayout from "./components/layout/battle/BattleLayout";
 import BattlePage from "./pages/battle/BattlePage";
 import AdminPage from "./pages/admin/AdminPage.js";
 import AddPlayerPage from "./pages/admin/AddPlayerPage.js";
+import NotFoundPage from "./pages/NotFoundPage.js";
 
 function App() {
   return (
@@ -57,6 +58,8 @@ function App() {
                     element={<BattlePage />}
                   />
                 </Route>
+
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </Router>
           </PlayerContextProvider>
