@@ -192,6 +192,12 @@ function BattlePage() {
     <>
       <title>Battle | Dream Team</title>
 
+      <div
+        aria-hidden="true"
+        className="battle-outcome-glow"
+        data-outcome={battleFinished ? (isWinner ? "win" : "loss") : undefined}
+      />
+
       <main className="flex flex-col gap-5 pb-5">
         <Scoreboard
           winPercentage={winPercentage}
