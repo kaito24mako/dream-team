@@ -1,4 +1,4 @@
-Assemble your Dream Team 🏀
+## Assemble your Dream Team 🏀
 
 Battle to earn rewards, rip open packs, and create the greatest lineup to conquer the league. 
 
