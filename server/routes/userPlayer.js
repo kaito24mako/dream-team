@@ -11,23 +11,6 @@ const { PACKS, getRandomPlayer } = require("../utils/helpers/getRandomPlayer");
 
 //==== user and player data ====//
 
-router.post("/starter-pack/claim", auth, async (req, res) => {
-  try {
-    // always use the authenticated account, never an ID supplied by the client
-    const players = await claimStarterPack(req.user.userId);
-    res.status(201).json({
-      message: "Your five starter players are ready!",
-      hasClaimedStarterPack: true,
-      players,
-    });
-  } catch (err) {
-    if (!err.status) console.error(err);
-    res.status(err.status || 500).json({
-      message: err.status ? err.message : "Failed to claim starter players. Please try again.",
-    });
-  }
-});
-
 //* get a user with all their players (full details)
 // usage: AppLayout.jsx, BattleLayout.jsx
 router.get("/:id/user-and-players", async (req, res) => {
@@ -90,6 +73,7 @@ router.get("/:id/players", async (req, res) => {
 });
 
 //* create a player for a user
+// usage: TESTING
 router.post("/:id/players/add", auth, admin, async (req, res) => {
   console.log("/api/users/:id/players/add - POST");
 
@@ -145,6 +129,7 @@ router.get("/:id/lineup", async (req, res) => {
 });
 
 //* add a player to the lineup
+// usage: LineupSection.jsx
 router.put("/:id/lineup/add", async (req, res) => {
   console.log("/api/users/:id/lineup/add - POST");
 
@@ -207,7 +192,7 @@ router.put("/:id/lineup/add", async (req, res) => {
 });
 
 //* remove a player from the lineup
-// usage: LineupPosition.tsx
+// usage: LineupSection.tsx
 router.put("/:id/lineup/remove", async (req, res) => {
   console.log("/api/users/:id/lineup/remove - POST");
 
@@ -243,6 +228,8 @@ router.put("/:id/lineup/remove", async (req, res) => {
 
 //===== pack opening =======/
 
+//* open a pack with currency and obtain player
+// usage: PacksPage.jsx
 router.post("/:id/packs/:packType/open", async (req, res) => {
   try {
     const { id, packType } = req.params;
@@ -304,6 +291,28 @@ router.post("/:id/packs/:packType/open", async (req, res) => {
     console.error(err);
     res.status(500).json({
       message: "Failed to open pack",
+    });
+  }
+});
+
+//* obtain five free players for new users
+// usage: StarterPackSection.tsx
+router.post("/starter-pack/claim", auth, async (req, res) => {
+  try {
+    const players = await claimStarterPack(req.user.userId);
+
+    res.status(201).json({
+      message: "Your five starter players are ready!",
+      hasClaimedStarterPack: true,
+      players,
+    });
+  } catch (err) {
+    if (!err.status) console.error(err);
+
+    res.status(err.status || 500).json({
+      message: err.status
+        ? err.message
+        : "Failed to claim starter players. Please try again.",
     });
   }
 });
