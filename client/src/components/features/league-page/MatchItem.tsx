@@ -37,19 +37,18 @@ function MatchItem({
   }
 
   return (
-    <li className="flex justify-between items-center text-center text-sm lg:text-sm bg-base-300 py-4 px-4 sm:px-6 rounded-sm">
-      <div className="flex items-center gap-5 pr-10">
-        <h4 className=" font-base! font-bold">Level {level}</h4>
-        <div className="flex flex-col sm:flex-row opacity-87">
-          <p className="mr-0 sm:mr-1">Ratings:</p>
-          <p>
-            {minRating} - {maxRating}
+    <li className="grid items-center gap-4 rounded-sm bg-base-300 p-4 text-sm sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-6">
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center justify-between gap-x-5 gap-y-1 lg:justify-start">
+          <h4 className="font-base! font-bold">Level {level}</h4>
+          <p className="opacity-87">
+            Ratings: {minRating} - {maxRating}
           </p>
         </div>
+        <p className="mt-1 opacity-87 wrap-break-word">VS {opponentName}</p>
       </div>
 
-      <div className="flex items-center justify-end gap-5">
-        <p className="hidden md:block opacity-87">VS {opponentName}</p>
+      <div className="grid grid-cols-2 items-center gap-4 text-center sm:grid-cols-[auto_auto_minmax(0,1fr)] sm:gap-5">
         <CurrencyItem
           heading="Win"
           headingColor="text-secondary"
@@ -63,19 +62,24 @@ function MatchItem({
           currencyColor="text-red-500"
         />
 
-        <p className="text-error">
-          {locked === "currency" && "Not enough currency"}
-          {locked === "lineup" && "Need a full lineup"}
-        </p>
-        <Button
-          size="small"
-          bgColor="primary"
-          textColor="black"
-          onClick={handleToPlay}
-          disabled={locked !== "none"}
-        >
-          {locked !== "none" ? "Locked" : "Play"}
-        </Button>
+        <div className="col-span-2 flex flex-col gap-2 sm:col-span-1 sm:items-end">
+          {locked !== "none" && (
+            <p className="text-error sm:text-right">
+              {locked === "currency" && "Not enough currency"}
+              {locked === "lineup" && "Need a full lineup"}
+            </p>
+          )}
+          <Button
+            className="w-full sm:w-auto"
+            size="small"
+            bgColor="primary"
+            textColor="black"
+            onClick={handleToPlay}
+            disabled={locked !== "none"}
+          >
+            {locked !== "none" ? "Locked" : "Play"}
+          </Button>
+        </div>
       </div>
     </li>
   );

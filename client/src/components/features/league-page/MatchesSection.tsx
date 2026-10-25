@@ -7,14 +7,14 @@ import SectionWrapper from "../../common/wrapper/SectionWrapper";
 
 function MatchesSection() {
   return (
-    <SectionWrapper className="max-w-7xl">
+    <SectionWrapper className="w-full min-w-0 max-w-7xl">
       <MajorHeading
         heading="LEAGUE MATCHES"
         description="Battle for rewards. The greater the opponent, the higher the payout."
         Icon={IoTrophyOutline}
       />
 
-      <ul className="flex flex-col gap-5 overflow-scroll">
+      <ul className="flex min-w-0 flex-col gap-3 sm:gap-5">
         {opponents.map((opponent) => (
           <MatchItem
             key={opponent.id}
