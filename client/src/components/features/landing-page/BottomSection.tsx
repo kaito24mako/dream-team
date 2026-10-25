@@ -13,7 +13,7 @@ function BottomSection() {
       </p>
       <Link to="/register">
         <Button bgColor="secondary" textColor="black">
-          Create Account
+          Create account
         </Button>
       </Link>
     </section>

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import Button from "../../common/button/Button";
-
 import logo from "../../../assets/icon/logo.png";
 
 function LandingNavbar() {
@@ -13,12 +12,12 @@ function LandingNavbar() {
       <div className="flex gap-3">
         <Link to="/login">
           <Button bgColor="primary" textColor="black">
-            Login
+            Log in
           </Button>
         </Link>
         <Link to="/register">
           <Button bgColor="secondary" textColor="black">
-            Create Account
+            Register
           </Button>
         </Link>
       </div>

@@ -47,7 +47,7 @@ function Footer() {
               <LinkedInIcon />
             </a>
             <a
-              href="https://facebook.com/yourusername"
+              href="https://www.facebook.com/kaito24mako"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -14,7 +14,7 @@ function MatchesSection() {
         Icon={IoTrophyOutline}
       />
 
-      <ul className="flex flex-col gap-5">
+      <ul className="flex flex-col gap-5 overflow-scroll">
         {opponents.map((opponent) => (
           <MatchItem
             key={opponent.id}

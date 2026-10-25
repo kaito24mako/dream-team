@@ -22,18 +22,17 @@ function FixedSection() {
             Dream Team is a fictional TCG made by a passionate basketball
             enthusiast.
           </p>
-          <p>Open packs, collect cards, and battle for glory!</p>
+          <p>Open packs, collect cards, and battle for glory.</p>
         </div>
 
         <div className="flex gap-4 lg:mt-2">
-          <Link to="/login">
-            <Button bgColor="primary" textColor="black">
-              Login
-            </Button>
-          </Link>
           <Link to="/register">
-            <Button bgColor="secondary" textColor="black">
-              Create Account
+            <Button
+              bgColor="primary"
+              textColor="black"
+              className="text-base md:text-lg p-5 md:p-6"
+            >
+              Let's get started!
             </Button>
           </Link>
         </div>
