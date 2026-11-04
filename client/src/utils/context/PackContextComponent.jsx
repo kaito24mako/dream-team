@@ -19,8 +19,6 @@ export function PackContextProvider({ children }) {
         `http://localhost:3001/api/users/${userId}/packs/${packType}/open`,
       );
 
-      console.log("Player pulled:", res.data.player, "Pack type:", packType);
-
       setPulledPlayer(res.data.player);
 
       return res.data.player;

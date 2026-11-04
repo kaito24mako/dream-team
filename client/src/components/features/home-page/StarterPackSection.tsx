@@ -7,10 +7,11 @@ import Button from "../../common/button/Button";
 function StarterPackSection() {
   const { user, loading, getUserAndPlayers } = useUser();
   const { getLineup } = useLineup();
+  const pending = useRef(false);
+
   const [claiming, setClaiming] = useState(false);
   const [claimed, setClaimed] = useState(false);
   const [error, setError] = useState("");
-  const pending = useRef(false);
 
   if (!user.id || user.hasClaimedStarterPack || user.Players?.length > 0) {
     return null;
@@ -24,12 +25,14 @@ function StarterPackSection() {
 
     try {
       await axios.post("http://localhost:3001/api/users/starter-pack/claim");
+
       setClaimed(true);
       await Promise.all([getUserAndPlayers(user.id), getLineup(user.id)]);
     } catch (err) {
       setError(
         axios.isAxiosError(err)
-          ? err.response?.data?.message || "Unable to claim your players. Please try again."
+          ? err.response?.data?.message ||
+              "Unable to claim your players. Please try again."
           : "Unable to claim your players. Please try again.",
       );
       if (axios.isAxiosError(err) && err.response?.status === 409) {
@@ -43,15 +46,27 @@ function StarterPackSection() {
 
   return (
     <section className="rounded-xl bg-base-200 p-6 flex flex-col items-start gap-3">
-      <h2 className="font-primary text-2xl">Your free starting five</h2>
+      <h2 className="font-primary text-2xl">Let's begin!</h2>
       <p>
-        Claim five Common players rated 50–59: one PG, SG, SF, PF and C. They will
-        join your starting lineup. You can claim this gift once per account.
+        Claim five Common players rated 50–59, at each position. They will join
+        your starting lineup. You can claim this gift once per account.
       </p>
-      <Button bgColor="primary" onClick={claimPlayers} disabled={loading || claiming || claimed}>
-        {claimed ? "Players claimed" : claiming ? "Claiming players…" : "Claim free players"}
+      <Button
+        bgColor="primary"
+        onClick={claimPlayers}
+        disabled={loading || claiming || claimed}
+      >
+        {claimed
+          ? "Players claimed"
+          : claiming
+            ? "Claiming players…"
+            : "Claim free players"}
       </Button>
-      {error && <p role="alert" className="text-error">{error}</p>}
+      {error && (
+        <p role="alert" className="text-error">
+          {error}
+        </p>
+      )}
     </section>
   );
 }

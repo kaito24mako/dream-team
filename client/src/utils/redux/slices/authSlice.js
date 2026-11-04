@@ -87,11 +87,6 @@ export const register = createAsyncThunk(
       // set token into http request header
       setAuthToken(res.data.token);
 
-      //! get the logged in user from the dbs - NOT WORKING ATM
-      // const response = await axios.get(`${baseURL}`);
-      // console.log("Registered user:", response.data);
-      // return response.data;
-
       return res.data;
     } catch (err) {
       console.log("Failed to register user:", err.message);

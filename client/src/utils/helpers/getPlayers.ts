@@ -1,7 +1,10 @@
 import { players } from "../../data/players";
 
+// PURPOSE: for filtering and sorting players, used throughout the app to display players according to the user's set filters
+
 //* get all filtered players
 // usage: CollectionSection.tsx, GallerySection.tsx
+// "...State" in the argument are state stored in the respective sections to track which filters the user has selected
 export function getFilteredPlayers(
   players,
   rarityState,

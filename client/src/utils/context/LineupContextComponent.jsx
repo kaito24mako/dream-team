@@ -18,7 +18,6 @@ export function LineupContextProvider({ children }) {
       const res = await axios.get(
         `http://localhost:3001/api/users/${userId}/lineup`,
       );
-      console.log("getUserLineup(), data:", res.data);
 
       setLineup(res.data);
     } catch (err) {
@@ -42,7 +41,6 @@ export function LineupContextProvider({ children }) {
           playerId: playerId,
         },
       );
-      console.log("addToLineup(), data:", res.data);
 
       // refresh the lineup
       await getLineup(userId);
@@ -67,7 +65,6 @@ export function LineupContextProvider({ children }) {
           playerId: playerId,
         },
       );
-      console.log("removeFromLineup(), data:", res.data);
 
       // refresh the lineup
       await getLineup(userId);

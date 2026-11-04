@@ -18,7 +18,6 @@ export function UserContextProvider({ children }) {
       const res = await axios.get(
         `http://localhost:3001/api/users/${userId}/user-and-players`,
       );
-      console.log("getUserAndPlayers(), data:", res.data);
 
       setUser(res.data);
     } catch (err) {
