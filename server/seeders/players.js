@@ -1,3 +1,6 @@
+// Load local environment variables before Sequelize is initialized.
+require("../config/config");
+
 const db = require("../models");
 const players = require("./playersData");
 const { Player } = db;
@@ -21,6 +24,7 @@ async function seedPlayers() {
     console.log("Successfully seeded players");
   } catch (error) {
     console.error(error);
+    process.exitCode = 1;
   } finally {
     await db.sequelize.close();
   }
