@@ -98,8 +98,8 @@ function CollectionSection({ user, loading, errorMsg }) {
       {errorMsg && <span className="text-error">{errorMsg}</span>}
 
       {!loading && !errorMsg && searchedPlayers.length === 0 ? (
-        <p className="py-10 text-center text-white/60">
-          No players can be found,.
+        <p className="py-8 text-center text-white/60">
+          No players can be found.
         </p>
       ) : (
         <CardList className="px-7">
