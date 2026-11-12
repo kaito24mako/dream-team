@@ -97,35 +97,41 @@ function CollectionSection({ user, loading, errorMsg }) {
       {loading && <span>Loading players...</span>}
       {errorMsg && <span className="text-error">{errorMsg}</span>}
 
-      <CardList className="px-7">
-        {searchedPlayers.map((player) =>
-          player.rarity === "Legendary" ? (
-            <FullArtCard
-              key={player.id}
-              playerImage={player.image}
-              playerRarity={player.rarity}
-              playerPosition={player.position}
-              playerName={player.fullName}
-              offenseCount={player.offensiveRating}
-              defenseCount={player.defensiveRating}
-              pointerCursor={true}
-              onClick={() => setSelectedPlayer(player)}
-            />
-          ) : (
-            <RegularCard
-              key={player.id}
-              playerImage={player.image}
-              playerRarity={player.rarity}
-              playerPosition={player.position}
-              playerName={player.fullName}
-              offenseCount={player.offensiveRating}
-              defenseCount={player.defensiveRating}
-              pointerCursor={true}
-              onClick={() => setSelectedPlayer(player)}
-            />
-          ),
-        )}
-      </CardList>
+      {!loading && !errorMsg && searchedPlayers.length === 0 ? (
+        <p className="py-10 text-center text-white/60">
+          No players can be found,.
+        </p>
+      ) : (
+        <CardList className="px-7">
+          {searchedPlayers.map((player) =>
+            player.rarity === "Legendary" ? (
+              <FullArtCard
+                key={player.id}
+                playerImage={player.image}
+                playerRarity={player.rarity}
+                playerPosition={player.position}
+                playerName={player.fullName}
+                offenseCount={player.offensiveRating}
+                defenseCount={player.defensiveRating}
+                pointerCursor={true}
+                onClick={() => setSelectedPlayer(player)}
+              />
+            ) : (
+              <RegularCard
+                key={player.id}
+                playerImage={player.image}
+                playerRarity={player.rarity}
+                playerPosition={player.position}
+                playerName={player.fullName}
+                offenseCount={player.offensiveRating}
+                defenseCount={player.defensiveRating}
+                pointerCursor={true}
+                onClick={() => setSelectedPlayer(player)}
+              />
+            ),
+          )}
+        </CardList>
+      )}
 
       {selectedPlayer && (
         <PlayerModal

@@ -23,22 +23,14 @@ import enemy4 from "../../assets/card/enemy/enemy4.png";
 import enemy5 from "../../assets/card/enemy/enemy5.png";
 
 function BattlePage() {
-  const {
-    user,
-    loading: userLoading,
-    errorMsg: userErrorMsg,
-    saveMatchResult,
-  } = useUser();
-  const {
-    lineup,
-    loading: lineupLoading,
-    errorMsg: lineupErrorMsg,
-  } = useLineup();
-  const loading = userLoading || lineupLoading;
+  const { user, errorMsg: userErrorMsg, saveMatchResult } = useUser();
+  const { lineup, errorMsg: lineupErrorMsg } = useLineup();
+
   const errorMsg = userErrorMsg || lineupErrorMsg;
 
   // use the level param to find the opponent chosen in the league page
   const { levelSlug } = useParams();
+
   const level = Number(levelSlug.replace("lvl", ""));
   const selectedOpponent = getSelectedOpponent(level);
 
@@ -71,7 +63,7 @@ function BattlePage() {
     },
     {
       position: "SF",
-      name: "Kevin Reaper",
+      name: "Kevin Turant",
       image: enemy3,
       offensiveRating: getRandomRating(selectedOpponent),
       defensiveRating: getRandomRating(selectedOpponent),
@@ -185,7 +177,6 @@ function BattlePage() {
     }
   }
 
-  if (loading) return <span>Loading players...</span>;
   if (errorMsg) return <span className="text-error">{errorMsg}</span>;
 
   return (
