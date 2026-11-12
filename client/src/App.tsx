@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { UserContextProvider } from "./utils/context/UserContextComponent";
 import { PlayerContextProvider } from "./utils/context/PlayerContextComponent";
 import { LineupContextProvider } from "./utils/context/LineupContextComponent";
@@ -24,6 +30,17 @@ import AdminPage from "./pages/admin/AdminPage.js";
 import AddPlayerPage from "./pages/admin/AddPlayerPage.js";
 import NotFoundPage from "./pages/NotFoundPage.js";
 
+// scroll to top of page on route change
+function ScrollToTop() {
+  const { pathname, search, hash } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname, search, hash]);
+
+  return null;
+}
+
 function App() {
   return (
     <UserContextProvider>
@@ -31,6 +48,7 @@ function App() {
         <PackContextProvider>
           <PlayerContextProvider>
             <Router>
+              <ScrollToTop />
               <Routes>
                 <Route element={<LandingLayout />}>
                   <Route path="/" element={<LandingPage />} />
