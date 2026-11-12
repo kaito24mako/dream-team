@@ -24,7 +24,7 @@ function StarterPackSection() {
     setError("");
 
     try {
-      await axios.post("http://localhost:3001/api/users/starter-pack/claim");
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/users/starter-pack/claim`);
 
       setClaimed(true);
       await Promise.all([getUserAndPlayers(user.id), getLineup(user.id)]);

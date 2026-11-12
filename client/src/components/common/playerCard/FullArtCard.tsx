@@ -40,7 +40,7 @@ function FullArtCard({
   const playerRarityConversion = rarityBg[playerRarity];
 
   // get the image url for each player
-  const playerImageConversion = `${import.meta.env.VITE_BACKEND_URL}${playerImage}`;
+  const playerImageConversion = `${import.meta.env.VITE_API_URL}${playerImage}`;
 
   return (
     <div

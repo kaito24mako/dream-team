@@ -16,7 +16,7 @@ export function LineupContextProvider({ children }) {
       setErrorMsg(null);
 
       const res = await axios.get(
-        `http://localhost:3001/api/users/${userId}/lineup`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}/lineup`,
       );
 
       setLineup(res.data);
@@ -36,7 +36,7 @@ export function LineupContextProvider({ children }) {
       setErrorMsg(null);
 
       const res = await axios.put(
-        `http://localhost:3001/api/users/${userId}/lineup/add`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}/lineup/add`,
         {
           playerId: playerId,
         },
@@ -60,7 +60,7 @@ export function LineupContextProvider({ children }) {
       setErrorMsg(null);
 
       const res = await axios.put(
-        `http://localhost:3001/api/users/${userId}/lineup/remove`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}/lineup/remove`,
         {
           playerId: playerId,
         },

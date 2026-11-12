@@ -1,12 +1,13 @@
 const { Sequelize } = require("sequelize");
-const config = require("./config");
 
-//* connect mysql db with sequelize
-const sequelize = new Sequelize(
-  config.db.database,
-  config.db.user,
-  config.db.password,
-  config.db.options,
-);
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
 
 module.exports = sequelize;

@@ -48,7 +48,7 @@ function AccountPage() {
 
     try {
       await axios.put(
-        `http://localhost:3001/api/users/${userId}/edit`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}/edit`,
         formData,
       );
 

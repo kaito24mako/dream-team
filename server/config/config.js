@@ -6,6 +6,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 //* export config options for our server
 module.exports = {
   port: process.env.PORT || 3001,
+  frontendUrl: process.env.FRONTEND_URL,
   db: {
     database: process.env.DB_NAME,
     user: process.env.DB_USER,

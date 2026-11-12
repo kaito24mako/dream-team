@@ -16,7 +16,7 @@ export function UserContextProvider({ children }) {
       setErrorMsg(null);
 
       const res = await axios.get(
-        `http://localhost:3001/api/users/${userId}/user-and-players`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}/user-and-players`,
       );
 
       setUser(res.data);
@@ -33,7 +33,7 @@ export function UserContextProvider({ children }) {
   // save wins, losses and coins after a match
   async function saveMatchResult(isWinner, level) {
     const res = await axios.post(
-      "http://localhost:3001/api/users/matches/result",
+      `${import.meta.env.VITE_API_URL}/api/users/matches/result`,
       { isWinner, level },
     );
 

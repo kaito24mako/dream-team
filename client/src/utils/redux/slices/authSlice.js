@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import setAuthToken from "../setAuthToken";
 
-const baseURL = "http://localhost:3001/api/auth";
+const baseURL = `${import.meta.env.VITE_API_URL}/api/auth`;
 
 //** create initial state for auth
 const initialState = {

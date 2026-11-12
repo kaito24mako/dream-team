@@ -15,7 +15,7 @@ export function PlayerContextProvider({ children }) {
       setLoading(true);
       setErrorMsg(null);
 
-      const res = await axios.get("http://localhost:3001/api/players");
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/players`);
 
       setPlayers(res.data);
     } catch (err) {

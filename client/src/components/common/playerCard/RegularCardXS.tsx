@@ -33,7 +33,7 @@ function RegularCardXS({
   };
   const playerRarityConversion = rarityBg[playerRarity];
 
-  const playerImageConversion = `${import.meta.env.VITE_BACKEND_URL}${playerImage}`;
+  const playerImageConversion = `${import.meta.env.VITE_API_URL}${playerImage}`;
 
   return (
     <div className="w-30 h-40 lg:w-38 lg:h-55 font-base border border-border-base rounded-lg shadow-sm overflow-hidden">

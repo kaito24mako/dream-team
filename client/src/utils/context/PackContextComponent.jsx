@@ -16,7 +16,7 @@ export function PackContextProvider({ children }) {
       setErrorMsg(null);
 
       const res = await axios.post(
-        `http://localhost:3001/api/users/${userId}/packs/${packType}/open`,
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}/packs/${packType}/open`,
       );
 
       setPulledPlayer(res.data.player);

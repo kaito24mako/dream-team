@@ -38,7 +38,7 @@ function RegularCard({
   };
   const playerRarityConversion = rarityBg[playerRarity];
 
-  const playerImageConversion = `${import.meta.env.VITE_BACKEND_URL}${playerImage}`;
+  const playerImageConversion = `${import.meta.env.VITE_API_URL}${playerImage}`;
 
   return (
     <div

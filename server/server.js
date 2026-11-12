@@ -16,7 +16,23 @@ const app = express();
 // initialise middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+const allowedOrigins = [config.frontendUrl].filter(Boolean);
+if (process.env.NODE_ENV !== "production") {
+  allowedOrigins.push("http://localhost:5173");
+}
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Requests without an Origin header are not browser cross-origin requests.
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Origin not allowed by CORS"));
+      }
+    },
+  }),
+);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morganMiddleware);
 
