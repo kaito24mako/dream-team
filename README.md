@@ -1,4 +1,6 @@
-## Assemble your Dream Team 🏀
+# Dream Team - Basketball Card Battler 🏀
+
+Live site: https://dream-team-7l90.onrender.com/
 
 Battle to earn rewards, rip open packs, and create the greatest lineup to conquer the league. 
 
@@ -8,4 +10,4 @@ MERN stack used to develop this application:
 - React
 - Node
 
-Hope you enjoy balling out! 
+Enjoy balling out!
