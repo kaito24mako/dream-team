@@ -55,7 +55,6 @@ function LoginForm() {
 
       navigate("/team");
     } catch (err) {
-      console.error(err);
       setFormData({ ...formData, errors: { server: err } });
     } finally {
       setLoginStatus("idle");

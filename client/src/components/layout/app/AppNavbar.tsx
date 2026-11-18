@@ -22,7 +22,6 @@ function AppNavbar() {
   const dispatch = useDispatch();
 
   function leave() {
-    console.log("Log out clicked");
     dispatch(logout());
   }
 

@@ -9,11 +9,7 @@ import "./styles/index.css";
 import App from "./App.tsx";
 
 const token = localStorage.getItem("token");
-console.log("token:", token);
-
 if (token) {
-  console.log("setting token...");
-
   // set token in HTTP header for requests
   setAuthToken(token);
 

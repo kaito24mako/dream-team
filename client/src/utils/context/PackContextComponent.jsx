@@ -23,7 +23,6 @@ export function PackContextProvider({ children }) {
 
       return res.data.player;
     } catch (err) {
-      console.error("Failed to open pack:", err);
       setErrorMsg(err.response?.data?.message || "Failed to open pack");
       return null;
     } finally {

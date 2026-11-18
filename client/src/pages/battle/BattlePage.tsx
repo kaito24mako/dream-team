@@ -168,7 +168,6 @@ function BattlePage() {
       // save the result before showing the exit button
       await saveMatchResult(userWon, level);
     } catch (err) {
-      console.error("Failed to save match result:", err);
       setSaveError(
         "Could not save your match result. Your record and coins may not have updated.",
       );

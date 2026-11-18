@@ -21,7 +21,6 @@ export function UserContextProvider({ children }) {
 
       setUser(res.data);
     } catch (err) {
-      console.error("Failed to get user and players:", err);
       setErrorMsg(
         "Failed to retrieve the user details and players. Please try again.",
       );

@@ -21,7 +21,6 @@ export function LineupContextProvider({ children }) {
 
       setLineup(res.data);
     } catch (err) {
-      console.error("Failed to get the user's lineup:", err);
       setErrorMsg("Failed to retrieve the lineup. Please try again.");
     } finally {
       setLoading(false);
@@ -45,7 +44,6 @@ export function LineupContextProvider({ children }) {
       // refresh the lineup
       await getLineup(userId);
     } catch (err) {
-      console.error("Failed to add player to lineup:", err);
       setErrorMsg("Failed to add the player to the lineup. Please try again.");
     } finally {
       setLoading(false);
@@ -69,7 +67,6 @@ export function LineupContextProvider({ children }) {
       // refresh the lineup
       await getLineup(userId);
     } catch (err) {
-      console.error("Failed to remove player from lineup:", err);
       setErrorMsg(
         "Failed to remove the player from the lineup. Please try again.",
       );

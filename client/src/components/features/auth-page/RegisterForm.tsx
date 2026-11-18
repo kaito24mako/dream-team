@@ -103,13 +103,9 @@ function RegisterForm() {
 
         // call the register action
         await dispatch(register({ name, teamName, email, password })).unwrap();
-
-        console.log("Successfully registered the user");
-
         navigate("/login");
       }
     } catch (err) {
-      console.error(err);
       setFormData({ ...formData, errors: { server: err } });
     } finally {
       setRegisterStatus("idle");

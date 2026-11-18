@@ -54,8 +54,8 @@ function AccountPage() {
 
       await getUserAndPlayers(userId);
       setIsEditing(false);
-    } catch (err) {
-      console.error("Failed to update account:", err);
+    } catch {
+      // Keep failed updates out of the browser console.
     }
   }
 

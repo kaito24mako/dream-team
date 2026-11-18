@@ -21,17 +21,12 @@ const initialState = {
 export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
-    console.log("Logging in - authSlice.js");
-
     try {
       // get response from our api route
       const res = await axios.post(`${baseURL}/login`, {
         email,
         password,
       });
-
-      console.log("Response for logging in:", res.data);
-
       // set token into local storage
       localStorage.setItem("token", res.data.token);
 
@@ -40,7 +35,6 @@ export const login = createAsyncThunk(
 
       return res.data;
     } catch (err) {
-      console.log("Failed to login user:", err.message);
       return rejectWithValue(
         err.response?.data?.message || "Loading user failed",
       );
@@ -52,16 +46,11 @@ export const login = createAsyncThunk(
 export const loadUser = createAsyncThunk(
   "auth/loadUser",
   async (_, { rejectWithValue }) => {
-    console.log("Load user - authSlice.js");
-
     try {
       // get response from our api route
       const res = await axios.get(`${baseURL}`);
-      console.log("Loaded user:", res.data);
-
       return { ...res.data, userId: res.data.id };
     } catch (err) {
-      console.log("Failed to load user:", err.message);
       return rejectWithValue(
         err.response?.data?.message || "Loading user failed",
       );
@@ -73,14 +62,9 @@ export const loadUser = createAsyncThunk(
 export const register = createAsyncThunk(
   "auth/register",
   async (newUser, { rejectWithValue }) => {
-    console.log("Register user - authSlice.js");
-
     try {
       // get response from our api route
       const res = await axios.post(`${baseURL}/register`, newUser);
-
-      console.log("Response for registering user:", res.data);
-
       // set token into local storage
       localStorage.setItem("token", res.data.token);
 
@@ -89,7 +73,6 @@ export const register = createAsyncThunk(
 
       return res.data;
     } catch (err) {
-      console.log("Failed to register user:", err.message);
       // send error message to frontend - unwrap() in RegisterForm.tsx will throw it
       return rejectWithValue(
         err.response?.data?.message || "Registration failed",
@@ -107,7 +90,6 @@ const authSlice = createSlice({
   // action.payload is the payload returned from the register/login routes
   reducers: {
     logout: (state) => {
-      console.log("Logout reducer activated");
       localStorage.removeItem("token");
       setAuthToken(null);
       state.user = null;
